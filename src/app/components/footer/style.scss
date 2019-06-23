@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+footer {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  background-color: #2ca4ed;
+  color: #ffffff;
+  font-family: 'Roboto', sans-serif;
+  align-items: center;
+
+  p {
+    font-family: 'Roboto', sans-serif;
+  }
+
+  a {
+    text-decoration: none;
+    color: #ffffff;
+  }
+
+  span {
+    a:nth-child(1), a:nth-child(2) {
+      padding-right: 10px;
+    }
+
+    a > img {
+      filter: invert(100%);
+    }
+  }
+}
