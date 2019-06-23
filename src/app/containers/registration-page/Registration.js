@@ -1,5 +1,6 @@
 import React from 'react';
 import config from 'config';
+
 import './style.scss';
 
 class Registration extends React.Component { // eslint-disable-line react/prefer-stateless-function

@@ -299,10 +299,14 @@
   color: #ffffff;
   background-color: #2ca4ed;
   padding: 10px 15px;
-  border-radius: 10px;
+  border-radius: 3px;
   font-weight: bold;
   font-size: 20px;
   text-decoration: none;
+
+  .center{
+    margin:auto;
+  }
 }
 
 .front-page {
@@ -322,7 +326,7 @@
 
     #home-page-button {
       margin-left: auto;
-      margin-right: 300px;
+      margin-right: 550px;
       padding: 20px 0 20px 50px;
       text-decoration: none;
       font-size: 40pt;
@@ -330,38 +334,44 @@
       color: #2ca4ed;
 
       #logo-image{
-        height:38px;
+        position:relative;
+        height:20px;
+        transform: translateY(-50%);
       }
     }
 
-    .nav-buttons {
+    ul.nav-buttons {
       display: flex;
+      list-style: none;
       flex-direction: row;
       justify-content: space-around;
       align-items: stretch;
       flex-grow: 1;
       margin-right: 50px;
-
       font-family: 'Roboto', sans-serif;
       font-size: 1.2em;
-
       height: 100%;
 
-      .nav-button {
-        margin-left: 15px;
-        color: #000;
-        text-decoration: none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-bottom: solid 5px;
-        border-bottom-color: #ffffff;
-      }
+      li.nav-item{
+        padding-top:0.5rem;
+        padding-bottom:0.5rem;
 
-      .current-page {
-        border-bottom-color: #2ca4ed;
+        a.nav-button {
+          display: block;
+          position: relative;
+          max-width: 100%;
+          padding: 1.0rem .38rem;
+          text-decoration: none;
+          border: 0 solid transparent;
+          color:#333;
+        }
+  
+        a.nav-button:hover{
+          color:#2ca4ed;
+        }
+  
       }
-
+      
       #sign-up-log-in-button {
         color: #fff;
         background-color: #2ca4ed;

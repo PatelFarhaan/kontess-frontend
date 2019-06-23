@@ -1,9 +1,11 @@
 import React from 'react';
 import config from 'config';
-import './style.scss';
+
 import Footer from 'app/components';
 import nvcImage from 'assets/images/NVC-header-w-photo-small.png';
 import kontessLogoImg from 'assets/images/logo_name_blue.png';
+
+import './style.scss';
 
 export default class FrontPage extends React.PureComponent {
   static scrollToWithAnimation(event, targetElement) {
@@ -100,43 +102,64 @@ export default class FrontPage extends React.PureComponent {
 
     return (
       <div className="front-page">
-        {/* <NavBar currentPage={this.state.currentSection} /> */}
-
         <div className={'nav-bar'}>
           <a href={'#'} id='home-page-button'><img id='logo-image' src={kontessLogoImg}></img></a>
-          <div className={'nav-buttons'}>
-            <a
-              href={'#'}
-              className={`nav-button ${this.state.currentSection === 'Home' ? 'current-page' : ''}`}
-              onClick={(event) => { FrontPage.scrollToWithAnimation(event, document.querySelector('.front-page-content')); }}
-            >
-              Home
-            </a>
-            <a
-              href={'#'}
-              className={`nav-button ${this.state.currentSection === 'Customer' ? 'current-page' : ''}`}
-              onClick={(event) => { FrontPage.scrollToWithAnimation(event, document.querySelector('.our-customer')); }}
-            >
-              Customer
-            </a>
-            <a
-              href={'#'}
-              className={`nav-button ${this.state.currentSection === 'Offer' ? 'current-page' : ''}`}
-              onClick={(event) => { FrontPage.scrollToWithAnimation(event, document.querySelector('.what-we-offer')); }}
-            >
-              Offer
-            </a>
-            <a
-              href={'#'}
-              className={`nav-button ${this.state.currentSection === 'About' ? 'current-page' : ''}`}
-              onClick={(event) => { FrontPage.scrollToWithAnimation(event, document.querySelector('.about-us')); }}
-            >
-              About
-            </a>
-            {/* <NavLink to={'/authentication'} className={'nav-button'} id={'sign-up-log-in-button'}>
-              Log in / Sign up
-            </NavLink> */}
-          </div>
+          <ul className={'nav-buttons'}>
+            <li className={'nav-item'}>
+              <a
+                href={'#'}
+                className={`nav-button ${this.state.currentSection === 'Home' ? 'current-page' : ''}`}
+                onClick={(event) => { FrontPage.scrollToWithAnimation(event, document.querySelector('.front-page-content')); }}
+              >
+                Home
+              </a>
+            </li>
+            <li className={'nav-item'}>
+              <a
+                href={'#'}
+                className={`nav-button ${this.state.currentSection === 'Customer' ? 'current-page' : ''}`}
+                onClick={(event) => { FrontPage.scrollToWithAnimation(event, document.querySelector('.our-customer')); }}
+              >
+                Customer
+              </a>
+            </li>
+            <li className={'nav-item'}>
+              <a
+                href={'#'}
+                className={`nav-button ${this.state.currentSection === 'Offer' ? 'current-page' : ''}`}
+                onClick={(event) => { FrontPage.scrollToWithAnimation(event, document.querySelector('.what-we-offer')); }}
+              >
+                Offer
+              </a>
+            </li>
+            <li className={'nav-item'}>
+              <a
+                href={'#'}
+                className={`nav-button ${this.state.currentSection === 'About' ? 'current-page' : ''}`}
+                onClick={(event) => { FrontPage.scrollToWithAnimation(event, document.querySelector('.about-us')); }}
+              >
+                About
+              </a>
+            </li>
+            <li className={'nav-item'}>
+              <a
+                href={'#'}
+                className={`nav-button ${this.state.currentSection === 'About' ? 'current-page' : ''}`}
+                onClick={(event) => { FrontPage.scrollToWithAnimation(event, document.querySelector('.about-us')); }}
+              >
+                Register
+              </a>  
+            </li>
+            <li className={'nav-item'}>
+              <a
+                href={'#'}
+                className={`nav-button ${this.state.currentSection === 'About' ? 'current-page' : ''}`}
+                onClick={(event) => { FrontPage.scrollToWithAnimation(event, document.querySelector('.about-us')); }}
+              >
+                Login
+              </a>
+            </li>
+          </ul>
         </div>
 
         <div className={'front-page-content'}>
@@ -154,7 +177,7 @@ export default class FrontPage extends React.PureComponent {
             </a>
           </div>
           <div className={'business-opportunity'}>
-            <h2>We Are Here<br />To Help</h2>
+            {/* <h2>We Are Here<br />To Help</h2> */}
             <div>
               <p>
                 Hosting a competition can be tedious, and it doesn’t have to be.
@@ -163,7 +186,7 @@ export default class FrontPage extends React.PureComponent {
               <br />
               <a
                 href={'#'}
-                className={'blue-button'}
+                className={'blue-button center'}
                 onClick={(event) => { FrontPage.scrollToWithAnimation(event, document.querySelector('.what-we-offer')); }}
               >
                 Learn More
