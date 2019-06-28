@@ -1,0 +1,157 @@
+html, body, #root, #root > .App, #root > .App > div {
+    height: 100%
+}
+
+$iconHeight : 20px;
+$sidenavWidth : 200px;
+$sidenavBorderWidth : 5px;
+$sidenavButtonSpanPaddingWidth : 25px;
+$pageTopMargin: 25px;
+
+.skeleton {
+    display: grid;
+    grid-template-rows: 100%;
+    grid-template-columns: $sidenavWidth auto;
+    height: 100%;
+    width: 100%;
+    background-color: #f5f2f2;
+
+    .sidenav {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        background-color: #ffffff;
+        border-right: #c9c9c9 solid 1px;
+
+        #logo {
+            max-width: 35%;
+            margin-top: $pageTopMargin;
+            height: auto;
+        }
+        
+        div {
+            display: flex;
+            flex-direction: column;
+            justify-content: stretch;
+            width: 100%;
+        }
+
+        .sidenav-button {
+            border-left: #ffffff solid $sidenavBorderWidth;
+            width: $sidenavWidth;
+        
+            span {
+                width: ($sidenavWidth - $sidenavBorderWidth - $sidenavButtonSpanPaddingWidth);
+                padding-top: 10px;
+                padding-bottom: 10px;
+                padding-left: $sidenavButtonSpanPaddingWidth;
+        
+                img {
+                    margin-right: 20px;
+                }
+
+                p {
+                    margin: 0;
+                }
+        
+                font-weight: bolder;
+                color: gray;
+            }
+
+            &:hover {
+                background-color: #f9f9f9;
+                border-right: #c9c9c9 solid 1px;
+            }
+        }
+        
+        .sidenav-button-active {
+            span {
+                color: #2ca4ed;
+            }
+        
+            border-left: #2ca4ed solid $sidenavBorderWidth;
+        }
+        
+    }
+
+    .topnav {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 0 0 0 30px;
+        background: #ffffff;
+        border-radius: 15px;
+        margin: $pageTopMargin 40px 40px 40px;
+        height: 75px;
+
+        #page-title {
+            font-size: 26px;
+            margin: 0;
+            font-weight: bolder;
+            color: black;
+            padding: 10px 0;
+        }
+
+        #notification-button {
+            margin-left: auto;
+            border-left: #777777 solid 1px;
+            border-right: #777777 solid 1px;
+            padding: 10px 15px;
+            height: 100%;
+
+            img {
+                height: 35px;
+            }
+
+            &:hover {
+                background-color: #f9f9f9
+            }
+        }
+
+        #user-name-avatar {
+            padding: 10px 30px 10px 25px;
+            height: 100%;
+
+            p {
+                margin: 0;
+                padding-left: 15px;
+                padding-right: 5px;
+                font-weight: bold;
+            }
+
+            &:hover {
+                background-color: #f9f9f9;
+                border-radius: 15px;
+            }
+        }
+    }
+
+    .icon-img {
+        max-height: $iconHeight;
+    }
+
+    .icon-text-wrapper {
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    button {
+        background: none;
+        color: inherit;
+        border: none;
+        padding: 0;
+        font: inherit;
+        cursor: pointer;
+        outline: inherit;
+    }
+
+    #avatar {
+        height: 55px;
+        width: 55px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+}
