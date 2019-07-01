@@ -154,4 +154,55 @@ $pageTopMargin: 25px;
         border-radius: 50%;
         object-fit: cover;
     }
+
+}
+
+.todo-container {
+    height: 100%;
+
+    h1 {
+        font-weight: normal;
+        text-align: start;
+        margin-left: 67px;
+    }
+
+    .todo-content {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        height: 100%;
+
+        section {
+            background-color: white;
+            height: 100%;
+            width: 30%;
+            border-radius: 15px;
+            padding: 10px 30px;
+
+            .todo-item-title {
+                display: flex;
+
+                h2 {
+                    font-weight: bold;
+                    font-size: 18px;
+                    text-align: start;
+                    display: inline;
+                }
+
+                button {
+                    margin-left: auto;
+                }
+            }
+
+            .todo-item-list {
+
+                .todo-item {
+                    background-color: #f9f9f9;
+                    padding: 10px 10px;
+                    border-radius: 15px;
+                    margin-top: 35px;
+                }
+            }
+        }
+    }
 }

@@ -11,11 +11,52 @@ import dropDownMenuIcon from 'assets/icons/dropdown.svg';
 import notificationIcon from 'assets/icons/notification.svg';
 
 function Dashboard(props) {
-    return <div><h2>TODOs</h2></div>;
-}
-
-function Activity(props) {
-    return <div><h2>Recent Activity</h2></div>;
+    return (
+    <div className="todo-container">
+        <h1>TO-DO List</h1>
+        <div className="todo-content">
+            <section>
+                <div className="todo-item-title">
+                    <h2>Working in Progress</h2>
+                    <button>Add...</button>
+                </div>
+                <div className="todo-item-list">
+                    <div className="todo-item">
+                        <p>Kontess</p>
+                    </div>
+                    <div className="todo-item">
+                        <p>Hello, world</p>
+                    </div>
+                    <div className="todo-item">
+                        <p>JavaScript</p>
+                    </div>
+                    <div className="todo-item">
+                        <p>Python</p>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div className="todo-item-title">
+                    <h2>Complete</h2>
+                </div>
+                <div className="todo-item-list">
+                <div className="todo-item">
+                        <p>Kontess</p>
+                    </div>
+                    <div className="todo-item">
+                        <p>Hello, world</p>
+                    </div>
+                    <div className="todo-item">
+                        <p>JavaScript</p>
+                    </div>
+                    <div className="todo-item">
+                        <p>Python</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    );
 }
 
 const TARGET_PAGES = {  // maybe this is a stupid design
@@ -24,7 +65,7 @@ const TARGET_PAGES = {  // maybe this is a stupid design
         id: 'sidenav-dashboard'
     },
     'Activity': {
-        content: <Activity />,
+        content: null,
         id: 'sidenav-activity'
     },
     'My Team': {
