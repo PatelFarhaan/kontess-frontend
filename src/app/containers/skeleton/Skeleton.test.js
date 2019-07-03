@@ -1,16 +1,16 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import Dashboard from './Dashboard';
+import Skeleton from './Skeleton';
 
-describe('<Dashboard />', () => {
+describe('<Skeleton />', () => {
     it('should display correct user information', () => {
-        const renderedComponent = shallow(<Dashboard />);
+        const renderedComponent = shallow(<Skeleton />);
         expect(renderedComponent.find('#user-name-avatar').find('p').contains('Foo Bar'));
         // TODO: since I'm not sure how the user token will be stored, using placeholder for now
     });
 
     it('should switch to correct page', () => {
-        const renderedComponent = mount(<Dashboard />);
+        const renderedComponent = mount(<Skeleton />);
         renderedComponent.find('#main-content').contains(<div><h2>TODOs</h2></div>);
         renderedComponent.find('#page-title').contains('Dashboard');
 
