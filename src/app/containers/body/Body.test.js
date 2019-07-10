@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import Dashboard from './Dashboard';
+import Body from './Body';
 
-describe('<Dashboard />', () => {
+describe('<Body />', () => {
     it('should render correct todo info based on received data', () => {
 
     });

@@ -1,34 +1,8 @@
 import React from 'react';
-import './style.scss';
 
-export default class Dashboard extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            currentUser: {  // TODO: this is placeholder, maybe get this info from local storage
-                id: 123456,
-                name: 'Foo Bar',
-                avatar: 'http://i.stack.imgur.com/Dj7eP.jpg'
-            },
-            todoList: [],
-            completeList: [],
-            shouldShowAddTodoPopUp: false
-        }
-    }
+import PopUp from '../popup-window/PopUp';
 
-    getList() {
-        // TODO: placeholder; wait for sever API document to implement this function
-    }
-
-    updateList(newTodoItem) {
-        // TODO: placeholder; wait for sever API document to implement this function
-        this.toggleNewTodoPopUp();
-    }
-
-    toggleNewTodoPopUp() {
-        this.setState((state) => ({ shouldShowAddTodoPopUp: !state.shouldShowAddTodoPopUp }));
-    }
-
+export default class ToDo extends React.Component {
     renderList() {
         return (
             <div className="todo-item-list">
@@ -71,14 +45,7 @@ export default class Dashboard extends React.Component {
                 </div>
                 {
                     this.state.shouldShowAddTodoPopUp ? (
-                    <div className="popup-bg">
-                        <div className="popup-window">
-                            <h2>Create new todo item</h2>
-                            {/* TODO: add a check when closing this pop-up */}
-                            <button onClick={(event) => { this.toggleNewTodoPopUp(); event.preventDefault(); }}>Close</button>
-                            <button onClick={(event) => { this.updateList('info'); event.preventDefault(); }}>Submit</button>
-                        </div>
-                    </div>
+                        <PopUp />
                     ) : null
                 }
             </div>
