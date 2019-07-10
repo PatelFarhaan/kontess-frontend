@@ -10,6 +10,7 @@ import {
 } from "app/containers";
 
 function App() {
+  /* 12 */
   return (
     <div className="App">
       <Router history={history}>
