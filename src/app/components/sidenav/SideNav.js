@@ -3,18 +3,34 @@ import PropTypes from 'prop-types';
 import './style.scss';
 
 import kontessLogoImg from 'assets/images/logo.png';
+import dashboardIcon from 'assets/icons/dashboard.svg';
+import eventIcon from 'assets/icons/activity.svg';
 
 export default class SideNav extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentPage: props.initialActivePageId
+            currentPageId: props.currentPageId
         };
+        this.pages = [
+            {
+                name: 'Dashboard',
+                iconPath: dashboardIcon,
+                pageId: 'dashboard-nav',
+                isActive: props.currentPageId === 'dashboard-nav'
+            },
+            {
+                name: 'Event',
+                iconPath: eventIcon,
+                pageId: 'event-nav',
+                isActive: props.currentPageId === 'event-nav'
+            }
+        ];
     }
 
     getButtons() {
-        const buttons = this.props.pages.map((page) => {
-            return (
+        const buttons = this.pages.map((page) => 
+            (
                 <button
                     className={"sidenav-button" + (page.isActive ? " sidenav-button-active" : "")}
                     id={page.pageId}
@@ -25,8 +41,8 @@ export default class SideNav extends React.Component {
                         <p>{page.name}</p>
                     </span>
                 </button>
-            );
-        });
+            )
+        );
         return (
             <div>
                 {buttons}
@@ -35,7 +51,7 @@ export default class SideNav extends React.Component {
     }
 
     switchPage(event, targetPageId) {
-        this.setState({currentPage: targetPageId})
+        // TODO: implement page switching
         event.preventDefault();
     }
 
@@ -44,18 +60,12 @@ export default class SideNav extends React.Component {
             <nav className="sidenav">
                 <img id="logo" src={kontessLogoImg} alt="Kontess Logo" />
                 <h3>Main Menu</h3>
-                {/* (() => {return this.getButtons();})() */}
+                {(() => this.getButtons())()}
             </nav>
         );
     }
 }
 
 SideNav.propTypes = {
-    pages: PropTypes.arrayOf(PropTypes.shape({
-        isActive: PropTypes.bool,
-        pageId: PropTypes.string,
-        iconPath: PropTypes.string,
-        name: PropTypes.string
-    })),
-    initialActivePageId: PropTypes.string
+    currentPageId: PropTypes.string
 };

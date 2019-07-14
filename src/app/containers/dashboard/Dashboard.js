@@ -9,10 +9,13 @@ export default class Dashboard extends React.Component {
     render() {
         return (
             <div className="dashboard">
-                <SideNav />
+                <SideNav currentPageId="dashboard-nav"/>
                 <div>
                     <TopNav />
                     <Body />
+                    {/* <Body />  this for Event
+                    <Body /> My Team
+                    <Body /> ... */}
                 </div>
             </div>
         );

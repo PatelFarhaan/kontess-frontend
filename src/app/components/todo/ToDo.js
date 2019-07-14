@@ -43,11 +43,11 @@ export default class ToDo extends React.Component {
                         {this.renderList()}
                     </section>
                 </div>
-                {
+                {/* {
                     this.state.shouldShowAddTodoPopUp ? (
                         <PopUp />
                     ) : null
-                }
+                } */}
             </div>
         );
     }
