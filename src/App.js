@@ -5,7 +5,8 @@ import './App.css';
 
 import {
   Landing,
-  Registration
+  Registration,
+  Dashboard
 } from "app/containers";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={Landing} />
             <Route exact path="/registration" component={Registration} />
+            <Route exact path="/dashboard" component={Dashboard} />
             {/* <Route component={NotFound} /> */}
           </Switch>
         </div>
