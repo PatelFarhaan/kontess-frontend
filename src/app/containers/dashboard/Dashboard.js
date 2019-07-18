@@ -12,7 +12,7 @@ export default class Dashboard extends React.Component {
                 <SideNav currentPageId="dashboard-nav"/>
                 <div>
                     <TopNav />
-                    <ToDoBody />
+                    {this.props.children /* which will be <ToDoBody /> */}
                 </div>
             </div>
         );
