@@ -1,7 +1,6 @@
 import React from 'react';
 import './style.scss';
 
-import ToDoBody from '../todo-body/ToDoBody';
 import SideNav from '../../components/sidenav/SideNav';
 import TopNav from '../../components/topnav/TopNav';
 
