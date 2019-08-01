@@ -4,6 +4,6 @@ const api = {
   localhost: 'http://localhost:8000',
 };
 
-const apiBase = api[hostname];
+const apiBase = api.localhost;
 
 export default apiBase;
