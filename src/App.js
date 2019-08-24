@@ -6,6 +6,7 @@ import './App.css';
 import {
   Landing,
   Registration,
+  Login,
   DashBoardWrapper
 } from "app/containers";
 
@@ -17,6 +18,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={Landing} />
             <Route exact path="/registration" component={Registration} />
+            <Route exact path="/login" component={Login} />
             <Route exact path="/dashboard" component={DashBoardWrapper} />
             {/* <Route component={NotFound} /> */}
           </Switch>

@@ -27,7 +27,6 @@ export default class FrontPage extends React.PureComponent {
       demoRequestMarket: ''
     };
 
-    this.handleLogin = this.handleLogin.bind(this);
     this.formHandler = this.formHandler.bind(this);
     this.handleDemoRequest = this.handleDemoRequest.bind(this);
     this.handleScroll = this.handleScroll.bind(this);
@@ -55,12 +54,6 @@ export default class FrontPage extends React.PureComponent {
     }
   };
 
-  handleLogin(id) {
-    this.setState({
-      userid: id,
-    });
-  }
-
   formHandler(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
@@ -76,7 +69,7 @@ export default class FrontPage extends React.PureComponent {
 
     console.log(JSON.stringify(wtf));
 
-    fetch(`${config}demo/`, {
+    fetch(`${config}/demo/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -143,18 +136,16 @@ export default class FrontPage extends React.PureComponent {
             </li>
             <li className={'nav-item'}>
               <a
-                href={'#'}
+                href={'/registration'}
                 className={`nav-button ${this.state.currentSection === 'About' ? 'current-page' : ''}`}
-                onClick={(event) => { FrontPage.scrollToWithAnimation(event, document.querySelector('.about-us')); }}
               >
                 Register
               </a>  
             </li>
             <li className={'nav-item'}>
               <a
-                href={'#'}
+                href={'/login'}
                 className={`nav-button ${this.state.currentSection === 'About' ? 'current-page' : ''}`}
-                onClick={(event) => { FrontPage.scrollToWithAnimation(event, document.querySelector('.about-us')); }}
               >
                 Login
               </a>
