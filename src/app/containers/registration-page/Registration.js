@@ -1,78 +1,70 @@
 import React from 'react';
-import config from 'config';
+
+import organizerAuthService from "../../services/OrganizerAuthService"
 
 import './style.scss';
+
 
 class Registration extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
     super(props);
     this.state = {
+      mode:'organizer',
       email: '',
       password: '',
+      firstName: '',
+      lastName: '',
+      confirmPassword: '',
+      title: '',
+      error: ''
     };
 
-    this.handleEmail = this.handleEmail.bind(this);
-    this.handlePassword = this.handlePassword.bind(this);
-    this.handleLogin = this.handleLogin.bind(this);
+    this.formHandler = this.formHandler.bind(this);
+    this.handleRegister = this.handleRegister.bind(this);
   }
 
-  handleEmail(event) {
-    this.setState({ email: event.target.value });
+  formHandler(event) {
+    this.setState({ [event.target.name]: event.target.value });
   }
 
-  handlePassword(event) {
-    this.setState({
-      password: event.target.value,
-    });
-  }
-
-  handleLogin(event) {
-    fetch(`${config}user/login/`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: this.state.email,
-        password: this.state.password,
-      }),
-    })
-      .then((response) => {
-        const status = response.status;
-        if (status === 200) {
-          return response.json();
-        } else {
-          document.querySelector('.login div').style.display = 'block';
-          if (status === 401) {
-            document.querySelector('.login div p').innerHTML = 'Incorrect email or password';
-            document.querySelector('.login form input:nth-child(2)').value = '';
-          } else {
-            document.querySelector('.login div p').innerHTML = 'Something in our side went wrong, please try later :(';
-          }
+  handleRegister(event) {
+    if(this.state.mode === "organizer"){
+      organizerAuthService.register(
+        this.state.firstName,
+        this.state.lastName,
+        this.state.title,
+        this.state.email,
+        this.state.password
+      ).then((result)=>{
+        this.props.history.push("/dashboard")
+      }).catch((err) => {
+        if(err){
+          const key = Object.keys(err.data)[0]
+          this.setState({"error": err.data[key]}) 
+        }
+        else{
+          this.setState({"error": "network error, please try again in a few minutes"}) 
         }
       })
-      .then((data) => {
-        if (data) {
-          localStorage.setItem('token', data.token);
-          localStorage.setItem('userId', data.id);
-        }
-      });
-
+    }
     event.preventDefault();
   }
 
   render() {
     return (
-      <div className="login">
-        <h1>Login</h1>
-        <div>
-          <p>Incorrect Email or Password</p>
-        </div>
-        <form onSubmit={this.handleLogin}>
-          <input type="email" value={this.state.email} onChange={this.handleEmail} placeholder="Email" required />
-          <input type="password" value={this.state.password} onChange={this.handlePassword} placeholder="Password" required />
+      <div className="register">
+        <h1>Registration</h1>
+        <form onSubmit={this.handleRegister}>
+          <input type="text" name="firstName" value={this.state.firstName} onChange={this.formHandler} placeholder="First Name" required />
+          <input type="text" name="lastName" value={this.state.lastName} onChange={this.formHandler} placeholder="Last Name" required />
+          <input type="text" name="title" value={this.state.title} onChange={this.formHandler} placeholder="Your Title" required />
+          <input type="email" name="email" value={this.state.email} onChange={this.formHandler} placeholder="Email" required />
+          <input type="password" name="password" value={this.state.password} onChange={this.formHandler} placeholder="Password" required />
+          <input type="password" name="confirmPassword" value={this.state.confirmPassword} onChange={this.formHandler} placeholder="Confirm Password" required />
           <input type="submit" value="Submit" />
         </form>
+        <p className="red">{this.state.error}</p>
+        <p>Already have an account?<a href="/login">Login</a></p>
       </div>
     );
   }

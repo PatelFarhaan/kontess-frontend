@@ -1,7 +1,7 @@
 const hostname = window.location.hostname;
 
 const api = {
-  localhost: 'http://localhost:8000/',
+  localhost: 'http://localhost:8000',
 };
 
 const apiBase = api[hostname];
