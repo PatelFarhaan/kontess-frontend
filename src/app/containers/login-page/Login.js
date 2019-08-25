@@ -1,9 +1,9 @@
 import React from 'react';
 
 import organizerAuthService from "../../services/OrganizerAuthService"
+import * as session from "../../../utils/session"
 
 import './style.scss';
-
 
 class Login extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
@@ -21,6 +21,10 @@ class Login extends React.Component { // eslint-disable-line react/prefer-statel
 
     this.formHandler = this.formHandler.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
+  }
+  
+  componentDidMount(){
+    session.routeSession(this.props.history)
   }
 
   formHandler(event) {

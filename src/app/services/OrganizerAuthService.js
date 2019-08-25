@@ -13,32 +13,25 @@ var getTokenPromise = (email, password) => {
 }
 
 export default {
-  register: (first_name, last_name, title, email, password) => {
-    return api.postNoTokenRoute(routes.organizerRoute, {
+  register: async (first_name, last_name, title, email, password) => {
+    const data = await api.postNoTokenRoute(routes.organizerRoute, {
       "first_name": first_name,
       "last_name": last_name,
       "title": title,
       "username": email,
       "password": password
-    }).then(data => {
-      session.setUser(data.data.id)
-      return data;
-    }).then(
-      getTokenPromise(email, password)
-    )
+    })
+    session.setUser(data.data.id)
+    return await getTokenPromise(email, password)
   },
 
-  login: (email, password) => {
-    return api
-      .postNoTokenRoute(routes.organizerLoginRoute, {
-        "username":email,
-        "password":password
-      }).then(data => {
-        session.setUser(data.data.id)
-        return data;
-      }).then(
-        getTokenPromise(email, password)
-      );
+  login: async (email, password) => {
+    const data = await api.postNoTokenRoute(routes.organizerLoginRoute, {
+      "username": email,
+      "password": password
+    })
+    session.setUser(data.data.id)
+    return await getTokenPromise(email, password)
   },
 
   logout: () => {

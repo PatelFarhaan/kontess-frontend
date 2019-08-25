@@ -45,3 +45,11 @@ export const getSessionUserId = () => {
   user = JSON.parse(user);
   return user ? user._id : null;
 };
+
+export const routeSession = (history) => {
+  if(getSession().accessToken || 
+    getSession().refreshToken || 
+    getSession().user){
+      history.push('/dashboard')
+    }
+}
