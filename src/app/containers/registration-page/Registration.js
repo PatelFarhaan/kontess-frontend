@@ -1,7 +1,7 @@
 import React from 'react';
 
 import organizerAuthService from "../../services/OrganizerAuthService"
-import * as session from "../../../utils/session"
+import * as session from '../../../utils/session'
 
 import './style.scss';
 
@@ -23,9 +23,11 @@ class Registration extends React.Component { // eslint-disable-line react/prefer
     this.formHandler = this.formHandler.bind(this);
     this.handleRegister = this.handleRegister.bind(this);
   }
-
+    
   componentDidMount(){
-    session.routeSession(this.props.history)
+    if(session.checkSession()){
+      this.props.history.push('/dashboard')
+    }
   }
 
   formHandler(event) {

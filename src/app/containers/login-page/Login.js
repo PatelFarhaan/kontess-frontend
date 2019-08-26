@@ -1,7 +1,8 @@
 import React from 'react';
+import { withRouter } from "react-router-dom";
 
 import organizerAuthService from "../../services/OrganizerAuthService"
-import * as session from "../../../utils/session"
+import * as session from '../../../utils/session'
 
 import './style.scss';
 
@@ -23,8 +24,10 @@ class Login extends React.Component { // eslint-disable-line react/prefer-statel
     this.handleLogin = this.handleLogin.bind(this);
   }
   
-  componentDidMount(){
-    session.routeSession(this.props.history)
+  componentWillMount(){
+    if(session.checkSession()){
+      this.props.history.push('/dashboard/')
+    }
   }
 
   formHandler(event) {
@@ -36,9 +39,11 @@ class Login extends React.Component { // eslint-disable-line react/prefer-statel
       organizerAuthService.login(
         this.state.email,
         this.state.password
-      ).then((result)=>{
-        this.props.history.push("/dashboard")
+      ).then(()=>{
+        console.log(session.getSession(), session.checkSession())
+        this.props.history.push('/')
       }).catch((err) => {
+        console.log(err)
         this.setState({"error": "No account found for that email and password combination"})
       })
     }
@@ -61,4 +66,4 @@ class Login extends React.Component { // eslint-disable-line react/prefer-statel
   }
 }
 
-export default Login;
+export default withRouter(Login);

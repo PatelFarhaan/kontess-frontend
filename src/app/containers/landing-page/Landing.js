@@ -35,7 +35,9 @@ export default class FrontPage extends React.PureComponent {
 
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
-    session.routeSession(this.props.history)
+    if(session.checkSession()){
+      this.props.history.push('/dashboard')
+    }
   }
 
   componentWillUnmount() {
