@@ -4,6 +4,7 @@ import config from 'config';
 import Footer from 'app/components';
 import nvcImage from 'assets/images/NVC-header-w-photo-small.png';
 import kontessLogoImg from 'assets/images/logo_name_blue.png';
+import * as session from '../../../utils/session'
 
 import './style.scss';
 
@@ -34,6 +35,9 @@ export default class FrontPage extends React.PureComponent {
 
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
+    if(session.checkSession()){
+      this.props.history.push('/dashboard')
+    }
   }
 
   componentWillUnmount() {
@@ -66,8 +70,6 @@ export default class FrontPage extends React.PureComponent {
       company: this.state.demoRequestCompany,
       market: this.state.demoRequestMarket
     };
-
-    console.log(JSON.stringify(wtf));
 
     fetch(`${config}/demo/`, {
       method: 'POST',

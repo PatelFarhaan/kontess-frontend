@@ -45,3 +45,9 @@ export const getSessionUserId = () => {
   user = JSON.parse(user);
   return user ? user._id : null;
 };
+
+export const checkSession = () => {
+  return ((getSession().accessToken &&
+    getSession().refreshToken &&
+    getSession().user) ? true : false)
+}

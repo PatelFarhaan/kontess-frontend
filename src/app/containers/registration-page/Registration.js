@@ -1,6 +1,7 @@
 import React from 'react';
 
 import organizerAuthService from "../../services/OrganizerAuthService"
+import * as session from '../../../utils/session'
 
 import './style.scss';
 
@@ -22,13 +23,19 @@ class Registration extends React.Component { // eslint-disable-line react/prefer
     this.formHandler = this.formHandler.bind(this);
     this.handleRegister = this.handleRegister.bind(this);
   }
+    
+  componentDidMount(){
+    if(session.checkSession()){
+      this.props.history.push('/dashboard')
+    }
+  }
 
   formHandler(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
 
   handleRegister(event) {
-    if(this.state.mode === "organizer"){
+    if(this.state.mode === 'organizer'){
       organizerAuthService.register(
         this.state.firstName,
         this.state.lastName,
@@ -36,14 +43,15 @@ class Registration extends React.Component { // eslint-disable-line react/prefer
         this.state.email,
         this.state.password
       ).then((result)=>{
-        this.props.history.push("/dashboard")
+        this.props.history.push('/dashboard')
       }).catch((err) => {
+        console.log(err)
         if(err){
           const key = Object.keys(err.data)[0]
-          this.setState({"error": err.data[key]}) 
+          this.setState({'error': err.data[key]}) 
         }
         else{
-          this.setState({"error": "network error, please try again in a few minutes"}) 
+          this.setState({'error': 'network error, please try again in a few minutes'}) 
         }
       })
     }
