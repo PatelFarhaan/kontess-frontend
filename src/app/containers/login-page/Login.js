@@ -40,10 +40,8 @@ class Login extends React.Component { // eslint-disable-line react/prefer-statel
         this.state.email,
         this.state.password
       ).then(()=>{
-        console.log(session.getSession(), session.checkSession())
         this.props.history.push('/')
       }).catch((err) => {
-        console.log(err)
         this.setState({"error": "No account found for that email and password combination"})
       })
     }
