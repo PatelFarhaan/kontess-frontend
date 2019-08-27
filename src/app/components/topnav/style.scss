@@ -1,83 +1,79 @@
-$iconHeight : 20px;
+$iconHeight: 20px;
 $pageTopMargin: 25px;
 
 .topnav {
-    display: flex;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0px 23px;
+  background: #ffffff;
+  height: 60px;
+
+  .icon-img {
+    max-height: $iconHeight;
+  }
+
+  .icon-text-wrapper {
+    display: inline-flex;
     flex-direction: row;
-    justify-content: flex-start;
     align-items: center;
-    padding: 0 0 0 30px;
-    background: #ffffff;
-    border-radius: 15px;
-    margin: $pageTopMargin 40px 40px 40px;
-    height: 75px;
+  }
 
-    .icon-img {
-        max-height: $iconHeight;
+  button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+  }
+
+  #avatar {
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  #page-title {
+    font-size: 26px;
+    margin: 0;
+    font-weight: bolder;
+    color: black;
+    padding: 30px 0;
+  }
+
+  #notification-button {
+    margin-left: auto;
+    border-left: #777777 solid 1px;
+    border-right: #777777 solid 1px;
+    padding: 10px 15px;
+    height: 100%;
+
+    img {
+      height: 35px;
     }
 
-    .icon-text-wrapper {
-        display: inline-flex;
-        flex-direction: row;
-        align-items: center;
+    &:hover {
+      background-color: #f9f9f9;
+    }
+  }
+
+  #user-name-avatar {
+    height: 100%;
+
+    p {
+      margin: 0;
+      padding-left: 15px;
+      padding-right: 5px;
+      font-weight: bold;
     }
 
-    button {
-        background: none;
-        color: inherit;
-        border: none;
-        padding: 0;
-        font: inherit;
-        cursor: pointer;
-        outline: inherit;
+    &:hover {
+      background-color: #f9f9f9;
+      border-radius: 15px;
     }
-
-    #avatar {
-        height: 55px;
-        width: 55px;
-        border-radius: 50%;
-        object-fit: cover;
-    }
-
-    #page-title {
-        font-size: 26px;
-        margin: 0;
-        font-weight: bolder;
-        color: black;
-        padding: 10px 0;
-    }
-
-    #notification-button {
-        margin-left: auto;
-        border-left: #777777 solid 1px;
-        border-right: #777777 solid 1px;
-        padding: 10px 15px;
-        height: 100%;
-
-        img {
-            height: 35px;
-        }
-
-        &:hover {
-            background-color: #f9f9f9
-        }
-    }
-
-    #user-name-avatar {
-        padding: 10px 30px 10px 25px;
-        height: 100%;
-
-        p {
-            margin: 0;
-            padding-left: 15px;
-            padding-right: 5px;
-            font-weight: bold;
-        }
-
-        &:hover {
-            background-color: #f9f9f9;
-            border-radius: 15px;
-        }
-    }
+  }
 }
-

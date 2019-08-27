@@ -42,8 +42,7 @@ export const getSessionToken = () => {
 
 export const getSessionUserId = () => {
   let user = localStorage.getItem(userKey);
-  user = JSON.parse(user);
-  return user ? user._id : null;
+  return user;
 };
 
 export const checkSession = () => {

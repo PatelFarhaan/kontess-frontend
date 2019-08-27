@@ -1,83 +1,88 @@
 $pageTopMargin: 25px;
-$sidenavBorderWidth : 5px;
-$sidenavWidth : 200px;
-$sidenavButtonSpanPaddingWidth : 25px;
-$iconHeight : 20px;
+$sidenavBorderWidth: 5px;
+$sidenavWidth: 280px;
+$sidenavButtonSpanPaddingWidth: 25px;
+$iconHeight: 20px;
 
 .sidenav {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #ffffff;
+  width: $sidenavWidth;
+  border-right: #c9c9c9 solid 1px;
+  position: fixed;
+  height: 100%;
+
+  #logo {
+    width: 50px;
+    margin-top: $pageTopMargin;
+    height: auto;
+  }
+
+  div {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: stretch;
+    width: 100%;
+  }
+
+  .sidenav-button {
+    border-left: #ffffff solid $sidenavBorderWidth;
+    width: $sidenavWidth;
+
+    span {
+      width: (
+        $sidenavWidth - $sidenavBorderWidth - $sidenavButtonSpanPaddingWidth
+      );
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-left: $sidenavButtonSpanPaddingWidth;
+
+      img {
+        margin-right: 20px;
+      }
+
+      p {
+        margin: 0;
+      }
+
+      font-weight: bolder;
+      color: gray;
+    }
+
+    &:hover {
+      background-color: #f9f9f9;
+      border-right: #c9c9c9 solid 1px;
+    }
+  }
+
+  .sidenav-button-active {
+    span {
+      color: #2ca4ed;
+    }
+
+    border-left: #2ca4ed solid $sidenavBorderWidth;
+  }
+
+  .icon-img {
+    max-height: $iconHeight;
+  }
+
+  .icon-text-wrapper {
+    display: inline-flex;
+    flex-direction: row;
     align-items: center;
-    background-color: #ffffff;
-    border-right: #c9c9c9 solid 1px;
+  }
 
-    #logo {
-        max-width: 35%;
-        margin-top: $pageTopMargin;
-        height: auto;
-    }
-    
-    div {
-        display: flex;
-        flex-direction: column;
-        justify-content: stretch;
-        width: 100%;
-    }
-
-    .sidenav-button {
-        border-left: #ffffff solid $sidenavBorderWidth;
-        width: $sidenavWidth;
-    
-        span {
-            width: ($sidenavWidth - $sidenavBorderWidth - $sidenavButtonSpanPaddingWidth);
-            padding-top: 10px;
-            padding-bottom: 10px;
-            padding-left: $sidenavButtonSpanPaddingWidth;
-    
-            img {
-                margin-right: 20px;
-            }
-
-            p {
-                margin: 0;
-            }
-    
-            font-weight: bolder;
-            color: gray;
-        }
-
-        &:hover {
-            background-color: #f9f9f9;
-            border-right: #c9c9c9 solid 1px;
-        }
-    }
-    
-    .sidenav-button-active {
-        span {
-            color: #2ca4ed;
-        }
-    
-        border-left: #2ca4ed solid $sidenavBorderWidth;
-    }
-    
-    .icon-img {
-        max-height: $iconHeight;
-    }
-
-    .icon-text-wrapper {
-        display: inline-flex;
-        flex-direction: row;
-        align-items: center;
-    }
-
-    button {
-        background: none;
-        color: inherit;
-        border: none;
-        padding: 0;
-        font: inherit;
-        cursor: pointer;
-        outline: inherit;
-    }
+  button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+  }
 }
