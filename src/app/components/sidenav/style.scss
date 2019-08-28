@@ -5,84 +5,76 @@ $sidenavButtonSpanPaddingWidth: 25px;
 $iconHeight: 20px;
 
 .sidenav {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  background-color: #ffffff;
-  width: $sidenavWidth;
-  border-right: #c9c9c9 solid 1px;
-  position: fixed;
-  height: 100%;
+  /*grid position*/
+  grid-area: sidebar;
+  position: relative;
+  font-size: 10px;
+  background-color: #222;
+  border-right: 1px solid #ccc;
 
-  #logo {
-    width: 50px;
-    margin-top: $pageTopMargin;
-    height: auto;
-  }
-
-  div {
+  .headerBlock {
     display: flex;
-    flex-direction: column;
-    justify-content: stretch;
-    width: 100%;
+    height: 70px;
+
+    .logo {
+      position: relative;
+      margin: auto;
+      margin-left: 30px;
+      margin-right: 10px;
+      height: 30px;
+      float: left;
+    }
+
+    .name {
+      margin: auto;
+      margin-left: 5px;
+      font-size: 20px;
+      position: relative;
+      color: #ddd;
+    }
   }
 
-  .sidenav-button {
-    border-left: #ffffff solid $sidenavBorderWidth;
-    width: $sidenavWidth;
+  .main-menu {
+    position: relative;
+  }
 
-    span {
-      width: (
-        $sidenavWidth - $sidenavBorderWidth - $sidenavButtonSpanPaddingWidth
-      );
-      padding-top: 10px;
-      padding-bottom: 10px;
-      padding-left: $sidenavButtonSpanPaddingWidth;
+  .buttonMenu {
+    .nav-button {
+      display: flex;
+      height: 40px;
+      width: 100%;
+      border: none;
+      background-color: #333;
+      color: #ddd;
+      transition: all 0.3s ease;
+      -webkit-transition: all 0.3s ease;
+      border-top: 1px solid #555;
 
-      img {
-        margin-right: 20px;
+      .icon-text-wrapper {
+        display: inline-flex;
+        flex-direction: row;
+        align-items: left;
+
+        .icon-img {
+          padding-left: $sidenavButtonSpanPaddingWidth;
+          margin-right: 10px;
+          max-height: $iconHeight;
+        }
+        p {
+          margin: auto;
+          margin-left: 10px;
+          font-size: 16px;
+        }
       }
-
-      p {
-        margin: 0;
-      }
-
-      font-weight: bolder;
-      color: gray;
     }
-
-    &:hover {
-      background-color: #f9f9f9;
-      border-right: #c9c9c9 solid 1px;
+    .nav-button:hover {
+      background-color: #555;
     }
-  }
-
-  .sidenav-button-active {
-    span {
-      color: #2ca4ed;
+    .nav-button:focus {
+      outline: 0;
     }
-
-    border-left: #2ca4ed solid $sidenavBorderWidth;
-  }
-
-  .icon-img {
-    max-height: $iconHeight;
-  }
-
-  .icon-text-wrapper {
-    display: inline-flex;
-    flex-direction: row;
-    align-items: center;
-  }
-
-  button {
-    background: none;
-    color: inherit;
-    border: none;
-    padding: 0;
-    font: inherit;
-    cursor: pointer;
-    outline: inherit;
+    .sidenav-button-active {
+      border-right: 10px solid #78afd3;
+    }
   }
 }

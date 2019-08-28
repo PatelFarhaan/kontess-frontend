@@ -1,137 +1,35 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url("https://fonts.googleapis.com/css?family=Roboto");
 $title-block-horizontal-margin: 40px;
 $top-margin: 10px;
 $sidenavButtonSpanPaddingWidth: -25px;
 $iconHeight: 20px;
 
 .dashboard {
-    font-family: 'Roboto', sans-serif;
-    background-color: #dfdfdf;
-    position: fixed;
-    top: 0px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px; 
-    /*grid display initialization*/
-    display: grid;
-    grid-template-columns:120px minmax(150px, 3fr) minmax(50px, 1fr);
-    grid-template-rows: 50px 1fr 50px;
-    grid-template-areas: 
-      "sidebar title title"
-      "sidebar content content"
-      "footer footer footer";
-    .title-block {
-        /*grid location*/
-        grid-area: title;
-        position: relative;
-        color: #000000;
-        background-color: #ffffff;
-        height: 45px;
-        /*position   of title-block*/
-        margin-left: $title-block-horizontal-margin;
-        margin-right: $title-block-horizontal-margin;
-        margin-top: $top-margin;
-        /*New grid setup*/
-        display: grid;
-        grid-template-columns:minmax(60%, 1fr) 40px 120px;
-        grid-template-areas:
-            "logo notifications name";
-    
-        .title {
-          /*font size*/
-          font-size: 15px;  
-    
-          /*Location of title-block text*/
-          grid-area: logo;
-          position: absolute;
-          margin-left: 10px;
-          margin-top: 14px;
-        }
-        .notification {
-          /*parameters neccesary in order to make button clickable*/
-          position: relative;
-          grid-area: notifications;
-          z-index: 1;
-          
-          /*size and color of button*/
-          display: inline-block;
-          background-color: #ffffff;
-          color: #0084ff;
-    
-          /*modifies border color of button*/
-          border:none;
-          border-left:3px solid #dfdfdf;
-          border-right:3px solid #dfdfdf;
-    
-          /*Smoother transition*/
-          transition: all .3s ease;
-          -webkit-transition: all .3s ease;
-        }
-        .notification:hover {
-          /*changes color of button elelemnts after it is hovered over*/
-          background-color: #dfdfdf;
-        }
+  font-family: "Roboto", sans-serif;
+  background-color: #eee;
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  /*grid display initialization*/
+  display: grid;
+  grid-template-columns: 280px minmax(150px, 3fr) minmax(0px, 0fr);
+  grid-template-areas:
+    "sidebar title title"
+    "sidebar content content"
+    "footer footer footer";
+
+  .content {
+    overflow: auto;
+    margin-right: 0px;
+    .main-content {
+      margin-bottom: 80px;
     }
-    .sidebar {
-        /*grid position*/
-        grid-area: sidebar;
-        position: relative;
-        font-size: 10px;
-        background-color:#ffffff;   
-        .logo {
-          position: relative;
-          margin-top: $top-margin;
-          max-width: 40%;
-          height: auto;
-        }
-        .main-menu {
-          position: relative;  
-          margin-top: 5px;
-        }
-        .nav-button {
-          display: flex;
-          height: 40px;
-          width: 100%;
-          border: none;
-          background-color: #ffffff;
-          font-weight: bolder;
-          color: gray;
-          /*transition*/
-          transition: all .3s ease;
-          -webkit-transition: all .3s ease;
-          .icon-text-wrapper {
-            display: inline-flex;
-            flex-direction: row;
-            align-items: left;
-            padding-top: 10px;
-            padding-bottom: 10px;
-            .icon-img {
-              padding-left: $sidenavButtonSpanPaddingWidth;
-              margin-right: 10px;
-              max-height: $iconHeight;
-            }
-            p {
-              margin-left: 10px;
-            }
-          }
-        }
-        .nav-button:hover {
-            background-color: #0084ff;
-            color: #ffffff;
-        }
-        #current-page {
-            border-left: 5px solid #0084ff;
-            border-right: 1px solid #0084ff;
-            color: #0084ff;
-        }
-        #current-page:hover {
-            background-color: #0084ff;
-            color: #ffffff;
-        }
-      }
-      Footer {
-        grid-area: footer;
-        position: relative;
-        margin-left: 0px;
-      }
+    footer {
+      position: relative;
+      margin-left: 0px;
+      height: 50px;
     }
+  }
+}

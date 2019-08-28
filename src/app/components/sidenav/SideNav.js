@@ -11,33 +11,33 @@ const pages = [
   {
     name: "Dashboard",
     iconPath: dashboardIcon,
-    pageId: "dashboard-nav"
+    pageId: "dashboard"
   },
   {
     name: "Event",
     iconPath: eventIcon,
-    pageId: "event-nav"
+    pageId: "event"
   },
   {
     name: "Users",
     iconPath: userIcon,
-    pageId: "users-nav"
+    pageId: "users"
   }
 ];
 
 export default class SideNav extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      currentPageId: props.currentPageId
-    };
   }
 
   getButtons() {
     const buttons = pages.map(page => (
       <button
         className={
-          "sidenav-button" + (page.isActive ? " sidenav-button-active" : "")
+          "nav-button" +
+          (page.pageId == this.props.currentPageId
+            ? " sidenav-button-active"
+            : "")
         }
         id={page.pageId}
         onClick={event => {
@@ -60,11 +60,13 @@ export default class SideNav extends React.Component {
 
   render() {
     return (
-      <nav className="sidenav">
-        <img id="logo" src={kontessLogoImg} alt="Kontess Logo" />
-        <h3>Main Menu</h3>
-        {(() => this.getButtons())()}
-      </nav>
+      <div className="sidenav">
+        <div className="headerBlock">
+          <img className="logo" src={kontessLogoImg} alt="Kontess Logo" />
+          <p className="name">{this.props.userName}</p>
+        </div>
+        <div className="buttonMenu"> {(() => this.getButtons())()}</div>
+      </div>
     );
   }
 }

@@ -17,7 +17,6 @@ export default class TopNav extends React.Component {
   }
 
   componentDidMount() {
-    console.log(session.getSession());
     OrganizerDataService.getCurrentUser().then(response => {
       this.setState({
         name:
@@ -29,21 +28,13 @@ export default class TopNav extends React.Component {
 
   render() {
     return (
-      <nav className="topnav">
-        <p id="page-title">Dashboard</p>
-        <button id="notification-button">
-          <span className="icon-text-wrapper">
-            <img src={notificationIcon} alt="notification" />
-          </span>
+      <div className={"top-nav"}>
+        <h1 className={"title"}>Dashboard</h1>
+        <button className={"notification"} onClick={this.notify}>
+          <img src={notificationIcon}></img>
         </button>
-        <button id="user-name-avatar">
-          <span className="icon-text-wrapper">
-            <img id="avatar" src={""} alt="" />
-            <p>{this.state.name}</p>
-            <img className="icon-img" src={dropDownMenuIcon} alt="" />
-          </span>
-        </button>
-      </nav>
+        <div className="name">{this.state.name}</div>
+      </div>
     );
   }
 }

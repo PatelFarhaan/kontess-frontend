@@ -1,15 +1,17 @@
-import React from'react';
-import './style.scss';
-import { ToastContainer, toast, cssTransition } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import kontessLogoImg from 'assets/images/logo.png';
+import React from "react";
+import "./style.scss";
+import { ToastContainer, toast, cssTransition } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import kontessLogoImg from "assets/images/logo.png";
 import Footer from "../../components/footer/Footer";
 
 import dashboardIcon from "assets/icons/dashboard.svg";
 import eventIcon from "assets/icons/activity.svg";
 import userIcon from "assets/icons/activity.svg";
+import SideNav from "../sidenav/SideNav";
+import TopNav from "../topnav/TopNav";
 
-toast.configure() 
+toast.configure();
 const pages = [
   {
     name: "Dashboard",
@@ -36,60 +38,31 @@ export default class DashboardTemplate extends React.Component {
     this.notify = this.notify.bind(this);
   }
 
-  notify = () => toast("You have no notifications.", {
-    draggablePercent: 60,
-    closeButton: false,
-    autoClose: 5000,
-    hideProgressBar: true,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    position: toast.POSITION.TOP_CENTER
-  });
+  notify = () =>
+    toast("You have no notifications.", {
+      draggablePercent: 60,
+      closeButton: false,
+      autoClose: 5000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      position: toast.POSITION.TOP_CENTER
+    });
 
-  getButtons() {
-    const buttons = pages.map(page => (
-      <button
-        className={
-          "nav-button" + (page.isActive ? " sidenav-button-active" : "")
-        }
-        id={page.pageId}
-        onClick={event => {
-          this.switchPage(event, page.pageId);
-        }}
-      >
-        <span className="icon-text-wrapper">
-          <img className="icon-img" src={page.iconPath} alt="" />
-          <p>{page.name}</p>
-        </span>
-      </button>
-    ));
-    return <div>{buttons}</div>;
-  }
   switchPage(event, targetPageId) {
     // TODO: implement page switching
     event.preventDefault();
   }
   render() {
     return (
-      <div className = "dashboard">
-        <div className = {"title-block"}>
-          <h1 className = {"title"}>
-            {"Team Information"}
-          </h1>
-          <button 
-            className = {"notification"}
-            onClick = {this.notify}
-          >
-            N
-          </button>
+      <div className="dashboard">
+        <TopNav />
+        <div className="content">
+          <div className="main-content">{this.props.children}</div>
+          <Footer />
         </div>
-        <div className= 'sidebar'>
-          <img src={kontessLogoImg} className= "logo"></img>
-          <h6 className = "main-menu">Main Menu</h6>
-          {(() => this.getButtons())()}
-        </div>
-        <Footer/>
+        <SideNav currentPageId="dashboard" userName="Kevin Wong" />
       </div>
     );
   }

@@ -11,7 +11,7 @@ const instagramIcon =
 const Footer = () => (
   <footer>
     <span>
-      <p>© 2019 Kontess</p>
+      <p className="centerVertical">© 2019 Kontess</p>
     </span>
     <span>
       <a
