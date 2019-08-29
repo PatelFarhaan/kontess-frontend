@@ -1,6 +1,7 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 
-// import participantAuthService from "../../services/Judges/ParticipantAuthService";
+import participantAuthService from "../../services/ParticipantAuthService";
 
 class ParticipantModal extends React.Component {
   constructor(props) {
@@ -10,42 +11,49 @@ class ParticipantModal extends React.Component {
       password: "",
       firstName: "",
       lastName: "",
-      graduationYear: "",
+      graduationYear: 2020,
       error: ""
     };
 
     this.formHandler = this.formHandler.bind(this);
-    // this.handleRegistration = this.handleRegistration.bind(this);
+    this.handleRegistration = this.handleRegistration.bind(this);
   }
 
   formHandler(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  // handleRegistration(event) {
-  //   participantAuthService
-  //     .register(
-  //       this.state.firstName,
-  //       this.state.lastName,
-  //       this.state.title,
-  //       this.state.email,
-  //       this.state.password
-  //     )
-  //     .then(result => {
-  //       this.props.history.push("/dashboard");
-  //     })
-  //     .catch(err => {
-  //       if (err) {
-  //         const key = Object.keys(err.data)[0];
-  //         this.setState({ error: err.data[key] });
-  //       } else {
-  //         this.setState({
-  //           error: "network error, please try again in a few minutes"
-  //         });
-  //       }
-  //     });
-  //   event.preventDefault();
-  // }
+  handleRegistration(event) {
+    console.log(
+      this.state.firstName,
+      this.state.lastName,
+      this.state.graduationYear,
+      this.state.email,
+      this.state.password
+    );
+    participantAuthService
+      .register(
+        this.state.firstName,
+        this.state.lastName,
+        this.state.graduationYear,
+        this.state.email,
+        this.state.password
+      )
+      .then(result => {
+        this.props.history.push("/dashboard");
+      })
+      .catch(err => {
+        console.log(err);
+        if (err) {
+          this.setState({ error: err.data });
+        } else {
+          this.setState({
+            error: "network error, please try again in a few minutes"
+          });
+        }
+      });
+    event.preventDefault();
+  }
 
   render() {
     return (
@@ -66,12 +74,16 @@ class ParticipantModal extends React.Component {
           placeholder="Last Name"
           required
         />
-        <select>
-          <option>2020</option>
-          <option>2021</option>
-          <option>2022</option>
-          <option>2023</option>
-          <option>2024</option>
+        <select
+          value={this.state.graduationYear}
+          onChange={this.formHandler}
+          name="graduationYear"
+        >
+          <option value={2020}>2020</option>
+          <option value={2021}>2021</option>
+          <option value={2022}>2022</option>
+          <option value={2023}>2023</option>
+          <option value={2024}>2024</option>
         </select>
         <input
           type="email"
@@ -95,4 +107,4 @@ class ParticipantModal extends React.Component {
     );
   }
 }
-export default ParticipantModal;
+export default withRouter(ParticipantModal);

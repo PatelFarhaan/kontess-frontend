@@ -18,7 +18,7 @@ var getTokenPromise = (email, password) => {
 export default {
   register: async (first_name, last_name, title, email, password) => {
     await api
-      .postNoTokenRoute(routes.organizerRoute, {
+      .postNoTokenRoute(routes.judgeRoute, {
         first_name: first_name,
         last_name: last_name,
         title: title,
@@ -35,7 +35,7 @@ export default {
 
   login: async (email, password) => {
     await api
-      .postNoTokenRoute(routes.organizerLoginRoute, {
+      .postNoTokenRoute(routes.judgeLoginRoute, {
         username: email,
         password: password
       })

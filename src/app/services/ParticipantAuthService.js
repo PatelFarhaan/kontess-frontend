@@ -16,12 +16,12 @@ var getTokenPromise = (email, password) => {
 };
 
 export default {
-  register: async (first_name, last_name, title, email, password) => {
+  register: async (first_name, last_name, graduation_year, email, password) => {
     await api
-      .postNoTokenRoute(routes.organizerRoute, {
+      .postNoTokenRoute(routes.participantRoute, {
         first_name: first_name,
         last_name: last_name,
-        title: title,
+        graduation_year: graduation_year,
         username: email,
         password: password
       })
@@ -35,7 +35,7 @@ export default {
 
   login: async (email, password) => {
     await api
-      .postNoTokenRoute(routes.organizerLoginRoute, {
+      .postNoTokenRoute(routes.participantLoginRoute, {
         username: email,
         password: password
       })

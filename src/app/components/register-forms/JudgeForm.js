@@ -1,6 +1,7 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 
-// import judgeAuthService from "../../services/Judges/JudgesAuthService";
+import judgeAuthService from "../../services/JudgeAuthService";
 
 class JudgeModal extends React.Component {
   constructor(props) {
@@ -15,37 +16,36 @@ class JudgeModal extends React.Component {
     };
 
     this.formHandler = this.formHandler.bind(this);
-    // this.handleRegistration = this.handleRegistration.bind(this);
+    this.handleRegistration = this.handleRegistration.bind(this);
   }
 
   formHandler(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  // handleRegistration(event) {
-  //   judgeAuthService
-  //     .register(
-  //       this.state.firstName,
-  //       this.state.lastName,
-  //       this.state.title,
-  //       this.state.email,
-  //       this.state.password
-  //     )
-  //     .then(result => {
-  //       this.props.history.push("/dashboard");
-  //     })
-  //     .catch(err => {
-  //       if (err) {
-  //         const key = Object.keys(err.data)[0];
-  //         this.setState({ error: err.data[key] });
-  //       } else {
-  //         this.setState({
-  //           error: "network error, please try again in a few minutes"
-  //         });
-  //       }
-  //     });
-  //   event.preventDefault();
-  // }
+  handleRegistration(event) {
+    judgeAuthService
+      .register(
+        this.state.firstName,
+        this.state.lastName,
+        this.state.title,
+        this.state.email,
+        this.state.password
+      )
+      .then(result => {
+        this.props.history.push("/dashboard");
+      })
+      .catch(err => {
+        if (err) {
+          this.setState({ error: err.data });
+        } else {
+          this.setState({
+            error: "network error, please try again in a few minutes"
+          });
+        }
+      });
+    event.preventDefault();
+  }
 
   render() {
     return (
@@ -96,4 +96,4 @@ class JudgeModal extends React.Component {
     );
   }
 }
-export default JudgeModal;
+export default withRouter(JudgeModal);

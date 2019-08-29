@@ -1,8 +1,10 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 
-import organizerAuthService from "../../services/OrganizerAuthService";
 import * as session from "../../../utils/session";
+import OrganizerAuthService from "../../services/OrganizerAuthService";
+import JudgeAuthService from "../../services/JudgeAuthService";
+import ParticipantAuthService from "../../services/ParticipantAuthService";
 
 import Modal from "../../components/auth-modal/Modal";
 
@@ -11,7 +13,7 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      mode: "Participant ",
+      mode: "Participant",
       email: "",
       password: "",
       firstName: "",
@@ -41,18 +43,26 @@ class Login extends React.Component {
   }
 
   handleLogin(event) {
-    if (this.state.mode === "organizer") {
-      organizerAuthService
-        .login(this.state.email, this.state.password)
-        .then(() => {
-          this.props.history.push("/");
-        })
-        .catch(err => {
-          this.setState({
-            error: "No account found for that email and password combination"
-          });
-        });
+    let service = OrganizerAuthService;
+    if (this.state.mode == "Organizer") {
+      service = OrganizerAuthService;
+    } else if (this.state.mode == "Participant") {
+      console.log("???");
+      service = ParticipantAuthService;
+    } else if (this.state.mode == "Judge") {
+      service = JudgeAuthService;
     }
+    service
+      .login(this.state.email, this.state.password)
+      .then(() => {
+        this.props.history.push("/");
+      })
+      .catch(err => {
+        this.setState({
+          error: "No account found for that email and password combination"
+        });
+      });
+
     event.preventDefault();
   }
 

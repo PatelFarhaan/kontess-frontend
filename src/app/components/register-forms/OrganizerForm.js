@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 
 import organizerAuthService from "../../services/OrganizerAuthService";
 
@@ -32,8 +33,7 @@ class OrganizerModal extends React.Component {
       })
       .catch(err => {
         if (err) {
-          const key = Object.keys(err.data)[0];
-          this.setState({ error: err.data[key] });
+          this.setState({ error: err.data });
         } else {
           this.setState({
             error: "network error, please try again in a few minutes"
@@ -96,4 +96,4 @@ class OrganizerModal extends React.Component {
     );
   }
 }
-export default OrganizerModal;
+export default withRouter(OrganizerModal);

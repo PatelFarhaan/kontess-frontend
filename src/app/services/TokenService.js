@@ -5,14 +5,14 @@ import * as session from "../../utils/session";
 export default {
   getToken: (email, password) => {
     return api.postNoTokenRoute(routes.getTokenRoute, {
-      "username": email,
-      "password": password
+      username: email,
+      password: password
     });
   },
   refreshToken: () => {
-    const refreshToken = session.getSession()["refreshToken"]
+    const refreshToken = session.getSession()["refreshToken"];
     return api.postNoTokenRoute(routes.getTokenRoute, {
-      "refresh": refreshToken
+      refresh: refreshToken
     });
   }
-}
+};
