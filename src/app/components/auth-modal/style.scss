@@ -67,6 +67,20 @@ $font-family: "Roboto", Helvetica, Arial, sans-serif;
           background-color: #80a7d1;
         }
       }
+
+      select {
+        background-color: #fff;
+        font-size: 14px;
+        height: 29px;
+        width: 100%;
+        margin-bottom: 2em;
+
+        border: {
+          color: #ccc;
+          style: solid;
+          width: 1px;
+        }
+      }
     }
 
     p {

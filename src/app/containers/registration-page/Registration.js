@@ -13,6 +13,9 @@ class Registration extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
     super(props);
+    this.state = {
+      mode: "Participant"
+    };
     this.modeHandler = this.modeHandler.bind(this);
   }
 
@@ -34,7 +37,7 @@ class Registration extends React.Component {
         {this.state.mode == "Judge" && <JudgeForm />}
         {this.state.mode == "Organizer" && <OrganizerForm />}
         <p>
-          Don't have an account? <a href="/registration">Register</a>
+          Don't have an account? <a href="/login">Login</a>
         </p>
       </Modal>
     );

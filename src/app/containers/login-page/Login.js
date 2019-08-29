@@ -11,7 +11,7 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      mode: "participant",
+      mode: "Participant ",
       email: "",
       password: "",
       firstName: "",
@@ -59,7 +59,7 @@ class Login extends React.Component {
   render() {
     return (
       <Modal modeHandler={this.modeHandler}>
-        <h1>Login</h1>
+        <h1>{this.state.mode} Login</h1>
         <form onSubmit={this.handleLogin}>
           <input
             type="email"
