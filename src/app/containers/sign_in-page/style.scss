@@ -1,6 +1,18 @@
 $font-family : 'Roboto', Helvetica, Arial, sans-serif;
 
-.register {
+.sign_in_Page{
+  background-color: skyblue;
+  height: 100vh;
+}
+
+
+.login {
+  width: 25vw;
+  height: 40vh;
+  margin: auto;
+  margin-top: 5vw;
+  display: inline-block;
+
   font: {
     family: $font-family;
     size: 14px;
@@ -21,6 +33,10 @@ $font-family : 'Roboto', Helvetica, Arial, sans-serif;
   }
 
   form {
+    margin:auto;
+    margin-top: 5vh;
+    width:20vw;
+
     font: inherit {
       weight: normal;
     };
@@ -35,9 +51,10 @@ $font-family : 'Roboto', Helvetica, Arial, sans-serif;
       color: #000;
       width: 100%;
       padding: 10px;
-      margin-bottom: 1.5em;
+      margin-bottom: 2em;
 
       &:last-child {
+        margin-top: 5vh;
         background-color: #374aae;
         color: #fff;
         cursor: pointer;
@@ -69,4 +86,16 @@ $font-family : 'Roboto', Helvetica, Arial, sans-serif;
 
     display: none;
   }
+}
+
+@media only screen and (max-width: 795px) {
+  .login{
+    height: 50vh;
+    width: 35vw;
+  }
+
+  .form{
+    width: 30vw;
+  }
+
 }
