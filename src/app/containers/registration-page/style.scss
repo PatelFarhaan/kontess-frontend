@@ -1,6 +1,14 @@
 $font-family : 'Roboto', Helvetica, Arial, sans-serif;
 
-.register {
+.Registration {
+  background-color: skyblue;
+  height: 100vh;
+}
+
+.login-section, .reg-section {
+  width: 25vw;
+  margin: 0 auto;
+
   font: {
     family: $font-family;
     size: 14px;
@@ -10,22 +18,31 @@ $font-family : 'Roboto', Helvetica, Arial, sans-serif;
   color: #777;
   background-color: #f9f9f9;
   box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-  padding: 25px;
+  padding: 15px 25px 15px 25px;
 
   h1 {
-    font-weight: lighter;
+    font-weight: bolder;
     padding: 0;
     margin: 0 {
-      bottom: 10px;
+      bottom: 15px;
     }
   }
 
   form {
+    margin:auto;
+    margin-top: 3vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
     font: inherit {
       weight: normal;
     };
 
     input {
+      font-size: 14px;
+
       border: {
         color: #ccc;
         style: solid;
@@ -34,39 +51,40 @@ $font-family : 'Roboto', Helvetica, Arial, sans-serif;
 
       color: #000;
       width: 100%;
-      padding: 10px;
-      margin-bottom: 1.5em;
+      padding: 10px 5px;
+      margin-bottom: 15px;
 
       &:last-child {
+        margin-top: 5vh;
         background-color: #374aae;
         color: #fff;
         cursor: pointer;
         border: none;
+        font-weight: bolder;
+      }
+    }
+
+    & > p {
+      margin-top: 0;
+
+      & > button {
+        font: inherit;
+        border: none;
+        background: none;
+        border-bottom: 1px solid black;
+        cursor: pointer;
       }
     }
   }
 
-  div {
-    border: {
-      color: #86181d;
-      style: solid;
-      width: 1px;
-      radius: 5px;
-    }
+  .error-msg {
+    width: 75%;
+    margin: 0 auto;
+    color: #fc2c2c;
+    background-color: #ffdcdc;
+    font-weight: bolder;
 
-    background-color: #ffdce0;
-    color: #86181d;
-
-    margin-bottom: 1rem;
-    width: fit-content;
-
-    p {
-      padding: 0.5rem 0.5rem;
-      margin: 0 auto;
-      font-family: $font-family;
-      font-weight: lighter;
-    }
-
-    display: none;
+    border: 1px solid red;
+    border-radius: 15px;
   }
 }
