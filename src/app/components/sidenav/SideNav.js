@@ -1,31 +1,39 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-import "./style.scss";
 
 import kontessLogoImg from "assets/images/logo.png";
 import dashboardIcon from "assets/icons/dashboard.svg";
 import eventIcon from "assets/icons/activity.svg";
 import userIcon from "assets/icons/activity.svg";
+import "./style.scss";
+
+import * as session from "../../../utils/session";
 
 const pages = [
   {
     name: "Dashboard",
     iconPath: dashboardIcon,
-    pageId: "dashboard"
+    pageId: "home"
   },
   {
-    name: "Event",
+    name: "Teams",
     iconPath: eventIcon,
-    pageId: "event"
+    pageId: "teams"
   },
   {
     name: "Users",
     iconPath: userIcon,
     pageId: "users"
+  },
+  {
+    name: "Chat",
+    iconPath: userIcon,
+    pageId: "chat"
   }
 ];
 
-export default class SideNav extends React.Component {
+class SideNav extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -50,11 +58,12 @@ export default class SideNav extends React.Component {
         </span>
       </button>
     ));
-    return <div>{buttons}</div>;
+    return <div> {buttons} </div>;
   }
 
   switchPage(event, targetPageId) {
     // TODO: implement page switching
+    this.props.history.push("/dashboard/" + targetPageId);
     event.preventDefault();
   }
 
@@ -65,7 +74,21 @@ export default class SideNav extends React.Component {
           <img className="logo" src={kontessLogoImg} alt="Kontess Logo" />
           <p className="name">{this.props.userName}</p>
         </div>
-        <div className="buttonMenu"> {(() => this.getButtons())()}</div>
+        <div className="buttonMenu">
+          {(() => this.getButtons())()}{" "}
+          <button
+            className={"nav-button"}
+            onClick={event => {
+              session.clearSession();
+              this.props.history.push("/");
+            }}
+          >
+            <span className="icon-text-wrapper">
+              <img className="icon-img" src={dashboardIcon} alt="" />
+              <p>LogOut</p>
+            </span>
+          </button>
+        </div>
       </div>
     );
   }
@@ -74,3 +97,5 @@ export default class SideNav extends React.Component {
 SideNav.propTypes = {
   currentPageId: PropTypes.string
 };
+
+export default withRouter(SideNav);

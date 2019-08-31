@@ -21,7 +21,7 @@ class Registration extends React.Component {
 
   componentWillMount() {
     if (session.checkSession()) {
-      this.props.history.push("/dashboard/");
+      this.props.history.push("/dashboard/home/");
     }
   }
 

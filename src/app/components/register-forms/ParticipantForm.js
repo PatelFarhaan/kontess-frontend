@@ -40,7 +40,7 @@ class ParticipantModal extends React.Component {
         this.state.password
       )
       .then(result => {
-        this.props.history.push("/dashboard");
+        this.props.history.push("/dashboard/home");
       })
       .catch(err => {
         console.log(err);

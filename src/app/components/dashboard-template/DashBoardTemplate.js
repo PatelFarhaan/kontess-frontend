@@ -50,10 +50,6 @@ export default class DashboardTemplate extends React.Component {
       position: toast.POSITION.TOP_CENTER
     });
 
-  switchPage(event, targetPageId) {
-    // TODO: implement page switching
-    event.preventDefault();
-  }
   render() {
     return (
       <div className="dashboard">
@@ -62,7 +58,7 @@ export default class DashboardTemplate extends React.Component {
           <div className="main-content">{this.props.children}</div>
           <Footer />
         </div>
-        <SideNav currentPageId="dashboard" userName="Kevin Wong" />
+        <SideNav currentPageId={this.props.pageId} userName={this.props.user} />
       </div>
     );
   }

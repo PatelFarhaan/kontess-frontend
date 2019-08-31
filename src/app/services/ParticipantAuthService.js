@@ -45,9 +45,5 @@ export default {
       .then(data => {
         return getTokenPromise(email, password);
       });
-  },
-
-  logout: () => {
-    session.clearSession();
   }
 };
