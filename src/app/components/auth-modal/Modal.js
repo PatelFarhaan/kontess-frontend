@@ -10,7 +10,7 @@ class Modal extends React.Component {
 
   render() {
     return (
-      <div className="modalBackground">
+      <div className="modal-background">
         <div className="modal-wrapper">
           <div className="modal">{this.props.children}</div>
           <ButtonGroup
