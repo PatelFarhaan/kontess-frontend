@@ -1,83 +1,60 @@
-$iconHeight : 20px;
-$pageTopMargin: 25px;
+.top-nav {
+  /*grid location*/
+  grid-area: title;
+  position: relative;
+  color: #000000;
+  background-color: #ffffff;
+  height: 45px;
+  /*position   of title-block*/
+  /*New grid setup*/
+  display: grid;
+  grid-template-columns: minmax(60%, 1fr) 45px 180px;
+  grid-template-areas: "logo notifications name";
+  border-bottom: 1px solid #ccc;
 
-.topnav {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 0 0 0 30px;
-    background: #ffffff;
-    border-radius: 15px;
-    margin: $pageTopMargin 40px 40px 40px;
-    height: 75px;
+  .title {
+    font-size: 20px;
+    color: #222;
+    grid-area: logo;
+    position: absolute;
+    margin-left: 26px;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  .notification {
+    /*parameters neccesary in order to make button clickable*/
+    position: relative;
+    grid-area: notifications;
+    z-index: 1;
+    margin: auto;
 
-    .icon-img {
-        max-height: $iconHeight;
+    /*size and color of button*/
+    display: inline-block;
+    background-color: #ffffff;
+    color: #0084ff;
+
+    /*modifies border color of button*/
+    border: none;
+    border-left: 2px solid #dfdfdf;
+    border-right: 2px solid #dfdfdf;
+
+    /*Smoother transition*/
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+
+    img {
+      height: 30px;
+      width: 30px;
     }
-
-    .icon-text-wrapper {
-        display: inline-flex;
-        flex-direction: row;
-        align-items: center;
-    }
-
-    button {
-        background: none;
-        color: inherit;
-        border: none;
-        padding: 0;
-        font: inherit;
-        cursor: pointer;
-        outline: inherit;
-    }
-
-    #avatar {
-        height: 55px;
-        width: 55px;
-        border-radius: 50%;
-        object-fit: cover;
-    }
-
-    #page-title {
-        font-size: 26px;
-        margin: 0;
-        font-weight: bolder;
-        color: black;
-        padding: 10px 0;
-    }
-
-    #notification-button {
-        margin-left: auto;
-        border-left: #777777 solid 1px;
-        border-right: #777777 solid 1px;
-        padding: 10px 15px;
-        height: 100%;
-
-        img {
-            height: 35px;
-        }
-
-        &:hover {
-            background-color: #f9f9f9
-        }
-    }
-
-    #user-name-avatar {
-        padding: 10px 30px 10px 25px;
-        height: 100%;
-
-        p {
-            margin: 0;
-            padding-left: 15px;
-            padding-right: 5px;
-            font-weight: bold;
-        }
-
-        &:hover {
-            background-color: #f9f9f9;
-            border-radius: 15px;
-        }
-    }
+  }
+  .notification:focus {
+    outline: None;
+  }
+  .notification:hover {
+    background-color: #eee;
+  }
+  .name {
+    grid-area: name;
+    margin: auto;
+  }
 }
-

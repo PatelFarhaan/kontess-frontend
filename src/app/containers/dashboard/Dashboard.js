@@ -1,21 +1,21 @@
-import React from 'react';
+import React from "react";
 
-import * as session from "../../../utils/session"
-import SideNav from '../../components/sidenav/SideNav';
-import TopNav from '../../components/topnav/TopNav';
-
-import './style.scss';
+import DashboardTemplate from "../../components/dashboard-template/DashBoardTemplate";
+import DashboardWidget from "../../components/dashboard/DashboardWidget";
 
 export default class Dashboard extends React.Component {
   render() {
     return (
-      <div className="dashboard">
-        <SideNav currentPageId="dashboard-nav"/>
+      <DashboardTemplate title="Dashboard">
         <div>
-          <TopNav />
-          {this.props.children /* which will be <ToDoBody /> */}
+          <DashboardWidget title="hi" />
+          <DashboardWidget title="hi" />
         </div>
-      </div>
+        <div>
+          <DashboardWidget title="hi" />
+          <DashboardWidget title="hi" />
+        </div>
+      </DashboardTemplate>
     );
   }
 }

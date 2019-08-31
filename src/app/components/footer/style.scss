@@ -1,16 +1,17 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url("https://fonts.googleapis.com/css?family=Roboto");
 
 footer {
-  display: flex;
+  display: flex !important;
   justify-content: space-around;
   flex-direction: row;
   background-color: #2ca4ed;
   color: #ffffff;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   align-items: center;
+  width: 100%;
 
   p {
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
   }
 
   a {
@@ -19,12 +20,17 @@ footer {
   }
 
   span {
-    a:nth-child(1), a:nth-child(2) {
+    a:nth-child(1),
+    a:nth-child(2) {
       padding-right: 10px;
     }
 
     a > img {
       filter: invert(100%);
     }
+  }
+
+  .centerVertical {
+    margin: auto;
   }
 }

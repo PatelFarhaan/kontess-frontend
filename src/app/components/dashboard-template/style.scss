@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+$title-block-horizontal-margin: 40px;
+$top-margin: 10px;
+$sidenavButtonSpanPaddingWidth: -25px;
+$iconHeight: 20px;
+
+.dashboard {
+  font-family: "Roboto", sans-serif;
+  background-color: #eee;
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  /*grid display initialization*/
+  display: grid;
+  grid-template-columns: 280px minmax(150px, 3fr) minmax(0px, 0fr);
+  grid-template-areas:
+    "sidebar title title"
+    "sidebar content content"
+    "footer footer footer";
+
+  .content {
+    overflow: auto;
+    margin-right: 0px;
+    .main-content {
+      margin-bottom: 80px;
+    }
+    footer {
+      position: relative;
+      margin-left: 0px;
+      top: 50px;
+      height: 50px;
+    }
+  }
+}
