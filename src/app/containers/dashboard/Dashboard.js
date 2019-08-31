@@ -7,11 +7,11 @@ export default class Dashboard extends React.Component {
   render() {
     return (
       <DashboardTemplate title="Dashboard">
-        <div className="row">
+        <div>
           <DashboardWidget title="hi" />
           <DashboardWidget title="hi" />
         </div>
-        <div className="row">
+        <div>
           <DashboardWidget title="hi" />
           <DashboardWidget title="hi" />
         </div>
