@@ -72,7 +72,7 @@ class SideNav extends React.Component {
       <div className="sidenav">
         <div className="headerBlock">
           <img className="logo" src={kontessLogoImg} alt="Kontess Logo" />
-          <p className="name">{this.props.userName}</p>
+          <p className="name">Kontess </p>
         </div>
         <div className="buttonMenu">
           {(() => this.getButtons())()}{" "}

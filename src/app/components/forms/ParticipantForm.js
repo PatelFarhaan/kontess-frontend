@@ -3,6 +3,8 @@ import { withRouter } from "react-router-dom";
 
 import participantAuthService from "../../services/ParticipantAuthService";
 
+import "./style.scss";
+
 class ParticipantModal extends React.Component {
   constructor(props) {
     super(props);
@@ -24,13 +26,6 @@ class ParticipantModal extends React.Component {
   }
 
   handleRegistration(event) {
-    console.log(
-      this.state.firstName,
-      this.state.lastName,
-      this.state.graduationYear,
-      this.state.email,
-      this.state.password
-    );
     participantAuthService
       .register(
         this.state.firstName,

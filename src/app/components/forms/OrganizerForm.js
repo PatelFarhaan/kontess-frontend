@@ -3,6 +3,8 @@ import { withRouter } from "react-router-dom";
 
 import organizerAuthService from "../../services/OrganizerAuthService";
 
+import "./style.scss";
+
 class OrganizerModal extends React.Component {
   constructor(props) {
     super(props);

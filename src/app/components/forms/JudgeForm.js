@@ -3,6 +3,8 @@ import { withRouter } from "react-router-dom";
 
 import judgeAuthService from "../../services/JudgeAuthService";
 
+import "./style.scss";
+
 class JudgeModal extends React.Component {
   constructor(props) {
     super(props);

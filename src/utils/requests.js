@@ -1,8 +1,20 @@
 import axios from "axios";
 import { getSessionToken } from "../utils/session";
+import TokenService from "../app/services/TokenService";
+import jwt from "jsonwebtoken";
 
 //Sets default header for the requests to the API with the token
-const headers = { "Authorization": `bearer ${getSessionToken()}` };
+const headers = { Authorization: `bearer ${getSessionToken()}` };
+
+function checkJWTExpiration() {
+  const token = getSessionToken();
+  var decodedToken = jwt.decode(token, { complete: true });
+  var dateNow = new Date();
+
+  if (decodedToken.payload.exp < dateNow.getTime()) {
+    TokenService.refreshToken();
+  }
+}
 
 export const getRoute = async (path, params) => {
   // Result promise
@@ -13,7 +25,7 @@ export const getRoute = async (path, params) => {
     params: params,
     headers
   }).catch(error => {
-    throw error.response
+    throw error.response;
   });
 
   return result;
@@ -21,6 +33,7 @@ export const getRoute = async (path, params) => {
 
 export const postRoute = async (path, data) => {
   // Result promise
+  await checkJWTExpiration();
   const result = await axios({
     method: "post",
     url: path,
@@ -28,7 +41,7 @@ export const postRoute = async (path, data) => {
     data: data,
     headers
   }).catch(error => {
-    throw error.response
+    throw error.response;
   });
   // Can possibly add our user secret here for all API calls?
   return result;
@@ -42,12 +55,11 @@ export const postNoTokenRoute = async (path, data) => {
     responseType: "application/json",
     data: data
   }).catch(error => {
-    throw error.response
+    throw error.response;
   });
   // Can possibly add our user secret here for all API calls?
   return result;
 };
-
 
 export const putRoute = async (path, data) => {
   // Result promise
@@ -58,7 +70,7 @@ export const putRoute = async (path, data) => {
     data: data,
     headers
   }).catch(error => {
-    throw error.response
+    throw error.response;
   });
   // Can possibly add our user secret here for all API calls?
   return result;
@@ -66,6 +78,7 @@ export const putRoute = async (path, data) => {
 
 export const deleteRoute = async (path, data) => {
   // Result promise
+  await checkJWTExpiration();
   const result = await axios({
     method: "delete",
     url: path,
@@ -73,7 +86,7 @@ export const deleteRoute = async (path, data) => {
     data: data,
     headers
   }).catch(error => {
-    throw error.response
+    throw error.response;
   });
   // Can possibly add our user secret here for all API calls?
   return result;

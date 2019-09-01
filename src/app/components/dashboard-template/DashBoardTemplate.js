@@ -53,7 +53,7 @@ export default class DashboardTemplate extends React.Component {
   render() {
     return (
       <div className="dashboard">
-        <TopNav />
+        <TopNav title={this.props.title} />
         <div className="content">
           <div className="main-content">{this.props.children}</div>
           <Footer />

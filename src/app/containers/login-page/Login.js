@@ -47,7 +47,6 @@ class Login extends React.Component {
     if (this.state.mode == "Organizer") {
       service = OrganizerAuthService;
     } else if (this.state.mode == "Participant") {
-      console.log("???");
       service = ParticipantAuthService;
     } else if (this.state.mode == "Judge") {
       service = JudgeAuthService;

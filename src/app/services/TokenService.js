@@ -9,10 +9,15 @@ export default {
       password: password
     });
   },
+
   refreshToken: () => {
     const refreshToken = session.getSession()["refreshToken"];
-    return api.postNoTokenRoute(routes.getTokenRoute, {
-      refresh: refreshToken
-    });
+    return api
+      .postNoTokenRoute(routes.refreshTokenRoute, {
+        refresh: refreshToken
+      })
+      .then(response => {
+        session.setToken(response.data.access, refreshToken);
+      });
   }
 };

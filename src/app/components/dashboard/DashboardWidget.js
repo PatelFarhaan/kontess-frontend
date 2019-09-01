@@ -7,10 +7,10 @@ export default class DashboardWidget extends React.Component {
   render() {
     return (
       <div className="dashboard-widget">
-        <div className="todo-item-title">
-          <h2>{this.props.title}</h2>
+        <div className="header">
+          <div className="widget-title">{this.props.title}</div>
         </div>
-        <div className="todo-item-content">{this.props.children}</div>
+        <div className="content">{this.props.children}</div>
       </div>
     );
   }

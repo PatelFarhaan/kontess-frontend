@@ -5,9 +5,9 @@ import organizerAuthService from "../../services/OrganizerAuthService";
 import * as session from "../../../utils/session";
 
 import Modal from "../../components/auth-modal/Modal";
-import ParticipantForm from "../../components/register-forms/ParticipantForm";
-import JudgeForm from "../../components/register-forms/JudgeForm";
-import OrganizerForm from "../../components/register-forms/OrganizerForm";
+import ParticipantForm from "../../components/forms/ParticipantForm";
+import JudgeForm from "../../components/forms/JudgeForm";
+import OrganizerForm from "../../components/forms/OrganizerForm";
 
 class Registration extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
