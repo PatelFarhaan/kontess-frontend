@@ -1,9 +1,11 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 
-import organizerAuthService from "../../services/OrganizerAuthService";
+import participantAuthService from "../../services/ParticipantAuthService";
 
-class OrganizerModal extends React.Component {
+import "./style.scss";
+
+class ParticipantModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,7 +13,7 @@ class OrganizerModal extends React.Component {
       password: "",
       firstName: "",
       lastName: "",
-      title: "",
+      graduationYear: 2020,
       error: ""
     };
 
@@ -19,19 +21,24 @@ class OrganizerModal extends React.Component {
     this.handleRegistration = this.handleRegistration.bind(this);
   }
 
+  formHandler(event) {
+    this.setState({ [event.target.name]: event.target.value });
+  }
+
   handleRegistration(event) {
-    organizerAuthService
+    participantAuthService
       .register(
         this.state.firstName,
         this.state.lastName,
-        this.state.title,
+        this.state.graduationYear,
         this.state.email,
         this.state.password
       )
       .then(result => {
-        this.props.history.push("/dashboard");
+        this.props.history.push("/dashboard/home");
       })
       .catch(err => {
+        console.log(err);
         if (err) {
           this.setState({ error: err.data });
         } else {
@@ -41,10 +48,6 @@ class OrganizerModal extends React.Component {
         }
       });
     event.preventDefault();
-  }
-
-  formHandler(event) {
-    this.setState({ [event.target.name]: event.target.value });
   }
 
   render() {
@@ -66,14 +69,17 @@ class OrganizerModal extends React.Component {
           placeholder="Last Name"
           required
         />
-        <input
-          type="text"
-          name="title"
-          value={this.state.title}
+        <select
+          value={this.state.graduationYear}
           onChange={this.formHandler}
-          placeholder="Title"
-          required
-        />
+          name="graduationYear"
+        >
+          <option value={2020}>2020</option>
+          <option value={2021}>2021</option>
+          <option value={2022}>2022</option>
+          <option value={2023}>2023</option>
+          <option value={2024}>2024</option>
+        </select>
         <input
           type="email"
           name="email"
@@ -96,4 +102,4 @@ class OrganizerModal extends React.Component {
     );
   }
 }
-export default withRouter(OrganizerModal);
+export default withRouter(ParticipantModal);

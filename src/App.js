@@ -3,7 +3,13 @@ import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import history from "./history";
 import "./App.css";
 
-import { Landing, Registration, Login, Dashboard } from "app/containers";
+import {
+  Landing,
+  Registration,
+  Login,
+  Dashboard,
+  TeamList
+} from "app/containers";
 
 class App extends React.Component {
   render() {
@@ -19,8 +25,8 @@ class App extends React.Component {
                 path="/dashboard"
                 render={({ match: { path } }) => (
                   <>
-                    <Route path={`${path}/`} component={Dashboard} exact />
-                    {/* <Route path={`${path}/test`} component={Login} /> */}
+                    <Route path={`${path}/home`} component={Dashboard} exact />
+                    <Route path={`${path}/teams`} component={TeamList} />
                   </>
                 )}
               />

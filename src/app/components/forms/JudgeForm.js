@@ -1,9 +1,11 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 
-import participantAuthService from "../../services/ParticipantAuthService";
+import judgeAuthService from "../../services/JudgeAuthService";
 
-class ParticipantModal extends React.Component {
+import "./style.scss";
+
+class JudgeModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,7 +13,7 @@ class ParticipantModal extends React.Component {
       password: "",
       firstName: "",
       lastName: "",
-      graduationYear: 2020,
+      title: "",
       error: ""
     };
 
@@ -24,26 +26,18 @@ class ParticipantModal extends React.Component {
   }
 
   handleRegistration(event) {
-    console.log(
-      this.state.firstName,
-      this.state.lastName,
-      this.state.graduationYear,
-      this.state.email,
-      this.state.password
-    );
-    participantAuthService
+    judgeAuthService
       .register(
         this.state.firstName,
         this.state.lastName,
-        this.state.graduationYear,
+        this.state.title,
         this.state.email,
         this.state.password
       )
       .then(result => {
-        this.props.history.push("/dashboard");
+        this.props.history.push("/dashboard/home");
       })
       .catch(err => {
-        console.log(err);
         if (err) {
           this.setState({ error: err.data });
         } else {
@@ -74,17 +68,14 @@ class ParticipantModal extends React.Component {
           placeholder="Last Name"
           required
         />
-        <select
-          value={this.state.graduationYear}
+        <input
+          type="text"
+          name="title"
+          value={this.state.title}
           onChange={this.formHandler}
-          name="graduationYear"
-        >
-          <option value={2020}>2020</option>
-          <option value={2021}>2021</option>
-          <option value={2022}>2022</option>
-          <option value={2023}>2023</option>
-          <option value={2024}>2024</option>
-        </select>
+          placeholder="Title"
+          required
+        />
         <input
           type="email"
           name="email"
@@ -107,4 +98,4 @@ class ParticipantModal extends React.Component {
     );
   }
 }
-export default withRouter(ParticipantModal);
+export default withRouter(JudgeModal);

@@ -19,7 +19,7 @@
     position: absolute;
     margin-left: 26px;
     margin-top: 10px;
-    font-weight: bold;
+    font-weight: lighter;
   }
   .notification {
     /*parameters neccesary in order to make button clickable*/
@@ -56,5 +56,6 @@
   .name {
     grid-area: name;
     margin: auto;
+    margin-left: 10px;
   }
 }

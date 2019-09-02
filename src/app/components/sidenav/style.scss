@@ -41,7 +41,7 @@ $iconHeight: 20px;
   .buttonMenu {
     .nav-button {
       display: flex;
-      height: 40px;
+      height: 45px;
       width: 100%;
       border: none;
       background-color: #333;
@@ -76,5 +76,10 @@ $iconHeight: 20px;
     .sidenav-button-active {
       border-right: 10px solid #78afd3;
     }
+  }
+
+  .logout-button {
+    position: absolute;
+    bottom: 0px;
   }
 }

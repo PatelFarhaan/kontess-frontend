@@ -26,6 +26,7 @@ export default {
         password: password
       })
       .then(data => {
+        session.setUserType("participant");
         return session.setUser(data.data.id);
       })
       .then(() => {
@@ -40,14 +41,11 @@ export default {
         password: password
       })
       .then(data => {
+        session.setUserType("participant");
         return session.setUser(data.data.id);
       })
       .then(data => {
         return getTokenPromise(email, password);
       });
-  },
-
-  logout: () => {
-    session.clearSession();
   }
 };

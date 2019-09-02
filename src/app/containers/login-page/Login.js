@@ -30,7 +30,7 @@ class Login extends React.Component {
 
   componentWillMount() {
     if (session.checkSession()) {
-      this.props.history.push("/dashboard/");
+      this.props.history.push("/dashboard/home");
     }
   }
 
@@ -47,7 +47,6 @@ class Login extends React.Component {
     if (this.state.mode == "Organizer") {
       service = OrganizerAuthService;
     } else if (this.state.mode == "Participant") {
-      console.log("???");
       service = ParticipantAuthService;
     } else if (this.state.mode == "Judge") {
       service = JudgeAuthService;
@@ -55,7 +54,7 @@ class Login extends React.Component {
     service
       .login(this.state.email, this.state.password)
       .then(() => {
-        this.props.history.push("/");
+        this.props.history.push("/dashboard/home/");
       })
       .catch(err => {
         this.setState({

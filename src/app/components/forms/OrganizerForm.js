@@ -1,9 +1,11 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 
-import judgeAuthService from "../../services/JudgeAuthService";
+import organizerAuthService from "../../services/OrganizerAuthService";
 
-class JudgeModal extends React.Component {
+import "./style.scss";
+
+class OrganizerModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,12 +21,8 @@ class JudgeModal extends React.Component {
     this.handleRegistration = this.handleRegistration.bind(this);
   }
 
-  formHandler(event) {
-    this.setState({ [event.target.name]: event.target.value });
-  }
-
   handleRegistration(event) {
-    judgeAuthService
+    organizerAuthService
       .register(
         this.state.firstName,
         this.state.lastName,
@@ -33,7 +31,7 @@ class JudgeModal extends React.Component {
         this.state.password
       )
       .then(result => {
-        this.props.history.push("/dashboard");
+        this.props.history.push("/dashboard/home");
       })
       .catch(err => {
         if (err) {
@@ -45,6 +43,10 @@ class JudgeModal extends React.Component {
         }
       });
     event.preventDefault();
+  }
+
+  formHandler(event) {
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   render() {
@@ -96,4 +98,4 @@ class JudgeModal extends React.Component {
     );
   }
 }
-export default withRouter(JudgeModal);
+export default withRouter(OrganizerModal);
