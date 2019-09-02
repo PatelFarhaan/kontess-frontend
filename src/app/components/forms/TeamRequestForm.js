@@ -21,8 +21,6 @@ class TeamRequestForm extends React.Component {
   }
 
   handleCreate(event) {
-    // teamId;
-
     ParticipantDataService.joinTeamRequest(this.props.teamId, this.state.essay)
       .then(result => {
         this.props.callback();

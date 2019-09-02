@@ -128,3 +128,27 @@
 .requestModal {
   height: 63%;
 }
+
+.button-container {
+  margin-top: 20px;
+  margin: auto;
+  display: flex;
+  width: 30%;
+
+  .pageNum {
+    margin: auto;
+    button {
+      font-size: 15px;
+    }
+  }
+
+  .pageButton {
+    height: 30px;
+    width: 30px;
+    border: None;
+    background: transparent;
+    img {
+      height: 30px;
+    }
+  }
+}

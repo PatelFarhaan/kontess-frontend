@@ -24,17 +24,17 @@ class CreateTeamForm extends React.Component {
   handleCreate(event) {
     teamService
       .create(this.state.name, this.state.description)
+      .then(response => {
+        if (session.getUserType() == "participant") {
+          teamService.joinTeam(response.data.id);
+        }
+      })
       .then(result => {
         this.props.callback();
       })
-      .then(response => {
-        if (session.getUserType() == "participant") {
-          teamService.joinTeam(session.getSessionUserId());
-        }
-      })
       .catch(err => {
         if (err) {
-          this.setState({ error: err.data });
+          this.setState({ error: err.data.name });
         } else {
           this.setState({
             error: "network error, please try again in a few minutes"
