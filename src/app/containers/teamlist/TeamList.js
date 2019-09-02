@@ -70,6 +70,7 @@ export default class TeamList extends React.Component {
         d.data.results.forEach(element => {
           allTeamData.push(this.parseTeam(element));
         });
+        console.log(allTeamData);
         this.setState({
           teams: allTeamData,
           nextUrl: d.data.next,
@@ -158,7 +159,7 @@ export default class TeamList extends React.Component {
       <tr>
         <td>{team["name"]}</td>
         <td>{team["description"]}</td>
-        <td>{team["participants"].size}</td>
+        <td>{team["participants"].length}</td>
         <td>
           <button
             className="delete-button"
@@ -177,7 +178,7 @@ export default class TeamList extends React.Component {
       <tr>
         <td>{team["name"]}</td>
         <td>{team["description"]}</td>
-        <td>{team["participants"].size}</td>
+        <td>{team["participants"].length}</td>
         <td>
           <button
             className="join-button"
@@ -203,8 +204,8 @@ export default class TeamList extends React.Component {
           <table className="table">
             <tr>
               <th width="30%">Name</th>
-              <th width="47%">Description</th>
-              <th width="20%">Participants</th>
+              <th width="62%">Description</th>
+              <th width="5%">Size</th>
               {session.getUserType() == "organizer" ? (
                 <th width="3%"></th>
               ) : (

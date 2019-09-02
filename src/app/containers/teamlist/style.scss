@@ -74,6 +74,7 @@
       border: 1px solid #ddd;
       padding: 8px;
       background-color: #fff;
+      text-align: left;
     }
 
     tr:hover td {
@@ -130,7 +131,7 @@
 }
 
 .button-container {
-  margin-top: 20px;
+  padding-top: 20px;
   margin: auto;
   display: flex;
   width: 30%;
