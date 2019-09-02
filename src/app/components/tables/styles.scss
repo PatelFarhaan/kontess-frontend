@@ -1,0 +1,52 @@
+.table {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+
+  td,
+  th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    background-color: #fff;
+    text-align: left;
+  }
+
+  tr:hover td {
+    background-color: #ccc;
+  }
+
+  th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #2ca4ed;
+    color: white;
+  }
+
+  td {
+    .delete-button {
+      background-color: transparent;
+      border: None;
+      width: 30px;
+      height: 20px;
+      margin: auto;
+
+      img {
+        width: 15px;
+        height: 20px;
+      }
+    }
+
+    .join-button {
+      background-color: #2ca4ed;
+      color: #fff;
+      border: None;
+      padding: 8px;
+      height: 100%;
+    }
+
+    .join-button:hover {
+      background-color: #2482bd;
+    }
+  }
+}
