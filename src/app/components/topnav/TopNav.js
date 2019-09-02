@@ -5,6 +5,9 @@ import dropDownMenuIcon from "assets/icons/dropdown.svg";
 import notificationIcon from "assets/icons/notification.svg";
 
 import OrganizerDataService from "../../services/OrganizerDataService";
+import ParticipantDataService from "../../services/ParticipantDataService";
+import JudgeDataService from "../../services/JudgeDataService";
+
 import * as session from "../../../utils/session";
 
 export default class TopNav extends React.Component {
@@ -17,7 +20,15 @@ export default class TopNav extends React.Component {
   }
 
   componentDidMount() {
-    OrganizerDataService.getCurrentUser().then(response => {
+    console.log(session.getUserType());
+    const userType = session.getUserType();
+    let service = OrganizerDataService;
+    if (userType == "participant") {
+      service = ParticipantDataService;
+    } else if (userType == "judge") {
+      service = JudgeDataService;
+    }
+    service.getCurrentUser().then(response => {
       this.setState({
         name:
           response.data.user.first_name + " " + response.data.user.last_name,
