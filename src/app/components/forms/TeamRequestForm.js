@@ -1,16 +1,15 @@
 import React from "react";
 
-import teamService from "../../services/TeamService";
+import ParticipantDataService from "../../services/ParticipantDataService";
 
 import "./style.scss";
 import * as session from "../../../utils/session";
 
-class CreateTeamForm extends React.Component {
+class TeamRequestForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      description: ""
+      essay: ""
     };
 
     this.formHandler = this.formHandler.bind(this);
@@ -22,15 +21,11 @@ class CreateTeamForm extends React.Component {
   }
 
   handleCreate(event) {
-    teamService
-      .create(this.state.name, this.state.description)
+    // teamId;
+
+    ParticipantDataService.joinTeamRequest(this.props.teamId, this.state.essay)
       .then(result => {
         this.props.callback();
-      })
-      .then(response => {
-        if (session.getUserType() == "participant") {
-          teamService.joinTeam(session.getSessionUserId());
-        }
       })
       .catch(err => {
         if (err) {
@@ -47,24 +42,17 @@ class CreateTeamForm extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleCreate}>
-        <label> Team Name</label>
-        <input
-          type="text"
-          name="name"
-          value={this.state.name}
-          onChange={this.formHandler}
-          placeholder="Kontess"
-          required
-        />
-        <label> Description</label>
+        <label> Reason</label>
         <textarea
+          maxLength="500"
           type="text"
-          name="description"
-          value={this.state.description}
+          name="essay"
+          value={this.state.essay}
           onChange={this.formHandler}
-          placeholder="Some good self up talk"
+          placeholder="Why you want to join this team"
           required
         />
+        <div className="characterLength">{this.state.essay.length}/500</div>
         <p className="red">{this.state.error}</p>
 
         <input type="submit" value="Submit" />
@@ -72,4 +60,4 @@ class CreateTeamForm extends React.Component {
     );
   }
 }
-export default CreateTeamForm;
+export default TeamRequestForm;

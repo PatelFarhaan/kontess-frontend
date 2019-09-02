@@ -3,6 +3,7 @@ import Modal from "react-modal";
 
 import DashboardTemplate from "../../components/dashboard-template/DashBoardTemplate";
 import CreateTeamForm from "../../components/forms/CreateTeamForm";
+import TeamRequestForm from "../../components/forms/TeamRequestForm";
 import TeamService from "../../services/TeamService";
 import deleteIcon from "assets/icons/delete.svg";
 
@@ -14,11 +15,17 @@ export default class TeamList extends React.Component {
     super(props);
     this.state = {
       teams: [],
-      modalIsOpen: false
+      createModalIsOpen: false,
+      teamRequestModalIsOpen: false,
+      joinRequestTeamId: -1
     };
-    this.createTeamRows = this.createTeamRows.bind(this);
-    this.openModal = this.openModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
+
+    this.createOrganizerRows = this.createOrganizerRows.bind(this);
+    this.createParticipantRows = this.createParticipantRows.bind(this);
+    this.openCreateModal = this.openCreateModal.bind(this);
+    this.closeCreateModal = this.closeCreateModal.bind(this);
+    this.openTeamRequestModal = this.openTeamRequestModal.bind(this);
+    this.closeTeamRequestModal = this.closeTeamRequestModal.bind(this);
   }
 
   componentDidMount() {
@@ -32,12 +39,22 @@ export default class TeamList extends React.Component {
   }
 
   // modal functions
-  openModal() {
-    this.setState({ modalIsOpen: true });
+  openCreateModal() {
+    this.setState({ createModalIsOpen: true });
   }
 
-  closeModal() {
-    this.setState({ modalIsOpen: false });
+  closeCreateModal() {
+    this.setState({ createModalIsOpen: false });
+    window.location.reload();
+  }
+
+  openTeamRequestModal(id) {
+    this.setState({ teamRequestModalIsOpen: true, joinRequestTeamId: id });
+  }
+
+  closeTeamRequestModal() {
+    this.setState({ teamRequestModalIsOpen: false });
+    window.location.reload();
   }
 
   // team data parsing functions
@@ -65,24 +82,49 @@ export default class TeamList extends React.Component {
       });
   }
 
-  createTeamRows() {
+  joinTeam(id) {
+    TeamService.joinTeam(id)
+      .then(d => {
+        window.location.reload();
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  }
+
+  createOrganizerRows() {
     const rows = this.state.teams.map(team => (
       <tr>
         <td>{team["name"]}</td>
         <td>{team["description"]}</td>
         <td>{team["participants"].size}</td>
-        {session.getUserType() == "organizer" ? (
-          <td>
-            <button
-              className="delete-button"
-              onClick={() => this.deleteTeam(team["id"])}
-            >
-              <img src={deleteIcon} alt="delete" />
-            </button>
-          </td>
-        ) : (
-          <div></div>
-        )}
+        <td>
+          <button
+            className="delete-button"
+            onClick={() => this.deleteTeam(team["id"])}
+          >
+            <img src={deleteIcon} alt="delete" />
+          </button>
+        </td>
+      </tr>
+    ));
+    return <> {rows} </>;
+  }
+
+  createParticipantRows() {
+    const rows = this.state.teams.map(team => (
+      <tr>
+        <td>{team["name"]}</td>
+        <td>{team["description"]}</td>
+        <td>{team["participants"].size}</td>
+        <td>
+          <button
+            className="join-button"
+            onClick={() => this.openTeamRequestModal(team["id"])}
+          >
+            Join
+          </button>
+        </td>
       </tr>
     ));
     return <> {rows} </>;
@@ -93,25 +135,9 @@ export default class TeamList extends React.Component {
       <DashboardTemplate title="Dashboard" pageId="teams">
         <div className="container">
           <div className="header">
-            <button className="create" onClick={this.openModal}>
+            <button className="create" onClick={this.openCreateModal}>
               Create Team
             </button>
-            <Modal
-              isOpen={this.state.modalIsOpen}
-              onRequestClose={this.closeModal}
-              contentLabel="Create Team"
-              className="createModal"
-              overlayClassName="Overlay"
-            >
-              <button className="closeButton" onClick={this.closeModal}>
-                <img src={deleteIcon} alt="delete" />
-              </button>
-              <div className="content">
-                <div className="title">Create Team</div>
-                <hr />
-                <CreateTeamForm callback={this.closeModal} />
-              </div>
-            </Modal>
           </div>
           <table className="table">
             <tr>
@@ -124,8 +150,50 @@ export default class TeamList extends React.Component {
                 <div></div>
               )}
             </tr>
-            {this.createTeamRows()}
+            {session.getUserType() == "organizer" && this.createOrganizerRows()}
+            {session.getUserType() == "participant" &&
+              this.createParticipantRows()}
           </table>
+          <Modal
+            isOpen={this.state.createModalIsOpen}
+            onRequestClose={this.closeCreateModal}
+            contentLabel="Create Team"
+            className="modal createModal"
+            overlayClassName="Overlay"
+            shouldCloseOnEsc={false}
+          >
+            <button className="closeButton" onClick={this.closeCreateModal}>
+              <img src={deleteIcon} alt="delete" />
+            </button>
+            <div className="content">
+              <div className="title">Create Team</div>
+              <hr />
+              <CreateTeamForm callback={this.closeCreateModal} />
+            </div>
+          </Modal>
+          <Modal
+            isOpen={this.state.teamRequestModalIsOpen}
+            onRequestClose={this.closeTeamRequestModal}
+            contentLabel="Create Team"
+            className="modal requestModal"
+            overlayClassName="Overlay"
+            shouldCloseOnEsc={false}
+          >
+            <button
+              className="closeButton"
+              onClick={this.closeTeamRequestModal}
+            >
+              <img src={deleteIcon} alt="delete" />
+            </button>
+            <div className="content">
+              <div className="title">Request To Join Team</div>
+              <hr />
+              <TeamRequestForm
+                teamId={this.state.joinRequestTeamId}
+                callback={this.closeTeamRequestModal}
+              />
+            </div>
+          </Modal>
         </div>
       </DashboardTemplate>
     );

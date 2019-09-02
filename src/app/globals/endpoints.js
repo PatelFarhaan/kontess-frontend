@@ -33,7 +33,7 @@ export const teamRequestRoute = function(id) {
 
 // Team Routes
 export const teamCreateRequestRoute = function(id) {
-  return teamRoute + id + "/create_team_request/";
+  return participantRoute + id + "/create_team_request/";
 };
 
 export const teamJoinRoute = function(id) {

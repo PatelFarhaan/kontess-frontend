@@ -1,9 +1,8 @@
-.createModal {
+.modal {
   position: absolute;
   top: 50%;
   left: 50%;
   width: 30%;
-  height: 70%;
   right: auto;
   bottom: auto;
   margin-right: -50%;
@@ -43,10 +42,6 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.createModal:focus {
-  outline: none;
-}
-
 .container {
   margin: 20px;
   height: 75vh;
@@ -82,7 +77,7 @@
     }
 
     tr:hover td {
-      background-color: #ddd;
+      background-color: #ccc;
     }
 
     th {
@@ -106,6 +101,30 @@
           height: 20px;
         }
       }
+
+      .join-button {
+        background-color: #2ca4ed;
+        color: #fff;
+        border: None;
+        padding: 8px;
+        height: 100%;
+      }
+
+      .join-button:hover {
+        background-color: #2482bd;
+      }
     }
   }
+}
+
+.modal:focus {
+  outline: None;
+}
+
+.createModal {
+  height: 70%;
+}
+
+.requestModal {
+  height: 63%;
 }

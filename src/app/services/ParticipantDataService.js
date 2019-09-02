@@ -9,5 +9,16 @@ export default {
       .then(data => {
         return data;
       });
+  },
+
+  joinTeamRequest: (teamId, essay) => {
+    return api
+      .postRoute(routes.teamCreateRequestRoute(session.getSessionUserId()), {
+        teamId,
+        essay
+      })
+      .then(data => {
+        return data;
+      });
   }
 };
