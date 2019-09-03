@@ -38,8 +38,10 @@ class JudgeModal extends React.Component {
         this.props.history.push("/dashboard/home");
       })
       .catch(err => {
+        const field = Object.keys(err.data)[0];
+        const error = err.data[field];
         if (err) {
-          this.setState({ error: err.data });
+          this.setState({ error: field + ": " + error });
         } else {
           this.setState({
             error: "network error, please try again in a few minutes"
