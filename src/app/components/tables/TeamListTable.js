@@ -141,7 +141,7 @@ export default class TeamList extends React.Component {
         <td>
           <button
             className="delete-button"
-            onClick={() => this.props.deleteTeam(team["id"])}
+            onClick={() => this.deleteTeam(team["id"])}
           >
             <img src={deleteIcon} alt="delete" />
           </button>
