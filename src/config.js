@@ -1,9 +1,16 @@
 const hostname = window.location.hostname;
 
 const api = {
-  localhost: 'http://localhost:8000',
+  localhost: "http://localhost:8000",
+  platform: "http://api.platform.kontess.com"
 };
+console.log(window.location.hostname);
 
-const apiBase = api.localhost;
+let apiBase = "";
+if (hostname == "localhost") {
+  apiBase = api.localhost;
+} else {
+  apiBase = api.platform;
+}
 
 export default apiBase;
