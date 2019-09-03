@@ -2,7 +2,7 @@ const hostname = window.location.hostname;
 
 const api = {
   localhost: "http://localhost:8000",
-  platform: "http://api.platform.kontess.com"
+  platform: "ec2-3-84-221-221.compute-1.amazonaws.com"
 };
 
 let apiBase = "";
