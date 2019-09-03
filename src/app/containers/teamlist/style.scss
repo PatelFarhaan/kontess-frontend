@@ -1,9 +1,8 @@
-.createModal {
+.modal {
   position: absolute;
   top: 50%;
   left: 50%;
   width: 30%;
-  height: 70%;
   right: auto;
   bottom: auto;
   margin-right: -50%;
@@ -43,10 +42,6 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.createModal:focus {
-  outline: none;
-}
-
 .container {
   margin: 20px;
   height: 75vh;
@@ -68,44 +63,40 @@
       margin-bottom: 3px;
     }
   }
+}
 
-  .table {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
+.modal:focus {
+  outline: None;
+}
 
-    td,
-    th {
-      border: 1px solid #ddd;
-      padding: 8px;
-      background-color: #fff;
+.createModal {
+  height: 70%;
+}
+
+.requestModal {
+  height: 63%;
+}
+
+.button-container {
+  padding-top: 20px;
+  margin: auto;
+  display: flex;
+  width: 20%;
+
+  .pageNum {
+    margin: auto;
+    button {
+      font-size: 15px;
     }
+  }
 
-    tr:hover td {
-      background-color: #ddd;
-    }
-
-    th {
-      padding-top: 12px;
-      padding-bottom: 12px;
-      text-align: left;
-      background-color: #2ca4ed;
-      color: white;
-    }
-
-    td {
-      .delete-button {
-        background-color: transparent;
-        border: None;
-        width: 30px;
-        height: 20px;
-        margin: auto;
-
-        img {
-          width: 15px;
-          height: 20px;
-        }
-      }
+  .pageButton {
+    height: 30px;
+    width: 30px;
+    border: None;
+    background: transparent;
+    img {
+      height: 30px;
     }
   }
 }

@@ -12,7 +12,7 @@ class Modal extends React.Component {
     return (
       <div className="modal-background">
         <div className="modal-wrapper">
-          <div className="modal">{this.props.children}</div>
+          <div className="auth-modal">{this.props.children}</div>
           <ButtonGroup
             className="menu-bar"
             modeHandler={this.props.modeHandler}

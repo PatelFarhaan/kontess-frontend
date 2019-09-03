@@ -1,7 +1,6 @@
 import * as routes from "../globals/endpoints";
 import * as api from "../../utils/requests";
 import * as session from "../../utils/session";
-import { async } from "q";
 
 export default {
   create: async (name, description) => {
@@ -11,9 +10,9 @@ export default {
     });
   },
 
-  joinTeam: async userId => {
-    return await api.putRoute(routes.teamJoinRoute, {
-      userId
+  joinTeam: async teamId => {
+    return await api.putRoute(routes.teamJoinRoute(teamId), {
+      userId: session.getSessionUserId()
     });
   },
 

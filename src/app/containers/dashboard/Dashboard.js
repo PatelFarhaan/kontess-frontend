@@ -26,7 +26,7 @@ export default class Dashboard extends React.Component {
             <DashboardWidget title="Events">
               <div>graphs</div>
             </DashboardWidget>
-            <DashboardWidget title="Conflicts">
+            <DashboardWidget title="Tasks">
               <div>graphs</div>
             </DashboardWidget>
           </div>
