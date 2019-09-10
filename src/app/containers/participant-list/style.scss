@@ -19,9 +19,10 @@
     .title {
       font-size: 28px;
       color: #222;
+      text-align: center;
     }
   }
-  .closeButton {
+  .close-button {
     position: absolute;
     border: None;
     background-color: transparent;
@@ -92,7 +93,7 @@
 
   .pageButton {
     height: 30px;
-    width: 30px;
+    width: 40px;
     border: None;
     background: transparent;
     img {

@@ -5,6 +5,7 @@ import DashboardTemplate from "../../components/dashboard-template/DashBoardTemp
 import CreateTeamForm from "../../components/forms/CreateTeamForm";
 import TeamRequestForm from "../../components/forms/TeamRequestForm";
 import TeamListTable from "../../components/tables/TeamListTable";
+import ProfileModal from "../../components/profile-modal/ProfileModal";
 import deleteIcon from "assets/icons/delete.svg";
 
 import * as session from "../../../utils/session";
@@ -18,6 +19,8 @@ export default class TeamList extends React.Component {
       teams: [],
       createModalIsOpen: false,
       teamRequestModalIsOpen: false,
+      profileModalIsOpen: false,
+      profileUserId: -1,
       joinRequestTeamId: -1,
       nextUrl: "",
       previousUrl: "",
@@ -29,6 +32,8 @@ export default class TeamList extends React.Component {
     this.closeCreateModal = this.closeCreateModal.bind(this);
     this.openTeamRequestModal = this.openTeamRequestModal.bind(this);
     this.closeTeamRequestModal = this.closeTeamRequestModal.bind(this);
+    this.openProfileModal = this.openProfileModal.bind(this);
+    this.closeProfileModal = this.closeProfileModal.bind(this);
   }
 
   // modal functions
@@ -42,8 +47,10 @@ export default class TeamList extends React.Component {
   }
 
   openTeamRequestModal(id) {
-    console.log(id);
-    this.setState({ teamRequestModalIsOpen: true, joinRequestTeamId: id });
+    this.setState({
+      teamRequestModalIsOpen: true,
+      joinRequestTeamId: id
+    });
   }
 
   closeTeamRequestModal() {
@@ -51,24 +58,39 @@ export default class TeamList extends React.Component {
     window.location.reload();
   }
 
+  openProfileModal(id) {
+    this.setState({
+      profileModalIsOpen: true,
+      profileUserId: id
+    });
+  }
+
+  closeProfileModal() {
+    this.setState({
+      profileModalIsOpen: false
+    });
+  }
+
   render() {
     return (
-      <DashboardTemplate title="Dashboard" pageId="teams">
+      <DashboardTemplate title="Dashboard" pageId="listTeams">
         <div className="container">
           <div className="header">
             <button className="create" onClick={this.openCreateModal}>
               Create Team
             </button>
           </div>
-          {session.getUserType() == "organizer" ? (
+          {session.getUserType() == "Organizer" ? (
             <TeamListTable
               openTeamRequestModal={this.openTeamRequestModal}
               openCreateModal={this.openCreateModal}
+              openProfileModal={this.openProfileModal}
             />
-          ) : session.getUserType() == "participant" ? (
+          ) : session.getUserType() == "Participant" ? (
             <TeamListTable
               openTeamRequestModal={this.openTeamRequestModal}
               openCreateModal={this.openCreateModal}
+              openProfileModal={this.openProfileModal}
             />
           ) : (
             <> </>
@@ -81,12 +103,11 @@ export default class TeamList extends React.Component {
             overlayClassName="Overlay"
             shouldCloseOnEsc={false}
           >
-            <button className="closeButton" onClick={this.closeCreateModal}>
+            <button className="close-button" onClick={this.closeCreateModal}>
               <img src={deleteIcon} alt="delete" />
             </button>
             <div className="content">
               <div className="title">Create Team</div>
-              <hr />
               <CreateTeamForm callback={this.closeCreateModal} />
             </div>
           </Modal>
@@ -99,20 +120,27 @@ export default class TeamList extends React.Component {
             shouldCloseOnEsc={false}
           >
             <button
-              className="closeButton"
+              className="close-button"
               onClick={this.closeTeamRequestModal}
             >
               <img src={deleteIcon} alt="delete" />
             </button>
             <div className="content">
               <div className="title">Request To Join Team</div>
-              <hr />
               <TeamRequestForm
                 teamId={this.state.joinRequestTeamId}
                 callback={this.closeTeamRequestModal}
               />
             </div>
           </Modal>
+          {this.state.profileModalIsOpen && (
+            <ProfileModal
+              role={session.getUserType()}
+              userId={this.state.profileUserId}
+              modelIsOpen={this.state.profileModalIsOpen}
+              closeModal={this.closeProfileModal}
+            />
+          )}
         </div>
       </DashboardTemplate>
     );

@@ -25,7 +25,7 @@ class CreateTeamForm extends React.Component {
     teamService
       .create(this.state.name, this.state.description)
       .then(response => {
-        if (session.getUserType() == "participant") {
+        if (session.getUserType() == "Participant") {
           teamService.joinTeam(response.data.id);
         }
       })
@@ -33,6 +33,7 @@ class CreateTeamForm extends React.Component {
         this.props.callback();
       })
       .catch(err => {
+        console.log(err);
         if (err) {
           this.setState({ error: err.data.name });
         } else {

@@ -3,6 +3,12 @@ import * as api from "../../utils/requests";
 import * as session from "../../utils/session";
 
 export default {
+  getUser: id => {
+    return api.getRoute(routes.participantGetRoute(id)).then(data => {
+      return data;
+    });
+  },
+
   getCurrentUser: () => {
     return api
       .getRoute(routes.participantGetRoute(session.getSessionUserId()))

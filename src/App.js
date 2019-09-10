@@ -8,7 +8,8 @@ import {
   Registration,
   Login,
   Dashboard,
-  TeamList
+  TeamList,
+  ParticipantList
 } from "app/containers";
 
 class App extends React.Component {
@@ -26,7 +27,12 @@ class App extends React.Component {
                 render={({ match: { path } }) => (
                   <>
                     <Route path={`${path}/home`} component={Dashboard} exact />
-                    <Route path={`${path}/teams`} component={TeamList} />
+                    <Route path={`${path}/listTeams`} component={TeamList} />
+                    <Route
+                      path={`${path}/listParticipants`}
+                      component={ParticipantList}
+                    />
+                    {/* <Route path={`${path}/team/:teamId`} component={TeamPage} /> */}
                   </>
                 )}
               />

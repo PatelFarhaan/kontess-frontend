@@ -9,10 +9,7 @@
     padding: 8px;
     background-color: #fff;
     text-align: left;
-  }
-
-  tr:hover td {
-    background-color: #ccc;
+    font-weight: lighter;
   }
 
   th {
@@ -24,6 +21,7 @@
   }
 
   td {
+    height: 29px;
     .delete-button {
       background-color: transparent;
       border: None;
@@ -35,6 +33,24 @@
         width: 15px;
         height: 20px;
       }
+    }
+
+    .profile-button {
+      width: 36px;
+      height: 30px;
+      margin: auto;
+      border: 1px solid #ccc;
+      border-radius: 15px;
+      background-color: #888;
+
+      img {
+        border: #222;
+        width: 20px;
+        height: 25px;
+      }
+    }
+    .profile-button:hover {
+      background-color: #666;
     }
 
     .join-button {

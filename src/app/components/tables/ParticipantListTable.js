@@ -3,8 +3,6 @@ import React from "react";
 import TeamService from "../../services/TeamService";
 import previousButton from "assets/images/pagePrevious.png";
 import nextButton from "assets/images/pageNext.png";
-import profileIcon from "assets/icons/profile.svg";
-import deleteIcon from "assets/icons/delete.svg";
 
 import * as routes from "../../globals/endpoints";
 import * as session from "../../../utils/session";
@@ -12,30 +10,30 @@ import * as api from "../../../utils/requests";
 
 import "./styles.scss";
 
-export default class TeamListTable extends React.Component {
+export default class ParticipantListTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      teams: [],
+      participants: [],
       nextUrl: "",
       previousUrl: "",
       maxPage: 0,
       page: 0
     };
 
-    this.getTeamList = this.getTeamList.bind(this);
+    this.getUserList = this.getUserList.bind(this);
     this.setPage = this.setPage.bind(this);
     this.nextPage = this.nextPage.bind(this);
     this.previousPage = this.previousPage.bind(this);
   }
 
   componentDidMount() {
-    this.getTeamList(this.state.page);
+    this.getUserList(this.state.page);
   }
 
   setPage(page) {
     this.setState({ page: page });
-    this.getTeamList(page * 10);
+    this.getUserList(page * 10);
   }
 
   nextPage() {
@@ -70,16 +68,16 @@ export default class TeamListTable extends React.Component {
     return <span className="pageNum"> {rows} </span>;
   }
 
-  getTeamList(offset) {
+  getUserList(offset) {
     return api
-      .getRoute(routes.teamRoute + "?limit=10&offset=" + offset)
+      .getRoute(routes.participantRoute + "?limit=10&offset=" + offset)
       .then(d => {
-        const allTeamData = [];
+        const allParticipantData = [];
         d.data.results.forEach(element => {
-          allTeamData.push(this.parseTeam(element));
+          allParticipantData.push(this.parseParticipant(element));
         });
         this.setState({
-          teams: allTeamData,
+          participants: allParticipantData,
           nextUrl: d.data.next,
           previousUrl: d.data.previous,
           maxPage: Math.ceil(d.data.count / 10)
@@ -88,18 +86,30 @@ export default class TeamListTable extends React.Component {
   }
 
   // team data parsing functions
-  parseTeam(team) {
-    const teamData = {};
-    const id = team["id"];
-    const name = team["name"];
-    const description = team["description"];
-    const participants = team["participants"];
+  parseParticipant(participant) {
+    const participantData = {};
+    const id = participant["user"]["id"];
+    const participantId = participant["id"];
+    const name =
+      participant["user"]["first_name"] +
+      " " +
+      participant["user"]["last_name"];
+    const email = participant["user"]["username"];
+    const title = participant["title"];
 
-    teamData["id"] = id;
-    teamData["name"] = name;
-    teamData["description"] = description;
-    teamData["participants"] = participants;
-    return teamData;
+    participantData["id"] = id;
+    participantData["participantId"] = participantId;
+    participantData["name"] = name;
+    participantData["email"] = email;
+    participantData["title"] = title;
+
+    if (participant["team"] != {}) {
+      participantData["teamName"] = participant["team"]["name"];
+      participantData["teamId"] = participant["team"]["id"];
+    } else {
+      participantData["teamName"] = "";
+    }
+    return participantData;
   }
 
   deleteTeam(id) {
@@ -132,53 +142,17 @@ export default class TeamListTable extends React.Component {
     return <span className="pageNum"> {rows} </span>;
   }
 
-  createOrganizerRows() {
-    const rows = this.state.teams.map(team => (
-      <tr>
-        <td>{team["name"]}</td>
-        <td>{team["description"]}</td>
-        <td>{team["participants"].length}</td>
-        <td>
-          <button
-            className="delete-button"
-            onClick={() => this.deleteTeam(team["id"])}
-          >
-            <img src={deleteIcon} alt="delete" />
-          </button>
-        </td>
-      </tr>
-    ));
-    return <> {rows} </>;
-  }
-
-  createParticipantRows() {
-    const rows = this.state.teams.map(team => (
-      <tr>
-        <td>{team["name"]}</td>
-        <td>{team["description"]}</td>
-        <td>
-          {team["participants"].map(
-            participant => (
-              <div>
-                <button
-                  className="profile-button"
-                  onClick={() => this.props.openProfileModal(participant.id)}
-                >
-                  <img src={profileIcon} alt="delete" />
-                </button>
-              </div>
-            )
-            // <div>asdf</div>
-          )}
-        </td>
-        <td>
-          <button
-            className="join-button"
-            onClick={() => this.props.openTeamRequestModal(team["id"])}
-          >
-            Join
-          </button>
-        </td>
+  createRows() {
+    const rows = this.state.participants.map(participant => (
+      <tr
+        onClick={() =>
+          this.props.openProfileModal(participant["participantId"])
+        }
+      >
+        <td>{participant["name"]}</td>
+        <td>{participant["title"]}</td>
+        <td>{participant["email"]}</td>
+        <td>{participant["teamName"]}</td>
       </tr>
     ));
     return <> {rows} </>;
@@ -189,18 +163,12 @@ export default class TeamListTable extends React.Component {
       <div>
         <table className="table">
           <tr>
-            <th width="30%">Name</th>
-            <th width="47%">Description</th>
-            <th width="20%">Participants</th>
-            <th width="3%"></th>
+            <th width="20%">Name</th>
+            <th width="30%">Description</th>
+            <th width="30%">Email</th>
+            <th width="20%">Team</th>
           </tr>
-          {session.getUserType() == "Organizer" ? (
-            this.createOrganizerRows()
-          ) : session.getUserType() == "Participant" ? (
-            this.createParticipantRows()
-          ) : (
-            <></>
-          )}
+          {this.createRows()}
         </table>
         <div className="button-container">
           <button className="pageButton" onClick={this.previousPage}>
