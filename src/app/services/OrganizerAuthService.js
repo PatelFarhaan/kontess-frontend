@@ -26,7 +26,7 @@ export default {
         password: password
       })
       .then(data => {
-        session.setUserType("organizer");
+        session.setUserType("Organizer");
         return session.setUser(data.data.id);
       })
       .then(() => {
@@ -41,7 +41,7 @@ export default {
         password: password
       })
       .then(data => {
-        session.setUserType("organizer");
+        session.setUserType("Organizer");
         return session.setUser(data.data.id);
       })
       .then(data => {

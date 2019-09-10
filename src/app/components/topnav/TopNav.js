@@ -1,8 +1,8 @@
 import React from "react";
 import "./style.scss";
 
-import dropDownMenuIcon from "assets/icons/dropdown.svg";
 import notificationIcon from "assets/icons/notification.svg";
+import ProfileModal from "../profile-modal/ProfileModal";
 
 import OrganizerDataService from "../../services/OrganizerDataService";
 import ParticipantDataService from "../../services/ParticipantDataService";
@@ -15,17 +15,19 @@ export default class TopNav extends React.Component {
     super(props);
     this.state = {
       name: "",
-      title: ""
+      title: "",
+      profileModalIsOpen: false
     };
+    this.openProfileModal = this.openProfileModal.bind(this);
+    this.closeProfileModal = this.closeProfileModal.bind(this);
   }
 
   componentDidMount() {
-    console.log(session.getUserType());
     const userType = session.getUserType();
     let service = OrganizerDataService;
-    if (userType == "participant") {
+    if (userType == "Participant") {
       service = ParticipantDataService;
-    } else if (userType == "judge") {
+    } else if (userType == "Judge") {
       service = JudgeDataService;
     }
     service.getCurrentUser().then(response => {
@@ -37,6 +39,18 @@ export default class TopNav extends React.Component {
     });
   }
 
+  openProfileModal() {
+    this.setState({
+      profileModalIsOpen: true
+    });
+  }
+
+  closeProfileModal() {
+    this.setState({
+      profileModalIsOpen: false
+    });
+  }
+
   render() {
     return (
       <div className="top-nav">
@@ -44,7 +58,15 @@ export default class TopNav extends React.Component {
         <button className="notification" onClick={this.notify}>
           <img src={notificationIcon}></img>
         </button>
-        <div className="name">{this.state.name}</div>
+        <div className="name-area" onClick={this.openProfileModal}>
+          <div className="name">{this.state.name}</div>
+        </div>
+        <ProfileModal
+          role={"Participant"}
+          userId={session.getSessionUserId()}
+          modelIsOpen={this.state.profileModalIsOpen}
+          closeModal={this.closeProfileModal}
+        />
       </div>
     );
   }

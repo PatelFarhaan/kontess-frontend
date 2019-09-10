@@ -17,14 +17,14 @@ const pages = [
     pageId: "home"
   },
   {
-    name: "Teams",
+    name: "List Teams",
     iconPath: eventIcon,
-    pageId: "teams"
+    pageId: "listTeams"
   },
   {
-    name: "Users",
+    name: "List Participants",
     iconPath: userIcon,
-    pageId: "users"
+    pageId: "listParticipants"
   },
   {
     name: "Chat",

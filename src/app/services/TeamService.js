@@ -6,7 +6,8 @@ export default {
   create: async (name, description) => {
     return await api.postRoute(routes.teamRoute, {
       name,
-      description
+      description,
+      userId: session.getSessionUserId()
     });
   },
 

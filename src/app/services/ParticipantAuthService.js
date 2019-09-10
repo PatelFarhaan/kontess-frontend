@@ -16,17 +16,17 @@ var getTokenPromise = (email, password) => {
 };
 
 export default {
-  register: async (first_name, last_name, graduation_year, email, password) => {
+  register: async (first_name, last_name, title, email, password) => {
     await api
       .postNoTokenRoute(routes.participantRoute, {
         first_name: first_name,
         last_name: last_name,
-        graduation_year: graduation_year,
+        title: title,
         username: email,
         password: password
       })
       .then(data => {
-        session.setUserType("participant");
+        session.setUserType("Participant");
         return session.setUser(data.data.id);
       })
       .then(() => {
@@ -41,7 +41,7 @@ export default {
         password: password
       })
       .then(data => {
-        session.setUserType("participant");
+        session.setUserType("Participant");
         return session.setUser(data.data.id);
       })
       .then(data => {
