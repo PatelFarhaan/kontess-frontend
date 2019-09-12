@@ -6,10 +6,6 @@ import DashboardWidget from "../../components/dashboard/DashboardWidget";
 import * as session from "../../../utils/session";
 
 export default class Dashboard extends React.Component {
-  componentDidMount() {
-    console.log(session.getUserType());
-  }
-
   render() {
     return (
       <DashboardTemplate title="Dashboard" pageId="home">
