@@ -54,7 +54,7 @@ class CreateTeamForm extends React.Component {
           name="name"
           value={this.state.name}
           onChange={this.formHandler}
-          placeholder="Kontess"
+          placeholder="Your Team Name"
           required
         />
         <label> Description</label>
@@ -63,7 +63,7 @@ class CreateTeamForm extends React.Component {
           name="description"
           value={this.state.description}
           onChange={this.formHandler}
-          placeholder="Some good self up talk"
+          placeholder="Your description"
           required
         />
         <p className="red">{this.state.error}</p>

@@ -16,18 +16,18 @@ export default class Dashboard extends React.Component {
         <div className="container">
           <div>
             <DashboardWidget title="Participants">
-              <div>graphs</div>
+              <div></div>
             </DashboardWidget>
             <DashboardWidget title="Teams">
-              <div>graphs</div>
+              <div></div>
             </DashboardWidget>
           </div>
           <div>
             <DashboardWidget title="Events">
-              <div>graphs</div>
+              <div></div>
             </DashboardWidget>
             <DashboardWidget title="Tasks">
-              <div>graphs</div>
+              <div></div>
             </DashboardWidget>
           </div>
         </div>

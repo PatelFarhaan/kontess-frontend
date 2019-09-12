@@ -70,10 +70,12 @@ class SideNav extends React.Component {
   render() {
     return (
       <div className="sidenav">
-        <div className="headerBlock">
-          <img className="logo" src={kontessLogoImg} alt="Kontess Logo" />
-          <p className="name">Kontess </p>
-        </div>
+        <a href="/dashboard/home" className="headerBlockLink">
+          <div className="headerBlock">
+            <img className="logo" src={kontessLogoImg} alt="Kontess Logo" />
+            <p className="name">Kontess </p>
+          </div>
+        </a>
         <div className="buttonMenu">
           {(() => this.getButtons())()}{" "}
           <button
@@ -85,7 +87,7 @@ class SideNav extends React.Component {
           >
             <span className="icon-text-wrapper">
               <img className="icon-img" src={dashboardIcon} alt="" />
-              <p>LogOut</p>
+              <p>Log Out</p>
             </span>
           </button>
         </div>

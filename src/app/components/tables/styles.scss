@@ -20,6 +20,10 @@
     color: white;
   }
 
+  tr:hover td {
+    background-color: #eee;
+  }
+
   td {
     height: 29px;
     .delete-button {
