@@ -62,7 +62,7 @@ export default class TopNav extends React.Component {
           <div className="name">{this.state.name}</div>
         </div>
         <ProfileModal
-          role={"Participant"}
+          role={session.getUserType()}
           userId={session.getSessionUserId()}
           modelIsOpen={this.state.profileModalIsOpen}
           closeModal={this.closeProfileModal}

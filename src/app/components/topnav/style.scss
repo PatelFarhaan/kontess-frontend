@@ -23,6 +23,8 @@
   }
   .notification {
     /*parameters neccesary in order to make button clickable*/
+    width: 50px;
+
     position: relative;
     grid-area: notifications;
     z-index: 1;
@@ -43,12 +45,9 @@
     -webkit-transition: all 0.3s ease;
 
     img {
-      height: 30px;
-      width: 30px;
+      height: 25px;
+      width: 25px;
     }
-  }
-  .notification:hover {
-    background-color: #eee;
   }
   .name-area {
     width: 100%;

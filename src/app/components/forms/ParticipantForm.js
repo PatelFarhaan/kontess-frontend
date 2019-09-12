@@ -75,7 +75,7 @@ class ParticipantModal extends React.Component {
           name="title"
           value={this.state.title}
           onChange={this.formHandler}
-          placeholder="Title"
+          placeholder="About yourself"
           required
         />
         <input

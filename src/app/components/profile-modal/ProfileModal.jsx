@@ -2,10 +2,13 @@ import React from "react";
 import Modal from "react-modal";
 
 import ParticipantDataService from "../../services/ParticipantDataService";
+import JudgeDataService from "../../services/JudgeDataService";
+import OrganizerDataService from "../../services/OrganizerDataService";
 import profileIcon from "../../../assets/icons/profile.svg";
 import deleteIcon from "assets/icons/delete.svg";
 
 import "./style.scss";
+import * as session from "../../../utils/session";
 
 class ProfileModal extends React.Component {
   constructor(props) {
@@ -18,14 +21,24 @@ class ProfileModal extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props.userId);
-    ParticipantDataService.getUser(this.props.userId).then(response => {
+    let service = JudgeDataService;
+    if (this.props.role == "Participant") {
+      service = ParticipantDataService;
+    } else if (this.props.role == "Organizer") {
+      service = OrganizerDataService;
+    }
+    service.getUser(this.props.userId).then(response => {
       this.setState({
         name:
           response.data.user.first_name + " " + response.data.user.last_name,
         email: response.data.user.username,
-        teamName: response.data.team.name
+        title: response.data.title
       });
+      if (this.props.role == "Participant") {
+        this.setState({
+          teamName: response.data.team.name
+        });
+      }
     });
   }
 
