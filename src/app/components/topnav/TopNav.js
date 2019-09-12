@@ -4,11 +4,8 @@ import "./style.scss";
 import notificationIcon from "assets/icons/notification.svg";
 import ProfileModal from "../profile-modal/ProfileModal";
 
-import OrganizerDataService from "../../services/OrganizerDataService";
-import ParticipantDataService from "../../services/ParticipantDataService";
-import JudgeDataService from "../../services/JudgeDataService";
-
 import * as session from "../../../utils/session";
+import * as serviceHelper from "../../../utils/serviceHelper";
 
 export default class TopNav extends React.Component {
   constructor(props) {
@@ -23,13 +20,7 @@ export default class TopNav extends React.Component {
   }
 
   componentDidMount() {
-    const userType = session.getUserType();
-    let service = OrganizerDataService;
-    if (userType == "Participant") {
-      service = ParticipantDataService;
-    } else if (userType == "Judge") {
-      service = JudgeDataService;
-    }
+    const service = serviceHelper.getUserService();
     service.getCurrentUser().then(response => {
       this.setState({
         name:

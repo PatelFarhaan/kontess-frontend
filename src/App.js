@@ -9,7 +9,8 @@ import {
   Login,
   Dashboard,
   TeamList,
-  ParticipantList
+  ParticipantList,
+  ChatPage
 } from "app/containers";
 
 class App extends React.Component {
@@ -32,7 +33,7 @@ class App extends React.Component {
                       path={`${path}/listParticipants`}
                       component={ParticipantList}
                     />
-                    {/* <Route path={`${path}/team/:teamId`} component={TeamPage} /> */}
+                    <Route path={`${path}/chat`} component={ChatPage} />
                   </>
                 )}
               />
