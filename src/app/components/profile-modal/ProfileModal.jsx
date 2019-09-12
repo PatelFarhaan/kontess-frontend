@@ -18,7 +18,7 @@ class ProfileModal extends React.Component {
   }
 
   componentDidMount() {
-    const service = serviceHelper.getUserService();
+    const service = serviceHelper.getService(this.props.role);
     service.getUser(this.props.userId).then(response => {
       this.setState({
         name:

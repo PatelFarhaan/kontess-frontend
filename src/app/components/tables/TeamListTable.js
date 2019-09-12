@@ -1,6 +1,7 @@
 import React from "react";
 
 import TeamService from "../../services/TeamService";
+import ParticipantDataService from "../../services/ParticipantDataService";
 import previousButton from "assets/images/pagePrevious.png";
 import nextButton from "assets/images/pageNext.png";
 import profileIcon from "assets/icons/profile.svg";
@@ -11,6 +12,7 @@ import * as session from "../../../utils/session";
 import * as api from "../../../utils/requests";
 
 import "./styles.scss";
+import { userInfo } from "os";
 
 export default class TeamListTable extends React.Component {
   constructor(props) {
@@ -20,7 +22,8 @@ export default class TeamListTable extends React.Component {
       nextUrl: "",
       previousUrl: "",
       maxPage: 0,
-      page: 0
+      page: 0,
+      participantTeam: false
     };
 
     this.getTeamList = this.getTeamList.bind(this);
@@ -31,6 +34,15 @@ export default class TeamListTable extends React.Component {
 
   componentDidMount() {
     this.getTeamList(this.state.page);
+    if (session.getUserType() == "Participant") {
+      ParticipantDataService.getCurrentUser().then(response => {
+        if (response.data.team.id) {
+          this.setState({
+            participantTeam: true
+          });
+        }
+      });
+    }
   }
 
   setPage(page) {
@@ -48,26 +60,6 @@ export default class TeamListTable extends React.Component {
     if (this.state.page > 0) {
       this.setPage(this.state.page - 1);
     }
-  }
-
-  createPageNumbers() {
-    let index = this.state.page;
-    if (index == 0) {
-      index = 1;
-    }
-    let rows = [];
-    for (var i = -1; i < 2; i++) {
-      const pageNum = index + i;
-      if (pageNum >= 0 && pageNum < this.state.maxPage) {
-        rows.push(
-          <button className="pageButton" onClick={() => this.setPage(pageNum)}>
-            {pageNum}
-          </button>
-        );
-      }
-    }
-
-    return <span className="pageNum"> {rows} </span>;
   }
 
   getTeamList(offset) {
@@ -123,7 +115,7 @@ export default class TeamListTable extends React.Component {
       if (pageNum >= 0 && pageNum < this.state.maxPage) {
         rows.push(
           <button className="pageButton" onClick={() => this.setPage(pageNum)}>
-            {pageNum}
+            {pageNum + 1}
           </button>
         );
       }
@@ -157,27 +149,26 @@ export default class TeamListTable extends React.Component {
         <td>{team["name"]}</td>
         <td>{team["description"]}</td>
         <td>
-          {team["participants"].map(
-            participant => (
-              <div>
-                <button
-                  className="profile-button"
-                  onClick={() => this.props.openProfileModal(participant.id)}
-                >
-                  <img src={profileIcon} alt="delete" />
-                </button>
-              </div>
-            )
-            // <div>asdf</div>
-          )}
+          {team["participants"].map(participant => (
+            <div>
+              <button
+                className="profile-button"
+                onClick={() => this.props.openProfileModal(participant.id)}
+              >
+                <img src={profileIcon} alt="delete" />
+              </button>
+            </div>
+          ))}
         </td>
         <td>
-          <button
-            className="join-button"
-            onClick={() => this.props.openTeamRequestModal(team["id"])}
-          >
-            Join
-          </button>
+          {!this.state.participantTeam && (
+            <button
+              className="join-button"
+              onClick={() => this.props.openTeamRequestModal(team["id"])}
+            >
+              Join
+            </button>
+          )}
         </td>
       </tr>
     ));
