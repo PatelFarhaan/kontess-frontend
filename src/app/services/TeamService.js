@@ -7,7 +7,8 @@ export default {
     return await api.postRoute(routes.teamRoute, {
       name,
       description,
-      userId: session.getSessionUserId()
+      userId: session.getSessionUserId(),
+      userType: session.getUserType()
     });
   },
 

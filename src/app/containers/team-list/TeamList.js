@@ -135,7 +135,7 @@ export default class TeamList extends React.Component {
           </Modal>
           {this.state.profileModalIsOpen && (
             <ProfileModal
-              role={session.getUserType()}
+              role={"Participant"}
               userId={this.state.profileUserId}
               modelIsOpen={this.state.profileModalIsOpen}
               closeModal={this.closeProfileModal}

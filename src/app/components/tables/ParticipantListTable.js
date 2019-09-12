@@ -48,26 +48,6 @@ export default class ParticipantListTable extends React.Component {
     }
   }
 
-  createPageNumbers() {
-    let index = this.state.page;
-    if (index == 0) {
-      index = 1;
-    }
-    let rows = [];
-    for (var i = -1; i < 2; i++) {
-      const pageNum = index + i;
-      if (pageNum >= 0 && pageNum < this.state.maxPage) {
-        rows.push(
-          <button className="pageButton" onClick={() => this.setPage(pageNum)}>
-            {pageNum}
-          </button>
-        );
-      }
-    }
-
-    return <span className="pageNum"> {rows} </span>;
-  }
-
   getUserList(offset) {
     return api
       .getRoute(routes.participantRoute + "?limit=10&offset=" + offset)
@@ -133,7 +113,7 @@ export default class ParticipantListTable extends React.Component {
       if (pageNum >= 0 && pageNum < this.state.maxPage) {
         rows.push(
           <button className="pageButton" onClick={() => this.setPage(pageNum)}>
-            {pageNum}
+            {pageNum + 1}
           </button>
         );
       }
