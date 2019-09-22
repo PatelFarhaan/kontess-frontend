@@ -12,7 +12,6 @@ import * as session from "../../../utils/session";
 import * as api from "../../../utils/requests";
 
 import "./styles.scss";
-import { userInfo } from "os";
 
 export default class TeamListTable extends React.Component {
   constructor(props) {
@@ -34,7 +33,7 @@ export default class TeamListTable extends React.Component {
 
   componentDidMount() {
     this.getTeamList(this.state.page);
-    if (session.getUserType() == "Participant") {
+    if (session.getUserType() === "Participant") {
       ParticipantDataService.getCurrentUser().then(response => {
         if (response.data.team.id) {
           this.setState({
@@ -106,7 +105,7 @@ export default class TeamListTable extends React.Component {
 
   createPageNumbers() {
     let index = this.state.page;
-    if (index == 0) {
+    if (index === 0) {
       index = 1;
     }
     let rows = [];
@@ -185,9 +184,9 @@ export default class TeamListTable extends React.Component {
             <th width="20%">Participants</th>
             <th width="3%"></th>
           </tr>
-          {session.getUserType() == "Organizer" ? (
+          {session.getUserType() === "Organizer" ? (
             this.createOrganizerRows()
-          ) : session.getUserType() == "Participant" ? (
+          ) : session.getUserType() === "Participant" ? (
             this.createParticipantRows()
           ) : (
             <></>
@@ -195,11 +194,11 @@ export default class TeamListTable extends React.Component {
         </table>
         <div className="button-container">
           <button className="pageButton" onClick={this.previousPage}>
-            <img src={previousButton} />
+            <img alt="previous" src={previousButton} />
           </button>
           {this.createPageNumbers()}
           <button className="pageButton" onClick={this.nextPage}>
-            <img src={nextButton} />
+            <img alt="next" src={nextButton} />
           </button>
         </div>
       </div>

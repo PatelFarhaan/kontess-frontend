@@ -44,11 +44,11 @@ class Login extends React.Component {
 
   handleLogin(event) {
     let service = OrganizerAuthService;
-    if (this.state.mode == "Organizer") {
+    if (this.state.mode === "Organizer") {
       service = OrganizerAuthService;
-    } else if (this.state.mode == "Participant") {
+    } else if (this.state.mode === "Participant") {
       service = ParticipantAuthService;
-    } else if (this.state.mode == "Judge") {
+    } else if (this.state.mode === "Judge") {
       service = JudgeAuthService;
     }
     service

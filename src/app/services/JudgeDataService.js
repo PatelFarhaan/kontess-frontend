@@ -15,5 +15,14 @@ export default {
       .then(data => {
         return data;
       });
+  },
+  updateTitleProfile: title => {
+    return api
+      .putRoute(routes.judgeGetRoute(session.getSessionUserId()), {
+        title
+      })
+      .then(data => {
+        return data;
+      });
   }
 };

@@ -6,7 +6,7 @@ const api = {
 };
 
 let apiBase = "";
-if (hostname == "localhost") {
+if (hostname === "localhost") {
   apiBase = api.localhost;
 } else {
   apiBase = api.platform;

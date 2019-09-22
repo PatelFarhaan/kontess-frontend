@@ -1,6 +1,5 @@
 import React from "react";
 
-import PopUp from "../popup-window/PopUp";
 import "./style.scss";
 
 export default class DashboardWidget extends React.Component {

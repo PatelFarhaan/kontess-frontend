@@ -1,7 +1,8 @@
 import openSocket from "socket.io-client";
 import * as session from "../../utils/session";
 
-const socket = openSocket("http://localhost:4001");
+// const socket = openSocket("http://localhost:4001");
+const socket = "??";
 
 export default {
   init: () => {

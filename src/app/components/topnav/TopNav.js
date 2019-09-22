@@ -47,13 +47,13 @@ export default class TopNav extends React.Component {
       <div className="top-nav">
         <h1 className="title">{this.props.title}</h1>
         <button className="notification" onClick={this.notify}>
-          <img src={notificationIcon}></img>
+          <img alt="notifications" src={notificationIcon}></img>
         </button>
         <div className="name-area" onClick={this.openProfileModal}>
           <div className="name">{this.state.name}</div>
         </div>
         <ProfileModal
-          role={session.getUserType()}
+          type={session.getUserType()}
           userId={session.getSessionUserId()}
           modelIsOpen={this.state.profileModalIsOpen}
           closeModal={this.closeProfileModal}

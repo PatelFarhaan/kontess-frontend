@@ -5,7 +5,6 @@ import previousButton from "assets/images/pagePrevious.png";
 import nextButton from "assets/images/pageNext.png";
 
 import * as routes from "../../globals/endpoints";
-import * as session from "../../../utils/session";
 import * as api from "../../../utils/requests";
 
 import "./styles.scss";
@@ -83,7 +82,7 @@ export default class ParticipantListTable extends React.Component {
     participantData["email"] = email;
     participantData["title"] = title;
 
-    if (participant["team"] != {}) {
+    if (participant["team"] !== {}) {
       participantData["teamName"] = participant["team"]["name"];
       participantData["teamId"] = participant["team"]["id"];
     } else {
@@ -104,7 +103,7 @@ export default class ParticipantListTable extends React.Component {
 
   createPageNumbers() {
     let index = this.state.page;
-    if (index == 0) {
+    if (index === 0) {
       index = 1;
     }
     let rows = [];
@@ -152,11 +151,11 @@ export default class ParticipantListTable extends React.Component {
         </table>
         <div className="button-container">
           <button className="pageButton" onClick={this.previousPage}>
-            <img src={previousButton} />
+            <img alt="previous" src={previousButton} />
           </button>
           {this.createPageNumbers()}
           <button className="pageButton" onClick={this.nextPage}>
-            <img src={nextButton} />
+            <img alt="next" src={nextButton} />
           </button>
         </div>
       </div>

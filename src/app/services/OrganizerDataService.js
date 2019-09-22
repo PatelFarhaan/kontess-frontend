@@ -8,9 +8,20 @@ export default {
       return data;
     });
   },
+
   getCurrentUser: () => {
     return api
       .getRoute(routes.organizerGetRoute(session.getSessionUserId()))
+      .then(data => {
+        return data;
+      });
+  },
+
+  updateTitleProfile: title => {
+    return api
+      .putRoute(routes.organizerGetRoute(session.getSessionUserId()), {
+        title
+      })
       .then(data => {
         return data;
       });

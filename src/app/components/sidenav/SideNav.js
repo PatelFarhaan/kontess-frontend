@@ -34,16 +34,12 @@ const pages = [
 ];
 
 class SideNav extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   getButtons() {
     const buttons = pages.map(page => (
       <button
         className={
           "nav-button" +
-          (page.pageId == this.props.currentPageId
+          (page.pageId === this.props.currentPageId
             ? " sidenav-button-active"
             : "")
         }

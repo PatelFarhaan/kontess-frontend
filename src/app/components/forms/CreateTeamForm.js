@@ -25,7 +25,7 @@ class CreateTeamForm extends React.Component {
     teamService
       .create(this.state.name, this.state.description)
       .then(response => {
-        if (session.getUserType() == "Participant") {
+        if (session.getUserType() === "Participant") {
           teamService.joinTeam(response.data.id);
         }
       })
@@ -63,6 +63,7 @@ class CreateTeamForm extends React.Component {
           name="description"
           value={this.state.description}
           onChange={this.formHandler}
+          maxLength={255}
           placeholder="Your description"
           required
         />
