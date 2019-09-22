@@ -6,27 +6,61 @@ import deleteIcon from "assets/icons/delete.svg";
 
 import "./style.scss";
 import * as serviceHelper from "../../../utils/serviceHelper";
+import * as session from "../../../utils/session";
 
-class ProfileModal extends React.Component {
+class ProfileEditableModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       name: "",
       email: "",
-      teamName: ""
+      teamName: "",
+      title: "",
+      editableTitle: "",
+      editable: false,
+      editPermissions: false
     };
+
+    this.formHandler = this.formHandler.bind(this);
+    this.changeTitle = this.changeTitle.bind(this);
+    this.updateData = this.updateData.bind(this);
+  }
+
+  formHandler(event) {
+    this.setState({ [event.target.name]: event.target.value });
+  }
+
+  changeTitle() {
+    const service = serviceHelper.getService(this.props.type);
+    service.updateTitleProfile(this.state.editableTitle).then(response => {
+      this.setState({
+        editable: false
+      });
+      this.updateData();
+    });
   }
 
   componentDidMount() {
-    const service = serviceHelper.getService(this.props.role);
+    this.updateData();
+  }
+
+  updateData() {
+    const service = serviceHelper.getService(this.props.type);
+
     service.getUser(this.props.userId).then(response => {
       this.setState({
         name:
           response.data.user.first_name + " " + response.data.user.last_name,
         email: response.data.user.username,
-        title: response.data.title
+        title: response.data.title,
+        editableTitle: response.data.title
       });
-      if (this.props.role == "Participant") {
+      if (session.getSessionUserId() == this.props.userId) {
+        this.setState({
+          editPermissions: true
+        });
+      }
+      if (this.props.type == "Participant") {
         this.setState({
           teamName: response.data.team.name
         });
@@ -46,7 +80,7 @@ class ProfileModal extends React.Component {
       >
         <div className="modal-content">
           <div className="role-field">
-            {this.props.role}
+            {this.props.type}
             <button className="close-button" onClick={this.props.closeModal}>
               <img src={deleteIcon} alt="delete" />
             </button>
@@ -56,24 +90,50 @@ class ProfileModal extends React.Component {
           </div>
           <div className="profile-info">
             <div className="header">{this.state.name}</div>
-            <div className="info">
-              <b>Email:</b> {this.state.email}
-            </div>
-            <div className="info">
-              {this.props.role == "Participant" ? (
+            <div className="subheader">
+              {this.state.editable ? (
                 <div>
-                  <b>Team:</b> {this.state.teamName}
+                  <input
+                    name="editableTitle"
+                    className="edit-field"
+                    value={this.state.editableTitle}
+                    onChange={this.formHandler}
+                  />
+                  <button
+                    className="edit-button"
+                    onClick={() => this.changeTitle()}
+                  >
+                    Save
+                  </button>
                 </div>
               ) : (
                 <div>
-                  <b>Title:</b> {this.state.title}
+                  <span>{this.state.title}</span>
+                  {this.state.editPermissions && (
+                    <button
+                      className="edit-button"
+                      onClick={() => this.setState({ editable: true })}
+                    >
+                      Edit
+                    </button>
+                  )}
                 </div>
               )}
             </div>
+            <div className="info">
+              <b>Email:</b> {this.state.email}
+            </div>
+            {this.props.type == "Participant" && (
+              <div className="info">
+                <div>
+                  <b>Team:</b> {this.state.teamName}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </Modal>
     );
   }
 }
-export default ProfileModal;
+export default ProfileEditableModal;

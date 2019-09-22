@@ -43,16 +43,16 @@ export default class ParticipantList extends React.Component {
       <DashboardTemplate title="Dashboard" pageId="listParticipants">
         <div className="container">
           <div className="header"></div>
-          {session.getUserType() == "Organizer" ? (
+          {session.getUserType() === "Organizer" ? (
             <ParticipantListTable openProfileModal={this.openProfileModal} />
-          ) : session.getUserType() == "Participant" ? (
+          ) : session.getUserType() === "Participant" ? (
             <ParticipantListTable openProfileModal={this.openProfileModal} />
           ) : (
-            <> </>
+            <div> </div>
           )}
           {this.state.profileModalIsOpen && (
             <ProfileModal
-              role={"Participant"}
+              type={"Participant"}
               userId={this.state.profileUserId}
               modelIsOpen={this.state.profileModalIsOpen}
               closeModal={this.closeProfileModal}

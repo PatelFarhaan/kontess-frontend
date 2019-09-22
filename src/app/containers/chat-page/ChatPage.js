@@ -1,8 +1,6 @@
 import React from "react";
 import ChatService from "../../services/ChatService";
 
-import DashboardTemplate from "../../components/dashboard-template/DashBoardTemplate";
-
 import "./style.scss";
 
 export default class ChatPage extends React.Component {

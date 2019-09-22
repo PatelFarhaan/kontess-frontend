@@ -80,13 +80,13 @@ export default class TeamList extends React.Component {
               Create Team
             </button>
           </div>
-          {session.getUserType() == "Organizer" ? (
+          {session.getUserType() === "Organizer" ? (
             <TeamListTable
               openTeamRequestModal={this.openTeamRequestModal}
               openCreateModal={this.openCreateModal}
               openProfileModal={this.openProfileModal}
             />
-          ) : session.getUserType() == "Participant" ? (
+          ) : session.getUserType() === "Participant" ? (
             <TeamListTable
               openTeamRequestModal={this.openTeamRequestModal}
               openCreateModal={this.openCreateModal}
@@ -135,7 +135,7 @@ export default class TeamList extends React.Component {
           </Modal>
           {this.state.profileModalIsOpen && (
             <ProfileModal
-              role={"Participant"}
+              type={"Participant"}
               userId={this.state.profileUserId}
               modelIsOpen={this.state.profileModalIsOpen}
               closeModal={this.closeProfileModal}

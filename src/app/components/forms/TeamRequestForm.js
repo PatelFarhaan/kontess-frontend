@@ -3,7 +3,6 @@ import React from "react";
 import ParticipantDataService from "../../services/ParticipantDataService";
 
 import "./style.scss";
-import * as session from "../../../utils/session";
 
 class TeamRequestForm extends React.Component {
   constructor(props) {

@@ -67,7 +67,7 @@ export default class FrontPage extends React.PureComponent {
   }
 
   handleDemoRequest(event) {
-    const wtf = {
+    const body = {
       first_name: this.state.demoRequestFirstName,
       last_name: this.state.demoRequestLastName,
       email: this.state.demoRequestEmail,
@@ -80,7 +80,7 @@ export default class FrontPage extends React.PureComponent {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(wtf)
+      body: JSON.stringify(body)
     }).then(response => {
       if (response.status === 201) {
         alert("Your submission is recorded! Thanks for your support.");
@@ -92,36 +92,21 @@ export default class FrontPage extends React.PureComponent {
   }
 
   render() {
-    const { loading, error, repos } = this.props;
-    const reposListProps = {
-      loading,
-      error,
-      repos
-    };
-
     return (
       <div className="front-page">
         <div className={"nav-bar"}>
-          <a href={"#"} id="home-page-button">
-            <img id="logo-image" src={kontessLogoImg}></img>
-          </a>
+          <button
+            id="home-page-button"
+            onClick={event => {
+              FrontPage.scrollToWithAnimation(
+                event,
+                document.querySelector(".front-page-content")
+              );
+            }}
+          >
+            <img alt="logo" id="logo-image" src={kontessLogoImg}></img>
+          </button>
           <ul className={"nav-buttons"}>
-            <li className={"nav-item"}>
-              <a
-                href={"#"}
-                className={`nav-button ${
-                  this.state.currentSection === "Home" ? "current-page" : ""
-                }`}
-                onClick={event => {
-                  FrontPage.scrollToWithAnimation(
-                    event,
-                    document.querySelector(".front-page-content")
-                  );
-                }}
-              >
-                Home
-              </a>
-            </li>
             <li className={"nav-item"}>
               <a
                 href={"#"}

@@ -1,7 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 
-import organizerAuthService from "../../services/OrganizerAuthService";
 import * as session from "../../../utils/session";
 
 import Modal from "../../components/auth-modal/Modal";
@@ -33,9 +32,9 @@ class Registration extends React.Component {
     return (
       <Modal modeHandler={this.modeHandler}>
         <h1>{this.state.mode} Registration</h1>
-        {this.state.mode == "Participant" && <ParticipantForm />}
-        {this.state.mode == "Judge" && <JudgeForm />}
-        {this.state.mode == "Organizer" && <OrganizerForm />}
+        {this.state.mode === "Participant" && <ParticipantForm />}
+        {this.state.mode === "Judge" && <JudgeForm />}
+        {this.state.mode === "Organizer" && <OrganizerForm />}
         <p>
           Don't have an account? <a href="/login">Login</a>
         </p>

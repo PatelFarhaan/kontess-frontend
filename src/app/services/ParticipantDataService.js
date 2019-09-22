@@ -17,6 +17,16 @@ export default {
       });
   },
 
+  updateTitleProfile: title => {
+    return api
+      .putRoute(routes.participantGetRoute(session.getSessionUserId()), {
+        title
+      })
+      .then(data => {
+        return data;
+      });
+  },
+
   joinTeamRequest: (teamId, essay) => {
     return api
       .postRoute(routes.teamCreateRequestRoute(session.getSessionUserId()), {

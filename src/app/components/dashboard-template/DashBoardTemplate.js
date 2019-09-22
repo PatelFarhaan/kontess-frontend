@@ -1,11 +1,7 @@
 import React from "react";
 import "./style.scss";
-import kontessLogoImg from "assets/images/logo.png";
 import Footer from "../../components/footer/Footer";
 
-import dashboardIcon from "assets/icons/dashboard.svg";
-import eventIcon from "assets/icons/activity.svg";
-import userIcon from "assets/icons/activity.svg";
 import SideNav from "../sidenav/SideNav";
 import TopNav from "../topnav/TopNav";
 
