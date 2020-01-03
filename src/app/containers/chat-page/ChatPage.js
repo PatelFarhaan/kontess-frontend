@@ -1,7 +1,14 @@
-import React from "react";
-import ChatService from "../../services/ChatService";
+/*
+@copyright : ToXSL Technologies Pvt. Ltd. < www.toxsl.com >
+@author     : Shiv Charan Panjeta < shiv@toxsl.com >
+ 
+All Rights Reserved.
+Proprietary and confidential :  All information contained herein is, and remains
+the property of ToXSL Technologies Pvt. Ltd. and its partners.
+Unauthorized copying of this file, via any medium is strictly prohibited.
+*/
 
-import "./style.scss";
+import React from "react";
 
 export default class ChatPage extends React.Component {
   constructor(props) {
@@ -9,12 +16,6 @@ export default class ChatPage extends React.Component {
     this.state = {
       timestamp: "no timestamp yet"
     };
-
-    ChatService.init((err, timestamp) =>
-      this.setState({
-        timestamp
-      })
-    );
   }
 
   render() {

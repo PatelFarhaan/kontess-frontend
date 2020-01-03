@@ -1,0 +1,150 @@
+/*
+@copyright : ToXSL Technologies Pvt. Ltd. < www.toxsl.com >
+@author     : Shiv Charan Panjeta < shiv@toxsl.com >
+ 
+All Rights Reserved.
+Proprietary and confidential :  All information contained herein is, and remains
+the property of ToXSL Technologies Pvt. Ltd. and its partners.
+Unauthorized copying of this file, via any medium is strictly prohibited.
+*/
+.container {
+  margin: 20px;
+  height: 70vh;
+  position: relative;
+  text-align: left;
+  .header {
+    .title {
+      float: left;
+      font-size: 28px;
+      font-weight: lighter;
+    }
+    .create {
+      padding: 10px;
+      background-color: #2ca4ed;
+      color: #fff;
+      border: None;
+      font-size: 14px;
+      float: left;
+      margin-bottom: 3px;
+    }
+  }
+}
+.card{
+  width: 550px;
+  min-height: 100px;
+  background-color:white;
+  border-radius: 10px;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  padding: 35px 2px 50px 2px;
+  input {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    color: #000;
+    width: 80%;
+    padding-top: 10px;
+    margin-bottom: 2px;
+    border: none;
+    border-bottom: 1px solid #a4a4a4;
+    background: none;
+  }
+  ::placeholder {
+    color: #a4a4a4;
+    opacity: 1; /* Firefox */
+    font-weight: 900
+  }
+  input:valid {
+    background-color: transparent;
+  }
+  span {
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+    font-weight: lighter;
+    color: #a4a4a4;
+    font-size: 12px;
+  }
+}
+.left{
+  width: 30%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+.profile-image{
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  background-color: gray
+}
+.right{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.create {
+  padding: 5px;
+  background-color: #2ca4ed;
+  color: #fff;
+  border: None;
+  font-size: 14px;
+  float: left;
+  margin-bottom: 3px;
+  height: 30px;
+  width: auto;
+  border-radius: 10px;
+  margin-top: -20px
+}
+.setting-opp{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  padding-left: 20px;
+  span {
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+    font-weight: lighter;
+    color: #000;
+    font-size: 14px;
+    padding: 5px
+  }
+}
+.modal:focus {
+  outline: None;
+}
+
+.createModal {
+  height: 70%;
+}
+
+.requestModal {
+  height: 63%;
+}
+
+.button-container {
+  padding-top: 20px;
+  margin: auto;
+  display: flex;
+  width: 20%;
+
+  .pageNum {
+    margin: auto;
+    button {
+      font-size: 15px;
+    }
+  }
+
+  .pageButton {
+    height: 30px;
+    width: 40px;
+    border: None;
+    background: transparent;
+    img {
+      height: 30px;
+    }
+  }
+}

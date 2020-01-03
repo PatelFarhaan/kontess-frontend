@@ -1,6 +1,14 @@
+/*
+@copyright : ToXSL Technologies Pvt. Ltd. < www.toxsl.com >
+@author     : Shiv Charan Panjeta < shiv@toxsl.com >
+ 
+All Rights Reserved.
+Proprietary and confidential :  All information contained herein is, and remains
+the property of ToXSL Technologies Pvt. Ltd. and its partners.
+Unauthorized copying of this file, via any medium is strictly prohibited.
+*/
 import React from "react";
 import Modal from "react-modal";
-
 import DashboardTemplate from "../../components/dashboard-template/DashBoardTemplate";
 import CreateTeamForm from "../../components/forms/CreateTeamForm";
 import TeamRequestForm from "../../components/forms/TeamRequestForm";
@@ -10,7 +18,7 @@ import deleteIcon from "assets/icons/delete.svg";
 
 import * as session from "../../../utils/session";
 
-import "./style.scss";
+
 
 export default class TeamList extends React.Component {
   constructor(props) {
@@ -73,7 +81,7 @@ export default class TeamList extends React.Component {
 
   render() {
     return (
-      <DashboardTemplate title="Dashboard" pageId="listTeams">
+      <DashboardTemplate title="Team List" pageId="listTeams">
         <div className="container">
           <div className="header">
             <button className="create" onClick={this.openCreateModal}>
@@ -93,8 +101,8 @@ export default class TeamList extends React.Component {
               openProfileModal={this.openProfileModal}
             />
           ) : (
-            <> </>
-          )}
+                <> </>
+              )}
           <Modal
             isOpen={this.state.createModalIsOpen}
             onRequestClose={this.closeCreateModal}

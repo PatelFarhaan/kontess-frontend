@@ -1,12 +1,20 @@
+/*
+@copyright : ToXSL Technologies Pvt. Ltd. < www.toxsl.com >
+@author     : Shiv Charan Panjeta < shiv@toxsl.com >
+ 
+All Rights Reserved.
+Proprietary and confidential :  All information contained herein is, and remains
+the property of ToXSL Technologies Pvt. Ltd. and its partners.
+Unauthorized copying of this file, via any medium is strictly prohibited.
+*/
 import React from "react";
-
 import DashboardTemplate from "../../components/dashboard-template/DashBoardTemplate";
 import ParticipantListTable from "../../components/tables/ParticipantListTable";
 import ProfileModal from "../../components/profile-modal/ProfileModal";
 
 import * as session from "../../../utils/session";
 
-import "./style.scss";
+
 
 export default class ParticipantList extends React.Component {
   constructor(props) {
@@ -40,7 +48,7 @@ export default class ParticipantList extends React.Component {
 
   render() {
     return (
-      <DashboardTemplate title="Dashboard" pageId="listParticipants">
+      <DashboardTemplate title="Participant List" pageId="listParticipants">
         <div className="container">
           <div className="header"></div>
           {session.getUserType() === "Organizer" ? (
@@ -48,8 +56,8 @@ export default class ParticipantList extends React.Component {
           ) : session.getUserType() === "Participant" ? (
             <ParticipantListTable openProfileModal={this.openProfileModal} />
           ) : (
-            <div> </div>
-          )}
+                <div> </div>
+              )}
           {this.state.profileModalIsOpen && (
             <ProfileModal
               type={"Participant"}

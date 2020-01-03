@@ -1,7 +1,14 @@
+/*
+@copyright : ToXSL Technologies Pvt. Ltd. < www.toxsl.com >
+@author     : Shiv Charan Panjeta < shiv@toxsl.com >
+ 
+All Rights Reserved.
+Proprietary and confidential :  All information contained herein is, and remains
+the property of ToXSL Technologies Pvt. Ltd. and its partners.
+Unauthorized copying of this file, via any medium is strictly prohibited.
+*/
 import React from "react";
-
-import "./style.scss";
-
+import { Link } from "react-router-dom"
 export default class DashboardWelcome extends React.Component {
   render() {
     return (
@@ -20,9 +27,9 @@ export default class DashboardWelcome extends React.Component {
                 </button>
               </div>
               <div className="right">
-                <a href="/dashboard/listTeams">
+                <Link to="/dashboard/listTeams">
                   <button className="join-team">I want to join a team</button>
-                </a>
+                </Link>
               </div>
             </div>
           </div>

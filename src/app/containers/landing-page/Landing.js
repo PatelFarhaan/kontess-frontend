@@ -1,12 +1,22 @@
+/*
+@copyright : ToXSL Technologies Pvt. Ltd. < www.toxsl.com >
+@author     : Shiv Charan Panjeta < shiv@toxsl.com >
+ 
+All Rights Reserved.
+Proprietary and confidential :  All information contained herein is, and remains
+the property of ToXSL Technologies Pvt. Ltd. and its partners.
+Unauthorized copying of this file, via any medium is strictly prohibited.
+*/
 import React from "react";
 import config from "config";
-
-import Footer from "app/components";
+import { Link } from "react-router-dom";
+import Footer from "../../components";
 import nvcImage from "assets/images/NVC-header-w-photo-small.png";
 import kontessLogoImg from "assets/images/logo_name_blue.png";
+import HowIt from "assets/images/howitwork.png";
 import * as session from "../../../utils/session";
 
-import "./style.scss";
+
 
 export default class FrontPage extends React.PureComponent {
   static scrollToWithAnimation(event, targetElement) {
@@ -27,7 +37,8 @@ export default class FrontPage extends React.PureComponent {
       demoRequestLastName: "",
       demoRequestEmail: "",
       demoRequestCompany: "",
-      demoRequestMarket: ""
+      demoRequestMarket: "",
+      isAuthenticated: JSON.parse(localStorage.getItem('isAuthenticated'))
     };
 
     this.formHandler = this.formHandler.bind(this);
@@ -47,19 +58,19 @@ export default class FrontPage extends React.PureComponent {
   }
 
   handleScroll = () => {
-    const isInRange = element =>
-      element.getBoundingClientRect().y <= 100 &&
-      element.getBoundingClientRect().bottom >= 100;
+    // const isInRange = element =>
+    //   element.getBoundingClientRect().y <= 100 &&
+    //   element.getBoundingClientRect().bottom >= 100;
 
-    if (isInRange(document.querySelector(".title-block"))) {
-      this.setState({ currentSection: "Home" });
-    } else if (isInRange(document.querySelector(".our-customer"))) {
-      this.setState({ currentSection: "Customer" });
-    } else if (isInRange(document.querySelector(".what-we-offer"))) {
-      this.setState({ currentSection: "Offer" });
-    } else if (isInRange(document.querySelector(".about-us"))) {
-      this.setState({ currentSection: "About" });
-    }
+    // if (isInRange(document.querySelector(".title-block"))) {
+    //   this.setState({ currentSection: "Home" });
+    // } else if (isInRange(document.querySelector(".our-customer"))) {
+    //   this.setState({ currentSection: "Customer" });
+    // } else if (isInRange(document.querySelector(".what-we-offer"))) {
+    //   this.setState({ currentSection: "Offer" });
+    // } else if (isInRange(document.querySelector(".about-us"))) {
+    //   this.setState({ currentSection: "About" });
+    // }
   };
 
   formHandler(event) {
@@ -108,27 +119,27 @@ export default class FrontPage extends React.PureComponent {
           </button>
           <ul className={"nav-buttons"}>
             <li className={"nav-item"}>
-              <a
-                href={"#"}
+              <Link
+                to={"/"}
                 className={`nav-button ${
                   this.state.currentSection === "Customer" ? "current-page" : ""
-                }`}
+                  }`}
                 onClick={event => {
                   FrontPage.scrollToWithAnimation(
                     event,
-                    document.querySelector(".our-customer")
+                    document.querySelector(".front-page-content")
                   );
                 }}
               >
-                Customer
-              </a>
+                Home
+              </Link>
             </li>
             <li className={"nav-item"}>
-              <a
-                href={"#"}
+              <Link
+                to={"/"}
                 className={`nav-button ${
                   this.state.currentSection === "Offer" ? "current-page" : ""
-                }`}
+                  }`}
                 onClick={event => {
                   FrontPage.scrollToWithAnimation(
                     event,
@@ -136,194 +147,147 @@ export default class FrontPage extends React.PureComponent {
                   );
                 }}
               >
-                Offer
-              </a>
+                About
+              </Link>
             </li>
             <li className={"nav-item"}>
-              <a
-                href={"#"}
+              <Link
+                to={"/"}
                 className={`nav-button ${
                   this.state.currentSection === "About" ? "current-page" : ""
-                }`}
+                  }`}
+              // onClick={event => {
+              //   FrontPage.scrollToWithAnimation(
+              //     event,
+              //     document.querySelector(".about-us")
+              //   );
+              // }}
+              >
+                Blog
+              </Link>
+            </li>
+            <li className={"nav-item"}>
+              <Link
+                to={"/"}
+                className={`nav-button ${
+                  this.state.currentSection === "About" ? "current-page" : ""
+                  }`}
                 onClick={event => {
                   FrontPage.scrollToWithAnimation(
                     event,
-                    document.querySelector(".about-us")
+                    document.querySelector(".news-letter-subscription")
                   );
                 }}
               >
-                About
-              </a>
+                Contact
+              </Link>
             </li>
-            <li className={"nav-item"}>
-              <a
-                href={"/registration"}
-                className={`nav-button ${
-                  this.state.currentSection === "About" ? "current-page" : ""
-                }`}
+            {!this.state.isAuthenticated && <li className={"nav-item"}>
+              <Link
+                to={"/registration"}
+                className={`nav-button`}
               >
                 Register
-              </a>
-            </li>
-            <li className={"nav-item"}>
-              <a
-                href={"/login"}
+              </Link>
+            </li>}
+            {!this.state.isAuthenticated ? <li className={"nav-item"}>
+              <Link
+                to={"/login"}
                 className={`nav-button ${
                   this.state.currentSection === "About" ? "current-page" : ""
-                }`}
+                  }`}
               >
                 Login
-              </a>
-            </li>
+              </Link>
+            </li> : <li className={"nav-item"}>
+                <Link
+                  to={"/dashboard/home"}
+                  className={`nav-button ${
+                    this.state.currentSection === "About" ? "current-page" : ""
+                    }`}
+                >
+                  My Dashboard
+              </Link>
+              </li>}
           </ul>
         </div>
 
         <div className={"front-page-content"}>
           <div className={"title-block"}>
-            <h1>The Perfect Place for Your Next Competition</h1>
+            <h1><span>Do</span> More <span>As a</span> Group</h1>
             <p>
-              We specialize in hosting professional, academic, business
-              competitions. Whether you are an institution, organization, or
-              individual who wants to host a competition, you have come to the
-              right place.
+              A social network thats specializes in competition management. Jiffal allows<br />
+              you to  create, organize and participate in competitions fast and efficiently.
             </p>
-            <a href="mailto:info@kontess.com" className={"blue-button"}>
-              Contact Us
-            </a>
+            {/* <a href="mailto:info@kontess.com" className={"blue-button"}>
+             Learn More
+            </a> */}
+            <Link to="/" >
+              Learn More
+            </Link>
           </div>
-          <div className={"business-opportunity"}>
-            {/* <h2>We Are Here<br />To Help</h2> */}
-            <div>
-              <p>
-                Hosting a competition can be tedious, and it doesn’t have to be.
-                Let us help you automate the hosting process from start to
-                finish.
+          <div className={"what-we-offer"}>
+            <h1>How It Works</h1>
+            <div className={"what-we-offer-content"}>
+              <div className={"offer-section"}>
+                <img src={HowIt} width="350px" />
+              </div>
+              <div className={"offer-section"}>
+                <div className="white_Box">
+                  <h3>	&nbsp;<span>1</span>	&nbsp;	&nbsp;Share an idea</h3>
+                  <p>Share your ideas for a competition by posting on
+                  Jiffal’s social network.
+                  </p>
+                </div>
+                <div className="Blue_Box">
+                  <h3>	&nbsp;<span>2</span>	&nbsp;	&nbsp;Search for a team</h3>
+                  <p>Narrow your team search by listing your skill strengths, your
+                competition interests and you will be given a list that caters
+                to your interests.
               </p>
-              <br />
-              <a
-                href={"#"}
-                className={"blue-button center"}
-                onClick={event => {
-                  FrontPage.scrollToWithAnimation(
-                    event,
-                    document.querySelector(".what-we-offer")
-                  );
-                }}
-              >
-                Learn More
-              </a>
+                </div>
+                <div className="white_Box">
+                  <h3>	&nbsp;<span>3</span>	&nbsp;	&nbsp;Work As a Group</h3>
+                  <p>Once you find a team that shares similar interests, Jiffal’s
+  goal is to encourage its users to connect with one another
+  and work efficiently together.
+              </p>
+                </div>
+              </div>
+            </div>
+            <div className={"what-we-offer-content"}>
+              <div className={"offer-section"}>
+              </div>
+              <div className={"offer-section"}>
+                <a className={"theme-green-Button"}>
+                  Get Started
+                  </a>
+              </div>
             </div>
           </div>
           <div className={"our-customer"}>
-            <h2>Our Customer</h2>
-            <div className={"featured-customer"}>
-              <h3>UC Irvine New Venture Competition 2019</h3>
-              <img src={nvcImage} alt={"UC Irvine New Venture Competition"} />
-            </div>
+            <h2>This Week’s Progress</h2>
+            <span>Jiffal takes pride in providing the best service for its user’s satisfaction.</span>
             <div className={"statistic-container"}>
               <div className={"statistic-card"}>
-                <h3>50+</h3>
+                <h3>100</h3>
                 <p>Teams Formed</p>
               </div>
               <div className={"statistic-card"}>
-                <h3>1</h3>
+                <h3>100</h3>
                 <p>Competitions Held</p>
               </div>
               <div className={"statistic-card"}>
-                <h3>200+</h3>
+                <h3>100</h3>
                 <p>Satisfied Participants</p>
               </div>
             </div>
           </div>
-          <div className={"what-we-offer"}>
-            <h2>What We Offer</h2>
-            <div className={"what-we-offer-content"}>
-              <div className={"offer-section"}>
-                <h3>Efficient Organizers</h3>
-                <ul>
-                  <li>
-                    <p>
-                      Save time by having all participants information
-                      automatically sorted and organized
-                    </p>
-                  </li>
-                  <li>
-                    <p>
-                      Real-time monitor analytics and status of the competition
-                      and of each registrant
-                    </p>
-                  </li>
-                  <li>
-                    <p>
-                      Boost participation rate from the automated team-matching
-                      features
-                    </p>
-                  </li>
-                  <li>
-                    <p>
-                      Quickly post announcements and updates, easily assign
-                      tasks and due dates, and directly communicate with
-                      participants
-                    </p>
-                  </li>
-                  <li>
-                    <p>
-                      Provide feedback, judging, and grading to each participant
-                      and team directly on the platform
-                    </p>
-                  </li>
-                </ul>
-              </div>
 
-              <div className={"offer-section"}>
-                <h3>Satisfied Participants</h3>
-                <ul>
-                  <li>
-                    <p>
-                      Register for the competition first even without a team,
-                      then find a team directly on the platform
-                    </p>
-                  </li>
-                  <li>
-                    <p>
-                      Get a headstart by manually create custom teams and
-                      recruit other participants
-                    </p>
-                  </li>
-                  <li>
-                    <p>
-                      View notifications of announcements, updates, due dates,
-                      and reminders set by administrators
-                    </p>
-                  </li>
-                  <li>
-                    <p>
-                      Have questions answered by organizers without having to
-                      send separate emails
-                    </p>
-                  </li>
-                  <li>
-                    <p>
-                      Foster mutual growth by directly connect with other
-                      participants in the same team and in other teams
-                    </p>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <br />
-            <br />
-            {/* <a
-              href={'https://www.kontess.com'}
-              onClick={(event) => { FrontPage.scrollToWithAnimation(event, document.querySelector('.request-demo')); }}
-            >
-              Get Started
-            </a> */}
-          </div>
           <div className={"show-case"} style={{ display: "none" }}>
             <p>Placeholder for showcases</p>
           </div>
-          <div className={"about-us"}>
+          {/* <div className={"about-us"}>
             <h2>About Us</h2>
             <p>
               We are a student startup group at University of California, Irvine
@@ -332,16 +296,16 @@ export default class FrontPage extends React.PureComponent {
               business competitions, Hackathon, engineering competitions, we
               know what each competition lacks and how to make it better.
             </p>
-          </div>
+          </div> */}
 
           <div
             className={"news-letter-subscription"}
-            style={{ display: "none" }}
           >
             <h3>
               Subscribe to our <span className={"blue-font"}>Newsletter</span>
             </h3>
-            <p>Subscribe to get future updates from Kontess.</p>
+            <p>Sign-up today to be updated with the latest news and competiti on events
+</p>
             <form onSubmit={this.handleNewsletterSubscription}>
               <input
                 name="email"

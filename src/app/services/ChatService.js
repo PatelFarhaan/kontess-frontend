@@ -1,32 +1,12 @@
-import openSocket from "socket.io-client";
-import * as session from "../../utils/session";
+/* @copyright : ToXSL Technologies Pvt. Ltd. < www.toxsl.com >
+@author     : Shiv Charan Panjeta < shiv@toxsl.com >
+ 
+All Rights Reserved.
+Proprietary and confidential :  All information contained herein is, and remains
+the property of ToXSL Technologies Pvt. Ltd. and its partners.
+Unauthorized copying of this file, via any medium is strictly prohibited. */
 
-// const socket = openSocket("http://localhost:4001");
 const socket = "??";
 
 export default {
-  init: () => {
-    socket.on("connect", () => {
-      const userInfo = {
-        id: session.getUserType() + session.getSessionUserId()
-      };
-      socket.emit("init", JSON.stringify(userInfo));
-    });
-  },
-
-  susbcribe: cb => {
-    socket.on("receiveMessage", incomingMsgJSON => {
-      const incomingMsg = JSON.parse(incomingMsgJSON);
-      cb(incomingMsg);
-    });
-  },
-
-  sendMessage: (message, cb) => {
-    const chatMessage = {
-      text: message,
-      from: session.getUserType() + session.getSessionUserId()
-    };
-    socket.emit("sendMessage", JSON.stringify(chatMessage));
-    cb(message);
-  }
 };

@@ -12,21 +12,19 @@ $iconHeight: 20px;
   bottom: 0px;
   left: 0px;
   right: 0px;
-  /*grid display initialization*/
-  display: grid;
-  grid-template-columns: 280px minmax(150px, 3fr) minmax(0px, 0fr);
-  grid-template-areas:
-    "sidebar title title"
-    "sidebar content content"
-    "footer footer footer";
-
+  display: flex;
+  .main_area{
+    height: calc(100vh - 50px);
+    width: 100%;
+  }
   .content {
     overflow: auto;
     margin-right: 0px;
-    height: 100%;
-
+    height: calc(100vh - 140px);
+    width: 100%;
+    margin-top: 90px;
     .main-content {
-      margin-bottom: 80px;
+      // margin-bottom: 80px;
     }
 
     footer {

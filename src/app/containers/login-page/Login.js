@@ -1,6 +1,14 @@
+/*
+@copyright : ToXSL Technologies Pvt. Ltd. < www.toxsl.com >
+@author     : Shiv Charan Panjeta < shiv@toxsl.com >
+ 
+All Rights Reserved.
+Proprietary and confidential :  All information contained herein is, and remains
+the property of ToXSL Technologies Pvt. Ltd. and its partners.
+Unauthorized copying of this file, via any medium is strictly prohibited.
+*/
 import React from "react";
-import { withRouter } from "react-router-dom";
-
+import { withRouter , Link } from "react-router-dom";
 import * as session from "../../../utils/session";
 import OrganizerAuthService from "../../services/OrganizerAuthService";
 import JudgeAuthService from "../../services/JudgeAuthService";
@@ -13,19 +21,12 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      mode: "Participant",
+      role: "Participant",
       email: "",
       password: "",
-      firstName: "",
-      lastName: "",
-      confirmPassword: "",
-      title: "",
       error: ""
     };
 
-    this.modeHandler = this.modeHandler.bind(this);
-    this.formHandler = this.formHandler.bind(this);
-    this.handleLogin = this.handleLogin.bind(this);
   }
 
   componentWillMount() {
@@ -90,7 +91,7 @@ class Login extends React.Component {
         </form>
         <p className="red">{this.state.error}</p>
         <p>
-          Don't have an account? <a href="/registration">Register</a>
+          Don't have an account? <Link to={"/registration"}>Register</Link>
         </p>
       </Modal>
     );

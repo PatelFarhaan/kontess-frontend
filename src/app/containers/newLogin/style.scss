@@ -1,0 +1,263 @@
+/*
+@copyright : ToXSL Technologies Pvt. Ltd. < www.toxsl.com >
+@author     : Shiv Charan Panjeta < shiv@toxsl.com >
+ 
+All Rights Reserved.
+Proprietary and confidential :  All information contained herein is, and remains
+the property of ToXSL Technologies Pvt. Ltd. and its partners.
+Unauthorized copying of this file, via any medium is strictly prohibited.
+*/
+$font-family: "Roboto", Helvetica, Arial, sans-serif;
+
+.modal-background {
+  background-image: url("https://freedesignfile.com/upload/2017/02/Yellow-sofa-with-modern-office-vector-02.jpg");
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  .modal-wrapper {
+    width: 400px;
+    position: absolute;
+    // background: white;
+    height: 100vh;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    background: #ffffff8f;
+    height: 100vh;
+    position: absolute;
+    z-index: -99;
+    backdrop-filter: blur(15px);
+
+    .auth-modal {
+      padding: 40px;
+      border-radius: 3px;
+      color: #222;
+
+      font: {
+        family: $font-family;
+        size: 14px;
+        weight: bold;
+      }
+
+      h1 {
+        font-weight: lighter;
+        padding: 0;
+        text-align: left;
+        margin: 0 {
+          bottom: 10px;
+          top: 10px;
+        };
+        color: #fff;
+      }
+
+      form {
+        margin: auto;
+        margin-top: 5vh;
+        width: 280px;
+
+        font: inherit {
+          weight: normal;
+        }
+        .inputForgotLink{
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          width: 100%;
+          align-items: baseline;
+        }
+        .forgot {
+          width: 70px;
+          border: 0;
+          -webkit-appearance: none;
+          height: 27px !important;
+          border-bottom: 1px solid #a4a4a4;
+          font-weight: 900;
+          cursor: pointer;
+      }
+      .or{
+        font-size: 16px;
+        font-weight: lighter;
+        font-weight: 900;
+        color: #fff;
+      }
+       
+        input {
+          box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          color: #000;
+          width: 100%;
+          padding: 10px;
+          margin-bottom: 15px;
+          border: none;
+          border-bottom: 1px solid #a4a4a4;
+          background: none;
+        }
+        input:valid {
+          background-color: transparent;
+        }
+        select {
+          background-color: #fff;
+          font-size: 14px;
+          height: 29px;
+          width: 100%;
+          margin-bottom: 2em;
+
+          border: {
+            color: #ccc;
+            style: solid;
+            width: 1px;
+          }
+        }
+      }
+      .red{
+        font-family: "Roboto", Helvetica, Arial, sans-serif;
+        font-weight: lighter;
+        text-align: left;
+        width: 100%;
+        color:red;
+      }
+      p {
+        padding: 0.5rem 0.5rem;
+        font-family: "Roboto", Helvetica, Arial, sans-serif;
+        font-weight: lighter;
+        text-align: right;
+        width: 100%;
+        color: #a4a4a4;
+      }
+      a {
+        color: #fff;
+    text-decoration: none;
+    font-weight: 900;
+      }
+      .google-button {
+        margin-top: 20px;
+        height: 40px;
+        border-width: 0;
+        background: #F44336;
+        color: #ffffff;
+        white-space: nowrap;
+        box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
+        transition-property: background-color, box-shadow;
+        transition-duration: 150ms;
+        transition-timing-function: ease-in-out;
+        padding: 0;
+        width: 100%;
+        cursor: pointer;
+        
+        &:focus,
+        &:hover {
+          box-shadow: 1px 4px 5px 1px rgba(0,0,0,0.1);
+        }
+        
+        &:active {
+          background-color: #e5e5e5;
+          box-shadow: none;
+          transition-duration: 10ms;
+        }
+      }
+          
+      .google-button__icon {
+        display: inline-block;
+        vertical-align: middle;
+        margin: 8px 0 8px 0px;
+        width: 25px;
+        height: 25px;
+        box-sizing: border-box;
+        padding: 2px;
+        background-color: white
+      }
+      
+      .google-button__text {
+        display: inline-block;
+        vertical-align: middle;
+        padding: 0 65px 0px 45px;
+        font-size: 14px;
+        font-weight: bold;
+        font-family: 'Roboto',arial,sans-serif;
+      }
+      .menu-bar {
+        margin-bottom: 20px;
+      }
+      ::placeholder {
+        color: white;
+        opacity: 1; /* Firefox */
+      }
+      .button {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        height: 40px;
+        border-width: 0;
+        background: #2fa6f1;
+        color: #ffffff;
+        white-space: nowrap;
+        box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
+        transition-property: background-color, box-shadow;
+        transition-duration: 150ms;
+        transition-timing-function: ease-in-out;
+        padding: 0;
+        width: 100%;
+        cursor: pointer;
+        
+        &:focus,
+        &:hover {
+          box-shadow: 1px 4px 5px 1px rgba(0,0,0,0.1);
+        }
+        
+        &:active {
+          background-color: #e5e5e5;
+          box-shadow: none;
+          transition-duration: 10ms;
+        }
+      }
+      .button__text {
+        display: inline-block;
+        vertical-align: middle;
+        font: {
+          family: $font-family;
+          size: 20px;
+          weight: bold;
+        }
+        font-family: 'Roboto',arial,sans-serif;
+      }
+    }
+
+
+  }
+}
+// @media only screen and (max-width: 795px) {
+//   .modal-wrapper {
+//     width: 100% !important;
+//     position: absolute;
+//     top: 50% !important;
+//     left: 32% !important;
+//     -ms-transform: translate(-24%, -50%) !important;
+//     transform: translate(-24%, -50%) !important;
+//   }
+//   .auth-modal {
+//     height: 100%;
+//     width: 400px;
+//     background: #fff
+//   }
+
+// }
+// @media only screen and (max-width: 795px) {
+//   .modal-wrapper {
+//     width: 100% !important;
+//     position: absolute;
+//     top: 0% !important;
+//     left: 0% !important;
+//     -ms-transform: translate(-0%, -0%) !important;
+//     transform: translate(-0%, -0%) !important;
+//   }
+//   .auth-modal {
+//     height: 100%;
+//     width: 400px;
+//     background: #fff
+//   }
+
+// }

@@ -1,3 +1,12 @@
+/*
+@copyright : ToXSL Technologies Pvt. Ltd. < www.toxsl.com >
+@author     : Shiv Charan Panjeta < shiv@toxsl.com >
+ 
+All Rights Reserved.
+Proprietary and confidential :  All information contained herein is, and remains
+the property of ToXSL Technologies Pvt. Ltd. and its partners.
+Unauthorized copying of this file, via any medium is strictly prohibited.
+*/
 $pageTopMargin: 25px;
 $sidenavBorderWidth: 5px;
 $sidenavWidth: 280px;
@@ -6,23 +15,30 @@ $iconHeight: 20px;
 
 .sidenav {
   /*grid position*/
-  grid-area: sidebar;
   position: relative;
   font-size: 10px;
-  background-color: #222;
+  background-color: #fff;
   border-right: 1px solid #ccc;
-
+  height: 100vh;
+  width: 320px;
+  h2{
+    width: 80%;
+    padding: 2px 30px;
+    text-align: left;
+  }
   .headerBlock {
     display: flex;
-    height: 70px;
+    height: 140px;
+    justify-content: center;
+    align-items: center;
 
     .logo {
       position: relative;
       margin: auto;
-      margin-left: 30px;
-      margin-right: 10px;
-      height: 30px;
-      float: left;
+      height: 45px;
+      margin-top: 40px;
+  
+  
     }
 
     .name {
@@ -44,11 +60,12 @@ $iconHeight: 20px;
       height: 45px;
       width: 100%;
       border: none;
-      background-color: #333;
-      color: #ddd;
+      background-color: #fff;
+      color: rgb(70, 68, 68);
+       font-weight: 600;
       transition: all 0.3s ease;
       -webkit-transition: all 0.3s ease;
-      border-top: 1px solid #555;
+      // border-top: 1px solid #555;
 
       .icon-text-wrapper {
         display: inline-flex;
@@ -74,7 +91,8 @@ $iconHeight: 20px;
       outline: 0;
     }
     .sidenav-button-active {
-      border-right: 10px solid #78afd3;
+      border-left: 10px solid #78afd3;
+      color: #78afd3
     }
   }
 

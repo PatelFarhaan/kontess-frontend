@@ -1,7 +1,15 @@
+/* @copyright : ToXSL Technologies Pvt. Ltd. < www.toxsl.com >
+@author     : Shiv Charan Panjeta < shiv@toxsl.com >
+ 
+All Rights Reserved.
+Proprietary and confidential :  All information contained herein is, and remains
+the property of ToXSL Technologies Pvt. Ltd. and its partners.
+Unauthorized copying of this file, via any medium is strictly prohibited. */
 const accessTokenKey = "accessToken";
 const refreshTokenKey = "refreshToken";
 const userKey = "user";
 const userTypeKey = "userType";
+const isAuthenticated = 'isAuthenticated'
 
 export const setSession = (accessToken, refreshToken, user) => {
   localStorage.setItem(accessTokenKey, accessToken);
@@ -26,6 +34,7 @@ export const clearSession = () => {
   localStorage.removeItem(accessTokenKey);
   localStorage.removeItem(refreshTokenKey);
   localStorage.removeItem(userKey);
+  localStorage.setItem(isAuthenticated, false)
 };
 
 export const getSession = () => {
@@ -41,14 +50,15 @@ export const getSession = () => {
   };
 };
 
-export const getSessionToken = () => {
-  const token = localStorage.getItem(accessTokenKey);
+export const getSessionToken = async () => {
+  const token = await localStorage.getItem(accessTokenKey);
   return token;
 };
 
 export const getSessionUserId = () => {
   let user = localStorage.getItem(userKey);
-  return user;
+  user = JSON.parse(user)
+  return user && user.id ? user.id : null;
 };
 
 export const getUserType = () => {
@@ -64,3 +74,7 @@ export const checkSession = () => {
     ? true
     : false;
 };
+
+export const SetisAuthenticated = (state) => {
+  localStorage.setItem(isAuthenticated, state)
+}

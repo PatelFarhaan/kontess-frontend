@@ -1,0 +1,31 @@
+/* @copyright : ToXSL Technologies Pvt. Ltd. < www.toxsl.com >
+@author     : Shiv Charan Panjeta < shiv@toxsl.com >
+ 
+All Rights Reserved.
+Proprietary and confidential :  All information contained herein is, and remains
+the property of ToXSL Technologies Pvt. Ltd. and its partners.
+Unauthorized copying of this file, via any medium is strictly prohibited. */
+export const commonErrorMsg = "Something went wrong.Please try again.";
+export const emailAlreadyExistsMsg = "A user with that email already exists";
+export const noResultFoundMsg = "No Result Found";
+export const logOutMsg = "Are you sure you want to log out?";
+export const noDataMsg = "No data Found";
+export const AnnouncementValidation = 'Announcement is required';
+export const AnnouncementTypeValidation = 'Please select whom to show announcement';
+export const confirmLeaveTeam = "Are you sure you want to leave this team?"
+export const confirmLeaveTeamDelete = "Leaving the team now will also delete the team because the team now has zero members";
+export const confirmSendReq = "Are you sure you want to send join request for this team?";
+export const reqSend = "Your request sent successfully";
+export const confirmSendInvitation = 'Are you sure you want to send Invitation request for this team?';
+export const errorMsgForInvitation = 'already 6 mambers in this team';
+export const only6ImgAllow = 'Only 6 images allowed to upload!';
+export const deleteTaskMsg = "Are you sure you want to delete this task?";
+export const deleteEventkMsg = 'Are you sure you want to delete this event?';
+export const inviteJudgeMsg = 'Are you sure you want to send invitaion to this judge?';
+export const addJudgeMsg = 'Are you sure you want to add this judge in team?';
+export const deleteTeamMsg = 'Are you sure you want to delete this team?';
+export const deleteUserMsg = "Are you sure you want to delete this user?";
+export const submitFileMsg = 'Are you sure you want to submit selected files?'
+export const removeJudgeMsg = 'Are you sure you want to remove this judge?'
+export const deleteAnnouncementMsg = 'Are you sure you want to delete this announcement?';
+export const removeMentor = "Are you sure you want to remove this mentor?";

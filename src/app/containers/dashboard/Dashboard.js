@@ -1,14 +1,20 @@
+/*
+@copyright : ToXSL Technologies Pvt. Ltd. < www.toxsl.com >
+@author     : Shiv Charan Panjeta < shiv@toxsl.com >
+ 
+All Rights Reserved.
+Proprietary and confidential :  All information contained herein is, and remains
+the property of ToXSL Technologies Pvt. Ltd. and its partners.
+Unauthorized copying of this file, via any medium is strictly prohibited.
+*/
 import React from "react";
 import Modal from "react-modal";
-
 import DashboardTemplate from "../../components/dashboard-template/DashBoardTemplate";
 import DashboardWidget from "../../components/dashboard/DashboardWidget";
 import DashboardWelcome from "../../components/dashboard/DashboardWelcome";
 import CreateTeamForm from "../../components/forms/CreateTeamForm";
 import deleteIcon from "assets/icons/delete.svg";
-
 import * as session from "../../../utils/session";
-import * as serviceHelper from "../../../utils/serviceHelper";
 
 export default class Dashboard extends React.Component {
   constructor(props) {
@@ -32,16 +38,6 @@ export default class Dashboard extends React.Component {
   }
 
   componentDidMount() {
-    const service = serviceHelper.getUserService();
-    if (session.getUserType() === "Participant") {
-      service.getCurrentUser().then(response => {
-        if (response.data.team.id) {
-          this.setState({
-            participantTeamID: response.data.team.id
-          });
-        }
-      });
-    }
   }
 
   render() {
@@ -72,14 +68,14 @@ export default class Dashboard extends React.Component {
             this.state.participantTeamID !== -1 ? (
               <div>team info</div>
             ) : (
-              <DashboardWelcome
-                openCreateModal={this.openCreateModal}
-                closeCreateModal={this.closeCreateModal}
-              />
-            )
+                <DashboardWelcome
+                  openCreateModal={this.openCreateModal}
+                  closeCreateModal={this.closeCreateModal}
+                />
+              )
           ) : (
-            <div> some admin stuff</div>
-          )}
+              <div> some admin stuff</div>
+            )}
         </div>
         <Modal
           isOpen={this.state.createModalIsOpen}

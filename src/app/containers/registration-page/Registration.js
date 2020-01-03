@@ -1,8 +1,15 @@
+/*
+@copyright : ToXSL Technologies Pvt. Ltd. < www.toxsl.com >
+@author     : Shiv Charan Panjeta < shiv@toxsl.com >
+ 
+All Rights Reserved.
+Proprietary and confidential :  All information contained herein is, and remains
+the property of ToXSL Technologies Pvt. Ltd. and its partners.
+Unauthorized copying of this file, via any medium is strictly prohibited.
+*/
 import React from "react";
-import { withRouter } from "react-router-dom";
-
+import { withRouter, Link } from "react-router-dom";
 import * as session from "../../../utils/session";
-
 import Modal from "../../components/auth-modal/Modal";
 import ParticipantForm from "../../components/forms/ParticipantForm";
 import JudgeForm from "../../components/forms/JudgeForm";
@@ -36,7 +43,7 @@ class Registration extends React.Component {
         {this.state.mode === "Judge" && <JudgeForm />}
         {this.state.mode === "Organizer" && <OrganizerForm />}
         <p>
-          Don't have an account? <a href="/login">Login</a>
+          Don't have an account? <Link to="/">Login</Link>
         </p>
       </Modal>
     );

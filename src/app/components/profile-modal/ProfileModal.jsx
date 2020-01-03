@@ -1,10 +1,17 @@
+
+/*
+@copyright : ToXSL Technologies Pvt. Ltd. < www.toxsl.com >
+@author     : Shiv Charan Panjeta < shiv@toxsl.com >
+ 
+All Rights Reserved.
+Proprietary and confidential :  All information contained herein is, and remains
+the property of ToXSL Technologies Pvt. Ltd. and its partners.
+Unauthorized copying of this file, via any medium is strictly prohibited.
+*/
 import React from "react";
 import Modal from "react-modal";
-
 import profileIcon from "../../../assets/icons/profile.svg";
 import deleteIcon from "assets/icons/delete.svg";
-
-import "./style.scss";
 import * as serviceHelper from "../../../utils/serviceHelper";
 import * as session from "../../../utils/session";
 
@@ -45,27 +52,27 @@ class ProfileEditableModal extends React.Component {
   }
 
   updateData() {
-    const service = serviceHelper.getService(this.props.type);
+    // const service = serviceHelper.getService(this.props.type);
 
-    service.getUser(this.props.userId).then(response => {
-      this.setState({
-        name:
-          response.data.user.first_name + " " + response.data.user.last_name,
-        email: response.data.user.username,
-        title: response.data.title,
-        editableTitle: response.data.title
-      });
-      if (session.getSessionUserId() == this.props.userId) {
-        this.setState({
-          editPermissions: true
-        });
-      }
-      if (this.props.type == "Participant") {
-        this.setState({
-          teamName: response.data.team.name
-        });
-      }
-    });
+    // service.getUser(this.props.userId).then(response => {
+    //   this.setState({
+    //     name:
+    //       response.data.user.first_name + " " + response.data.user.last_name,
+    //     email: response.data.user.username,
+    //     title: response.data.title,
+    //     editableTitle: response.data.title
+    //   });
+    //   if (session.getSessionUserId() == this.props.userId) {
+    //     this.setState({
+    //       editPermissions: true
+    //     });
+    //   }
+    //   if (this.props.type == "Participant") {
+    //     this.setState({
+    //       teamName: response.data.team.name
+    //     });
+    //   }
+    // });
   }
 
   render() {
@@ -107,18 +114,18 @@ class ProfileEditableModal extends React.Component {
                   </button>
                 </div>
               ) : (
-                <div>
-                  <span>{this.state.title}</span>
-                  {this.state.editPermissions && (
-                    <button
-                      className="edit-button"
-                      onClick={() => this.setState({ editable: true })}
-                    >
-                      Edit
+                  <div>
+                    <span>{this.state.title}</span>
+                    {this.state.editPermissions && (
+                      <button
+                        className="edit-button"
+                        onClick={() => this.setState({ editable: true })}
+                      >
+                        Edit
                     </button>
-                  )}
-                </div>
-              )}
+                    )}
+                  </div>
+                )}
             </div>
             <div className="info">
               <b>Email:</b> {this.state.email}

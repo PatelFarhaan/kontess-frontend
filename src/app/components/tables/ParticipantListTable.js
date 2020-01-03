@@ -1,5 +1,13 @@
+/*
+@copyright : ToXSL Technologies Pvt. Ltd. < www.toxsl.com >
+@author     : Shiv Charan Panjeta < shiv@toxsl.com >
+ 
+All Rights Reserved.
+Proprietary and confidential :  All information contained herein is, and remains
+the property of ToXSL Technologies Pvt. Ltd. and its partners.
+Unauthorized copying of this file, via any medium is strictly prohibited.
+*/
 import React from "react";
-
 import TeamService from "../../services/TeamService";
 import previousButton from "assets/images/pagePrevious.png";
 import nextButton from "assets/images/pageNext.png";
@@ -97,7 +105,6 @@ export default class ParticipantListTable extends React.Component {
         window.location.reload();
       })
       .catch(e => {
-        console.log(e);
       });
   }
 
