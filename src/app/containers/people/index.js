@@ -36,7 +36,7 @@ export default class People extends React.Component {
             perPage: 5,
             searchVal: '',
             skillFilter: '',
-            skilldata: [{ label: "All particepents", value: "" }],
+            skilldata: [{ label: "All participants", value: "" }],
         };
     }
 
