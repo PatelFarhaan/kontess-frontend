@@ -1,0 +1,99 @@
+
+$pageTopMargin: 25px;
+$sidenavBorderWidth: 5px;
+$sidenavWidth: 280px;
+$sidenavButtonSpanPaddingWidth: 25px;
+$iconHeight: 20px;
+
+.sidenav {
+  /*grid position*/
+  position: relative;
+  font-size: 10px;
+  background-color: #fff;
+  border-right: 1px solid #ccc;
+  height: 100vh;
+  width: 320px;
+  h2{
+    width: 80%;
+    padding: 2px 30px;
+    text-align: left;
+  }
+  .headerBlock {
+    display: flex;
+    height: 140px;
+    justify-content: center;
+    align-items: center;
+
+    .logo {
+      position: relative;
+      margin: auto;
+      height: 45px;
+      margin-top: 40px;
+  
+  
+    }
+
+    .name {
+      margin: auto;
+      margin-left: 5px;
+      font-size: 20px;
+      position: relative;
+      color: #ddd;
+    }
+  }
+
+  .main-menu {
+    position: relative;
+  }
+
+  .buttonMenu {
+    .nav-button {
+      display: flex;
+      height: 45px;
+      width: 100%;
+      border: none;
+      background-color: #fff;
+      color: rgb(70, 68, 68);
+       font-weight: 600;
+      transition: all 0.3s ease;
+      -webkit-transition: all 0.3s ease;
+      // border-top: 1px solid #555;
+
+      .icon-text-wrapper {
+        display: inline-flex;
+        flex-direction: row;
+        align-items: left;
+
+        .icon-img {
+          padding-left: $sidenavButtonSpanPaddingWidth;
+          margin-right: 10px;
+          max-height: $iconHeight;
+        }
+        p {
+          margin: auto;
+          margin-left: 10px;
+          font-size: 16px;
+        }
+      }
+    }
+    .nav-button:hover {
+      background-color: #555;
+    }
+    .nav-button:focus {
+      outline: 0;
+    }
+    .sidenav-button-active {
+      border-left: 10px solid #78afd3;
+      color: #78afd3
+    }
+  }
+
+  .logout-button {
+    position: absolute;
+    bottom: 0px;
+  }
+}
+
+.headerBlockLink {
+  text-decoration: None;
+}

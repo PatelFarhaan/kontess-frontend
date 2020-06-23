@@ -1,0 +1,38 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+$title-block-horizontal-margin: 40px;
+$top-margin: 10px;
+$sidenavButtonSpanPaddingWidth: -25px;
+$iconHeight: 20px;
+
+.dashboard {
+  font-family: "Roboto", sans-serif;
+  background-color: #eee;
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  display: flex;
+  .main_area{
+    height: calc(100vh - 50px);
+    width: 100%;
+  }
+  .content {
+    overflow: auto;
+    margin-right: 0px;
+    height: calc(100vh - 140px);
+    width: 100%;
+    margin-top: 90px;
+    .main-content {
+      // margin-bottom: 80px;
+    }
+
+    footer {
+      align-self: flex-end;
+      position: relative;
+      top: 50px;
+      bottom: 0px;
+      height: 50px;
+    }
+  }
+}
