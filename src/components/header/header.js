@@ -1,21 +1,21 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import Logo from "../header/logo";
 import { phone } from "../../imagepath";
 import { Link } from "react-router-dom";
 
 const MainHeader = props => {
-  const [isToggle,setToggle] = useState(false)
+  const [isToggle, setToggle] = useState(false);
   console.log("propssss", props);
   let activeHeader = props.location ? props.location.pathname : "";
   console.log("activeHeader", activeHeader);
 
   return (
-    <header className={props.innerHeader}>
+    <header className={props.innerHeader} id="main-header">
       <div className="container cstm_container">
         <div className="header_wrap">
           <div className="header_lft">
             <Logo></Logo>
-            <div className={`menu_wrap ${isToggle ? 'menu_open' : ''}`} >
+            <div className={`menu_wrap ${isToggle ? "menu_open" : ""}`}>
               <ul className="header_menu">
                 <li className={activeHeader === "/" ? "active" : ""}>
                   <Link to="/">home</Link>
@@ -79,7 +79,11 @@ const MainHeader = props => {
             </Link>
           </div>
           <div className="desk_none mob_none">
-            <button type="button" className="mob_toggle_btn" onClick={()=>setToggle(!isToggle)}>
+            <button
+              type="button"
+              className="mob_toggle_btn"
+              onClick={() => setToggle(!isToggle)}
+            >
               <i className="fa fa-bars" aria-hidden="true" />
             </button>
           </div>

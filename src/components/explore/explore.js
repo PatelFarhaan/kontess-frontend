@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Footer from "../footer/footer";
 import PagesBanner from "../pages_banner/PagesBanner";
 import MainHeader from "../header/header";
@@ -8,6 +8,9 @@ import ResultsCard from "./ResultsCard";
 import { Link } from "react-router-dom";
 
 const Explore = props => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+}, [])
   return (
     <>
       <MainHeader innerHeader="inner_header" {...props}></MainHeader>

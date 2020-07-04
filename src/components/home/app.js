@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Testimonials from "../testimonials/testimonials";
 import BlogGrid from "../blog/BlogGrid";
@@ -15,13 +15,23 @@ import {
   reward_icon,
   nvc
 } from "../../imagepath";
- 
-const App = props => {
-  const handleRequestDemo = () => {
-    window.open('https://calendly.com/kontess');
-  }
-  return (
 
+const App = props => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    window.onscroll = function() {
+      let element = document.getElementById("main-header");
+      if (window.pageYOffset <= 86) {
+        element.classList.remove("home_header");
+      } else {
+        element.classList.add("home_header");
+      }
+    };
+  }, []);
+  const handleRequestDemo = () => {
+    window.open("https://calendly.com/kontess");
+  };
+  return (
     <div>
       <MainHeader {...props}></MainHeader>
       <section className="home_banner">
@@ -39,9 +49,9 @@ const App = props => {
               <div className="serchbox_row">
                 {/* <input type="search" placeholder="Enter Email Id" /> */}
                 {/* <button type="button">Request a demo</button> */}
-                <Link to="#"  onClick={handleRequestDemo}>
-                Request a Demo
-             </Link>
+                <Link to="#" onClick={handleRequestDemo}>
+                  Request a Demo
+                </Link>
               </div>
             </div>
             <div className="banner_img">
@@ -62,15 +72,18 @@ const App = props => {
               {/* <h4 className="contest_text">
               The Contest Management Platform
               </h4> */}
-               <h2 class="pri_head ">The Contest <span>Management Platform</span></h2>
+              <h2 class="pri_head ">
+                The Contest <span>Management Platform</span>
+              </h2>
               <p>
                 {/* <span className="drop_cap">We </span> */}
-                Contest organizers have to manage participants, judges,
-                 and sponsors, all while ensuring a smooth experience for all parties. Positive contest 
-                 experiences increase participant retention, attract top judges, and improve an organization’s 
-                 reputation. That’s why we developed the Contest Management Platform. 
-                Kontess makes it easy for participants to organize remotely and simplifies
-                 contest management for administrators. 
+                Contest organizers have to manage participants, judges, and
+                sponsors, all while ensuring a smooth experience for all
+                parties. Positive contest experiences increase participant
+                retention, attract top judges, and improve an organization’s
+                reputation. That’s why we developed the Contest Management
+                Platform. Kontess makes it easy for participants to organize
+                remotely and simplifies contest management for administrators.
               </p>
               <Link to="/solutions" className="cstm_btn">
                 Learn More
@@ -97,7 +110,9 @@ const App = props => {
           <div className="section_heding">
             {/* <h2>How we can</h2>
             <h3>Help</h3> */}
-            <h2 class="pri_head font_weight">How we can <span>Help</span></h2>
+            <h2 class="pri_head font_weight">
+              How we can <span>Help</span>
+            </h2>
           </div>
           <div className="offer_card_wrap">
             <div className="offer_card">
@@ -105,42 +120,60 @@ const App = props => {
                 <img src={reward} alt />
               </span>
               <h4>All-in-one Solution</h4>
-              <p>Reduce the number of tools needed to effectively manage your contest</p>
+              <p>
+                Reduce the number of tools needed to effectively manage your
+                contest
+              </p>
             </div>
             <div className="offer_card">
               <span className=" blue_shape">
                 <img src={reward} alt />
               </span>
               <h4>Management</h4>
-              <p>Save time by automating and managing your contest’s events and deadlines</p>
+              <p>
+                Save time by automating and managing your contest’s events and
+                deadlines
+              </p>
             </div>
             <div className="offer_card">
               <span className=" green_shape">
                 <img src={reward} alt />
               </span>
               <h4>COMMUNICATION</h4>
-              <p>Easily message participants and allow them to chat with others in-app</p>
+              <p>
+                Easily message participants and allow them to chat with others
+                in-app
+              </p>
             </div>
             <div className="offer_card">
               <span className=" red_shape">
                 <img src={reward} alt />
               </span>
               <h4>Judging</h4>
-              <p>Automate judging assignments to reduce bias and easily share feedback with participants</p>
+              <p>
+                Automate judging assignments to reduce bias and easily share
+                feedback with participants
+              </p>
             </div>
             <div className="offer_card">
               <span className=" purple_shape">
                 <img src={reward} alt />
               </span>
               <h4>Feedback</h4>
-              <p>Continually improve your contest by collecting feedback from participants and judges</p>
+              <p>
+                Continually improve your contest by collecting feedback from
+                participants and judges
+              </p>
             </div>
             <div className="offer_card">
               <span className=" orange_shape">
                 <img src={reward} alt />
               </span>
               <h4>Analytics</h4>
-              <p>View live data on participants and their submissions to monitor engagement </p>
+              <p>
+                View live data on participants and their submissions to monitor
+                engagement{" "}
+              </p>
             </div>
           </div>
         </div>
@@ -153,7 +186,7 @@ const App = props => {
         <div className="container">
           <div className="awards_wrap">
             <div className="section_heding">
-              <h2>Serving Competitions  </h2>
+              <h2>Serving Competitions </h2>
               <h3>Since 2019</h3>
             </div>
             <div className="awards_img_wrap">
@@ -239,7 +272,6 @@ const App = props => {
               </div>
             </div>
             <div className="our_process_btn">
-            
               <Link to="#" className="request_btn" onClick={handleRequestDemo}>
                 Request a Demo
               </Link>

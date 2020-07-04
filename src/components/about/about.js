@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Footer from "../footer/footer";
 import PagesBanner from "../pages_banner/PagesBanner";
 import MainHeader from "../header/header";
 import { about_side1, about_side2, contact_banner } from "../../imagepath";
 
 const About = props => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+}, [])
   return (
     <>
       <MainHeader innerHeader="inner_header" {...props}></MainHeader>

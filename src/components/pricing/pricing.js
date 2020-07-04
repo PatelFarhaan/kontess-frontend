@@ -59,7 +59,7 @@ const Pricing = () => {
                     </div>
                 </div>
             </section>
-            <div className="alert alert-info limited_offer alert-dismissible">
+            {/* <div className="alert alert-info limited_offer alert-dismissible">
                 <Link to="#" className="close" data-dismiss="alert" aria-label="close">
                     ×
                 </Link>
@@ -76,7 +76,7 @@ const Pricing = () => {
                     </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
             <section className="register provide">
                 <div className="container">
                     <div className="register_wrap">
