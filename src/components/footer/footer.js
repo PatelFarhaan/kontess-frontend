@@ -51,7 +51,7 @@ const Footer = () =>{
                   <input
                     className="form-control search_feild"
                     type="text"
-                    placeholder="Email id*"
+                    placeholder="Your Email"
                     aria-label="Search"
                   />
                   <Link to="/" className="search_btn">
