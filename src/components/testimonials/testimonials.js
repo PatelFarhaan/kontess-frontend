@@ -36,10 +36,7 @@ class Testimonials extends React.Component {
                                 of our competing teams to one platform and allowing participants to 
                                 reach out to one another for collaboration and team building. We were 
                                 also able to streamline the process of submitting concept papers and 
-                                assigning them to judges for scoring. Customer service was also 
-                                excellent! We look forward to additional updates and features that 
-                                Kontess rolls out, as we know they are dedicated to helping us run and 
-                                manage our competition.
+                                assigning them to judges for scoring.
                                  <img
                                    className="bottom_commos"
                                    src={comma_bottom}
