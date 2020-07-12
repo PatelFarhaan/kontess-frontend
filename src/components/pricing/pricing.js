@@ -22,14 +22,14 @@ const Pricing = () => {
                 <div className="container">
                     <div className="pricing_tbl_heading">
                         <h2 className="pri_head">
-                            Management<span> Fee per </span> contest
+                            Management<span> fee per </span> contest
                         </h2>
                     </div>
                     <div className="table_wrap table-responsive">
                         <table className="table">
                             <thead>
                                 <tr>
-                                    <th>No. of Participants</th>
+                                    <th>Number of Participants</th>
                                     <th>Price</th>
                                 </tr>
                             </thead>
@@ -40,19 +40,19 @@ const Pricing = () => {
                                 </tr>
                                 <tr>
                                     <td>11-50</td>
-                                    <td>500</td>
+                                    <td>$500</td>
                                 </tr>
                                 <tr>
                                     <td>51-100</td>
-                                    <td>1000 </td>
+                                    <td>$1000 </td>
                                 </tr>
                                 <tr>
                                     <td>101-300 </td>
-                                    <td>1500</td>
+                                    <td>$1500</td>
                                 </tr>
                                 <tr>
                                     <td>301+</td>
-                                    <td>2000</td>
+                                    <td>$2000</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -82,13 +82,13 @@ const Pricing = () => {
                     <div className="register_wrap">
                     <div className="register_text">
                         <h2 className="pri_head">
-                        We will also <span>provide </span>You
+                        We will also <span>provide </span>:
                         </h2>
                         <ul className="blue_list">
-                        <li>A subdomain name of your choice </li>
+                        <li>Subdomain name of your choice </li>
                         <li>Customized registration and invitation link </li>
-                        <li> A dedicated admin account with your own credentials</li>
-                        <li>Your own logo on the platform</li>
+                        <li> Dedicated admin account with your own credentials</li>
+                        <li>Customizations to fit your brand</li>
                         <li>Customer service for you and for all participants </li>
                         </ul>
                         <Link to="/contact" className="default_btn">
