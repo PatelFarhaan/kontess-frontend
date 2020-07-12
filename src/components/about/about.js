@@ -52,10 +52,8 @@ const About = props => {
               </h2>
               
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                semper dictum malesuada. Nulla venenatis sem tellus, eu ornare
-                lectus porttitor a. Mauris pretium pharetra lectus, quis
-                imperdiet dui sodales non
+                The Kontess team is composed of people from a number of different backgrounds and walks of life, 
+                but we are united by our common goal, improving your contest experience. 
               </p>
                {/*========you can change Text from here===========*/}
             </div>
