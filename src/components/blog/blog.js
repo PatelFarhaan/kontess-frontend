@@ -15,7 +15,7 @@ const Blog = props => {
       <PagesBanner
         className="blog_banner"
         title="Blogs"
-        parentDir="home"
+        parentDir="Home"
         currentDir="Blogs"
       ></PagesBanner>
       <section>
