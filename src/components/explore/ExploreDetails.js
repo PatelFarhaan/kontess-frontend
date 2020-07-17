@@ -103,7 +103,7 @@ const ExploreDetails = () => {
               <div className="top_row">
                 <div className="wrap_university_name">
                   <h3>
-                    <a href="explore_detail.html">University of California Irvine</a>
+                    <a href="https://uci.edu/">University of California Irvine</a>
                   </h3>
                   <h4>New Venture Competition</h4>
                 </div>
