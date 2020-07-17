@@ -15,7 +15,7 @@ const Pricing = () => {
         <Helmet htmlAttributes>
         <html lang="en" />
         <meta charset="utf-8" />
-        <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+        <link rel="icon" href="/public/favicon.ico" />
         <title>Pricing | Kontess</title>
         <meta name="description" content="Transform your contest or competition with Kontess, the 
         Contest Management Platform. View our pricing packages and features. Host your next online 

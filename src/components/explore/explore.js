@@ -17,7 +17,7 @@ const Explore = props => {
     <Helmet htmlAttributes>
         <html lang="en" />
         <meta charset="utf-8" />
-        <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+        <link rel="icon" href="/public/favicon.ico" />
         <title>Explore Contests | Kontess</title>
         <meta name="description" content="Explore and participate in online competitions for students or 
         professionals. Compete, learn and collaborate with Kontess competitions. All competitions are hosted 

@@ -101,7 +101,7 @@ const Solution = props => {
     <Helmet htmlAttributes>
         <html lang="en" />
         <meta charset="utf-8" />
-        <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+        <link rel="icon" href="/public/favicon.ico" />
         <title>Contest Solutions | Kontess</title>
         <meta name="description" content="We are pioneers in the contest management space with our 
         participant-centric software solution. We are all about saving you money and time, while 

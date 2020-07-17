@@ -76,7 +76,7 @@ const ExploreDetails = () => {
     <Helmet htmlAttributes>
         <html lang="en" />
         <meta charset="utf-8" />
-        <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+        <link rel="icon" href="/public/favicon.ico" />
         <title>New Venture Competition | UC Irvine</title>
         <meta name="description" content="Explore and participate in UC Irvine's New Venture Competition. 
         The UCI New Venture Competition offers you the opportunity to form a team, launch a startup and potentially 

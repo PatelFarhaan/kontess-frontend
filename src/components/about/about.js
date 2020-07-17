@@ -14,7 +14,7 @@ const About = props => {
     <Helmet htmlAttributes>
         <html lang="en" />
         <meta charset="utf-8" />
-        <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+        <link rel="icon" href="/public/favicon.ico" />
         <title>About Us | Kontess</title>
         <meta name="description" content="We are dedicated to helping organizers improve these processes, 
         provide positive experiences to all parties, and continue to host these events even in the 

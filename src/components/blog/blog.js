@@ -15,7 +15,7 @@ const Blog = props => {
     <Helmet htmlAttributes>
         <html lang="en" />
         <meta charset="utf-8" />
-        <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+        <link rel="icon" href="/public/favicon.ico" />
         <title>The Kontess Blog: for Contest People</title>
         <meta name="description" content="Looking for information on how to host a contest online, 
         get your participants engaged, or scale your existing competition? Well you’ve come to the 

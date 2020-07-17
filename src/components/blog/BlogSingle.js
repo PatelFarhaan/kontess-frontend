@@ -12,7 +12,7 @@ const BlogSingle = () => {
       <Helmet htmlAttributes>
         <html lang="en" />
         <meta charset="utf-8" />
-        <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+        <link rel="icon" href="/public/favicon.ico" />
         <title>How to improve participant experience while social distancing | Kontess</title>
         <meta name="description" content="As a competition organizer, your goal is to ensure participants' 
         have a positive experience throughout the competition. Kontess is the ultimate platform for running virtual competitions. We believe the only 

@@ -18,7 +18,7 @@ const Contact = () => {
     <Helmet htmlAttributes>
         <html lang="en" />
         <meta charset="utf-8" />
-        <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+        <link rel="icon" href="/public/favicon.ico" />
         <title>Contact Us | Kontess</title>
         <meta name="description" content="Looking to reach the Kontess team? We’d love to connect with you 
         o discuss your contest or competition and improve your participant experience with our free online 

@@ -40,7 +40,7 @@ const App = props => {
       <Helmet htmlAttributes>
         <html lang="en" />
         <meta charset="utf-8" />
-        <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+        <link rel="icon" href="/public/favicon.ico" />
         <title>Kontess | Changing the way contests run</title>
         <meta name="description" content="Positive contest experiences increase participant retention, 
         attract top judges, and improve an organization’s reputation. That’s why we serve not only competition 
