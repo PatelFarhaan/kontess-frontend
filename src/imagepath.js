@@ -10,6 +10,18 @@ export const comma_bottom = require("./common/images/comma_bottom.png");
 export const wood = require("./common/images/wood.png");
 export const pico = require("./common/images/pico.png");
 export const carlosn = require("./common/images/carlosn.png");
+
+export const download_icn = require("./common/images/download_icn.png");
+export const search_icn = require("./common/images/search_icn.png");
+export const phone_blue = require("./common/images/phone_blue.png");
+export const group_icn = require("./common/images/group_icn.png");
+export const trophy_icn = require("./common/images/trophy_icn.png");
+export const check_icn = require("./common/images/check_icn.png");
+export const chat_icn = require("./common/images/chat_icn.png");
+export const brook_cagle = require("./common/images/brook_cagle.jpg");
+
+
+
 export const reward_icon = require("./common/images/reward_icon.png");
 export const blog_listing = require("./common/images/blog_listing.jpg");
 export const avtar = require("./common/images/avtar.jpg");

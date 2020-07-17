@@ -5,16 +5,16 @@ const Pagination = () => {
     return (
       <ul className="pagination cstm_pagination">
         <li className="page-item">
-          <Link className="page-link" to="">
+          <Link className="page-link" to="#">
             Previous
           </Link>
         </li>
         <li className="page-item">
-          <Link className="page-link" to="">
+          <Link className="page-link" to="#">
             1
           </Link>
         </li>
-        <li className="page-item">
+        {/*<li className="page-item">
           <Link className="page-link" to="">
             2
           </Link>
@@ -28,9 +28,9 @@ const Pagination = () => {
           <Link className="page-link" to="">
             4
           </Link>
-        </li>
+        </li>*/}
         <li className="page-item">
-          <Link className="page-link" to="">
+          <Link className="page-link" to="#">
             Next
           </Link>
         </li>

@@ -5,6 +5,7 @@ import MainHeader from "../header/header";
 import SearchFilter from "../explore/SearchFilter";
 import Pagination from "../pagination/pagination";
 import ResultsCard from "./ResultsCard";
+import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 
 const Explore = props => {
@@ -13,6 +14,16 @@ const Explore = props => {
 }, [])
   return (
     <>
+    <Helmet htmlAttributes>
+        <html lang="en" />
+        <meta charset="utf-8" />
+        <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+        <title>Explore Contests | Kontess</title>
+        <meta name="description" content="Explore and participate in online competitions for students or 
+        professionals. Compete, learn and collaborate with Kontess competitions. All competitions are hosted 
+        with Kontess, the online participant-centric contest solution." />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      </Helmet>
       <MainHeader innerHeader="inner_header" {...props}></MainHeader>
       <PagesBanner
         className="explore_banner"

@@ -446,7 +446,6 @@ color: #fff;
 }
 .offer_card:hover{
   background:#edf5fe;
-  cursor: pointer;
   transform: translateY(-5px);
   transition: all .25s ease-in-out;
 }
@@ -717,7 +716,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1d9ff2', end
 .blog_card_row{
  display:flex;
  position: relative;
- justify-content:space-between;
+ justify-content:center;
 }
 .blog_card_row:before{
   content: '';
@@ -746,21 +745,38 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1d9ff2', end
     
 }
 .blog_card_row .blog_card_col:hover{
-  transition: all .25s ease-in-out;
+  transition: all .35s ease-in-out;
 }
 
 
 .blog_card_row .blog_card_col:hover,
 .blog_card_row .blog_card_col.active {
-    background: url(../images/blog_card.png) no-repeat center;
-    background-size: cover;
+    position: relative;
+    z-index: 1;
+    
+    
    
 }
+.blog_card_col.active:before {
+    background: url(../images/blog_listing.jpg) no-repeat center;
+    background-size: cover;
+    opacity:  1;
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: .4;
+    }
+
 .blog_card_row .blog_card_col.active p,
 .blog_card_row .blog_card_col.active h4,
 .blog_card_row .blog_card_col.active a{
-  color:#fff;
+  color:fff;
   z-index:999;
+  opacity: 500;
 }
 .blog_card_row .blog_card_col:hover p,
 .blog_card_row .blog_card_col:hover h4,
@@ -772,12 +788,19 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1d9ff2', end
   margin-bottom:0!important;
   text-decoration:underline;
 }
-.blog_card_row .blog_card_col p,
-.blog_card_row .blog_card_col a{
+.blog_card_row .blog_card_col p{
   font-size:16px;
   font-weight:700;
   color:#7b7b7b;
   margin-bottom: 20px;
+  opacity: 1;
+}
+.blog_card_row .blog_card_col a{
+  font-size:16px;
+  font-weight:700;
+  color: black;
+  margin-bottom: 20px;
+  opacity: 1;
 }
 .blog_card_row .blog_card_col i{
  margin-left:10px;
@@ -1460,9 +1483,6 @@ ul.pagination.cstm_pagination {
     min-height: 180px;
     transition: all 0.25s ease-in-out;
 }
-.touch_col:hover{
-  cursor: pointer;
-}
 .touch_col:hover span{
    box-shadow: 0 0 5px #437bf6;
    background: #fff;
@@ -1647,7 +1667,6 @@ section.touch_section {
 }
 
 .contest_box:hover {
-    cursor: pointer;
     transition: all .25s ease-in-out;
     background: #1DA1F2;
 }
@@ -1741,7 +1760,6 @@ ul.blue_list li:before{
   box-shadow: 0 0 4px #1d74f2;
   background:#fff;
   border: 1px solid transparent;
-  cursor: pointer;
   transition: all 0.25s ease-in-out;
 
 }

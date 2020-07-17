@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import PagesBanner from "../pages_banner/PagesBanner";
 import MainHeader from "../header/header";
 import {Link} from "react-router-dom";
+import { Helmet } from "react-helmet";
 import {limited_offer,mobile_lock} from "../../imagepath";
 import Footer from "../footer/footer";
 
@@ -11,6 +12,16 @@ const Pricing = () => {
     }, [])
     return(
         <>
+        <Helmet htmlAttributes>
+        <html lang="en" />
+        <meta charset="utf-8" />
+        <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+        <title>Pricing | Kontess</title>
+        <meta name="description" content="Transform your contest or competition with Kontess, the 
+        Contest Management Platform. View our pricing packages and features. Host your next online 
+        contest with Kontess." />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      </Helmet>
             <MainHeader innerHeader="inner_header"></MainHeader>
             <PagesBanner
             className="blog_banner"
@@ -82,7 +93,7 @@ const Pricing = () => {
                     <div className="register_wrap">
                     <div className="register_text">
                         <h2 className="pri_head">
-                        We will also <span>provide </span>:
+                        We will also <span>provide </span>
                         </h2>
                         <ul className="blue_list">
                         <li>Subdomain name of your choice </li>

@@ -1,3 +1,5 @@
-# https://www.robotstxt.org/robotstxt.html
+# robots.txt for http://www.kontess.com/
 User-agent: *
 Disallow:
+
+Sitemap: http://www.kontess.com/sitemap.xml

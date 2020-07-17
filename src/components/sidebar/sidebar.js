@@ -7,24 +7,24 @@ const Sidebar = () => {
 
     let categoriesData = [
       {
-        link: "#",
-        name: "Web Design",
+        link: "/blog-details",
+        name: "Why Kontess",
       },
       {
-        link: "#",
-        name: "Featured Blog",
+        link: "/blog-details",
+        name: "Participant Experience",
       },
       {
-        link: "#",
-        name: "Photography Idea",
+        link: "/blog-details",
+        name: "Contest Management",
       },
       {
-        link: "#",
-        name: "Design Tutorials",
+        link: "/blog-details",
+        name: "Tutorials",
       },
       {
-        link: "#",
-        name: "Arts and Entertainment",
+        link: "/blog-details",
+        name: "News",
       },
     ];
 
@@ -54,7 +54,7 @@ const Sidebar = () => {
     let archiveData = [
       {
         link: "#",
-        name: "june 2020",
+        name: "July 2020",
       },
       // {
       //   link: "#",
@@ -80,19 +80,19 @@ const Sidebar = () => {
       <div className="blog_right_sidebar">
         <SearchBar></SearchBar>
         <div className="blog_right_col">
-          <h4>Categories</h4>
+          <u><h4>Topics</h4></u>
           <SidebarData className="catagories_list" data={categoriesData} />
         </div>
         <div className="blog_right_col">
-          <h4>Popular Posts</h4>
+          <u><h4>Popular Posts</h4></u>
           <PopularPosts></PopularPosts>
         </div>
-        <div className="blog_right_col">
+        {/*<div className="blog_right_col">
           <h4>Tags Cloud</h4>
           <SidebarData className="tags" data={tagsData} />
-        </div>
+        </div>*/}
         <div class="blog_right_col">
-          <h4>Archive</h4>
+          <u><h4>Archive</h4></u>
           <SidebarData className="catagories_list" data={archiveData} />
         </div>
       </div>

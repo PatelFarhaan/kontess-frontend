@@ -4,13 +4,18 @@ import BlogGrid from "../blog/BlogGrid";
 import Footer from "../footer/footer";
 import PagesBanner from "../pages_banner/PagesBanner";
 import MainHeader from "../header/header";
+import { Helmet } from "react-helmet";
 import TaskList from "../solutions/TaskList";
 import { Link } from "react-router-dom";
 import {
   building_icn,
-  food_icn,
-  law_icn,
-  people_icn,
+  reward_icon,
+  trophy_icn,
+  search_icn,
+  group_icn,
+  chat_icn,
+  download_icn,
+  check_icn,
   work_icn,
   mobile_app,
   mobile_lock,
@@ -62,37 +67,50 @@ const Solution = props => {
 
   let taskList = [
     {
-      icon: building_icn,
-      title: "Create team"
+      icon: group_icn,
+      title: "Create a team and profile"
     },
     {
-      icon: building_icn,
-      title: "Join team and invite members to join team"
+      icon: search_icn,
+      title: "Search for other teammates"
     },
     {
-      icon: building_icn,
-      title: "Chat and connect with anyone"
+      icon: chat_icn,
+      title: "In-app chat to connect with anyone"
     },
     {
       icon: building_icn,
       title: "Collaborative workspace within team"
     },
     {
-      icon: building_icn,
-      title: "Keep track of events, to-do list, and deadlines"
+      icon: check_icn,
+      title: "Keep track of events, to-do lists, and deadlines"
     },
     {
-      icon: building_icn,
-      title: "Upload and download files"
+      icon: download_icn,
+      title: "Upload and download files with shared drive"
     },
     {
-      icon: building_icn,
+      icon: trophy_icn,
       title: "View results and feedback"
     }
   ];
 
   return (
     <>
+    <Helmet htmlAttributes>
+        <html lang="en" />
+        <meta charset="utf-8" />
+        <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+        <title>Contest Solutions | Kontess</title>
+        <meta name="description" content="We are pioneers in the contest management space with our 
+        participant-centric software solution. We are all about saving you money and time, while 
+        allowing you to offer your participants the best experience possible. Easily accept submissions 
+        from participants, give participants the ability to organize remotely, and automate your judging 
+        with our online contest management software. Stop wondering how you are going to host your contest 
+        online, Kontess is the perfect place for your contests!" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      </Helmet>
       <MainHeader innerHeader="inner_header" {...props}></MainHeader>
       <PagesBanner
         className=""
@@ -105,10 +123,10 @@ const Solution = props => {
           <div className="contest_wrap">
             <div className="contest_head text-center">
               <h2 className="pri_head ">
-                <span>Contest</span> Management Platform
+                <span>The Contest</span> Management Platform
               </h2>
               <p>
-               We are all about saving your money and time, 
+               We are all about saving you money and time, 
                while allowing you to offer your participants the best experience possible.
               </p>
             </div>
@@ -146,14 +164,14 @@ const Solution = props => {
             </div>
             <div className="register_text">
               <h2 className="pri_head">
-                <span>Contest Phase</span> (After registration)
+                <span>Contest</span> Phase
               </h2>
               <ul className="blue_list">
                 <li>
                   Create & manage tasks, events, workshops, and deadlines for
                   participants
                 </li>
-                <li>Keep track of participantsâ€™ submissions and progress</li>
+                <li>Keep track of participants' submissions and progress</li>
                 <li>Share announcements and directly message participants</li>
                 <li>Address questions and concerns quickly with in-app chat</li>
                 <li>
@@ -170,7 +188,7 @@ const Solution = props => {
               </h2>
               <ul className="blue_list">
                 <li>
-                  Review final results and analyze participantsâ€™ performances
+                  Review final results and analyze participants' performances
                 </li>
                 <li>
                   Release scores and feedback to participants with one click
@@ -210,7 +228,7 @@ const Solution = props => {
 
           <div className="cstm_btn_wrap">
             <Link to="/pricing" className=" blue_grad_btn">
-              See Prices
+              View Pricing
             </Link>
             
              <Link to="#" className="green_grad_btn" onClick={handleRequestDemo}>

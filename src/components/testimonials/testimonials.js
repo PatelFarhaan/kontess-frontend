@@ -17,8 +17,8 @@ class Testimonials extends React.Component {
                      <section className="testimonial">
                        <div className="container">
                          <div className="section_heding">
-                           <h2>Few Comment's for</h2>
-                           <h3>Our Client's</h3>
+                           <h2>What Our Customers</h2>
+                           <h3>are Saying</h3>
                          </div>
                          <Slider className="testimonial_row" {...settings}>
                            <div className="testimonial_slide">
@@ -36,7 +36,7 @@ class Testimonials extends React.Component {
                                 of our competing teams to one platform and allowing participants to 
                                 reach out to one another for collaboration and team building. We were 
                                 also able to streamline the process of submitting concept papers and 
-                                assigning them to judges for scoring.
+                                assigning them to judges for scoring. Customer service was also excellent!
                                  <img
                                    className="bottom_commos"
                                    src={comma_bottom}

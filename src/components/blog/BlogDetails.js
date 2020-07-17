@@ -47,7 +47,7 @@ const BlogDetails = () => {
       <PagesBanner
         className="blog_banner"
         title="Blogs"
-        parentDir="home"
+        parentDir="Home"
         currentDir="Blogs"
       ></PagesBanner>
       <section>

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Testimonials from "../testimonials/testimonials";
 import BlogGrid from "../blog/BlogGrid";
 import MainHeader from "../header/header";
+import { Helmet } from "react-helmet";
 import Footer from "../footer/footer";
 import {
   banner_img1,
@@ -16,6 +17,7 @@ import {
   nvc
 } from "../../imagepath";
 
+
 const App = props => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -28,11 +30,28 @@ const App = props => {
       }
     };
   }, []);
+
   const handleRequestDemo = () => {
     window.open("https://calendly.com/kontess");
   };
   return (
     <div>
+    <div>
+      <Helmet htmlAttributes>
+        <html lang="en" />
+        <meta charset="utf-8" />
+        <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+        <title>Kontess | Changing the way contests run</title>
+        <meta name="description" content="Positive contest experiences increase participant retention, 
+        attract top judges, and improve an organization’s reputation. That’s why we serve not only competition 
+        organizers, but also everyone else involved. Kontess makes it easy for participants to organize 
+        remotely, simplifies contest management for administrators, and automates judging." />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      </Helmet>
+      
+      <div className="App">
+      </div>
+    </div>
       <MainHeader {...props}></MainHeader>
       <section className="home_banner">
         <div className="container">
@@ -42,7 +61,7 @@ const App = props => {
                 <span>Changing</span> the way contests <span>run</span>
               </h1>
               <h4>
-                Running a contest is hard. We can help make it simple, save you
+                Running a contest is hard. We can help make it simple and save you
                 time, while offering the best experience for your participants.
               </h4>
               {/*  <a href="javascript:void(0);" class="cstm_btn">Learn More</span></a> */}
@@ -91,15 +110,6 @@ const App = props => {
             </div>
             <div className="home_vid_rgt">
               <div className="home_vid_box">
-                <button
-                  type="button"
-                  className="play_btn"
-                  onclick="enableAutoplay()"
-                  data-toggle="modal"
-                  data-target="#myModal"
-                >
-                  <img src={play_btn} alt />
-                </button>
               </div>
             </div>
           </div>

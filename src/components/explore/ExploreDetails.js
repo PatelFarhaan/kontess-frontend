@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import MainHeader from "../header/header";
+import { Helmet } from "react-helmet";
 import PagesBanner from "../pages_banner/PagesBanner";
 import {
   dummy1,
@@ -72,6 +73,18 @@ const ExploreDetails = () => {
 
   return (
     <>
+    <Helmet htmlAttributes>
+        <html lang="en" />
+        <meta charset="utf-8" />
+        <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+        <title>New Venture Competition | UC Irvine</title>
+        <meta name="description" content="Explore and participate in UC Irvine's New Venture Competition. 
+        The UCI New Venture Competition offers you the opportunity to form a team, launch a startup and potentially 
+        fund a business idea – all within seven months. The competition is open to all UCI students, staff members 
+        and researchers as well as community members. Teams compete for $100,000 in cash prizes plus additional 
+        professional services!" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      </Helmet>
       <MainHeader innerHeader="inner_header"></MainHeader>
       <PagesBanner
         className="blog_banner"
@@ -90,7 +103,7 @@ const ExploreDetails = () => {
               <div className="top_row">
                 <div className="wrap_university_name">
                   <h3>
-                    <a href="explore_detail.html">University of Irvine</a>
+                    <a href="explore_detail.html">University of California Irvine</a>
                   </h3>
                   <h4>New Venture Competition</h4>
                 </div>

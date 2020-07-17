@@ -10,15 +10,15 @@ const SearchFilter = () => {
             <div className="filter_col">
                 <label>Type</label>
                 <select>
-                    <option>Business competition </option>
+                    <option>Business</option>
                     <option>Engineering and technology </option>
                     <option>Math and science </option>
                     <option>Arts and designs</option>
-                    <option>cases studies</option>
+                    <option>Case studies</option>
                 </select>
             </div>
             <div className="filter_col aditional">
-                <label>Aditional Option</label>
+                <label>Additional Options:</label>
                 <div className="wrap_cstmbox">
                 <div className="cstm_checkbox">
                     <input type="checkbox" id="competition" />

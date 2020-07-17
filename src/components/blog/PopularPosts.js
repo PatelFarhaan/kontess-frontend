@@ -13,17 +13,17 @@ const PopularPosts = () => {
         numbers.map(() => (
           <div className="popular_post">
               <div className="popular_pic">
-                <Link to="">
+                <Link to="/blog-details">
                   <img src={blog_listing} />
                 </Link>
               </div>
               <div className="popular_contnt">
                 <h5>
-                  <Link to="">Elements of a Launch..</Link>
+                  <Link to="/blog-details">How to improve participant experience..</Link>
                 </h5>
                 <ul className="name_date">
-                  <li>Simon Schmid </li>
-                  <li>02 January</li>
+                  <li>KEVIN WONG </li>
+                  <li>17 JULY</li>
                 </ul>
               </div>
           </div>
