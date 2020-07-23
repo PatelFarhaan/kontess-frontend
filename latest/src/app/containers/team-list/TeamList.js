@@ -6,7 +6,7 @@ import CreateTeamForm from "../../components/forms/CreateTeamForm";
 import TeamRequestForm from "../../components/forms/TeamRequestForm";
 import TeamListTable from "../../components/tables/TeamListTable";
 import ProfileModal from "../../components/profile-modal/ProfileModal";
-import deleteIcon from "assets/icons/delete.svg";
+import deleteIcon from "../../../assets/icons/delete.svg";
 
 import * as session from "../../../utils/session";
 

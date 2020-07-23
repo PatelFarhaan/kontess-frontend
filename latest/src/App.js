@@ -14,7 +14,7 @@ import {
   TeamList,
   ParticipantList,
   ChatPage,
-} from "app/containers";
+} from "./app/containers";
 import NewLogin from './app/containers/newLogin/NewLogin'
 import NewRegistratoin from './app/containers/NewRegistration-page/Registration'
 import Settings from './app/containers/settings'

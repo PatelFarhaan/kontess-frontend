@@ -5,11 +5,11 @@ import * as routes from "../../globals/endpoints";
 import { toast } from 'react-toastify';
 import { getFetch } from "../../../utils/fetchRequests";
 import { commonErrorMsg, only6ImgAllow } from "../../../utils/Message";
-import PDFICON from "assets/icons/pdf.png";
-import XLSXICON from "assets/icons/xlsx.png";
-import XSLCON from "assets/icons/xls.png";
-import CSVICON from "assets/icons/csv.png";
-import FILEICON from "assets/icons/file.png";
+import PDFICON from "../../../assets/icons/pdf.png";
+import XLSXICON from "../../../assets/icons/xlsx.png";
+import XSLCON from "../../../assets/icons/xls.png";
+import CSVICON from "../../../assets/icons/csv.png";
+import FILEICON from "../../../assets/icons/file.png";
 
 export default class Team extends React.Component {
     constructor(props) {

@@ -9,10 +9,10 @@ import Moment from 'react-moment';
 import queryString from 'query-string';
 import { animateScroll } from "react-scroll";
 import * as session from "../../../utils/session";
-import PDFICON from "assets/icons/pdf.png";
-import XLSXICON from "assets/icons/xlsx.png";
-import XSLCON from "assets/icons/xls.png";
-import CSVICON from "assets/icons/csv.png";
+import PDFICON from "../../../assets/icons/pdf.png";
+import XLSXICON from "../../../assets/icons/xlsx.png";
+import XSLCON from "../../../assets/icons/xls.png";
+import CSVICON from "../../../assets/icons/csv.png";
 import {
   commonErrorMsg,
   fileMaxSize

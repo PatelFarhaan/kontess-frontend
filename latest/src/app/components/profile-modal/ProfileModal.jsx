@@ -3,7 +3,7 @@
 import React from "react";
 import Modal from "react-modal";
 import profileIcon from "../../../assets/icons/profile.svg";
-import deleteIcon from "assets/icons/delete.svg";
+import deleteIcon from "../../../assets/icons/delete.svg";
 import * as serviceHelper from "../../../utils/serviceHelper";
 import * as session from "../../../utils/session";
 

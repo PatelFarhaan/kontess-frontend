@@ -2,10 +2,10 @@
 import React from "react";
 import { withRouter, Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import dashboardIcon from "assets/icons/dashboard.svg";
-import eventIcon from "assets/icons/activity.svg";
-import userIcon from "assets/icons/activity.svg";
-import kontessLogoImg from "assets/images/logo_name_blue.png";
+//import dashboardIcon from "assets/icons/dashboard.svg";
+//import eventIcon from "assets/icons/activity.svg";
+//import userIcon from "assets/icons/activity.svg";
+import kontessLogoImg from "../../../assets/images/logo_name_blue.png";
 
 import * as session from "../../../utils/session";
 import { confirmAlert } from 'react-confirm-alert';

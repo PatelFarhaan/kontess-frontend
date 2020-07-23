@@ -5,7 +5,7 @@ import DashboardTemplate from "../../components/dashboard-template/DashBoardTemp
 import DashboardWidget from "../../components/dashboard/DashboardWidget";
 import DashboardWelcome from "../../components/dashboard/DashboardWelcome";
 import CreateTeamForm from "../../components/forms/CreateTeamForm";
-import deleteIcon from "assets/icons/delete.svg";
+import deleteIcon from "../../../assets/icons/delete.svg";
 import * as session from "../../../utils/session";
 
 export default class Dashboard extends React.Component {

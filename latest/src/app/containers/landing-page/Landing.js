@@ -1,10 +1,10 @@
 
 import React from "react";
-import config from "config";
+import config from "../../../config";
 import { Link } from "react-router-dom";
 import Footer from "../../components";
-import kontessLogoImg from "assets/images/logo_name_blue.png";
-import HowIt from "assets/images/howitwork.png";
+import kontessLogoImg from "../../../assets/images/logo_name_blue.png";
+import HowIt from "../../../assets/images/howitwork.png";
 import * as session from "../../../utils/session";
 
 

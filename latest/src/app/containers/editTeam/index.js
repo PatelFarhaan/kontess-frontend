@@ -13,11 +13,11 @@ import TeamTasks from './team-tasks';
 import firebase from '../../../firebase';
 import moment from 'moment';
 import Moment from 'react-moment';
-import PDFICON from "assets/icons/pdf.png";
-import XLSXICON from "assets/icons/xlsx.png";
-import XSLCON from "assets/icons/xls.png";
-import CSVICON from "assets/icons/csv.png";
-import FILEICON from "assets/icons/file.png";
+import PDFICON from "../../../assets/icons/pdf.png";
+import XLSXICON from "../../../assets/icons/xlsx.png";
+import XSLCON from "../../../assets/icons/xls.png";
+import CSVICON from "../../../assets/icons/csv.png";
+import FILEICON from "../../../assets/icons/file.png";
 import { Urlify } from '../../globals/contants';
 
 import { animateScroll } from "react-scroll";

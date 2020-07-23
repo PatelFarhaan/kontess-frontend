@@ -2,10 +2,10 @@
 import React from "react";
 import TeamService from "../../services/TeamService";
 import ParticipantDataService from "../../services/ParticipantDataService";
-import previousButton from "assets/images/pagePrevious.png";
-import nextButton from "assets/images/pageNext.png";
-import profileIcon from "assets/icons/profile.svg";
-import deleteIcon from "assets/icons/delete.svg";
+import previousButton from "../../../assets/images/pagePrevious.png";
+import nextButton from "../../../assets/images/pageNext.png";
+import profileIcon from "../../../assets/icons/profile.svg";
+import deleteIcon from "../../../assets/icons/delete.svg";
 
 import * as routes from "../../globals/endpoints";
 import * as session from "../../../utils/session";
