@@ -1,0 +1,55 @@
+export const logo = require('./common/images/logo.png');
+export const phone = require('./common/images/phone.png');
+export const banner_img1 = require('./common/images/dummy1.png');
+export const banner_img2 = require('./common/images/dummy2.png');
+export const play_btn = require("./common/images/play_btn.png");
+export const reward = require("./common/images/reward.png");
+export const small_dots = require("./common/images/small_dots.png");
+export const user = require("./common/images/user.png");
+export const comma_bottom = require("./common/images/comma_bottom.png");
+export const wood = require("./common/images/wood.png");
+export const pico = require("./common/images/pico.png");
+export const carlosn = require("./common/images/carlosn.png");
+
+export const download_icn = require("./common/images/download_icn.png");
+export const search_icn = require("./common/images/search_icn.png");
+export const phone_blue = require("./common/images/phone_blue.png");
+export const group_icn = require("./common/images/group_icn.png");
+export const trophy_icn = require("./common/images/trophy_icn.png");
+export const check_icn = require("./common/images/check_icn.png");
+export const chat_icn = require("./common/images/chat_icn.png");
+export const brook_cagle = require("./common/images/brook_cagle.jpg");
+
+
+
+export const reward_icon = require("./common/images/reward_icon.png");
+export const blog_listing = require("./common/images/blog_listing.jpg");
+export const avtar = require("./common/images/avtar.jpg");
+export const building_icn = require("./common/images/building_icn.png");
+export const food_icn = require("./common/images/food_icn.png");
+export const law_icn = require("./common/images/law_icn.png");
+export const people_icn = require("./common/images/people_icn.png");
+export const work_icn = require("./common/images/work_icn.png");
+export const mobile_lock = require("./common/images/mobile_lock.png");
+export const mobile_app = require("./common/images/mobile_app.png");
+export const contract = require("./common/images/contract.png");
+export const about_side2 = require("./common/images/about_side2.png");
+export const about_side1 = require("./common/images/about_side1.png");
+export const contact_banner = require("./common/images/contact_banner.jpg");
+export const dummy1 = require("./common/images/dummy1.png");
+export const limited_offer = require("./common/images/limited_offer.png");
+export const g1 = require("./common/images/1.jpg");
+export const g2 = require("./common/images/2.jpg");
+export const g3 = require("./common/images/3.jpg");
+export const g4 = require("./common/images/4.jpg");
+export const g5 = require("./common/images/5.jpg");
+export const g6 = require("./common/images/6.jpg");
+export const g8 = require("./common/images/8.jpg");
+export const g9 = require("./common/images/9.jpg");
+export const g10 = require("./common/images/10.jpg");
+export const g12= require("./common/images/12.jpg");
+export const sponsor1= require("./common/images/boeing.jpg");
+export const sponsor2= require("./common/images/uci.jpg");
+export const sponsor3= require("./common/images/sponsor_3.jpg");
+export const kontess_logo= require("./common/images/Kontess_logo.png");
+export const nvc= require("./common/images/nvc_new_logo.jpg");
