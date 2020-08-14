@@ -1,0 +1,138 @@
+
+.Team_container {
+  margin: 20px;
+  // height: 75vh;
+  position: relative;
+  text-align: left;
+  // overflow-x: auto;
+    .create {
+      padding: 10px;
+      background-color: #2ca4ed;
+      color: #fff;
+      border: None;
+      font-size: 14px;
+      float: left;
+      margin-bottom: 3px;
+    }
+  }
+.Team_card{
+  width: 93%;
+  // min-height: 100px;
+  background-color:white;
+  border-radius: 10px;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding: 10px;
+  margin: 0 3%;
+  margin-bottom: 25px;
+  span {
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+    font-weight: lighter;
+    color: #a4a4a4;
+    font-size: 12px;
+  }
+}
+.Team_left{
+  width: 300px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 6px;
+
+}
+.Team_member{
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  align-items: center;
+}
+.Team_rating{
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  background-color: gray;
+  margin: 5px
+}
+.Team_right{
+  width: 60%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  // align-items: flex-start; 
+  flex-direction: column;
+  text-indent: 45px;  
+  b{
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+    color: #808080;
+    font-size: 18px;
+    padding: 5px 0px;
+    font-weight: 900;
+}
+span {
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-weight: lighter;
+  font-size: 14px;
+  padding: 2px;
+}
+}
+.Team_list {
+  color: #fff;
+  border: None; 
+  width: 40px;
+  text-align: right;
+  img{
+    cursor: pointer;
+  }
+}
+.main_container{
+  width: 100%;
+  display: flex;
+  margin-bottom: 10px;
+}
+.Team_assessment{
+  width: 70%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  text-indent: 45px;
+  .Team_assessment_title{
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+    font-weight: lighter;
+    color: #424242;
+    font-size: 20px;
+    padding: 5px;
+    font-weight: bold;
+
+  }
+  .Team_assessment_area{
+    width: 100%;
+    height: 150px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: center;
+    background: #eeeeee;
+    margin-left: 45px;
+  }
+}
+.Team_setting-opp{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  padding-left: 20px;
+  span {
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+    font-weight: lighter;
+    color: #000;
+    font-size: 14px;
+    padding: 5px
+  }
+}

@@ -1,0 +1,30 @@
+.btn-group {
+  display: flex;
+
+  button {
+    flex-basis: 100%;
+    font-size: 14px;
+    background-color: #8ebae8;
+    border: 1px solid #80a7d1;
+    color: white; /* White text */
+    padding: 15px 0px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    float: left; /* Float the buttons side by side */
+  }
+
+  button:not(:last-child) {
+    border-right: none; /* Prevent double borders */
+  }
+  button:hover {
+    background-color: #80a7d1;
+  }
+  button.selected {
+    background-color: #6e8cff;
+  }
+}
+
+.btn-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
