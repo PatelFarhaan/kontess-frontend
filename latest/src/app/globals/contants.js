@@ -11,7 +11,7 @@ export const announcement_type = [
         description: 'To everyone'
     }, {
         value: "participants",
-        description: 'To participant only'
+        description: 'To participants only'
     },
     {
         value: "judges",

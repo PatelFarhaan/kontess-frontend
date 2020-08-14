@@ -43,6 +43,9 @@ export default class UpcomingEvents extends React.Component {
     editEvent = (event) => {
         this.setState({ event })
     }
+    resetEvent = () => {
+        this.setState({event: null});
+    }
     render() {
         return (
             <div className="col-lg-4">
@@ -75,15 +78,14 @@ export default class UpcomingEvents extends React.Component {
                             ) : <div className="comment-widgets mb-3">
                                     <div className="d-flex flex-row comment-row">
                                         No events found
-                      </div>
+                                    </div>
                                 </div> : <Loading />}
-
                         </ul>
-                        <Pagination perPage={this.state.perPage} count={this.state.count} handlePageClick={(ev) => this.handlePagination(ev)} />
                     </div>
                 </div>
+                <Pagination perPage={this.state.perPage} count={this.state.count} handlePageClick={(ev) => this.handlePagination(ev)} />
                 <div className="modal fadeIn animated" id="newevent">
-                    <NewEvent getAllEvents={this.getAllEvents} event={this.state.event} ></NewEvent>
+                    <NewEvent getAllEvents={this.getAllEvents} resetEvent={this.resetEvent} event={this.state.event} ></NewEvent>
                 </div>
             </div>
         );

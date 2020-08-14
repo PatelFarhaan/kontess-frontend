@@ -12,9 +12,9 @@ export default class Pagination extends React.Component {
                         nextLabel={'next'}
                         breakLabel={'...'}
                         breakClassName={'break-me'}
-                        pageCount={this.props.count / this.props.perPage}
-                        marginPagesDisplayed={2}
-                        pageRangeDisplayed={5}
+                        pageCount={Math.ceil(this.props.count / this.props.perPage)}
+                        marginPagesDisplayed={1}
+                        pageRangeDisplayed={4}
                         onPageChange={this.props.handlePageClick}
                         containerClassName={'pagination'}
                         subContainerClassName={'pages pagination'}
