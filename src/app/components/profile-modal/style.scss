@@ -1,0 +1,73 @@
+.profileModal {
+  // height: 70%;
+  border: None !important;
+
+  .modal-content {
+    .role-field {
+      padding: 10px;
+      background-color: #444;
+      color: #fff;
+
+      .close-button {
+        position: absolute;
+        border: None;
+        background-color: transparent;
+        top: 8px;
+        right: 5px;
+
+        img {
+          width: 15px;
+          height: 20px;
+        }
+      }
+    }
+
+    .profile-icon {
+      position: relative;
+      margin-top: 10px;
+      width: 200px;
+      border: 1px solid #ccc;
+      border-radius: 100px;
+      left: 25%;
+    }
+
+    .profile-info {
+      margin: 15px;
+
+      .header {
+        padding: 0 5px;
+        color: #222;
+        font-size: 30px;
+        margin: auto;
+      }
+
+      .subheader {
+        padding-left: 5px;
+        margin-bottom: 5px;
+        color: #222;
+        font-size: 20px;
+        font-style: italic;
+
+        .edit-button {
+          background-color: #4fa3e7;
+          color: white;
+          border: None;
+          padding: 3px 10px;
+          margin-left: 10px;
+        }
+
+        .edit-field {
+          margin: 5px 0px;
+          padding: 5px;
+          font-size: 14px;
+          width: 60%;
+        }
+      }
+
+      .info {
+        font-weight: lighter;
+        padding: 5px;
+      }
+    }
+  }
+}

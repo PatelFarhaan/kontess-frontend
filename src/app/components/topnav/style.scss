@@ -1,0 +1,68 @@
+.top-nav {
+  /*grid location*/
+  grid-area: title;
+  position: relative;
+  color: #000000;
+  background-color: #ffffff;
+  height: 45px;
+  /*position   of title-block*/
+  /*New grid setup*/
+  display: grid;
+  grid-template-columns: minmax(60%, 1fr) 45px 180px;
+  grid-template-areas: "logo notifications name";
+  border-bottom: 1px solid #ccc;
+
+  .title {
+    font-size: 20px;
+    color: #222;
+    grid-area: logo;
+    position: absolute;
+    margin-left: 26px;
+    margin-top: 10px;
+    font-weight: lighter;
+  }
+  .notification {
+    /*parameters neccesary in order to make button clickable*/
+    width: 50px;
+
+    position: relative;
+    grid-area: notifications;
+    z-index: 1;
+    margin: auto;
+
+    /*size and color of button*/
+    display: inline-block;
+    background-color: #ffffff;
+    color: #0084ff;
+
+    /*modifies border color of button*/
+    border: none;
+    border-left: 2px solid #dfdfdf;
+    border-right: 2px solid #dfdfdf;
+
+    /*Smoother transition*/
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+
+    img {
+      height: 25px;
+      width: 25px;
+    }
+  }
+  .name-area {
+    width: 100%;
+    height: 100%;
+    grid-area: name;
+
+    .name {
+      position: relative;
+      top: 25%;
+      height: 50px;
+      margin: auto;
+      font-weight: lighter;
+    }
+  }
+  .name-area:hover {
+    background-color: #eee;
+  }
+}
