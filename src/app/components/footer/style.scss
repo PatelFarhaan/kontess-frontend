@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+
+#landing-footer {
+  background-color: #2ca4ed;
+  height: 125px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  #social-media-links {
+    margin-top: 40px;
+    span {
+      display: flex;
+      flex-direction: row;
+
+      img {
+        height: 25px;
+        filter: invert(1);
+        margin-right: 15px;
+      }
+    }
+  }
+  .others {
+    position: absolute;
+    margin-top: 94px;
+    .copyright {
+      color: white;
+      font-size: 12px;
+    }
+
+    .icon-credit {
+      font-size: xx-small;
+      color: white;
+      a {
+        color: white;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .centerVertical {
+    margin: auto;
+  }
+}

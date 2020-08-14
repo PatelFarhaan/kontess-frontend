@@ -1,0 +1,77 @@
+.LandingTopNav {
+  display: flex;
+  flex-direction: row;
+  padding: 20px 35px;
+  justify-content: space-between;
+
+  .left-panel {
+    display: flex;
+    flex-direction: row;
+
+    .logo-wrapper {
+      img {
+        width: 300px;
+      }
+    }
+  
+    .page-links {
+      ul {
+        li {
+          display: inline-block;
+          margin-right: 20px;
+  
+          a {
+            color: #9f9f9f;
+            font-weight: bold;
+            text-decoration: none;
+  
+            &:visited, &:active {
+              color: #9f9f9f;
+            }
+  
+            &:hover {
+              color: inherit;
+            }
+          }
+  
+          .current-page {
+            color: #2ca4ed;
+            padding-bottom: 3px;
+            border-bottom: 5px solid #2ca4ed;
+  
+            &:hover, &:visited, &:active {
+              color: #2ca4ed;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .sign-up-login-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    button {
+      font-size: 20px;
+      margin-right: 20px;
+      font-weight: bold;
+      border-radius: 20px;
+      padding: 10px 25px;
+      cursor: pointer;
+    }
+
+    .sign-up-btn {
+      color: white;
+      background-color: #2ca4ed;
+      border: none;
+    }
+
+    .log-in-btn {
+      color: #2ca4ed;
+      border: 1px solid #2ca4ed;
+      background: none;
+    }
+  }
+}

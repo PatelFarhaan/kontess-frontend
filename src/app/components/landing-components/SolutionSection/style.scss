@@ -1,0 +1,43 @@
+.solution-section {
+  display: flex;
+  flex-direction: column;
+  font-family: "Roboto", sans-serif;
+  background-color: #ededed;
+  color: #383838;
+
+  .container {
+    margin: 20px 100px 100px 100px;
+    display: flex;
+    flex-direction: row;
+
+    .description-text {
+      text-align: left;
+      font-size: 22px;
+    }
+
+    .left {
+      margin-left: 0px;
+      width: 50%;
+      margin: 50px;
+
+      img {
+        margin-right: 20px;
+        width: auto;
+        height: 400px;
+        margin-top: 50px;
+      }
+    }
+
+    .right {
+      .problem-header {
+        margin-bottom: 30px;
+        font-size: 45px;
+        font-weight: 600;
+        text-align: left;
+      }
+
+      width: 50%;
+      margin: 50px;
+    }
+  }
+}
