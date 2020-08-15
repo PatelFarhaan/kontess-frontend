@@ -60,16 +60,17 @@ export default class UpcomingEvents extends React.Component {
                                     <div className="event-wrap mb-2">
                                         <div className="row">
                                             <div className="col-md-2 pr-0 text-center">
-                                                <div className="event-date">
+                                                <div className="event-date mt-3">
                                                     <strong> <Moment format="MMM">{moment(item.schedule_date, 'YYYY-MM-DD hh:mm A')}</Moment>
                                                         <br />  <Moment format="DD">{moment(item.schedule_date, 'YYYY-MM-DD hh:mm A')}</Moment></strong>
                                                 </div>
                                             </div>
-                                            <div className="col-md-10 border-left">
+                                            <div className="col-md-10 border-left mt-3">
                                                 <div className="event-data">
                                                     <p className="mb-0">{item.title}: {item.description}</p>
-                                                    <small>Location: {item.location}</small>
-                                                    <a className="btn btn-outline-success btn-sm btn-custom mt-3 ml-5" data-toggle="modal" data-target="#newevent" data-backdrop="static" data-keyboard="false" onClick={() => this.editEvent(item)}>Edit</a>
+                                                    <small>Location: {item.location}
+                                                       <br/> Time: <Moment format="h:mm A">{moment(item.schedule_date, 'YYYY-MM-DD hh:mm A')}</Moment></small>
+                                                    <a className="btn btn-outline-success btn-sm btn-custom" data-toggle="modal" data-target="#newevent" data-backdrop="static" data-keyboard="false" style={{float:'right'}} onClick={() => this.editEvent(item)}>Edit</a>
                                                 </div>
                                             </div>
                                         </div>

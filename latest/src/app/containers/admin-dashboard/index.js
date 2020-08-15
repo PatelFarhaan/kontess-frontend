@@ -293,7 +293,7 @@ export default class AdminDashboard extends React.Component {
                       <div className="card bg-gray mb-3">
                         <div className="card-header pl-2 p-3">
                           <h5 className="card_title mb-0">
-                            <Link className="text-dark" to={'/dashboard/create-task'} >
+                            <Link className="text-dark" to={'/dashboard/create-task'} style={{ textDecoration: 'none' }} >
                               Create a task
                                             </Link>
                           </h5>
