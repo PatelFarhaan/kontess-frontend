@@ -10,6 +10,7 @@ import {
     KeyboardTimePicker,
     MuiPickersUtilsProvider
 } from "@material-ui/pickers";
+import Icon from "@material-ui/core/Icon";
 import MomentUtils from '@date-io/moment';
 import moment from "moment";
 import { async } from "q";
@@ -98,6 +99,7 @@ export default class Task extends React.Component {
 
     submit = async (e) => {
         e.preventDefault();
+        /*
         const { submissionDueDate, submissionDueTime, gradesDueDate, gradesDueTime } = this.state;
         var validation = `${
             !submissionDueDate
@@ -110,12 +112,31 @@ export default class Task extends React.Component {
                             ? 'Please select grades due time'
                             : true
             }`;
+        */
+       const { submissionDueOnDate, submissionDueOnTime, gradesDueOnDate, gradesDueOnTime} = this.state;
+       var validation = `${
+        !submissionDueOnDate
+            ? 'Please select submission due date'
+            : !submissionDueOnTime
+                ? 'Please select submission due time'
+                : !gradesDueOnDate
+                    ? 'Please select grades due date'
+                    : !gradesDueOnTime
+                        ? 'Please select grades due time'
+                        : true
+        }`;
         if (validation === 'true') {
             const { title, description, submissionDueOnDate, submissionDueOnTime, gradesDueOnDate, gradesDueOnTime, questions, max_no_of_judge, assing_to, status } = this.state;
             let submission_due_date = await this.combineDateAndTime(submissionDueOnDate, submissionDueOnTime);
             let grade_due_date = await this.combineDateAndTime(gradesDueOnDate, gradesDueOnTime);
             const data = { title, description, submission_due_date, grade_due_date, questions, max_no_of_judge, assing_to, status };
             let self = this;
+            if(moment(submission_due_date) < moment()){
+                this.setState({
+                    error: 'Submission due must be in the future'
+                });
+                return false;          
+            }
             if (submission_due_date >= grade_due_date) {
                 this.setState({
                     error: 'grade due date must be greater than submission due date'
@@ -193,10 +214,12 @@ export default class Task extends React.Component {
                         <div className="card">
                             <div className="card-body p-5 clearfix"><form onSubmit={(e) => this.submit(e)}>
                                 <div className="form-group">
-                                    <input type="text" className="form-control border-grey" onChange={this.formHandler} name="title" value={this.state.title} placeholder="Task Name" required />
+                                    <h6 className="font-weight-bold">Task name </h6>
+                                    <input type="text" className="form-control border-grey" onChange={this.formHandler} name="title" value={this.state.title} placeholder="required *" required />
                                 </div>
                                 <div className="form-group">
-                                    <textarea className="form-control border  border-grey" name="description" value={this.state.description} onChange={this.formHandler} rows="5" placeholder="Description" required></textarea>
+                                    <h6 className="font-weight-bold">Description </h6>
+                                    <textarea className="form-control border  border-grey" name="description" value={this.state.description} onChange={this.formHandler} rows="5" placeholder="required *" required></textarea>
                                 </div>
                                 <div className="form-group">
                                     <div className="row">
@@ -205,6 +228,7 @@ export default class Task extends React.Component {
                                                 <h6 className="font-weight-bold text-333f52 mr-4 mt-4">submission due on </h6>
                                                 <KeyboardDatePicker
                                                     disablePast
+                                                    autoOk={true}
                                                     format="MM/DD/YYYY"
                                                     variant="inline"
                                                     margin="normal"
@@ -222,11 +246,13 @@ export default class Task extends React.Component {
                                             <div className="d-flex">
                                                 <h6 className="font-weight-bold text-333f52 mr-4 mt-4">at </h6>
                                                 <KeyboardTimePicker
+                                                    autoOk={true}
                                                     variant="inline"
                                                     margin="normal"
                                                     id="time-picker"
                                                     value={this.state.submissionDueOnTime}
                                                     onChange={(date) => this.setState({ submissionDueOnTime: date, submissionDueTime: true, error: '' })}
+                                                    keyboardIcon={<Icon>schedule</Icon>}
                                                     KeyboardButtonProps={{
                                                         'aria-label': 'change time',
                                                     }}
@@ -243,6 +269,7 @@ export default class Task extends React.Component {
                                                 <KeyboardDatePicker
                                                     format="MM/DD/YYYY"
                                                     disablePast
+                                                    autoOk={true}
                                                     variant="inline"
                                                     margin="normal"
                                                     id="date-picker-inline"
@@ -259,11 +286,13 @@ export default class Task extends React.Component {
                                             <div className="d-flex">
                                                 <h6 className="font-weight-bold text-333f52 mr-4 mt-4">at </h6>
                                                 <KeyboardTimePicker
+                                                    autoOk={true}
                                                     variant="inline"
                                                     margin="normal"
                                                     id="time-picker"
                                                     value={this.state.gradesDueOnTime}
                                                     onChange={(date) => this.setState({ gradesDueOnTime: date, gradesDueTime: true, error: '' })}
+                                                    keyboardIcon={<Icon>schedule</Icon>}
                                                     KeyboardButtonProps={{
                                                         'aria-label': 'change time',
                                                     }}
@@ -319,12 +348,12 @@ export default class Task extends React.Component {
                                         <div className="row justify-content-center gQ fadeInAnimation">
                                             <div className="col-md-6">
                                                 <div className="form-group">
-                                                    <input value={item.question} name="question" onChange={(e) => this.gradingQuestions(e, index)} type="text" className="form-control mx-1 border-grey mb-2" required />
+                                                    <input value={item.question} name="question" onChange={(e) => this.gradingQuestions(e, index)} type="text" placeholder="required *" className="form-control mx-1 border-grey mb-2" required />
                                                 </div>
                                             </div>
                                             <div className="col-md-3 text-center">
                                                 <div className="form-group">
-                                                    <input value={item.max_score} min="0" name="max_score" onChange={(e) => this.gradingQuestions(e, index)} type="number" className="form-control mx-1 border-grey mb-2 w-25 mx-auto" required />
+                                                    <input value={item.max_score} min="0" max="10000" name="max_score" onChange={(e) => this.gradingQuestions(e, index)} type="number" placeholder="*" className="form-control mx-1 border-grey mb-2 w-25 mx-auto" required />
                                                 </div>
                                             </div>
                                             <div className="col-md-2 text-center">
@@ -349,7 +378,7 @@ export default class Task extends React.Component {
                                         <div className="col-md-5">
                                             <div className="d-flex">
                                                 <h6 className="font-weight-bold text-333f52 mr-4">Number of judges per team/individual: </h6>
-                                                <input type="number" min="0" onChange={this.formHandler} name="max_no_of_judge" value={this.state.max_no_of_judge} className="form-control mx-1 border-grey mb-2 w-25" required />
+                                                <input type="number" min="0" max="10000" onChange={this.formHandler} name="max_no_of_judge" value={this.state.max_no_of_judge} placeholder="*" className="form-control mx-1 border-grey mb-2 w-25" required />
                                             </div>
                                         </div>
                                     </div>

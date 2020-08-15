@@ -12,10 +12,16 @@ import { confirmAlert } from 'react-confirm-alert';
 import firebase from '../../../firebase';
 const pages = [
   {
+    name: "Adminstration",
+    iconPath: 'fas fa-home',
+    pageId: "home",
+    authorized: ['admin']
+  },
+  {
     name: "Dashboard",
     iconPath: 'fas fa-home',
     pageId: "home",
-    authorized: ['admin', 'participant', 'judge']
+    authorized: ['participant', 'judge']
   }, {
     name: "Teams",
     iconPath: 'far fa-user',
