@@ -16,6 +16,7 @@ import {
     MuiPickersUtilsProvider
 } from "@material-ui/pickers";
 import MomentUtils from '@date-io/moment';
+import TeamList from '../team-list/TeamList';
 
 export default class JoinTeam extends React.Component {
     constructor(props) {
@@ -262,7 +263,7 @@ export default class JoinTeam extends React.Component {
                                                         <div className="form-group">
                                                             <div className="row">
                                                                 <div className="col-md-2">
-                                                                    <label className="control-label font-weight-bold">Event Name</label>
+                                                                    <label className="control-label font-weight-bold">Event Name Test</label>
                                                                 </div>
                                                                 <div className="col-md-9">
                                                                     <input

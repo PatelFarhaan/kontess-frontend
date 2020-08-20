@@ -1,4 +1,3 @@
-
 import React from "react";
 import Modal from "react-modal";
 import DashboardTemplate from "../../components/dashboard-template/DashBoardTemplate";
@@ -6,11 +5,9 @@ import CreateTeamForm from "../../components/forms/CreateTeamForm";
 import TeamRequestForm from "../../components/forms/TeamRequestForm";
 import TeamListTable from "../../components/tables/TeamListTable";
 import ProfileModal from "../../components/profile-modal/ProfileModal";
-import deleteIcon from "assets/icons/delete.svg";
+// import deleteIcon from "assets/icons/delete.svg";
 
 import * as session from "../../../utils/session";
-
-
 
 export default class TeamList extends React.Component {
   constructor(props) {
@@ -25,7 +22,7 @@ export default class TeamList extends React.Component {
       nextUrl: "",
       previousUrl: "",
       maxPage: 0,
-      page: 0
+      page: 0,
     };
 
     this.openCreateModal = this.openCreateModal.bind(this);
@@ -49,7 +46,7 @@ export default class TeamList extends React.Component {
   openTeamRequestModal(id) {
     this.setState({
       teamRequestModalIsOpen: true,
-      joinRequestTeamId: id
+      joinRequestTeamId: id,
     });
   }
 
@@ -61,13 +58,13 @@ export default class TeamList extends React.Component {
   openProfileModal(id) {
     this.setState({
       profileModalIsOpen: true,
-      profileUserId: id
+      profileUserId: id,
     });
   }
 
   closeProfileModal() {
     this.setState({
-      profileModalIsOpen: false
+      profileModalIsOpen: false,
     });
   }
 
@@ -93,8 +90,8 @@ export default class TeamList extends React.Component {
               openProfileModal={this.openProfileModal}
             />
           ) : (
-                <> </>
-              )}
+            <> </>
+          )}
           <Modal
             isOpen={this.state.createModalIsOpen}
             onRequestClose={this.closeCreateModal}
@@ -104,7 +101,7 @@ export default class TeamList extends React.Component {
             shouldCloseOnEsc={false}
           >
             <button className="close-button" onClick={this.closeCreateModal}>
-              <img src={deleteIcon} alt="delete" />
+              {/* <img src={deleteIcon} alt="delete" /> */}
             </button>
             <div className="content">
               <div className="title">Create Team</div>
@@ -123,7 +120,7 @@ export default class TeamList extends React.Component {
               className="close-button"
               onClick={this.closeTeamRequestModal}
             >
-              <img src={deleteIcon} alt="delete" />
+              {/* <img src={deleteIcon} alt="delete" /> */}
             </button>
             <div className="content">
               <div className="title">Request To Join Team</div>
