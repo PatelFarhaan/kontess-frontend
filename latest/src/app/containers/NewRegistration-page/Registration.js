@@ -314,7 +314,7 @@ class NewRegistratoin extends React.Component {
                       name="use_of_funds"
                       value={this.state.use_of_funds}
                       onChange={this.formHandler}
-                      placeholder="Use of Funds*"
+                      placeholder={`Use of Funds (Ex, Software Cost : 500$)*`}
                       className="fadeInAnimation"
                       required
                     />
