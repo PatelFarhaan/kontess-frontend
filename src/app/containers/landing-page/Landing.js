@@ -19,14 +19,6 @@ import * as session from "../../../utils/session";
 
 
 export default class FrontPage extends React.PureComponent {
-  static scrollToWithAnimation(event, targetElement) {
-    const targetHeight =
-      targetElement.getBoundingClientRect().y -
-      document.body.getBoundingClientRect().y;
-    window.scrollTo({ top: targetHeight, left: 0, behavior: "smooth" });
-    event.preventDefault();
-  }
-
   constructor(props) {
     super(props);
     this.state = {
@@ -43,11 +35,9 @@ export default class FrontPage extends React.PureComponent {
 
     this.formHandler = this.formHandler.bind(this);
     this.handleDemoRequest = this.handleDemoRequest.bind(this);
-    this.handleScroll = this.handleScroll.bind(this);
   }
 
   componentDidMount() {
-    window.addEventListener("scroll", this.handleScroll);
     if (session.checkSession()) {
       this.props.history.push("/dashboard/home");
     }
@@ -105,6 +95,7 @@ export default class FrontPage extends React.PureComponent {
   render() {
     return (
       <div className="front-page">
+<<<<<<< HEAD
         <div className={"nav-bar"}>
           <button
             id="home-page-button"
@@ -325,6 +316,40 @@ export default class FrontPage extends React.PureComponent {
           </div>
 
           <div className={"request-demo"}></div>
+=======
+        <NavigationBar />
+        <div className="front-page-content">
+          <div className="title-block">
+            <p className="title">Changing The Way Contests Run</p>
+            <p className="description">
+              Running a contest is hard. We can help make it simple, save you
+              time, while offering the best experience for your participants
+            </p>
+            <a href="mailto:info@kontess.com" className="blue-button-title-big">
+              Contact Us
+            </a>
+          </div>
+          <div className="quote-section">
+            <div className="statistic-container">
+              <div className="statistic-card">
+                <p className="quote_content">
+                  Kontess changed the way we host our competition. It became
+                  easier, simpler, and faster. The platform is
+                  participant-oriented, and our participants were satisfied with
+                  our competition thanks to Kontess.
+                </p>
+                <p className="quote_credit">
+                  - David Ochi, Beall Center of Innovation and Entrepreneurship
+                  at UC Irvine
+                </p>
+              </div>
+            </div>
+          </div>
+          <ProblemSection />
+          <SolutionSection />
+          <ProcessSection />
+          <DemoSection />
+>>>>>>> 98411fd4c5333739110b41de3672757efcec2d84
         </div>
         <Footer />
       </div>

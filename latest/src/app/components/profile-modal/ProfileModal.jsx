@@ -1,9 +1,6 @@
-
-
 import React from "react";
 import Modal from "react-modal";
 import profileIcon from "../../../assets/icons/profile.svg";
-import deleteIcon from "../../../assets/icons/delete.svg";
 import * as serviceHelper from "../../../utils/serviceHelper";
 import * as session from "../../../utils/session";
 
@@ -17,7 +14,7 @@ class ProfileEditableModal extends React.Component {
       title: "",
       editableTitle: "",
       editable: false,
-      editPermissions: false
+      editPermissions: false,
     };
 
     this.formHandler = this.formHandler.bind(this);
@@ -31,9 +28,9 @@ class ProfileEditableModal extends React.Component {
 
   changeTitle() {
     const service = serviceHelper.getService(this.props.type);
-    service.updateTitleProfile(this.state.editableTitle).then(response => {
+    service.updateTitleProfile(this.state.editableTitle).then((response) => {
       this.setState({
-        editable: false
+        editable: false,
       });
       this.updateData();
     });
@@ -45,7 +42,6 @@ class ProfileEditableModal extends React.Component {
 
   updateData() {
     // const service = serviceHelper.getService(this.props.type);
-
     // service.getUser(this.props.userId).then(response => {
     //   this.setState({
     //     name:
@@ -81,7 +77,7 @@ class ProfileEditableModal extends React.Component {
           <div className="role-field">
             {this.props.type}
             <button className="close-button" onClick={this.props.closeModal}>
-              <img src={deleteIcon} alt="delete" />
+              {/* <img src={deleteIcon} alt="delete" /> */}
             </button>
           </div>
           <div>
@@ -106,18 +102,18 @@ class ProfileEditableModal extends React.Component {
                   </button>
                 </div>
               ) : (
-                  <div>
-                    <span>{this.state.title}</span>
-                    {this.state.editPermissions && (
-                      <button
-                        className="edit-button"
-                        onClick={() => this.setState({ editable: true })}
-                      >
-                        Edit
+                <div>
+                  <span>{this.state.title}</span>
+                  {this.state.editPermissions && (
+                    <button
+                      className="edit-button"
+                      onClick={() => this.setState({ editable: true })}
+                    >
+                      Edit
                     </button>
-                    )}
-                  </div>
-                )}
+                  )}
+                </div>
+              )}
             </div>
             <div className="info">
               <b>Email:</b> {this.state.email}

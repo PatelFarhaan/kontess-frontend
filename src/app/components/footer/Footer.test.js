@@ -7,13 +7,13 @@ Proprietary and confidential :  All information contained herein is, and remains
 the property of ToXSL Technologies Pvt. Ltd. and its partners.
 Unauthorized copying of this file, via any medium is strictly prohibited.
 */
-import React from 'react';
-import { shallow } from 'enzyme';
+import React from "react";
+import { shallow } from "enzyme";
 
-import Footer from './Footer';
+import Footer from "./Footer";
 
-describe('<Footer />', () => {
-  it('should render the copyright notice', () => {
+describe("<Footer />", () => {
+  it("should render the copyright notice", () => {
     const renderedComponent = shallow(<Footer />);
     expect(
       renderedComponent.contains(
@@ -22,8 +22,8 @@ describe('<Footer />', () => {
     ).toBe(true);
   });
 
-  it('should render the credits', () => {
+  it("should render the credits", () => {
     const renderedComponent = shallow(<Footer />);
-    expect(renderedComponent.text()).toContain('Dinesh Pandiyan');
+    expect(renderedComponent.text()).toContain("Dinesh Pandiyan");
   });
 });

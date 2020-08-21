@@ -1,11 +1,10 @@
-
 import React from "react";
 import TeamService from "../../services/TeamService";
 import ParticipantDataService from "../../services/ParticipantDataService";
-import previousButton from "../../../assets/images/pagePrevious.png";
-import nextButton from "../../../assets/images/pageNext.png";
-import profileIcon from "../../../assets/icons/profile.svg";
-import deleteIcon from "../../../assets/icons/delete.svg";
+// import previousButton from "assets/images/pagePrevious.png";
+// import nextButton from "assets/images/pageNext.png";
+// import profileIcon from "assets/icons/profile.svg";
+// import deleteIcon from "assets/icons/delete.svg";
 
 import * as routes from "../../globals/endpoints";
 import * as session from "../../../utils/session";
@@ -22,7 +21,7 @@ export default class TeamListTable extends React.Component {
       previousUrl: "",
       maxPage: 0,
       page: 0,
-      participantTeam: false
+      participantTeam: false,
     };
 
     this.getTeamList = this.getTeamList.bind(this);
@@ -34,10 +33,10 @@ export default class TeamListTable extends React.Component {
   componentDidMount() {
     this.getTeamList(this.state.page);
     if (session.getUserType() === "Participant") {
-      ParticipantDataService.getCurrentUser().then(response => {
+      ParticipantDataService.getCurrentUser().then((response) => {
         if (response.data.team.id) {
           this.setState({
-            participantTeam: true
+            participantTeam: true,
           });
         }
       });
@@ -64,16 +63,16 @@ export default class TeamListTable extends React.Component {
   getTeamList(offset) {
     return api
       .getRoute(routes.teamRoute + "?limit=10&offset=" + offset)
-      .then(d => {
+      .then((d) => {
         const allTeamData = [];
-        d.data.results.forEach(element => {
+        d.data.results.forEach((element) => {
           allTeamData.push(this.parseTeam(element));
         });
         this.setState({
           teams: allTeamData,
           nextUrl: d.data.next,
           previousUrl: d.data.previous,
-          maxPage: Math.ceil(d.data.count / 10)
+          maxPage: Math.ceil(d.data.count / 10),
         });
       });
   }
@@ -95,11 +94,10 @@ export default class TeamListTable extends React.Component {
 
   deleteTeam(id) {
     TeamService.delete(id)
-      .then(d => {
+      .then((d) => {
         window.location.reload();
       })
-      .catch(e => {
-      });
+      .catch((e) => {});
   }
 
   createPageNumbers() {
@@ -123,7 +121,7 @@ export default class TeamListTable extends React.Component {
   }
 
   createOrganizerRows() {
-    const rows = this.state.teams.map(team => (
+    const rows = this.state.teams.map((team) => (
       <tr>
         <td>{team["name"]}</td>
         <td>{team["description"]}</td>
@@ -133,7 +131,7 @@ export default class TeamListTable extends React.Component {
             className="delete-button"
             onClick={() => this.deleteTeam(team["id"])}
           >
-            <img src={deleteIcon} alt="delete" />
+            {/* <img src={deleteIcon} alt="delete" /> */}
           </button>
         </td>
       </tr>
@@ -142,18 +140,18 @@ export default class TeamListTable extends React.Component {
   }
 
   createParticipantRows() {
-    const rows = this.state.teams.map(team => (
+    const rows = this.state.teams.map((team) => (
       <tr>
         <td>{team["name"]}</td>
         <td>{team["description"]}</td>
         <td>
-          {team["participants"].map(participant => (
+          {team["participants"].map((participant) => (
             <div>
               <button
                 className="profile-button"
                 onClick={() => this.props.openProfileModal(participant.id)}
               >
-                <img src={profileIcon} alt="delete" />
+                {/* <img src={profileIcon} alt="delete" /> */}
               </button>
             </div>
           ))}
@@ -193,11 +191,11 @@ export default class TeamListTable extends React.Component {
         </table>
         <div className="button-container">
           <button className="pageButton" onClick={this.previousPage}>
-            <img alt="previous" src={previousButton} />
+            {/* <img alt="previous" src={previousButton} /> */}
           </button>
           {this.createPageNumbers()}
           <button className="pageButton" onClick={this.nextPage}>
-            <img alt="next" src={nextButton} />
+            {/* <img alt="next" src={nextButton} /> */}
           </button>
         </div>
       </div>
