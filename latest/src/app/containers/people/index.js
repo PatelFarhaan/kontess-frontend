@@ -250,10 +250,10 @@ export default class People extends React.Component {
                                                             <th >Email</th>
                                                             <th >Teams</th>
                                                             <th >Role</th>
-                                                            <th >Phone</th>
-                                                            <th >School</th>
-                                                            <th>Major</th>
-                                                            <th>Affiliation with UCI</th>
+                                                            <th >SMU ID(Phone)</th>
+                                                            <th >Pitch Name(School)</th>
+                                                            <th>Citizenship(Major)</th>
+                                                            <th>Use of funds(Affiliation)</th>
                                                             <th>Created on</th>
                                                             <th className="text-center">Action</th>
                                                         </tr>
@@ -280,7 +280,8 @@ export default class People extends React.Component {
                                                                 <td>{user.phone_number}</td>
                                                                 <td>{user.school_name}</td>
                                                                 <td>{user.major}</td>
-                                                                <td>{user.affiliations && user.affiliations !== 'null' ? JSON.parse(user.affiliations).label : ''}</td>
+                                                                <td>{/*user.affiliations && user.affiliations !== 'null' ? JSON.parse(user.affiliations).label : ''*/}
+                                                                    {user.affiliations}</td>
                                                                 <td> <Moment format="lll">{user.created_on}</Moment></td>
                                                                 <td className="text-center pt-4">
                                                                     <Link
