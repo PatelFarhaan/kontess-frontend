@@ -126,7 +126,7 @@ class NewRegistratoin extends React.Component {
         : !goal_for_prototype
         ? "Please enter goal for prototype"
         */
-        : !phone_number
+        : !phone_number && role !== "judge"
         ? "Please enter your student ID"
         : !school_name && role !== "judge"
         ? "Please enter your pitch name"
@@ -138,6 +138,8 @@ class NewRegistratoin extends React.Component {
     }`;
     if (validation === "true") {
       // data.affiliations = JSON.stringify(affiliations);
+      if(data.role=="judge")
+        data.affiliations = "N.A."
       this.setState({
         loading: true,
       });
@@ -268,17 +270,16 @@ class NewRegistratoin extends React.Component {
                   placeholder="Password*"
                   required
                 />
-                <input
-                  type="text"
-                  name="phone_number"
-                  value={this.state.phone_number}
-                  onChange={this.formHandler}
-                  placeholder="SMU ID*"
-                  required
-                />
                 {this.state.role === "participant" ? (
                   <div>
-                    
+                    <input
+                      type="text"
+                      name="phone_number"
+                      value={this.state.phone_number}
+                      onChange={this.formHandler}
+                      placeholder="SMU ID*"
+                      required
+                    />
                     <input
                       type="text"
                       name="school_name"
