@@ -14,7 +14,7 @@ export default class Pagination extends React.Component {
                         breakClassName={'break-me'}
                         pageCount={Math.ceil(this.props.count / this.props.perPage)}
                         marginPagesDisplayed={1}
-                        pageRangeDisplayed={4}
+                        pageRangeDisplayed={2}
                         onPageChange={this.props.handlePageClick}
                         containerClassName={'pagination'}
                         subContainerClassName={'pages pagination'}

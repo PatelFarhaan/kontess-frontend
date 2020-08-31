@@ -29,6 +29,7 @@ export default class UpcomingEvents extends React.Component {
         let selected = data.selected;
         let offset = Math.ceil(selected * self.state.perPage);
         self.getAllEvents(offset);
+        self.resetEvent();
     }
 
     getAllEvents = async (offset = 0) => {
