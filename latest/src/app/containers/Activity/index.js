@@ -24,6 +24,11 @@ export default class Activity extends React.Component {
       Create_date: "",
     };
   }
+  componentDidMount = () => {
+    if (localStorage.getItem("Zoom")) {
+      document.getElementById("yesForZoom").checked = true;
+    }
+  };
 
   componentWillMount = async () => {
     // Display all participants
@@ -81,6 +86,21 @@ export default class Activity extends React.Component {
   createEvent = (Create_date) => {
     this.setState({ Create_date });
   };
+  handleZoomAuth = (e) => {
+    if (e.target.checked === true) {
+      this.setState({ zoomYes: true });
+      localStorage.setItem("Zoom", "true");
+      window.location.href =
+        "https://zoom.us/oauth/authorize?response_type=code&client_id=YnD8mpmR7ykK_5KnuWB6A&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fkontess%2Fdashboard%2Fevents";
+    } else this.setState({ zoomYes: false });
+  };
+  handleZoomNo = (e) => {
+    if (e.target.checked === true) {
+      this.setState({ zoomNo: true });
+      document.getElementById("yesForZoom").checked = false;
+      localStorage.removeItem("Zoom");
+    } else this.setState({ zoomNo: false });
+  };
   render() {
     return (
       <DashboardTemplate title="Events" pageId="events">
@@ -88,12 +108,14 @@ export default class Activity extends React.Component {
           <section className="dasboard-mid mt-2">
             <div className="row">
               <div className="col-lg-7 stretched_card mt-4">
-                <div className="card">
+                <div className="card addEvent">
                   <div className="card-header d-flex align-items-center">
                     <div className="col-md-8 pull-left">
-                      <h4 className="mb-0 text-muted">Upcoming Events</h4>
+                      <h4 className="mb-0 text-muted">Add an event</h4>
                     </div>
-                    {session.getUserType() === "admin" ? (
+                    {session.getUserType() === "admin" &&
+                    (this.state.zoomNo === true ||
+                      localStorage.getItem("Zoom")) ? (
                       <div className="col-md-4 pull-right">
                         <button
                           onClick={() => this.editEvent("")}
@@ -110,6 +132,53 @@ export default class Activity extends React.Component {
                     ) : (
                       ""
                     )}
+                  </div>
+
+                  <div className="card-header form-group">
+                    <label className="col-md-8 pull-left control-label d-block">
+                      Do you want a Zoom link for your event?
+                    </label>
+                    <div className="col-md-8 pull-left">
+                      <div className="custom-control custom-checkbox primary-checkbox custom-control-inline">
+                        <input
+                          type="checkbox"
+                          value="yesForZoom"
+                          className="custom-control-input yesForZoom"
+                          id="yesForZoom"
+                          name="yesForZoom"
+                          onChange={this.handleZoomAuth}
+                        />
+                        <label
+                          className="custom-control-label c2 ml-2"
+                          for="yesForZoom"
+                        >
+                          Yes{" "}
+                        </label>
+                      </div>
+                      <div className="custom-control custom-checkbox primary-checkbox custom-control-inline">
+                        <input
+                          type="checkbox"
+                          value="noForZoom"
+                          className="custom-control-input attendees"
+                          id="noForZoom"
+                          name="noForZoom"
+                          onChange={this.handleZoomNo}
+                        />
+                        <label
+                          className="custom-control-label c2 ml-2"
+                          for="noForZoom"
+                        >
+                          No{" "}
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="card">
+                  <div className="card-header d-flex align-items-center">
+                    <div className="col-md-8 pull-left">
+                      <h4 className="mb-0 text-muted">Upcoming Events</h4>
+                    </div>
                   </div>
                   {this.state.eventList.length ? (
                     this.state.eventList.map((item, index) => (
