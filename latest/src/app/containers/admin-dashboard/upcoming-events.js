@@ -29,6 +29,7 @@ export default class UpcomingEvents extends React.Component {
         let selected = data.selected;
         let offset = Math.ceil(selected * self.state.perPage);
         self.getAllEvents(offset);
+        self.resetEvent();
     }
 
     getAllEvents = async (offset = 0) => {
@@ -42,6 +43,9 @@ export default class UpcomingEvents extends React.Component {
     }
     editEvent = (event) => {
         this.setState({ event })
+    }
+    resetEvent = () => {
+        this.setState({event: null});
     }
     render() {
         return (
@@ -57,16 +61,17 @@ export default class UpcomingEvents extends React.Component {
                                     <div className="event-wrap mb-2">
                                         <div className="row">
                                             <div className="col-md-2 pr-0 text-center">
-                                                <div className="event-date">
+                                                <div className="event-date mt-3">
                                                     <strong> <Moment format="MMM">{moment(item.schedule_date, 'YYYY-MM-DD hh:mm A')}</Moment>
                                                         <br />  <Moment format="DD">{moment(item.schedule_date, 'YYYY-MM-DD hh:mm A')}</Moment></strong>
                                                 </div>
                                             </div>
-                                            <div className="col-md-10 border-left">
+                                            <div className="col-md-10 border-left mt-3">
                                                 <div className="event-data">
                                                     <p className="mb-0">{item.title}: {item.description}</p>
-                                                    <small>Location: {item.location}</small>
-                                                    <a className="btn btn-outline-success btn-sm btn-custom mt-3 ml-5" data-toggle="modal" data-target="#newevent" data-backdrop="static" data-keyboard="false" onClick={() => this.editEvent(item)}>Edit</a>
+                                                    <small>Location: {item.location}
+                                                       <br/> Time: <Moment format="h:mm A">{moment(item.schedule_date, 'YYYY-MM-DD hh:mm A')}</Moment></small>
+                                                    <a className="btn btn-outline-success btn-sm btn-custom" data-toggle="modal" data-target="#newevent" data-backdrop="static" data-keyboard="false" style={{float:'right'}} onClick={() => this.editEvent(item)}>Edit</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -75,15 +80,14 @@ export default class UpcomingEvents extends React.Component {
                             ) : <div className="comment-widgets mb-3">
                                     <div className="d-flex flex-row comment-row">
                                         No events found
-                      </div>
+                                    </div>
                                 </div> : <Loading />}
-
                         </ul>
-                        <Pagination perPage={this.state.perPage} count={this.state.count} handlePageClick={(ev) => this.handlePagination(ev)} />
                     </div>
                 </div>
+                <Pagination perPage={this.state.perPage} count={this.state.count} handlePageClick={(ev) => this.handlePagination(ev)} />
                 <div className="modal fadeIn animated" id="newevent">
-                    <NewEvent getAllEvents={this.getAllEvents} event={this.state.event} ></NewEvent>
+                    <NewEvent getAllEvents={this.getAllEvents} resetEvent={this.resetEvent} event={this.state.event} ></NewEvent>
                 </div>
             </div>
         );

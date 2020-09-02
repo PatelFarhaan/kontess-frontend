@@ -17,7 +17,7 @@ export default class ManageRegistration extends React.Component {
             participant_count: '',
             judge_count: '',
             status: false,
-            date: moment()
+            date: ""
         };
     }
 
@@ -58,7 +58,7 @@ export default class ManageRegistration extends React.Component {
             .catch(err => { });
     }
 
-    submit = async event => {
+    submit = async (event) => {
         let self = this;
         self.setState({ error: '' });
         event.preventDefault();
@@ -69,16 +69,37 @@ export default class ManageRegistration extends React.Component {
         await postFetch(`manage-registration/myconfig/`, data)
             .then(function (response) {
                 if (response && response.msg) {
-                    toast.success(response.msg);
+                    toast.success(response.msg, {toastId: "deadline_update_success"});
                     document.getElementById("closeRegistration").click();
                 } else {
-                    toast.error(commonErrorMsg);
+                    toast.error(commonErrorMsg, {toastId: "deadline_update_error"});
                 }
             })
             .catch(err => {
                 toast.error(commonErrorMsg);
             });
     };
+    /*
+    validateRegistration = (event) => {
+        var validate = true;
+        event.preventDefault();
+        var participant_count = document.getElementById("participant_count");
+        var judge_count = document.getElementById("judge_count");
+        if (!participant_count.checkValidity()) {
+            document.getElementById("participant_invalid").innerHTML = participant_count.validationMessage;
+            validate = false;
+        }
+        else
+            document.getElementById("participant_invalid").innerHTML = "";
+        if (!judge_count.checkValidity()) {
+            document.getElementById("judge_invalid").innerHTML = judge_count.validationMessage;
+            validate = false;
+        }
+        else
+            document.getElementById("judge_invalid").innerHTML = "";
+        if(validate)
+            this.submit();
+    }*/
 
     render() {
         const { status } = this.state;
@@ -91,7 +112,7 @@ export default class ManageRegistration extends React.Component {
                                 <h5 className="modal-title">Deadline For Registration</h5>
                                 <button type="button" className="close" id="closeRegistration" data-dismiss="modal">&times;</button>
                             </div>
-                            <form onSubmit={this.submit} id="newEventForm" >
+                            <form id="newEventForm" onSubmit={this.submit}>
                                 <div className="modal-body">
                                     <div className="new-task-form">
                                         <div className="form-group">
@@ -103,9 +124,10 @@ export default class ManageRegistration extends React.Component {
                                                         </div>
 
                                                         <div className="col-md-4">
-                                                            <input type="number" min="0" required value={this.state.participant_count} onChange={this.formHandler} name="participant_count" className="form-control" placeholder="Deadline" required />
+                                                            <input id="participant_count" type="number" min="1" max="10000" value={this.state.participant_count} onChange={this.formHandler} name="participant_count" className="form-control" placeholder="Required *" required />
                                                         </div>
                                                     </div>
+                                                    <div id="participant_invalid" style={{color:"red", paddingLeft:"100px"}}></div>
                                                 </div>
                                                 <div className="form-group mb-0">
                                                     <div className="row">
@@ -113,9 +135,10 @@ export default class ManageRegistration extends React.Component {
                                                             <label className="control-label font-weight-bold">Judge/Coach</label>
                                                         </div>
                                                         <div className="col-md-4">
-                                                            <input type="number" min="0" value={this.state.judge_count} onChange={this.formHandler} name="judge_count" className="form-control" placeholder="Deadline" required />
+                                                            <input id="judge_count" type="number" min="1" max="10000" value={this.state.judge_count} onChange={this.formHandler} name="judge_count" className="form-control" placeholder="Required *" required />
                                                         </div>
                                                     </div>
+                                                    <div id="judge_invalid" style={{color:"red", paddingLeft:"100px"}}></div>
                                                 </div>
                                                 <div className="form-group">
                                                     <div className="row">
@@ -124,13 +147,26 @@ export default class ManageRegistration extends React.Component {
                                                         </div>
                                                         <div className="col-md-4">
                                                             <KeyboardDatePicker
-                                                                minDate={this.state.minDate}
+                                                                minDate={moment().startOf('day')}
+                                                                maxDate={""}
+                                                                autoOk={true}
                                                                 format="MM/DD/YYYY"
                                                                 variant="inline"
                                                                 margin="normal"
                                                                 id="date-picker-inline"
+                                                                invalidDateMessage='Invalid Date!'
                                                                 value={this.state.date}
-                                                                onChange={(date) => this.setState({ date: date })}
+                                                                onChange={(date) => {
+                                                                    if(date && date.isValid()){
+                                                                        this.setState({ date: date });
+                                                                        if(date >= moment().startOf('day'))
+                                                                            document.getElementById('submit_btn').removeAttribute("disabled");
+                                                                    }
+                                                                    else{
+                                                                        this.setState({date: ""});
+                                                                        document.getElementById('submit_btn').setAttribute("disabled","disabled");
+                                                                    }
+                                                                    }}
                                                                 KeyboardButtonProps={{
                                                                     'aria-label': 'change date',
                                                                 }}
@@ -151,7 +187,7 @@ export default class ManageRegistration extends React.Component {
                                     </div>
                                 </div>
                                 <div className="modal-footer">
-                                    <button type="submit" className="btn btn-primary">Submit </button>
+                                    <button id="submit_btn" type="submit" className="btn btn-primary">Submit </button>
                                 </div>
                             </form>
                         </div>

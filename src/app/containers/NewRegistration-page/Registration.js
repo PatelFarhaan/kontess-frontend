@@ -152,12 +152,12 @@ class NewRegistratoin extends React.Component {
                 />
                 <span className="color-white">Select Role*</span>
                 <Select className="myClassName" onChange={this.roleHandlar} options={options} />
-                {this.state.role === 'judge' ? <div><span className="color-white">Select Skills*</span> <Select
+                {this.state.role === 'judge' ? /*<div><span className="color-white">Select Skills*</span> <Select
                   isMulti
                   value={this.state.skill}
                   onChange={this.handleChange}
                   options={this.state.skilldata}
-                /> </div> : ''}
+                /> </div>*/ '' : ''}
                 <p>Already have an account? <Link to={"/login"}>Login</Link></p>
                 {this.state.loading ? <div className="loadingContainer"><div className="ui active inline loader"></div> </div> :
                   <button type="button" className="button" onClick={this.handleRegistration}>

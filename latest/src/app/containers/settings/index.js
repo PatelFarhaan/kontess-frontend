@@ -12,6 +12,8 @@ import Select from 'react-select';
 import { Link } from 'react-router-dom';
 import { affiliationOptions } from "../../globals/contants";
 import history from "../../../history";
+import HubspotForm from 'react-hubspot-form';
+
 
 export default class Settings extends React.Component {
 
@@ -211,7 +213,7 @@ export default class Settings extends React.Component {
     return (
       <DashboardTemplate title="Settings" pageId="settings" loading={loading}>
         <div className="setting_container">
-          <h3 className="w-100 py-3 text-secondary">My Account</h3>
+          <h3 className="w-100 py-3 text-secondary" style={{display: "inline"}}>My Account</h3>
           <div className="row">
             <div className="col-md-6">
               <div className="card">
@@ -313,12 +315,12 @@ export default class Settings extends React.Component {
                         <div className="user-text mb-3">
                           {userType !== 'admin' ? <Link to="/dashboard/notification-settings" aria-expanded="true" className="text-muted text-bold">
                             Email notifications settings
-          </Link> : ''}
+                            </Link> : ''}
                         </div>
                         <div className="user-text mb-3">
                           <Link to="/dashboard/change-password" aria-expanded="true" className="text-muted text-bold">
                             Change password
-          </Link>
+                          </Link>
                         </div>
                         <div className="bio-sec mb-3">
                           <h5 className="text-secondary text-bold font-15 p-0">If you experience any technical problem, please send us an email at <a href="mailto:info@kontess.com" target="_top">info@kontess.com</a></h5>
@@ -330,6 +332,20 @@ export default class Settings extends React.Component {
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+            <div>
+              <h3 className="w-100 py-3 text-secondary">Support</h3>
+              <div class="card" style={{height:"fit-content"}}>
+                <div class="card-body">
+                  <HubspotForm
+                    portalId='7729318'
+                    formId='6652e8a3-fcb4-4a02-b719-9f1fb6d39441'
+                    //onSubmit={() => console.log('Submit!')}
+                    //onReady={(form) => console.log('Form ready!')}
+                    loading={<div>Loading...</div>}
+                  />
+                  </div>
               </div>
             </div>
           </div>

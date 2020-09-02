@@ -2242,6 +2242,19 @@ animation:fade 1000ms infinite;
   font-size: 15px;
 }
 
+li.disabled > a{
+  cursor: not-allowed;
+}
+
+li.disabled > a:hover{
+  background-color: gray;
+}
+
+#date-picker-inline-helper-text{
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
 
 .desktop-bars .notificationBadge {
   display:none!important

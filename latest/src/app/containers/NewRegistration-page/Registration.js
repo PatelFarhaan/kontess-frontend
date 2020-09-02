@@ -24,15 +24,15 @@ class NewRegistratoin extends React.Component {
       password: "",
       username: "",
       full_name: "",
-      phone_number: "",
-      school_name: "",
-      school_id: "",
-      pitch_name: "",
-      citizenship: "",
-      use_of_funds: "",
-      goal_for_prototype: "",
-      major: "",
-      affiliations: "",
+      phone_number: "", // smu id
+      school_name: "",  // pitch name
+      //school_id: "",
+      //pitch_name: "",
+      //citizenship: "",
+      //use_of_funds: "",
+      // goal_for_prototype: "",
+      major: "",        // citizenship
+      affiliations: "", // use of funds
       i_agree_to_the_rules_of_the_competition: false,
       role: "",
       error: "",
@@ -76,7 +76,7 @@ class NewRegistratoin extends React.Component {
       pitch_name,
       citizenship,
       use_of_funds,
-      goal_for_prototype,
+      goal_for_prototype,*/
       major,
       affiliations,
       i_agree_to_the_rules_of_the_competition,
@@ -94,8 +94,9 @@ class NewRegistratoin extends React.Component {
       pitch_name,
       citizenship,
       use_of_funds,
-      goal_for_prototype,
+      goal_for_prototype,*/
       major,
+      affiliations,
       i_agree_to_the_rules_of_the_competition,
     };
     var validation = `${
@@ -113,19 +114,32 @@ class NewRegistratoin extends React.Component {
         ? "Please enter Password"
         : password.length < 8
         ? "Enter Password must be above 8 characters"
-        : !phone_number
-        ? "Please enter Phone Number"
+        /*
+        : !school_id
+        ? "Please enter your student ID"
+        : !pitch_name
+        ? "Please enter your pitch name"
+        : !citizenship
+        ? "Please enter your citizenship"
+        : !use_of_funds
+        ? "Please specify use of funds"
+        : !goal_for_prototype
+        ? "Please enter goal for prototype"
+        */
+        : !phone_number && role !== "judge"
+        ? "Please enter your student ID"
         : !school_name && role !== "judge"
-        ? "Please enter School Name"
+        ? "Please enter your pitch name"
         : !major && role !== "judge"
-        ? "Please enter Major Name"
+        ? "Please enter your citizenship"
         : !affiliations && role !== "judge"
-        ? "Please select Affiliation with UCI"
+        ? "Please specify use of funds"
         : true
     }`;
     if (validation === "true") {
-      console.log(JSON.stringify(data));
-      data.affiliations = JSON.stringify(affiliations);
+      // data.affiliations = JSON.stringify(affiliations);
+      if(data.role=="judge")
+        data.affiliations = "N.A."
       this.setState({
         loading: true,
       });
@@ -256,25 +270,26 @@ class NewRegistratoin extends React.Component {
                   placeholder="Password*"
                   required
                 />
-                <input
-                  type="text"
-                  name="phone_number"
-                  value={this.state.phone_number}
-                  onChange={this.formHandler}
-                  placeholder="Phone number*"
-                  required
-                />
                 {this.state.role === "participant" ? (
                   <div>
+                    <input
+                      type="text"
+                      name="phone_number"
+                      value={this.state.phone_number}
+                      onChange={this.formHandler}
+                      placeholder="SMU ID*"
+                      required
+                    />
                     <input
                       type="text"
                       name="school_name"
                       value={this.state.school_name}
                       onChange={this.formHandler}
-                      placeholder="School Name*"
+                      placeholder="Pitch Name*"
                       className="fadeInAnimation"
                       required
                     />
+                    {/*}
                     <input
                       type="text"
                       name="school_id"
@@ -283,16 +298,18 @@ class NewRegistratoin extends React.Component {
                       placeholder="Student ID*"
                       className="fadeInAnimation"
                       required
-                    />
+                    />*/}
+                    
                     <input
                       type="text"
                       name="major"
                       value={this.state.major}
                       onChange={this.formHandler}
-                      placeholder="Major*"
+                      placeholder="Citizenship*"
                       className="fadeInAnimation"
                       required
                     />
+                    {/*
                     <input
                       type="text"
                       name="pitch_name"
@@ -328,13 +345,23 @@ class NewRegistratoin extends React.Component {
                       placeholder="Goal for Prototype*"
                       className="fadeInAnimation"
                       required
+                  />*/}
+                    <input
+                      type="text"
+                      name="affiliations"
+                      value={this.state.affiliations}
+                      onChange={this.formHandler}
+                      placeholder="Use of Funds (Ex, Software Cost : 500$)*"
+                      className="fadeInAnimation"
+                      required
                     />
+                    {/*
                     <span className="color-white">Affiliation with UCI *</span>
                     <Select
                       className="fadeInAnimation myClassName"
                       onChange={this.affiliationsHandler}
                       options={affiliationOptions}
-                    />
+                    />*/}
                   </div>
                 ) : (
                   ""

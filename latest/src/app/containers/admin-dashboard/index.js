@@ -30,10 +30,19 @@ export default class AdminDashboard extends React.Component {
       },
       showAnnouncementOption: false
     };
+    this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
   componentWillMount = async () => {
     await this.getTotalUsers();
+  }
+
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleClickOutside);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClickOutside);
   }
 
   // Change announcement discription
@@ -72,7 +81,7 @@ export default class AdminDashboard extends React.Component {
       description: self.state.announcement.description,
       announcement_type: self.state.announcement.announcement_type
     }
-    let validation = `${!data.description ? AnnouncementValidation : !data.announcement_type ? AnnouncementTypeValidation : true}`;
+    let validation = `${!data.description.trim() ? AnnouncementValidation : !data.announcement_type ? AnnouncementTypeValidation : true}`;
     if (validation === 'true') {
       self.setState({
         loading: true
@@ -97,13 +106,13 @@ export default class AdminDashboard extends React.Component {
         })
         toast.success(resp.msg);
       }).catch(err => {
-        toast.error(err);
+        toast.error(err, {toastId: err});
       })
     } else {
       self.setState({
         loading: false,
       });
-      toast.error(validation);
+      toast.error(validation, {toastId: validation});
     }
   }
 
@@ -178,6 +187,15 @@ export default class AdminDashboard extends React.Component {
       containerId: "mainContainer"
     });
   }
+
+  handleClickOutside(event) {
+    if(!this.state.showAnnouncementOption)
+      return;
+    const target_class = $(event.target).attr('class');
+    if(target_class && !target_class.includes('annoucement-option') && !target_class.includes('select-arrow') && !target_class.includes('fa fa-caret-down'))
+      this.setState({ showAnnouncementOption: false });
+  }
+
   render() {
     let { userData, editAnnouncement, refreshList } = this.state;
     return (
@@ -197,7 +215,6 @@ export default class AdminDashboard extends React.Component {
                       <ul className="mt-2 mb-4">
                         <li>
                           <h6 className="text-muted">
-
                             <strong className="count">{this.getNumber(userData.participant_count)}</strong><small> Participant{userData.participant_count > 1 ? 's' : ''}</small>
                           </h6>
                         </li>
@@ -242,7 +259,7 @@ export default class AdminDashboard extends React.Component {
                         </div>
                         <div className="card-body p-0">
                           <form onSubmit={this.submitAnnouncement}>
-                            <textarea className="form-control" cols="5" rows="7" placeholder="Type here announcement" name='announcement'
+                            <textarea className="form-control" cols="5" rows="7" placeholder="Type here announcement *" name='announcement'
                               value={this.state["announcement"].description}
                               onChange={this.changeValue}
                               required></textarea>
@@ -252,9 +269,9 @@ export default class AdminDashboard extends React.Component {
                               <button type="submit" className="btn btn-primary" >{editAnnouncement ? 'Update' : 'Post'}</button>
                               <div className="select-arrow" onClick={this.showAnnouncementOptions} ><i className="fa fa-caret-down" ></i>
                               </div>
-                              {this.state.showAnnouncementOption ? <div className="dropdown-content">
+                              {this.state.showAnnouncementOption ? <div className="dropdown-content" style={{minWidth: '201px'}}>
                                 {announcement_type ? announcement_type.map((item, index) =>
-                                  <a value={item.value} className={`${this.state.announcement.announcement_type === item.value ? "active" : ''}`} key={index} onClick={(ev) => this.selectAnnouncementOptions(item.value)} >{item.description}</a>
+                                  <a value={item.value} className={`${this.state.announcement.announcement_type === item.value ? "active annoucement-option" : 'annoucement-option'}`} key={index} onClick={(ev) => this.selectAnnouncementOptions(item.value)} >{item.description}</a>
                                 ) : ''}
                               </div> : ''}
                             </div>
@@ -267,7 +284,7 @@ export default class AdminDashboard extends React.Component {
                       <div className="card bg-gray mb-3">
                         <div className="card-header pl-2 p-3">
                           <h5 className="card_title mb-0">
-                            <a className="text-dark" data-toggle="modal" data-target="#newevent" id="close-new-event">Create new events</a>
+                            <a className="text-dark" data-toggle="modal" data-target="#newevent" id="close-new-event">Add new event</a>
                           </h5>
                         </div>
                       </div>
@@ -276,8 +293,8 @@ export default class AdminDashboard extends React.Component {
                       <div className="card bg-gray mb-3">
                         <div className="card-header pl-2 p-3">
                           <h5 className="card_title mb-0">
-                            <Link className="text-dark" to={'/dashboard/create-task'} >
-                              Assign a task
+                            <Link className="text-dark" to={'/dashboard/create-task'} style={{ textDecoration: 'none' }} >
+                              Create a task
                                             </Link>
                           </h5>
                         </div>

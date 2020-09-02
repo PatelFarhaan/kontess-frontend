@@ -1,8 +1,8 @@
 
 import React from "react";
 import TeamService from "../../services/TeamService";
-import previousButton from "assets/images/pagePrevious.png";
-import nextButton from "assets/images/pageNext.png";
+import previousButton from "../../../assets/images/pagePrevious.png";
+import nextButton from "../../../assets/images/pageNext.png";
 
 import * as routes from "../../globals/endpoints";
 import * as api from "../../../utils/requests";
