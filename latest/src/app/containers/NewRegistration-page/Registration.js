@@ -23,7 +23,6 @@ class NewRegistratoin extends React.Component {
       email: "",
       password: "",
       username: "",
-
       full_name: "",
       phone_number: "",
       school_name: "",
@@ -73,6 +72,7 @@ class NewRegistratoin extends React.Component {
       skill,
       phone_number,
       school_name,
+      school_id,
       pitch_name,
       citizenship,
       use_of_funds,
@@ -90,6 +90,7 @@ class NewRegistratoin extends React.Component {
       skill,
       phone_number,
       school_name,
+      school_id,
       pitch_name,
       citizenship,
       use_of_funds,
@@ -123,6 +124,7 @@ class NewRegistratoin extends React.Component {
         : true
     }`;
     if (validation === "true") {
+      console.log(JSON.stringify(data));
       data.affiliations = JSON.stringify(affiliations);
       this.setState({
         loading: true,
