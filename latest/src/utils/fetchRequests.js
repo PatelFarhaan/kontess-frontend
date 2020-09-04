@@ -92,6 +92,24 @@ export const postFetch = async (api, data) => {
   return result;
 };
 
+export const postFetchZoom = async (api, data) => {
+  let result = await fetch(routes.zoomLambdaURL + api, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: await routes.reqHeader(),
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (responseBody) {
+      return responseBody;
+    })
+    .catch(function (error) {
+      throw commonErrorMsg;
+    });
+  return result;
+};
+
 export const postFetchMutiPart = async (api, data) => {
   let result = await fetch(routes.baseURL + api, {
     method: "POST",

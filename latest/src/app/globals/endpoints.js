@@ -1,9 +1,9 @@
-
 //Utility method to get the proper base URL from the environment
 import config from "../../config";
 import * as session from "../../utils/session";
 //Base URL
 export const baseURL = `${config}/api/`;
+export const zoomLambdaURL = "";
 
 // Token Route
 export const getTokenRoute = baseURL + "token/";
@@ -25,26 +25,26 @@ export const teamRoute = baseURL + baseTeamRoute;
 export const reqHeader = async () => {
   let token = await session.getSessionToken();
   return {
-    'Accept': "application/json",
-    'Content-Type': 'application/json;charset=UTF-8',
-    'Authorization': 'Bearer ' + token
-  }
-}
+    Accept: "application/json",
+    "Content-Type": "application/json;charset=UTF-8",
+    Authorization: "Bearer " + token,
+  };
+};
 
 //Req Header mutipart
 export const reqHeaderMultipart = async () => {
   let token = await session.getSessionToken();
   return {
-    'Accept': "application/json",
-    'Authorization': 'Bearer ' + token
-  }
-}
+    Accept: "application/json",
+    Authorization: "Bearer " + token,
+  };
+};
 
 //Req Header login
 export const reqHeaderOuter = {
-  'Accept': "application/json",
-  'Content-Type': 'application/json;charset=UTF-8',
-}
+  Accept: "application/json",
+  "Content-Type": "application/json;charset=UTF-8",
+};
 
 // Participant Routes
 export const participantGetRoute = function (id) {

@@ -24,15 +24,16 @@ class NewRegistratoin extends React.Component {
       password: "",
       username: "",
       full_name: "",
-      phone_number: "", // smu id
-      school_name: "",  // pitch name
-      //school_id: "",
-      //pitch_name: "",
-      //citizenship: "",
-      //use_of_funds: "",
-      // goal_for_prototype: "",
-      major: "",        // citizenship
-      affiliations: "", // use of funds
+      phone_number: "",
+      school_name: "",
+      school_id: "",
+      pitch_name: "",
+      citizenship: "",
+      use_of_funds: "",
+      items_cost: "",
+      goal_for_prototype: "",
+      major: "",
+      affiliations: "",
       i_agree_to_the_rules_of_the_competition: false,
       role: "",
       error: "",
@@ -76,7 +77,8 @@ class NewRegistratoin extends React.Component {
       pitch_name,
       citizenship,
       use_of_funds,
-      goal_for_prototype,*/
+      items_cost,
+      goal_for_prototype,
       major,
       affiliations,
       i_agree_to_the_rules_of_the_competition,
@@ -94,7 +96,8 @@ class NewRegistratoin extends React.Component {
       pitch_name,
       citizenship,
       use_of_funds,
-      goal_for_prototype,*/
+      items_cost,
+      goal_for_prototype,
       major,
       affiliations,
       i_agree_to_the_rules_of_the_competition,
@@ -114,7 +117,7 @@ class NewRegistratoin extends React.Component {
         ? "Please enter Password"
         : password.length < 8
         ? "Enter Password must be above 8 characters"
-        /*
+        : /*
         : !school_id
         ? "Please enter your student ID"
         : !pitch_name
@@ -126,20 +129,17 @@ class NewRegistratoin extends React.Component {
         : !goal_for_prototype
         ? "Please enter goal for prototype"
         */
-        : !phone_number && role !== "judge"
+        !phone_number && role !== "judge"
         ? "Please enter your student ID"
         : !school_name && role !== "judge"
         ? "Please enter your pitch name"
         : !major && role !== "judge"
         ? "Please enter your citizenship"
-        : !affiliations && role !== "judge"
-        ? "Please specify use of funds"
         : true
     }`;
     if (validation === "true") {
       // data.affiliations = JSON.stringify(affiliations);
-      if(data.role=="judge")
-        data.affiliations = "N.A."
+      if (data.role == "judge") data.affiliations = "N.A.";
       this.setState({
         loading: true,
       });
@@ -277,7 +277,7 @@ class NewRegistratoin extends React.Component {
                       name="phone_number"
                       value={this.state.phone_number}
                       onChange={this.formHandler}
-                      placeholder="SMU ID*"
+                      placeholder="Phone Number*"
                       required
                     />
                     <input
@@ -285,11 +285,11 @@ class NewRegistratoin extends React.Component {
                       name="school_name"
                       value={this.state.school_name}
                       onChange={this.formHandler}
-                      placeholder="Pitch Name*"
+                      placeholder="School Name*"
                       className="fadeInAnimation"
                       required
                     />
-                    {/*}
+
                     <input
                       type="text"
                       name="school_id"
@@ -298,18 +298,17 @@ class NewRegistratoin extends React.Component {
                       placeholder="Student ID*"
                       className="fadeInAnimation"
                       required
-                    />*/}
-                    
+                    />
                     <input
                       type="text"
                       name="major"
                       value={this.state.major}
                       onChange={this.formHandler}
-                      placeholder="Citizenship*"
+                      placeholder="Major*"
                       className="fadeInAnimation"
                       required
                     />
-                    {/*
+
                     <input
                       type="text"
                       name="pitch_name"
@@ -339,14 +338,23 @@ class NewRegistratoin extends React.Component {
                     />
                     <input
                       type="text"
+                      name="items_cost"
+                      value={this.state.items_cost}
+                      onChange={this.formHandler}
+                      placeholder="Cost of Items to be used*"
+                      className="fadeInAnimation"
+                      required
+                    />
+                    <input
+                      type="text"
                       name="goal_for_prototype"
                       value={this.state.goal_for_prototype}
                       onChange={this.formHandler}
-                      placeholder="Goal for Prototype*"
+                      placeholder="Goal of Prototype*"
                       className="fadeInAnimation"
                       required
-                  />*/}
-                    <input
+                    />
+                    {/* <input
                       type="text"
                       name="affiliations"
                       value={this.state.affiliations}
@@ -354,7 +362,7 @@ class NewRegistratoin extends React.Component {
                       placeholder="Use of Funds (Ex, Software Cost : 500$)*"
                       className="fadeInAnimation"
                       required
-                    />
+                    /> */}
                     {/*
                     <span className="color-white">Affiliation with UCI *</span>
                     <Select
