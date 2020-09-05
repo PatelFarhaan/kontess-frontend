@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/kontess/static/css/main.3da84ab9.chunk.css",
+    "main.js": "/kontess/static/js/main.b5d558c3.chunk.js",
+    "main.js.map": "/kontess/static/js/main.b5d558c3.chunk.js.map",
+    "runtime-main.js": "/kontess/static/js/runtime-main.2682799b.js",
+    "runtime-main.js.map": "/kontess/static/js/runtime-main.2682799b.js.map",
+    "static/css/2.99604850.chunk.css": "/kontess/static/css/2.99604850.chunk.css",
+    "static/js/2.aa956ad8.chunk.js": "/kontess/static/js/2.aa956ad8.chunk.js",
+    "static/js/2.aa956ad8.chunk.js.map": "/kontess/static/js/2.aa956ad8.chunk.js.map",
+    "index.html": "/kontess/index.html",
+    "precache-manifest.f23f61cbc2f12318aead6d20aaac4c69.js": "/kontess/precache-manifest.f23f61cbc2f12318aead6d20aaac4c69.js",
+    "service-worker.js": "/kontess/service-worker.js",
+    "static/css/2.99604850.chunk.css.map": "/kontess/static/css/2.99604850.chunk.css.map",
+    "static/css/main.3da84ab9.chunk.css.map": "/kontess/static/css/main.3da84ab9.chunk.css.map",
+    "static/js/2.aa956ad8.chunk.js.LICENSE.txt": "/kontess/static/js/2.aa956ad8.chunk.js.LICENSE.txt",
+    "static/media/light_theme.scss": "/kontess/static/media/bgSMU.a5447cc3.jpg",
+    "static/media/profile.svg": "/kontess/static/media/profile.139aeefb.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2682799b.js",
+    "static/css/2.99604850.chunk.css",
+    "static/js/2.aa956ad8.chunk.js",
+    "static/css/main.3da84ab9.chunk.css",
+    "static/js/main.b5d558c3.chunk.js"
+  ]
+}
