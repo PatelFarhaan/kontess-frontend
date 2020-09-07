@@ -91,7 +91,7 @@ export default class Activity extends React.Component {
       this.setState({ zoomYes: true });
       localStorage.setItem("Zoom", "true");
       window.location.href =
-        "https://zoom.us/oauth/authorize?response_type=code&client_id=YnD8mpmR7ykK_5KnuWB6A&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fkontess%2Fdashboard%2Fevents";
+        "https://zoom.us/oauth/authorize?response_type=code&client_id=YnD8mpmR7ykK_5KnuWB6A&redirect_uri=http%3A%2F%2F3.128.47.140%2Fkontess%2Fdashboard%2Fevents";
     } else this.setState({ zoomYes: false });
   };
   handleZoomNo = (e) => {
