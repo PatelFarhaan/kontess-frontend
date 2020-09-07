@@ -2,7 +2,7 @@
   "name": "kontess-front-end",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://***REMOVED_HOST***/kontess",
+  "homepage": "http://***REMOVED_HOST***/",
   "dependencies": {
     "@date-io/moment": "^1.3.11",
     "@dschoon/react-waves": "^3.0.1",
