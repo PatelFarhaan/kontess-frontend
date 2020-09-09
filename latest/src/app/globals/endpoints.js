@@ -3,7 +3,8 @@ import config from "../../config";
 import * as session from "../../utils/session";
 //Base URL
 export const baseURL = `${config}/api/`;
-export const zoomLambdaURL = "";
+export const zoomLambdaURL =
+  "https://qi8o5vmoxj.execute-api.us-east-2.amazonaws.com/default/zoom_connect";
 
 // Token Route
 export const getTokenRoute = baseURL + "token/";
