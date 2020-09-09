@@ -5,6 +5,7 @@ import * as session from "../../utils/session";
 export const baseURL = `${config}/api/`;
 export const zoomLambdaURL =
   "https://qi8o5vmoxj.execute-api.us-east-2.amazonaws.com/default/zoom_connect";
+export const proxyUrl = "https://cors-anywhere.herokuapp.com/";
 
 // Token Route
 export const getTokenRoute = baseURL + "token/";
