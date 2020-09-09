@@ -1,0 +1,31 @@
+on:
+  push:
+    branches:
+      - dev-darryl-all
+
+name: Deploy to Test Server
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: '***REMOVED_AWS_KEY***'
+        aws-secret-access-key: '***REMOVED_AWS_SECRET***'
+        aws-region: us-east-2
+
+    - name: Push to EC2
+      id: deploy
+      run: |
+        aws deploy create-deployment \
+          --application-name Frontend \
+          --deployment-group-name FrontendGroup \
+          --deployment-config-name CodeDeployDefault.OneAtATime \
+          --github-location repository=${{ github.repository }},commitId=${{ github.sha }}
