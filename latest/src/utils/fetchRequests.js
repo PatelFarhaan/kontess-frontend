@@ -93,19 +93,21 @@ export const postFetch = async (api, data) => {
 };
 
 export const postFetchZoom = async (api, data) => {
-  console.log(data);
   let result = await fetch(routes.proxyUrl + routes.zoomLambdaURL + api, {
     method: "POST",
     body: JSON.stringify(data),
     headers: await routes.reqHeader(),
   })
     .then(function (response) {
+      console.log(response);
       return response.json();
     })
     .then(function (responseBody) {
+      console.log(responseBody);
       return responseBody;
     })
     .catch(function (error) {
+      console.log(error);
       throw commonErrorMsg;
     });
   return result;
