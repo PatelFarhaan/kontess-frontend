@@ -41,14 +41,14 @@ export default class Card extends React.Component {
               Start URL for Zoom: {this.props.data.start_url}
             </small>
             <br />
-            <small className="text-muted">
+            {/* <small className="text-muted">
               Description:{" "}
               <span
                 dangerouslySetInnerHTML={{
                   __html: Urlify(this.props.data.description),
                 }}
               ></span>
-            </small>
+            </small> */}
           </div>
         </div>
       </div>
