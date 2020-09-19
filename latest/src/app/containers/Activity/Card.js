@@ -22,7 +22,7 @@ export default class Card extends React.Component {
               <br /> <Moment format="DD">{this.state.date}</Moment>
             </h4>
           </div>
-          <div className="comment-text w-100">
+          <div className="comment-text w-100 DARRYL">
             <h4 className="text-muted">{this.props.data.title}</h4>
             <small className="m-b-5 text-muted">
               {" "}
