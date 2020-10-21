@@ -250,10 +250,10 @@ export default class People extends React.Component {
                                                             <th >Email</th>
                                                             <th >Teams</th>
                                                             <th >Role</th>
-                                                            <th >SMU ID</th>
-                                                            <th >Pitch Name</th>
-                                                            <th>Citizenship</th>
-                                                            <th>Use of funds</th>
+                                                            <th >Phone Number</th>
+                                                            <th >High School Name</th>
+                                                            <th>Grade Level</th>
+                                                            <th>Elevator Pitch</th>
                                                             <th>Created on</th>
                                                             <th className="text-center">Action</th>
                                                         </tr>
