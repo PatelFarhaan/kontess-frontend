@@ -62,12 +62,12 @@ const pages = [
     pageId: "people",
     authorized: ["participant", "judge"],
   },
-  {
-    name: "Messages",
-    iconPath: "far fa-comment-alt",
-    pageId: "my_team",
-    authorized: ["admin", "participant", "judge"],
-  },
+  // {
+  //   name: "Messages",
+  //   iconPath: "far fa-comment-alt",
+  //   pageId: "my_team",
+  //   authorized: ["admin", "participant", "judge"],
+  // },
   {
     name: "Task",
     iconPath: "fas fa-tasks",

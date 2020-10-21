@@ -32,6 +32,7 @@ class JudgeModal extends React.Component {
         this.state.lastName,
         this.state.title,
         this.state.email,
+        this.state.phone,
         this.state.password
       )
       .then(result => {
@@ -101,3 +102,8 @@ class JudgeModal extends React.Component {
   }
 }
 export default withRouter(JudgeModal);
+
+// 1. Remove complete chat functionality
+// 2. username: pre-email, email, password
+// 3. Participants --> Full name, Email, High School name, Grade level, Link to elevator pitch, drop down select --> what counties are u located in? ans given in doc file
+// 4. Judges --> Full name, email, phone, Title, and short bio (longer text field).

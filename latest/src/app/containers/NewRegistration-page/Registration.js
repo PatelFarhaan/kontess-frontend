@@ -14,6 +14,7 @@ import {
 import { emailRegex } from "../../globals/contants";
 import Select from "react-select";
 import { affiliationOptions } from "../../globals/contants";
+import { countiesNameList } from "../../globals/contants";
 import * as session from "../../../utils/session";
 
 class NewRegistratoin extends React.Component {
@@ -34,6 +35,7 @@ class NewRegistratoin extends React.Component {
       goal_for_prototype: "",
       major: "",
       affiliations: "",
+      counties: "",
       i_agree_to_the_rules_of_the_competition: false,
       role: "",
       error: "",
@@ -81,6 +83,7 @@ class NewRegistratoin extends React.Component {
       goal_for_prototype,
       major,
       affiliations,
+      counties,
       i_agree_to_the_rules_of_the_competition,
     } = this.state;
     const data = {
@@ -100,6 +103,7 @@ class NewRegistratoin extends React.Component {
       goal_for_prototype,
       major,
       affiliations,
+      counties,
       i_agree_to_the_rules_of_the_competition,
     };
     var validation = `${
@@ -140,6 +144,7 @@ class NewRegistratoin extends React.Component {
     if (validation === "true") {
       // data.affiliations = JSON.stringify(affiliations);
       if (data.role == "judge") data.affiliations = "N.A.";
+      if (data.role == "judge") data.counties = "N.A.";
       this.setState({
         loading: true,
       });
@@ -208,6 +213,11 @@ class NewRegistratoin extends React.Component {
   affiliationsHandler = (affiliations) => {
     this.setState({
       affiliations: affiliations,
+    });
+  };
+  countiesHandler = (counties) => {
+    this.setState({
+      counties: counties,
     });
   };
   handleChange = (skill) => {
@@ -285,12 +295,12 @@ class NewRegistratoin extends React.Component {
                       name="school_name"
                       value={this.state.school_name}
                       onChange={this.formHandler}
-                      placeholder="School Name*"
+                      placeholder="High School Name*"
                       className="fadeInAnimation"
                       required
                     />
 
-                    <input
+                    {/* <input
                       type="text"
                       name="school_id"
                       value={this.state.school_id}
@@ -298,13 +308,13 @@ class NewRegistratoin extends React.Component {
                       placeholder="Student ID*"
                       className="fadeInAnimation"
                       required
-                    />
+                    /> */}
                     <input
                       type="text"
                       name="major"
                       value={this.state.major}
                       onChange={this.formHandler}
-                      placeholder="Major*"
+                      placeholder="Grade Level*"
                       className="fadeInAnimation"
                       required
                     />
@@ -314,11 +324,17 @@ class NewRegistratoin extends React.Component {
                       name="pitch_name"
                       value={this.state.pitch_name}
                       onChange={this.formHandler}
-                      placeholder="Pitch Name*"
+                      placeholder="Link to Elevator Pitch"
                       className="fadeInAnimation"
-                      required
+                      
                     />
-                    <input
+                    <span className="color-white">What counties are u located in*</span>
+                    <Select
+                      className="fadeInAnimation myClassName"
+                      onChange={this.countiesHandler}
+                      options={countiesNameList}
+                    />
+                    {/* <input
                       type="text"
                       name="citizenship"
                       value={this.state.citizenship}
@@ -353,7 +369,7 @@ class NewRegistratoin extends React.Component {
                       placeholder="Goal of Prototype*"
                       className="fadeInAnimation"
                       required
-                    />
+                    /> */}
                     {/* <input
                       type="text"
                       name="affiliations"
@@ -372,7 +388,24 @@ class NewRegistratoin extends React.Component {
                     />*/}
                   </div>
                 ) : (
-                  ""
+                  <div>
+                      <input 
+                        type="textarea"
+                        name="bio"
+                        value={this.state.bio}
+                        onChange={this.formHandler}
+                        placeholder="Short Bio"
+                        required
+                      />
+                      <input
+                        type="text"
+                        name="phone_number"
+                        value={this.state.phone_number}
+                        onChange={this.formHandler}
+                        placeholder="Phone Number"
+                        required
+                      />
+                  </div>
                 )}
 
                 {/* {this.state.role === 'judge' ? <div><span className="color-white">Select Skills*</span> <Select

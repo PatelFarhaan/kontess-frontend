@@ -56,9 +56,9 @@ export default class Card extends React.Component {
                   <div className="col-md-2">
                     <h5 className="text-muted text-center">{capitalize(user.role)}</h5>
                   </div>
-                  <div className="col-md-3 text-right pr-5">
+                  {/* <div className="col-md-3 text-right pr-5">
                     {this.state.currentId !== user.id ? <Link to={"/dashboard/my_team?UID=" + user.id} className="mr-1 btn btn-md btn-primary px-4 rounded-0">Message</Link> : ''}
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div> 

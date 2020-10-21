@@ -737,7 +737,7 @@ export default class MyTeam extends React.Component {
                   ) : (
                     ""
                   )}
-                  <div className="list-group">
+                  {/* <div className="list-group">
                     <div className="clearfix border-bottom pb-2 mb-3">
                       <div className="float-left">
                         <h5 className="chat-user-list mb-0 border-bottom-0">
@@ -799,7 +799,7 @@ export default class MyTeam extends React.Component {
                         <Loading />
                       )}
                     </ul>
-                  </div>
+                  </div> */}
                   <div className="list-group">
                     <div className="clearfix border-bottom pb-2 mb-3">
                       <div className="float-left">

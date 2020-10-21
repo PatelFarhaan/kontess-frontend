@@ -1273,11 +1273,11 @@ export default class Team extends React.Component {
               </div>
               <div className="col-md-4">
                 <div className="team-task-list">
-                  <h5 className="text-primary mb-4">
+                  {/* <h5 className="text-primary mb-4">
                     For direct messages, go to the
                     <Link to="/dashboard/my_team">"Messages"</Link> tab
                   </h5>
-                  <TeamTasks teamId={teamInfo.id}></TeamTasks>
+                  <TeamTasks teamId={teamInfo.id}></TeamTasks> */}
                 </div>
                 <hr />
                 <TeamEvents teamId={teamInfo.id}></TeamEvents>

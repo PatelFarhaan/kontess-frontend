@@ -290,11 +290,12 @@ export default class People extends React.Component {
                                                                         <i title="Edit" className="far fa-edit fa-lg "></i>
 
                                                                     </Link>
-                                                                    <Link className="text-info"
+                                                                    {/* <Link className="text-info"
                                                                         to={"/dashboard/my_team?UID=" + user.id}
                                                                     >
                                                                         <i title="Message" className="far fa-comment-alt fa-lg ml-2"></i>
-                                                                    </Link>{user.role != 'admin' ? <i onClick={() => this.deleteUser(user.id)} title="Delete" className="fa fa-trash px-1 fa-lg ml-2"></i> : ''}</td>
+                                                                    </Link> */}
+                                                                    {user.role != 'admin' ? <i onClick={() => this.deleteUser(user.id)} title="Delete" className="fa fa-trash px-1 fa-lg ml-2"></i> : ''}</td>
                                                             </tr>) : ''}
 
                                                     </tbody> </table></div>}
