@@ -65,11 +65,11 @@ export default class TeamEvents extends React.Component {
             ))
             : <h4 className="text-center padding100">No team events yet</h4>}
         </ul>
-        <div className="my-3">
+        {/* <div className="my-3">
           <Link to={'/dashboard/create-team-event/' + this.props.teamId} className="btn btn-lg btn-primary px-4 rounded-0 btn-block w-75 m-auto">
             Create Event
           </Link>
-        </div>
+        </div> */}
       </div>
     );
   }

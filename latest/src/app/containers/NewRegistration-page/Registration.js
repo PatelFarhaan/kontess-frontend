@@ -328,7 +328,7 @@ class NewRegistratoin extends React.Component {
                       className="fadeInAnimation"
                       
                     />
-                    <span className="color-white">What counties are u located in*</span>
+                    <span className="color-white">What counties are you located in*</span>
                     <Select
                       className="fadeInAnimation myClassName"
                       onChange={this.countiesHandler}
