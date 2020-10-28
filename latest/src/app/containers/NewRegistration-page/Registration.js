@@ -287,8 +287,7 @@ class NewRegistratoin extends React.Component {
                       name="phone_number"
                       value={this.state.phone_number}
                       onChange={this.formHandler}
-                      placeholder="Phone Number*"
-                      required
+                      placeholder="Phone Number"
                     />
                     <input
                       type="text"
@@ -326,7 +325,6 @@ class NewRegistratoin extends React.Component {
                       onChange={this.formHandler}
                       placeholder="Link to Elevator Pitch"
                       className="fadeInAnimation"
-                      
                     />
                     <span className="color-white">What counties are you located in*</span>
                     <Select
@@ -403,7 +401,6 @@ class NewRegistratoin extends React.Component {
                         value={this.state.phone_number}
                         onChange={this.formHandler}
                         placeholder="Phone Number"
-                        required
                       />
                   </div>
                 )}
