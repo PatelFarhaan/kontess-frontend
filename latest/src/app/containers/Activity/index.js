@@ -109,6 +109,7 @@ export default class Activity extends React.Component {
           <section className="dasboard-mid mt-2">
             <div className="row">
               <div className="col-lg-7 stretched_card mt-4">
+                {session.getUserType() === "admin" ? (
                 <div className="card addEvent">
                   <div className="card-header d-flex align-items-center">
                     <div className="col-md-8 pull-left">
@@ -174,7 +175,7 @@ export default class Activity extends React.Component {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> ) : "" }
                 <div className="card">
                   <div className="card-header d-flex align-items-center">
                     <div className="col-md-8 pull-left">

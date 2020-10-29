@@ -134,11 +134,15 @@ class NewRegistratoin extends React.Component {
         ? "Please enter goal for prototype"
         */
         !phone_number && role !== "judge"
-        ? "Please enter your student ID"
+        ? "Please enter your phone number"
         : !school_name && role !== "judge"
-        ? "Please enter your pitch name"
+        ? "Please enter your school name"
         : !major && role !== "judge"
-        ? "Please enter your citizenship"
+        ? "Please enter your grade level"
+        : !affiliations && role !== "judge"
+        ? "Please enter your link to pitch"
+        : !counties && role !== "judge"
+        ? "Please choose your location"
         : true
     }`;
     if (validation === "true") {
@@ -320,8 +324,10 @@ class NewRegistratoin extends React.Component {
 
                     <input
                       type="text"
-                      name="pitch_name"
-                      value={this.state.pitch_name}
+                      //name="pitch_name"
+                      //value={this.state.pitch_name}
+                      name="affiliations"
+                      value={this.state.affiliations}
                       onChange={this.formHandler}
                       placeholder="Link to Elevator Pitch"
                       className="fadeInAnimation"
