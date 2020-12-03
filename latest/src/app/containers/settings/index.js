@@ -72,7 +72,7 @@ export default class Settings extends React.Component {
     self.setState({
       loading: true
     })
-    await fetch(routes.baseURL + 'user/' + user_id, {
+    await fetch(routes.baseURL + 'user/' + user_id + "/", {
       method: 'GET',
       headers: await routes.reqHeader()
     }).then(function (response) {
@@ -261,7 +261,7 @@ export default class Settings extends React.Component {
                         {userType === 'participant' ? <div>
 
                           <div className="bio-sec mb-3">
-                            <h6 className="border-bottom border-secondary pb-2 text-secondary text-bold">School Name</h6>
+                            <h6 className="border-bottom border-secondary pb-2 text-secondary text-bold">High School Name</h6>
                             {editMode ? <div className="form-group"><input name="school_name" onChange={this.formHandler} className="form-control" type="text" placeholder="School Name" value={this.state.school_name} /></div>
                               : <p className="text-secondary">{this.state.school_name ? this.state.school_name : ''}</p>
                             }
