@@ -11,6 +11,7 @@ import { getFetch } from "../../../utils/fetchRequests";
 import Select from 'react-select';
 import { Link } from 'react-router-dom';
 import { affiliationOptions } from "../../globals/contants";
+import { countiesNameList } from "../../globals/contants";
 import history from "../../../history";
 import HubspotForm from 'react-hubspot-form';
 
@@ -120,6 +121,18 @@ export default class Settings extends React.Component {
   formHandler = (event) => {
     this.setState({ [event.target.name]: event.target.value, validation: '' });
   }
+  countiesHandler = (counties) => {
+    this.setState({
+      counties: counties,
+    });
+  };
+  getAffilitationData(value){
+    try {
+      return JSON.parse(value)
+    } catch (error) {
+      return value
+    }
+  }
   logout = () => {
     confirmAlert({
       title: 'Confirm',
@@ -140,7 +153,7 @@ export default class Settings extends React.Component {
     history.push("/");
   }
   submit = async () => {
-    const { userName, email, biography, user_name, phone_number, school_name, major, affiliations, userType } = this.state;
+    const { userName, email, biography, user_name, phone_number, school_name, major, counties, affiliations, userType } = this.state;
     let self = this;
     var validation = `${
       !user_name ? 'Please enter user name' :
@@ -148,9 +161,9 @@ export default class Settings extends React.Component {
           !email ? 'Please enter your email' :
             !emailRegex.test(email) ? 'Please enter valid email id' :
               !phone_number ? 'Please enter phone number' :
-                !school_name && userType === 'participant' ? 'Please enter school name' :
-                  !major && userType === 'participant' ? 'Please enter major name' :
-                    !affiliations && userType === 'participant' ? 'Please selete Affiliation with UCI' :
+                !school_name && userType === 'participant' ? 'Please enter High School Name' :
+                  !major && userType === 'participant' ? 'Please enter Grade Level' :
+                    !affiliations && userType === 'participant' ? 'Link to Elevator Pitch' :
                       true
       }`
     if (validation === 'true') {
@@ -165,8 +178,13 @@ export default class Settings extends React.Component {
       formData.append('major', major);
       formData.append('affiliations', JSON.stringify(affiliations));
       formData.append('email', email);
-      formData.append('biography', biography);
       formData.append('skill', JSON.stringify(this.state.skillFromUser))
+      if(counties){
+        formData.append('counties', counties);
+      }
+      if(biography){
+        formData.append('biography', biography);
+      }
       if (this.state.img) {
         formData.append('user_image', this.state.img)
       }
@@ -268,13 +286,32 @@ export default class Settings extends React.Component {
                           </div>
                           <div className="bio-sec mb-3">
                             <h6 className="border-bottom border-secondary pb-2 text-secondary text-bold">Major</h6>
-                            {editMode ? <div className="form-group"><input name="major" onChange={this.formHandler} className="form-control" type="text" placeholder="Major" value={this.state.major} /></div>
+                            {editMode ? <div className="form-group"><input name="major" onChange={this.formHandler} className="form-control" type="text" placeholder="Grade Level" value={this.state.major} /></div>
                               : <p className="text-secondary">{this.state.major ? this.state.major : ''}</p>
                             }
                           </div>
-                          <h6 className="border-bottom border-secondary pb-2 text-secondary text-bold">Affiliation with UCI</h6>
+                          <div className="bio-sec mb-3">
+                            <h6 className="border-bottom border-secondary pb-2 text-secondary text-bold">Link to Elevator Pitch</h6>
+                            {editMode ? <div className="form-group"><input name="affiliations" onChange={this.formHandler} className="form-control" type="text" placeholder="Link to Elevator Pitch" value={this.state.affiliations} /></div>
+                              : <p className="text-secondary">{ this.state.affiliations ? this.state.affiliations : ''}</p>
+                            }
+                          </div>
+                          <div className="bio-sec mb-3">
+                            <h6 className="border-bottom border-secondary pb-2 text-secondary text-bold">What counties are you located in*</h6>
+                            {editMode ? <div className="form-group"> <Select className="fadeInAnimation myClassName" onChange={this.countiesHandler} value={this.state.counties} options={countiesNameList} /></div>
+                              : <p className="text-secondary">{ this.state.counties ? this.state.counties : ''}</p>
+                            }
+                          </div>
+
+
+
+                          {
+                            /*
+                            <h6 className="border-bottom border-secondary pb-2 text-secondary text-bold">Affiliation with UCI</h6>
                           {editMode ? <Select className="myClassName" onChange={this.affiliationsHandler} options={affiliationOptions} value={this.state.affiliations} />
                             : <p className="text-secondary">{this.state.affiliations ? this.state.affiliations.label : ''}</p>
+                          }
+                             */
                           }
 
                         </div> : ""}
