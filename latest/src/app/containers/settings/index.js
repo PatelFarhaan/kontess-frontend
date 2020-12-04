@@ -93,7 +93,7 @@ export default class Settings extends React.Component {
           phone_number: res.data.phone_number,
           school_name: res.data.school_name,
           major: res.data.major,
-          affiliations: JSON.parse(res.data.affiliations),
+          affiliations: self.getAffilitationData(res.data.affiliations),
         })
       }
       else {
@@ -129,6 +129,16 @@ export default class Settings extends React.Component {
   getAffilitationData(value){
     try {
       return JSON.parse(value)
+    } catch (error) {
+      return value
+    }
+  }
+  setAffilitationData(value){
+    try {
+      if (typeof(value) != "string"){
+        return JSON.stringify(value)
+      }
+      return value
     } catch (error) {
       return value
     }
@@ -176,9 +186,9 @@ export default class Settings extends React.Component {
       formData.append('phone_number', phone_number);
       formData.append('school_name', school_name);
       formData.append('major', major);
-      formData.append('affiliations', JSON.stringify(affiliations));
+      formData.append('affiliations', self.setAffilitationData(affiliations));
       formData.append('email', email);
-      formData.append('skill', JSON.stringify(this.state.skillFromUser))
+      formData.append('skill', self.setAffilitationData(this.state.skillFromUser))
       if(counties){
         formData.append('counties', counties);
       }

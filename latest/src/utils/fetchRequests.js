@@ -179,6 +179,7 @@ export const getSkills = async () => {
 
 export const downloadDoc = async (url, fileName) => {
   var xhr = new XMLHttpRequest();
+  url = url.replace("http:", "")
   xhr.open("GET", url, true);
   xhr.responseType = "blob";
   xhr.onload = function () {
