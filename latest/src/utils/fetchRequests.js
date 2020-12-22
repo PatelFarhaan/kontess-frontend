@@ -93,7 +93,7 @@ export const postFetch = async (api, data) => {
 };
 
 export const postFetchZoom = async (api, data) => {
-  let result = await fetch(routes.proxyUrl + routes.zoomLambdaURL + api, {
+  let result = await fetch(api, {
     method: "POST",
     body: JSON.stringify(data),
     headers: await routes.reqHeader(),

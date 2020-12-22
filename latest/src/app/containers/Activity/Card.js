@@ -1,7 +1,7 @@
 import React from "react";
 import Moment from "react-moment";
 import moment from "moment";
-import { Urlify } from "../../globals/contants";
+// import { Urlify } from "../../globals/contants";
 
 export default class Card extends React.Component {
   constructor(props) {
@@ -12,6 +12,12 @@ export default class Card extends React.Component {
     };
   }
 
+  closeModal = async () => {
+    let x = document.getElementById("close-new-event")
+    if (x){
+      x.click();
+    }
+  };
   render() {
     return (
       <div className="comment-widgets mb-3">
@@ -29,17 +35,22 @@ export default class Card extends React.Component {
               <Moment format="llll">{this.state.date}</Moment>
             </small>
             <br />
-            <small className="text-muted">
-              Location: {this.props.data.location}
-            </small>
+            {
+              this.props.data.location !== ""?
+              (
+                <small className="text-muted">
+                  Location: {this.props.data.location} <br />
+                </small>
+                ):""
+            }
             <br />
-            <small className="text-muted">
-              Join URL for Zoom: {this.props.data.join_url}
-            </small>
-            <br />
-            <small className="text-muted">
-              Start URL for Zoom: {this.props.data.start_url}
-            </small>
+            {
+              this.props.userType === "admin" && this.props.data.start_url !== "" 
+              ? (<a className="btn" href={this.props.data.start_url} onClick={this.closeModal} target="_blank" rel="noopener noreferrer">Start Meeting &nbsp;&nbsp;&nbsp;</a>)
+              : this.props.userType !== "admin" && this.props.data.join_url !== ""
+              ? (<a className="btn" href={this.props.data.join_url} onClick={this.closeModal} target="_blank" rel="noopener noreferrer">Join Meeting </a>)
+              : null
+            }
             <br />
             {/* <small className="text-muted">
               Description:{" "}

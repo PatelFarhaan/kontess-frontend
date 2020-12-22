@@ -93,9 +93,10 @@ export default class TaskDetails extends React.Component {
             if (resp.data) {
                 self.setState({
                     tracks: resp.data
-                }, () => {
-                    self.getAllTeams(0, this.state.tracks[0].id)
                 })
+                if (resp.data.length >0){
+                    self.getAllTeams(0, resp.data[0].id)
+                }
             }
         }).catch(err => { })
     }
