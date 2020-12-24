@@ -50,7 +50,7 @@ export default class ToDOList extends React.Component {
     render() {
         const { userId, type, userType } = this.state;
         return (
-            <div className="todo-list-section mt-5">
+            <div className="todo-list-section mb-5">
                 <h5 className="mb-4 text-muted">{this.props.title}</h5>
                 {type === 'byTeam' ?
                     <div>
