@@ -1,17 +1,17 @@
 
 import React from 'react';
 import * as session from '../../../utils/session';
-import { getFetch, postFetch } from '../../../utils/fetchRequests';
+import { getFetch/*, postFetch*/ } from '../../../utils/fetchRequests';
 import DashboardTemplate from "../../components/dashboard-template/DashBoardTemplate";
 import Card from "./Card";
 import Pagination from '../../components/pagination'
 import moment from "moment";
 import Moment from 'react-moment';
-import { profileLogo, kontessLogo, Loading } from '../../globals/contants';
-import { confirmAlert } from 'react-confirm-alert';
-import { toast } from 'react-toastify';
-import { commonErrorMsg, noResultFoundMsg } from "../../../utils/Message";
-import { async } from 'q';
+//import { profileLogo, kontessLogo, Loading } from '../../globals/contants';
+//import { confirmAlert } from 'react-confirm-alert';
+//import { toast } from 'react-toastify';
+//import { commonErrorMsg, noResultFoundMsg } from "../../../utils/Message";
+//import { async } from 'q';
 import { Urlify } from '../../globals/contants';
 
 export default class TaskDetails extends React.Component {
@@ -124,7 +124,7 @@ export default class TaskDetails extends React.Component {
     }
 
     render() {
-        const { title, judge, description, submission_due_date, grade_due_date, questions, max_no_of_judge, assing_to, taskId } = this.state;
+        const { title, /*judge,*/ description, submission_due_date, grade_due_date, questions, max_no_of_judge, assing_to, taskId } = this.state;
         return (
             <DashboardTemplate title="Task View" pageId="task" loading={this.state.loading}>
                 <div>

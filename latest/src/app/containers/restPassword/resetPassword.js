@@ -2,9 +2,9 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { toast } from 'react-toastify';
-import participantAuthService from "../../services/ParticipantAuthService";
+//import participantAuthService from "../../services/ParticipantAuthService";
 import * as routes from "../../globals/endpoints";
-import { setUser, setisAuthenticated, setSession } from "../../../utils/session";
+//import { setUser, setisAuthenticated, setSession } from "../../../utils/session";
 
 class ResetPassword extends React.Component {
   constructor(props) {
@@ -24,12 +24,12 @@ class ResetPassword extends React.Component {
 
   handleResetPassword = async (event) => {
     event.preventDefault();
-    const { email, password, confirmPassword } = this.state
+    const { /*email,*/ password, confirmPassword } = this.state
 
     var validation = `${
       !password ? 'Please enter password' : password.length < 8 ? 'Enter password must be above 8 characters' :
         !confirmPassword ? 'Please enter confirmPassword' :
-          confirmPassword != password ? 'Confirm Password not matched' : "true"}`;
+          confirmPassword !== password ? 'Confirm Password not matched' : "true"}`;
 
     if (validation === 'true') {
       let self = this;

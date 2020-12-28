@@ -7,11 +7,11 @@ import Card from "./Card";
 import Pagination from '../../components/pagination'
 import moment from "moment";
 import Moment from 'react-moment';
-import { profileLogo, kontessLogo, Loading } from '../../globals/contants';
+import { profileLogo, Loading } from '../../globals/contants';
 import { confirmAlert } from 'react-confirm-alert';
 import { toast } from 'react-toastify';
 import { commonErrorMsg, removeJudgeMsg } from "../../../utils/Message";
-import { async } from 'q';
+//import { async } from 'q';
 import FileName from '../people/fileName';
 import { Urlify } from '../../globals/contants';
 
@@ -193,13 +193,18 @@ export default class TaskDetails extends React.Component {
             });
     }
     getJudgeStatus = (Judge) => {
-        let data = <a onClick={() => this.assignJuge(Judge)} className="text-primary">Assign</a>;
+        let data = <a onClick={() => this.assignJuge(Judge)} className="text-primary" href="/#">Assign</a>;
         if (this.state.dataList.judges) {
+            /*
             this.state.dataList.judges.find(function (judge) {
                 if (judge.id === Judge.id) {
-                    data = <a className="text-info">Assigned</a>;;
+                    data = <a className="text-info" href="/#" >Assigned</a>;;
                 }
-            });
+                return;
+            });*/
+            const found = this.state.dataList.judges.find( judge => judge.id === Judge.id );
+            if( found )
+                data = <a className="text-info" href="/#" >Assigned</a>;;
         }
         return data;
     }
@@ -466,7 +471,7 @@ export default class TaskDetails extends React.Component {
                         </div>
                         {assing_to === 'teams' ? <div className="ui pointing secondary menu">
                             {this.state.tracks.map(track => (
-                                <a className={`item ${this.state.curruntTrack === track.id ? 'active' : ''}`} onClick={(e) => this.getAllTeams(0, track.id)}>{track.track_name}</a>
+                                <a className={`item ${this.state.curruntTrack === track.id ? 'active' : ''}`} onClick={(e) => this.getAllTeams(0, track.id)} href="/#">{track.track_name}</a>
                             ))}
                         </div> : ''}
                         <div className="card-body padding-40">
@@ -494,7 +499,7 @@ export default class TaskDetails extends React.Component {
                                                                 <span className="mb-0 font-weight-light pl-3">{user.full_name}</span>
                                                             </div>
                                                             <div className="judge-action float-right">
-                                                                <a onClick={() => this.reamoveJuge(user)} className="text-danger">remove</a>
+                                                                <a onClick={() => this.reamoveJuge(user)} className="text-danger" href="/#">remove</a>
                                                             </div>
                                                         </div>
                                                     </div>

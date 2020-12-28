@@ -2,7 +2,7 @@ import React from "react";
 import Modal from "react-modal";
 import profileIcon from "../../../assets/icons/profile.svg";
 import * as serviceHelper from "../../../utils/serviceHelper";
-import * as session from "../../../utils/session";
+//import * as session from "../../../utils/session";
 
 class ProfileEditableModal extends React.Component {
   constructor(props) {
@@ -81,7 +81,7 @@ class ProfileEditableModal extends React.Component {
             </button>
           </div>
           <div>
-            <img className="profile-icon" src={profileIcon} />
+            <img className="profile-icon" src={profileIcon} alt="profile icon"/>
           </div>
           <div className="profile-info">
             <div className="header">{this.state.name}</div>
@@ -118,7 +118,7 @@ class ProfileEditableModal extends React.Component {
             <div className="info">
               <b>Email:</b> {this.state.email}
             </div>
-            {this.props.type == "Participant" && (
+            {this.props.type === "Participant" && (
               <div className="info">
                 <div>
                   <b>Team:</b> {this.state.teamName}

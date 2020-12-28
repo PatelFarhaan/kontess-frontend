@@ -284,7 +284,7 @@ class App extends React.Component {
                       pathName={"/"}
                       isAuthenticated={
                         this.state.isAuthenticated &&
-                        session.getUserType() != "admin"
+                        session.getUserType() !== "admin"
                       }
                       path={`${path}/notification-settings`}
                       component={NotificationSettings}

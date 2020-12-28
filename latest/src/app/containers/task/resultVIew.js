@@ -21,9 +21,9 @@ export default class ResultView extends React.Component {
   getScore = (questionId, judgeId) => {
     let result = '---';
     let self = this;
-    this.state.task_grading.map(function (item) {
+    this.state.task_grading.forEach( item => {
       if (item.status === 'Publish' && item.judge.id === judgeId) {
-        item.grades.map(function (grade) {
+        item.grades.forEach( grade => {
           if (grade.questions.id === questionId) {
             result = grade.score;
             if (grade.comment) {
@@ -52,16 +52,16 @@ export default class ResultView extends React.Component {
     let self = this;
     let total_judge = 0;
     if (type === 'y') {
-      this.state.task_grading.map(function (item) {
+      this.state.task_grading.forEach( item => {
         if (item.status === 'Publish' && item.grades[index]) {
           total_judge++;
           result = result + item.grades[index].score;
         }
       });
     } else if (type === 'x') {
-      this.state.task_grading.map(function (item) {
+      this.state.task_grading.forEach( item => {
         if (item.status === 'Publish' && item.judge.id === judgeId) {
-          item.grades.map(function (grade) {
+          item.grades.forEach( grade => {
             result = result + grade.score;
           });
           if (item.over_all_comments) {
@@ -77,10 +77,10 @@ export default class ResultView extends React.Component {
         }
       });
     } else {
-      this.state.task_grading.map(function (item) {
+      this.state.task_grading.forEach( item => {
         if (item.status === 'Publish') {
           total_judge++;
-          item.grades.map(function (grade) {
+          item.grades.forEach( grade => {
             result = result + grade.score;
           });
         }

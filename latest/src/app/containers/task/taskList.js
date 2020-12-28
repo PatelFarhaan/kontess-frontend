@@ -135,7 +135,7 @@ export default class TaskList extends React.Component {
                 {tasks.data ? tasks.data.length ? tasks.data.map(task => (
                     <div className="card mb-1 mt-mob-4">
                         <div className="card-body p-2 px-3 d-flex justify-content-between align-items-center row ">
-                            {task.status != 'Draft' ? <Link to={'/dashboard/task-view/' + task.id} className="tak-list col-md-10">
+                            {task.status !== 'Draft' ? <Link to={'/dashboard/task-view/' + task.id} className="tak-list col-md-10">
                                 <strong className="font-family-open">{task.title}</strong>  <span className={`ml-2 badge badge-pill ${task.assing_to && task.assing_to === 'teams' ? 'badge-info' : 'badge-warning'}`} >{task.assing_to && task.assing_to === 'teams' ? '(Team Task)' : '(Individual)'}</span>
                                 {this.getTaskStatus(task)}
                             </Link> :

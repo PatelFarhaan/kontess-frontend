@@ -1,9 +1,9 @@
 
-import React, { Component } from "react";
-import * as routes from "../../globals/endpoints";
+import React /*{ Component }*/ from "react";
+//import * as routes from "../../globals/endpoints";
 import { toast } from 'react-toastify';
 import { commonErrorMsg } from "../../../utils/Message";
-import { postFetch, getFetch, postDelete } from "../../../utils/fetchRequests";
+import { postFetch, getFetch, /*postDelete*/ } from "../../../utils/fetchRequests";
 import DashboardTemplate from "../../components/dashboard-template/DashBoardTemplate";
 import {
     KeyboardDatePicker,
@@ -13,7 +13,7 @@ import {
 import Icon from "@material-ui/core/Icon";
 import MomentUtils from '@date-io/moment';
 import moment from "moment";
-import { async } from "q";
+//import { async } from "q";
 
 export default class Task extends React.Component {
     constructor(props) {
@@ -36,7 +36,7 @@ export default class Task extends React.Component {
     componentWillMount = async () => {
         await this.addQuestions();
         let location = this.props.history.location.pathname;
-        if (location.indexOf('modify-task') != -1) {
+        if (location.indexOf('modify-task') !== -1) {
             this.setState({
                 taskId: this.props.match.params.taskId,
             }, () => {
@@ -191,9 +191,11 @@ export default class Task extends React.Component {
         })
     }
     gradingQuestions = (e, index, type) => {
-        this.state.questions[index][e.target.name] = type ? e.target.checked : e.target.value;
+        let temp = this.state.questions;
+        temp[index][e.target.name] = type ? e.target.checked : e.target.value;
+        //this.state.questions[index][e.target.name] = type ? e.target.checked : e.target.value;
         this.setState({
-            questions: this.state.questions
+            questions: temp
         })
     }
     formHandler(event) {
@@ -371,7 +373,7 @@ export default class Task extends React.Component {
                                     ))
                                     : ''}
                                 <div className="form-group ">
-                                    <a onClick={() => this.addQuestions()} className="mon-med text-primary"><i className=" fa fa-plus-circle  mr-2"></i> Add new line</a>
+                                    <a onClick={() => this.addQuestions()} className="mon-med text-primary" href="/#"><i className=" fa fa-plus-circle  mr-2"></i> Add new line</a>
                                 </div>
                                 <div className="form-group">
                                     <div className="row">

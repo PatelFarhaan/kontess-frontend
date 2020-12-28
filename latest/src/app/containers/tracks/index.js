@@ -1,9 +1,9 @@
 
 import React from "react";
-import * as routes from "../../globals/endpoints";
+//import * as routes from "../../globals/endpoints";
 import { toast } from 'react-toastify';
 import { confirmAlert } from 'react-confirm-alert';
-import * as session from "../../../utils/session";
+//import * as session from "../../../utils/session";
 import DashboardTemplate from "../../components/dashboard-template/DashBoardTemplate";
 import { getFetch, postDelete } from "../../../utils/fetchRequests";
 import { Loading } from '../../globals/contants';

@@ -1,9 +1,9 @@
 
 import React from "react";
 import $ from 'jquery';
-import { async } from "q";
+//import { async } from "q";
 import { getFetch } from "../../../utils/fetchRequests";
-import { type } from "os";
+//import { type } from "os";
 import moment from 'moment';
 import Moment from 'react-moment';
 import Pagination from '../../components/pagination';
@@ -96,7 +96,7 @@ export default class Card extends React.Component {
   }
 
   percentage = (partialValue, totalValue) => {
-    if (totalValue != 0) {
+    if (totalValue !== 0) {
       let value = (100 * partialValue) / totalValue
       return Math.ceil(value);
     }

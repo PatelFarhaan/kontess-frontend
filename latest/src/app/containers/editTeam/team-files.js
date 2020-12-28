@@ -190,7 +190,7 @@ export default class Team extends React.Component {
                       <div className="d-flex flex-row comment-row border-0">
                         <div className="file-detail w-100 border-0 ml-0 pl-0">
                           <h6 className="text-muted mb-0">
-                            <a href={file.doc} download target="_blank">
+                            <a href={file.doc} download target="_blank" rel="noopener noreferrer">
                               {file.doc_name}
                             </a>
                           </h6>

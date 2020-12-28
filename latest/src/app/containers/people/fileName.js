@@ -1,15 +1,15 @@
 
 import React from "react";
-import { getFetch, postFetch } from "../../../utils/fetchRequests";
-import * as session from "../../../utils/session";
-import { toast } from 'react-toastify';
-import { commonErrorMsg } from "../../../utils/Message";
+//import { getFetch, postFetch } from "../../../utils/fetchRequests";
+//import * as session from "../../../utils/session";
+//import { toast } from 'react-toastify';
+//import { commonErrorMsg } from "../../../utils/Message";
 import {
-    KeyboardDatePicker,
+    /*KeyboardDatePicker,*/
     MuiPickersUtilsProvider
 } from "@material-ui/pickers";
 import MomentUtils from '@date-io/moment';
-import moment from "moment";
+//import moment from "moment";
 export default class FileName extends React.Component {
     constructor(props) {
         super(props);
@@ -28,7 +28,7 @@ export default class FileName extends React.Component {
     };
 
     render() {
-        const { status } = this.state;
+        //const { status } = this.state;
         return (
             <MuiPickersUtilsProvider utils={MomentUtils}>
                 <div className="modal fade" id="fileNameModal">
@@ -49,7 +49,7 @@ export default class FileName extends React.Component {
                                                             <label className="control-label font-weight-bold">File name</label>
                                                         </div>
                                                         <div className="col-md-8">
-                                                            <input type="text" required value={this.state.file_name} onChange={this.formHandler} name="file_name" className="form-control" placeholder="filename" required />
+                                                            <input type="text" value={this.state.file_name} onChange={this.formHandler} name="file_name" className="form-control" placeholder="filename" required />
                                                         </div>
                                                     </div>
                                                 </div>

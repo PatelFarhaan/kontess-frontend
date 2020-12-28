@@ -1,10 +1,10 @@
 
 import React from "react";
 import { withRouter, Link } from "react-router-dom";
-import participantAuthService from "../../services/ParticipantAuthService";
+//import participantAuthService from "../../services/ParticipantAuthService";
 import { toast } from 'react-toastify';
 import * as routes from "../../globals/endpoints";
-import { setUser, setisAuthenticated, setSession } from "../../../utils/session";
+//import { setUser, setisAuthenticated, setSession } from "../../../utils/session";
 import { emailRegex } from '../../globals/contants';
 
 class ForgotPassword extends React.Component {

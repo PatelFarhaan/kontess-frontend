@@ -1,19 +1,19 @@
 import React from "react";
 import { withRouter, Link } from "react-router-dom";
-import { toast } from "react-toastify";
+//import { toast } from "react-toastify";
 import { getSkills } from "../../../utils/fetchRequests";
 import { commonErrorMsg, emailAlreadyExistsMsg } from "../../../utils/Message";
-import participantAuthService from "../../services/ParticipantAuthService";
+//import participantAuthService from "../../services/ParticipantAuthService";
 import * as routes from "../../globals/endpoints";
 import {
-  setUser,
-  setisAuthenticated,
-  setSession,
-  setUserType,
+  //setUser,
+  setisAuthenticated
+  //setSession,
+  //setUserType,
 } from "../../../utils/session";
 import { emailRegex } from "../../globals/contants";
 import Select from "react-select";
-import { affiliationOptions } from "../../globals/contants";
+//import { affiliationOptions } from "../../globals/contants";
 import { countiesNameList } from "../../globals/contants";
 import * as session from "../../../utils/session";
 
@@ -147,8 +147,8 @@ class NewRegistratoin extends React.Component {
     }`;
     if (validation === "true") {
       // data.affiliations = JSON.stringify(affiliations);
-      if (data.role == "judge") data.affiliations = "N.A.";
-      if (data.role == "judge") data.counties = "N.A.";
+      if (data.role === "judge") data.affiliations = "N.A.";
+      if (data.role === "judge") data.counties = "N.A.";
       this.setState({
         loading: true,
       });

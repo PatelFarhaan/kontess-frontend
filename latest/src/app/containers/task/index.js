@@ -1,5 +1,5 @@
 
-import React, { Component } from "react";
+import React from "react";
 import DashboardTemplate from "../../components/dashboard-template/DashBoardTemplate";
 import EventCalender from '../Activity/eventCalender';
 import { getFetch, postFetchMutiPart } from '../../../utils/fetchRequests';
@@ -10,7 +10,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import { toast } from 'react-toastify';
 import { commonErrorMsg, submitFileMsg } from "../../../utils/Message";
 import $ from 'jquery';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import { Loading } from '../../globals/contants';
 import { Urlify } from '../../globals/contants';
 
@@ -129,9 +129,9 @@ export default class Task extends React.Component {
     showOverAll = (task_grading) => {
         if (task_grading.length) {
             let result = 0;
-            task_grading.map(function (item) {
+            task_grading.forEach( item => {
                 if (item.status === 'Publish') {
-                    item.grades.map(function (grade) {
+                    item.grades.forEach( grade => {
                         result = result + grade.score
                     });
                 }
@@ -201,12 +201,12 @@ export default class Task extends React.Component {
                                                         <h6>submitted files
                                                         {task.submitted_docs.map((item, index) =>
                                                             <div className="mt-1">
-                                                                {index + 1}.)  <a href={item.doc} download target="_blank">
+                                                                {index + 1}.)  <a href={item.doc} download target="_blank" rel="noopener noreferrer">
                                                                     {item.doc.substring(item.doc.lastIndexOf('/') + 1)}
                                                                 </a><br /></div>
                                                         )}
                                                         </h6>
-                                                        {task.task.release_score_to_participant ? <a onClick={() => this.goToResults(task.id)}>
+                                                        {task.task.release_score_to_participant ? <a onClick={() => this.goToResults(task.id)} href="/#">
                                                             <span className="text-primary  pt-1 d-block font-weight-bold text-underline">View score detail  <i className="fas fa-eye"></i>
                                                             </span></a> : ''}</div> : ''}
 

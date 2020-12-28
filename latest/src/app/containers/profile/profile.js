@@ -1,5 +1,5 @@
 
-import React, { Component } from "react";
+import React /*{ Component }*/ from "react";
 import * as routes from "../../globals/endpoints";
 import { toast } from 'react-toastify';
 import { commonErrorMsg } from "../../../utils/Message";
@@ -146,7 +146,7 @@ export default class profile extends React.Component {
     }
   }
   render() {
-    let { userImg, loading, UserType, editMode, validation } = this.state;
+    let { userImg, loading, /*UserType,*/ editMode, validation } = this.state;
     return (
       <DashboardTemplate title="Profile" pageId="profile" loading={loading}>
         <div className="setting_container">

@@ -2,7 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom"
 import DashboardTemplate from "../../components/dashboard-template/DashBoardTemplate";
-import * as routes from "../../globals/endpoints";
+//import * as routes from "../../globals/endpoints";
 import * as session from "../../../utils/session";
 import Pagination from '../../components/pagination'
 import Card from "./Card";
@@ -166,9 +166,9 @@ export default class TeamInfo extends React.Component {
             </div>
             <div>
               <div className="ui pointing secondary menu">
-                <a className={`item ${this.state.curruntTrack === '' ? 'active' : ''}`} onClick={(e) => this.getAllTeams()}>All Teams</a>
+                <a href="/#" className={`item ${this.state.curruntTrack === '' ? 'active' : ''}`} onClick={(e) => this.getAllTeams()}>All Teams</a>
                 {this.state.tracks.map(track => (
-                  <a className={`item ${this.state.curruntTrack === track.slug ? 'active' : ''}`} onClick={(e) => this.getAllTeams(0, '', '', track.slug)}>{track.track_name}</a>
+                  <a href="/#" className={`item ${this.state.curruntTrack === track.slug ? 'active' : ''}`} onClick={(e) => this.getAllTeams(0, '', '', track.slug)}>{track.track_name}</a>
                 ))}
               </div>
               <div className="card-body padding-40">

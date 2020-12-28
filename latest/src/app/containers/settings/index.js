@@ -10,7 +10,7 @@ import DashboardTemplate from "../../components/dashboard-template/DashBoardTemp
 import { getFetch } from "../../../utils/fetchRequests";
 import Select from 'react-select';
 import { Link } from 'react-router-dom';
-import { affiliationOptions } from "../../globals/contants";
+//import { affiliationOptions } from "../../globals/contants";
 import { countiesNameList } from "../../globals/contants";
 import history from "../../../history";
 import HubspotForm from 'react-hubspot-form';
@@ -373,7 +373,7 @@ export default class Settings extends React.Component {
                           <h5 className="text-secondary text-bold font-15 p-0">If you experience any technical problem, please send us an email at <a href="mailto:info@kontess.com" target="_top">info@kontess.com</a></h5>
                         </div>
                         <div className="bio-sec mb-3">
-                          <a className="text-danger text-bold" onClick={() => this.logout()}>Logout</a>
+                          <a className="text-danger text-bold" onClick={() => this.logout()} href="# ">Logout</a>
                         </div>
                       </div>
                     </div>

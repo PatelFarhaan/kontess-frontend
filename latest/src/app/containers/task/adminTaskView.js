@@ -1,8 +1,8 @@
 
-import React, { Component } from "react";
+import React/*, { Component }*/ from "react";
 import DashboardTemplate from "../../components/dashboard-template/DashBoardTemplate";
 import $ from 'jquery';
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import TaskList from './taskList';
 import MomentUtils from '@date-io/moment';
 import moment from "moment";

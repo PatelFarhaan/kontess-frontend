@@ -4,7 +4,7 @@ import * as routes from '../../globals/endpoints';
 import { commonErrorMsg, noResultFoundMsg } from "../../../utils/Message";
 import * as session from "../../../utils/session";
 import { toast } from 'react-toastify';
-import { confirmAlert } from 'react-confirm-alert';
+//import { confirmAlert } from 'react-confirm-alert';
 import queryString from 'query-string';
 import DashboardTemplate from "../../components/dashboard-template/DashBoardTemplate";
 
@@ -34,7 +34,7 @@ export default class JoinTeam extends React.Component {
             return false;
         }
         else {
-            if (user_id != userId) {
+            if (user_id !== userId) {
                 session.clearSession();
                 return false
             }

@@ -48,6 +48,7 @@ export default class EventCalender extends React.Component {
                 temp.calendar = temp.color === 'green' ? 'Upcoming event' : temp.color === 'orange' ? 'Past event' : temp.color === 'blue' ? 'Due task' : 'Past due task'
                 eventList.push(temp)
             }
+            return event;
         });
         this.setState({
             loading: false
@@ -76,7 +77,7 @@ export default class EventCalender extends React.Component {
             this.events = events;
             this.current = moment(current).date(1);
             this.draw();
-            var current = document.querySelector('.today');
+            current = document.querySelector('.today');
             if (current) {
                 var self = this;
                 window.setTimeout(function () {
@@ -279,7 +280,7 @@ export default class EventCalender extends React.Component {
                 details = createElement('div', 'details in');
 
                 //Create the arrow
-                var arrow = createElement('div', 'arrow');
+                arrow = createElement('div', 'arrow');
 
                 //Create the event wrapper
 
@@ -382,7 +383,7 @@ export default class EventCalender extends React.Component {
         window.Calendar = Calendar;
         Calendar.prototype.drawLegend = function () {
             var legend = createElement('div', 'legend');
-            var calendars = this.events.map(function (e) {
+            /*var calendars =*/ this.events.map(function (e) {
                 return e.calendar + '|' + e.color;
             }).reduce(function (memo, e) {
                 if (memo.indexOf(e) === -1) {
@@ -412,7 +413,7 @@ export default class EventCalender extends React.Component {
         async function getEvent(current) {
             document.getElementById("calendar").innerHTML = "";
             var events = await currentSelf.getAllEvents(current);
-            var calendar = new Calendar('#calendar', events, current);
+            new Calendar('#calendar', events, current);
         }
         getEvent(today);
     }

@@ -1,9 +1,9 @@
 
 import React from "react";
 import Moment from 'react-moment';
-import { patchFetch } from "../../../utils/fetchRequests";
-import { commonErrorMsg } from "../../../utils/Message";
-import { toast } from 'react-toastify';
+//import { patchFetch } from "../../../utils/fetchRequests";
+//import { commonErrorMsg } from "../../../utils/Message";
+//import { toast } from 'react-toastify';
 import { getFetch } from "../../../utils/fetchRequests";
 import Pagination from '../../components/pagination';
 import moment from 'moment';
@@ -71,7 +71,7 @@ export default class UpcomingEvents extends React.Component {
                                                     <p className="mb-0">{item.title}: {item.description}</p>
                                                     <small>Location: {item.location}
                                                        <br/> Time: <Moment format="h:mm A">{moment(item.schedule_date, 'YYYY-MM-DD hh:mm A')}</Moment></small>
-                                                    <a className="btn btn-outline-success btn-sm btn-custom" data-toggle="modal" data-target="#newevent" data-backdrop="static" data-keyboard="false" style={{float:'right'}} onClick={() => this.editEvent(item)}>Edit</a>
+                                                    <a href="/#" className="btn btn-outline-success btn-sm btn-custom" data-toggle="modal" data-target="#newevent" data-backdrop="static" data-keyboard="false" style={{float:'right'}} onClick={() => this.editEvent(item)}>Edit</a>
                                                 </div>
                                             </div>
                                         </div>

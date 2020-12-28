@@ -1,11 +1,11 @@
 
 import React from 'react';
-import * as session from '../../../utils/session';
+//import * as session from '../../../utils/session';
 import { getFetch, postFetch, downloadDoc } from '../../../utils/fetchRequests';
 import DashboardTemplate from "../../components/dashboard-template/DashBoardTemplate";
 import { toast } from 'react-toastify';
 import { commonErrorMsg } from "../../../utils/Message";
-import { async } from 'q';
+//import { async } from 'q';
 
 export default class Grading extends React.Component {
     constructor(props) {
@@ -86,6 +86,7 @@ export default class Grading extends React.Component {
                             self.setState({
                                 questions: self.state.questions
                             })
+                            return item;
                         })
                     });
                 }
@@ -131,10 +132,12 @@ export default class Grading extends React.Component {
     }
 
     submitGrading = (e, index) => {
-        this.state.questions[index][e.target.name] = e.target.value;
+        let temp = this.state.questions;
+        temp[index][e.target.name] = e.target.value;
+        //this.state.questions[index][e.target.name] = e.target.value;
         this.setState({
-            questions: this.state.questions
-        })
+            questions: temp
+        });
     }
 
     formHandler = (event) => {
@@ -150,7 +153,7 @@ export default class Grading extends React.Component {
                         <div className="row">
                             <div className="col-md-3">
                                 <h3>{taskTitle}</h3>
-                                <a><span onClick={() => this.downloadSubmission()} className="text-primary  pt-1 d-block font-weight-bold">Download submission file  <i className="fas fa-download"></i></span></a>
+                                <a href="/#"><span onClick={() => this.downloadSubmission()} className="text-primary  pt-1 d-block font-weight-bold">Download submission file  <i className="fas fa-download"></i></span></a>
                             </div>
                             {track ? <div className="col-md-3">
                                 <p>Track: {track}</p>

@@ -1,7 +1,7 @@
 
 import React from 'react';
-import * as session from '../../../utils/session';
-import { getFetch, postFetch } from '../../../utils/fetchRequests';
+//import * as session from '../../../utils/session';
+import { getFetch/*, postFetch*/ } from '../../../utils/fetchRequests';
 import DashboardTemplate from "../../components/dashboard-template/DashBoardTemplate";
 import { Link } from "react-router-dom"
 import ResultView from "./resultVIew";

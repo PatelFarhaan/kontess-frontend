@@ -2,13 +2,13 @@
 import React from "react";
 import DashboardTemplate from "../../components/dashboard-template/DashBoardTemplate";
 import Card from "./Card";
-import { commonErrorMsg, noResultFoundMsg } from "../../../utils/Message";
-import { toast } from 'react-toastify';
+//import { commonErrorMsg, noResultFoundMsg } from "../../../utils/Message";
+//import { toast } from 'react-toastify';
 import { getFetch } from "../../../utils/fetchRequests";
 import Pagination from '../../components/pagination';
-import * as session from "../../../utils/session";
-import Modal from 'react-modal';
-import Moment from 'react-moment';
+//import * as session from "../../../utils/session";
+//import Modal from 'react-modal';
+//import Moment from 'react-moment';
 
 export default class Notifications extends React.Component {
   constructor(props) {

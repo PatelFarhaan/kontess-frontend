@@ -13,7 +13,7 @@ import { profileLogo, kontessLogo } from "../../globals/contants";
 import { confirmAlert } from "react-confirm-alert";
 import TeamFiles from "./team-files";
 import TeamEvents from "./team-events";
-import TeamTasks from "./team-tasks";
+//import TeamTasks from "./team-tasks";
 import firebase from "../../../firebase";
 import moment from "moment";
 import Moment from "react-moment";
@@ -35,8 +35,8 @@ import {
   reqSend,
   removeMentor,
 } from "../../../utils/Message";
-import { async } from "q";
-let database = "";
+//import { async } from "q";
+
 
 export default class Team extends React.Component {
   constructor(props) {
@@ -145,7 +145,7 @@ export default class Team extends React.Component {
     messagesRef.on("value", function (snap) {
       seenBy = snap.val().seenBy;
     });
-    if (seenBy.indexOf("_" + this.state.userId + "_") == -1) {
+    if (seenBy.indexOf("_" + this.state.userId + "_") === -1) {
       seenBy = seenBy + this.state.userId + "_";
       messagesRef.update({ seenBy: seenBy });
     }
@@ -237,13 +237,14 @@ export default class Team extends React.Component {
       if (!self.state.files[i].docs) {
         var reader = new FileReader();
         let filetype = self.state.files[i].type;
-        console.log(filetype);
+        //console.log(filetype);
+        const j = i, reader2 = reader
         reader.onload = function (event) {
           self.setState({
-            [i - 1]:
+            [j - 1]:
               filetype.indexOf("image") !== -1 ||
               filetype.indexOf("video") !== -1
-                ? reader.result
+                ? reader2.result
                 : self.renderNewFileIcon(filetype),
           });
         };
@@ -358,11 +359,15 @@ export default class Team extends React.Component {
     let data = false;
     if (partipants.length) {
       let user_id = session.getSessionUserId();
+      /*
       partipants.find(function (partipant) {
         if (partipant.user.id === user_id) {
           data = true;
         }
-      });
+      });*/
+      const found = partipants.find(partipant => partipant.user.id === user_id);
+      if ( found )
+        data = true;
     }
     return data;
   };
@@ -461,11 +466,15 @@ export default class Team extends React.Component {
       }
     } else {
       if (this.state.teamInfo.partipants.length) {
+        /*
         this.state.teamInfo.partipants.find(function (partipant) {
           if (partipant.user.id === user_id) {
             data = true;
           }
-        });
+        });*/
+        const found = this.state.teamInfo.partipants.find( partipant => partipant.user.id === user_id );
+        if ( found )
+          data = true;
       }
     }
     return data;
@@ -573,8 +582,9 @@ export default class Team extends React.Component {
       case "mov":
         // etc
         return true;
+      default:
+        return false;
     }
-    return false;
   };
 
   renderFileIcon = (filename) => {
@@ -661,13 +671,14 @@ export default class Team extends React.Component {
             </div>
           ) : (
             <div className="content">
-              <img width={200} src={this.renderFileIcon(obj.file)} />
+              <img width={200} src={this.renderFileIcon(obj.file)} alt=""/>
               <div className="content-overlay"></div>
               <div className="content-details fadeIn-bottom">
                 <a
                   href={obj.file}
                   download
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="content-text"
                 >
                   <h5>View</h5>
@@ -829,6 +840,7 @@ export default class Team extends React.Component {
                                 onError={(event) =>
                                   event.target.setAttribute("src", profileLogo)
                                 }
+                                alt="profile logo"
                               />
                               {partipant.user.full_name}{" "}
                             </span>
@@ -866,6 +878,7 @@ export default class Team extends React.Component {
                               onError={(event) =>
                                 event.target.setAttribute("src", profileLogo)
                               }
+                              alt="profile logo"
                             />
                             {teamInfo.team_mentor.full_name}{" "}
                           </Link>
@@ -1067,10 +1080,11 @@ export default class Team extends React.Component {
                                     </div>
                                   ) : (
                                     <div className="content border border-secondary ">
-                                      <a>
+                                      <a href="/#">
                                         <img
                                           className="content-image"
                                           src={this.renderFileIcon(file.docs)}
+                                          alt=""
                                         />
                                         {editMode ? (
                                           <i
@@ -1087,6 +1101,7 @@ export default class Team extends React.Component {
                                                 href={file.docs}
                                                 download
                                                 target="_blank"
+                                                rel="noopener noreferrer" 
                                                 className="content-text"
                                               >
                                                 <h5>View</h5>
@@ -1098,7 +1113,7 @@ export default class Team extends React.Component {
                                     </div>
                                   )
                                 ) : this.state[index] &&
-                                  this.state[index].indexOf("video") != -1 ? (
+                                  this.state[index].indexOf("video") !== -1 ? (
                                   <div className="border border-secondary cstm-box">
                                     {" "}
                                     <video autoPlay controls>
@@ -1114,10 +1129,11 @@ export default class Team extends React.Component {
                                   </div>
                                 ) : (
                                   <div className="content border border-secondary">
-                                    <a>
+                                    <a href="/#">
                                       <img
                                         className="content-image"
                                         src={this.state[index]}
+                                        alt=""
                                       />
                                       <div></div>
                                     </a>

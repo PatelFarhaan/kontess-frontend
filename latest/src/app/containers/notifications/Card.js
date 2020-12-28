@@ -5,7 +5,7 @@ import Moment from 'react-moment';
 import { profileLogo } from '../../globals/contants'
 import moment from 'moment';
 import { commonErrorMsg, noResultFoundMsg } from "../../../utils/Message";
-import * as routes from '../../globals/endpoints';
+//import * as routes from '../../globals/endpoints';
 import { toast } from 'react-toastify';
 import { postFetch, patchFetch } from "../../../utils/fetchRequests";
 import * as session from "../../../utils/session";
@@ -116,7 +116,7 @@ export default class Card extends React.Component {
         {this.props.notifications.length ? this.props.notifications.map((notification, index) =>
           <div className="card nofity-list overflow-hidden">
             <div className="comment-widgets">
-              <a key={notification.id} className="notify-item">
+              <a href="/#" key={notification.id} className="notify-item">
                 <div className="notify-thumb">
                   <img
                     src={
@@ -127,6 +127,7 @@ export default class Card extends React.Component {
                     onError={event =>
                       event.target.setAttribute('src', profileLogo)
                     }
+                    alt="profile logo"
                   />
                 </div>
                 <div className="notify-text">

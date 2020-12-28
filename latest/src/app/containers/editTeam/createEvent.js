@@ -1,13 +1,13 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
-import * as routes from '../../globals/endpoints';
+//import * as routes from '../../globals/endpoints';
 import { confirmAlert } from 'react-confirm-alert';
-import { commonErrorMsg, noResultFoundMsg, deleteEventkMsg } from "../../../utils/Message";
+import { commonErrorMsg, /*noResultFoundMsg,*/ deleteEventkMsg } from "../../../utils/Message";
 import * as session from "../../../utils/session";
 import { toast } from 'react-toastify';
 import DashboardTemplate from "../../components/dashboard-template/DashBoardTemplate";
-import Calendar from 'react-calendar';
+//import Calendar from 'react-calendar';
 import moment from 'moment';
 import { postFetch, getFetch, postDelete } from "../../../utils/fetchRequests";
 import { profileLogo } from '../../globals/contants';
@@ -16,7 +16,7 @@ import {
     MuiPickersUtilsProvider
 } from "@material-ui/pickers";
 import MomentUtils from '@date-io/moment';
-import TeamList from '../team-list/TeamList';
+//import TeamList from '../team-list/TeamList';
 
 export default class JoinTeam extends React.Component {
     constructor(props) {
@@ -46,7 +46,7 @@ export default class JoinTeam extends React.Component {
         })
         this.getTeamInfo();
         let location = this.props.history.location.pathname;
-        if (location.indexOf('edit') != -1) {
+        if (location.indexOf('edit') !== -1) {
             this.setState({
                 eventId: this.props.match.params.eventId,
             }, () => {
@@ -80,7 +80,7 @@ export default class JoinTeam extends React.Component {
 
     handleCheckBox = (participant) => {
         this.setState({
-            participants: this.participantIndex(participant.user.id) != -1 ? this.state.participants.filter((_, i) => i !== this.participantIndex(participant.user.id)) : this.state.participants.concat(participant)
+            participants: this.participantIndex(participant.user.id) !== -1 ? this.state.participants.filter((_, i) => i !== this.participantIndex(participant.user.id)) : this.state.participants.concat(participant)
         })
     }
 
@@ -108,6 +108,7 @@ export default class JoinTeam extends React.Component {
                 if (participant.user.id === participantID) {
                     index = i;
                 }
+                return i;
             });
         }
         return index;
@@ -127,7 +128,7 @@ export default class JoinTeam extends React.Component {
     };
 
     validateFields = async () => {
-        const { title, location, schedule_date, team_id, participants } = this.state;
+        const { title, location, schedule_date, /*team_id,*/ participants } = this.state;
         var validation = `${
             !title
                 ? "Please enter event name"
@@ -326,12 +327,13 @@ export default class JoinTeam extends React.Component {
                                                                                             onError={event =>
                                                                                                 event.target.setAttribute('src', profileLogo)
                                                                                             }
+                                                                                            alt="profile logo"
                                                                                         />
                                                                                         <strong className="pr-5">{partipant.user.full_name}{user_id === partipant.user.id ? ' (You)' : ''}</strong>
                                                                                     </div>
                                                                                     <div className="custom-control custom-checkbox dark-checkbox ml-5 d-inline-block">
                                                                                         <input
-                                                                                            onChange={(e) => this.handleCheckBox(partipant)} id={partipant.user.id} type="checkbox" className="custom-control-input" checked={this.participantIndex(partipant.user.id) != -1 ? true : false} />
+                                                                                            onChange={(e) => this.handleCheckBox(partipant)} id={partipant.user.id} type="checkbox" className="custom-control-input" checked={this.participantIndex(partipant.user.id) !== -1 ? true : false} />
                                                                                         <label className="custom-control-label" htmlFor={partipant.user.id}></label>
                                                                                     </div>
                                                                                 </li>
@@ -362,6 +364,7 @@ export default class JoinTeam extends React.Component {
                                                                                         onError={event =>
                                                                                             event.target.setAttribute('src', profileLogo)
                                                                                         }
+                                                                                        alt="profile logo"
                                                                                     />
                                                                                     <strong className="pr-5">{teamInfo.team_mentor.full_name}{user_id === teamInfo.team_mentor.id ? ' (You)' : ''}</strong>
                                                                                 </div>

@@ -3,7 +3,7 @@ import { withRouter, Link } from "react-router-dom";
 import * as session from "../../../utils/session";
 import * as routes from "../../globals/endpoints";
 import queryString from "query-string";
-import GoogleLogin from "react-google-login";
+//import GoogleLogin from "react-google-login";
 
 class NewLogin extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
@@ -133,9 +133,9 @@ class NewLogin extends React.Component {
   };
 
   render() {
-    const responseGoogle = (response) => {
+    /*const responseGoogle = (response) => {
       console.log(response);
-    };
+    };*/
     return (
       <div className="modal-background">
         <div className="modal-wrapper">

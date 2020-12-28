@@ -1,9 +1,9 @@
 
 import React from "react";
 import Moment from 'react-moment';
-import { getFetch, postFetch } from "../../../utils/fetchRequests";
-import { commonErrorMsg } from "../../../utils/Message";
-import { toast } from 'react-toastify';
+import { getFetch/*, postFetch*/ } from "../../../utils/fetchRequests";
+//import { commonErrorMsg } from "../../../utils/Message";
+//import { toast } from 'react-toastify';
 import Pagination from '../../components/pagination';
 import { Link } from "react-router-dom";
 import * as session from '../../../utils/session';

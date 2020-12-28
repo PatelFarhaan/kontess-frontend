@@ -10,7 +10,7 @@ import Select from 'react-select';
 import * as session from "../../../utils/session";
 import { profileLogo } from '../../globals/contants';
 import Moment from 'react-moment';
-import { async } from "q";
+//import { async } from "q";
 import { confirmAlert } from 'react-confirm-alert';
 import { Link } from 'react-router-dom';
 import ManageRegistration from './manageRegistration';
@@ -234,9 +234,9 @@ export default class People extends React.Component {
                                         <div className="tab-pane fade active show"><h5 className="text-center">No result found!</h5></div>
                                         : ''}</div> : <div>
                                     <div className="ui pointing secondary menu">
-                                        <a className={`item ${this.state.type === 'all' ? 'active' : ''}`} onClick={(e) => this.getAllUsers('all')}>All Users</a>
-                                        <a className={`item ${this.state.type === 'participant' ? 'active' : ''}`} onClick={(e) => this.getAllUsers('participant')}>Participants</a>
-                                        <a className={`item ${this.state.type === 'judge' ? 'active' : ''}`} onClick={(e) => this.getAllUsers('judge')}>Judge/Coach</a>
+                                        <a className={`item ${this.state.type === 'all' ? 'active' : ''}`} onClick={(e) => this.getAllUsers('all')} href="/#">All Users</a>
+                                        <a className={`item ${this.state.type === 'participant' ? 'active' : ''}`} onClick={(e) => this.getAllUsers('participant')} href="/#">Participants</a>
+                                        <a className={`item ${this.state.type === 'judge' ? 'active' : ''}`} onClick={(e) => this.getAllUsers('judge')} href="/#">Judge/Coach</a>
                                     </div>
 
                                     <div className="ui segment" style={{ 'min-height': '704px' }}>
@@ -263,7 +263,7 @@ export default class People extends React.Component {
                                                             <tr key={i}>
                                                                 <td className="">
                                                                     <h4 className="ui image header">
-                                                                        <img src={user.user_image ? user.user_image : profileLogo} />
+                                                                        <img src={user.user_image ? user.user_image : profileLogo} alt="profile logo"/>
                                                                         <div className="content">
                                                                             {user.full_name}
                                                                             <div className="sub header"><p className="skills">
@@ -295,7 +295,7 @@ export default class People extends React.Component {
                                                                     >
                                                                         <i title="Message" className="far fa-comment-alt fa-lg ml-2"></i>
                                                                     </Link> */}
-                                                                    {user.role != 'admin' ? <i onClick={() => this.deleteUser(user.id)} title="Delete" className="fa fa-trash px-1 fa-lg ml-2"></i> : ''}</td>
+                                                                    {user.role !== 'admin' ? <i onClick={() => this.deleteUser(user.id)} title="Delete" className="fa fa-trash px-1 fa-lg ml-2"></i> : ''}</td>
                                                             </tr>) : ''}
 
                                                     </tbody> </table></div>}

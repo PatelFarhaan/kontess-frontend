@@ -2,8 +2,8 @@
 import React from 'react';
 import { capitalize } from '../../../utils/commonFunctions';
 import * as session from '../../../utils/session';
-import Modal from 'react-modal';
-import TeamInfo from '../team-info';
+//import Modal from 'react-modal';
+//import TeamInfo from '../team-info';
 import { profileLogo, Loading } from '../../globals/contants';
 import { Link } from 'react-router-dom';
 
@@ -40,7 +40,7 @@ export default class Card extends React.Component {
               <div className="card-body">
                 <div className="row justify-content-between align-items-center">
                   <div className="col-md-1 text-center">
-                    <Link to={'/dashboard/profile/' + user.id}><div className="inviteImg"><img src={user.user_image ? user.user_image : profileLogo} /></div></Link>
+                    <Link to={'/dashboard/profile/' + user.id}><div className="inviteImg"><img src={user.user_image ? user.user_image : profileLogo} alt="profile logo"/></div></Link>
                   </div>
                   <div className="col-md-3">
                     <h5><Link to={'/dashboard/profile/' + user.id}>{capitalize(user.full_name ? user.full_name : user.username)}</Link> </h5>

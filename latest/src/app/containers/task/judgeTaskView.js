@@ -1,12 +1,12 @@
 
-import React, { Component } from "react";
-import * as routes from "../../globals/endpoints";
-import { toast } from 'react-toastify';
-import { commonErrorMsg } from "../../../utils/Message";
-import { profileLogo, emailRegex } from '../../globals/contants';
+import React/*, { Component }*/ from "react";
+//import * as routes from "../../globals/endpoints";
+//import { toast } from 'react-toastify';
+//import { commonErrorMsg } from "../../../utils/Message";
+//import { profileLogo, emailRegex } from '../../globals/contants';
 import DashboardTemplate from "../../components/dashboard-template/DashBoardTemplate";
 import { getFetch } from "../../../utils/fetchRequests";
-import * as session from "../../../utils/session";
+//import * as session from "../../../utils/session";
 import EventCalender from '../Activity/eventCalender';
 import Moment from 'react-moment';
 import moment from 'moment';

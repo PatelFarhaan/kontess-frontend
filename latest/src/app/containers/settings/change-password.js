@@ -3,7 +3,7 @@ import React from "react";
 import { toast } from 'react-toastify';
 
 import DashboardTemplate from "../../components/dashboard-template/DashBoardTemplate";
-import { getFetch, postFetch } from "../../../utils/fetchRequests";
+import { /*getFetch,*/ postFetch } from "../../../utils/fetchRequests";
 import { commonErrorMsg } from "../../../utils/Message";
 
 export default class ChangePassword extends React.Component {
@@ -60,7 +60,7 @@ export default class ChangePassword extends React.Component {
     } else {
       password.setCustomValidity('');
     }
-    if (password.value != confirm_password.value) {
+    if (password.value !== confirm_password.value) {
       confirm_password.setCustomValidity("Passwords Don't Match");
     } else {
       confirm_password.setCustomValidity('');

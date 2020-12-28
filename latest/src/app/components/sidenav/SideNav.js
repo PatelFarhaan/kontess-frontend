@@ -91,7 +91,7 @@ class SideNav extends React.Component {
   }
   getButtons() {
     const buttons = pages.map((page) =>
-      page.authorized && page.authorized.indexOf(this.state.UserType) != -1 ? (
+      page.authorized && page.authorized.indexOf(this.state.UserType) !== -1 ? (
         <li
           key={page.pageId}
           className={page.pageId === this.props.currentPageId ? "active" : ""}
@@ -143,8 +143,8 @@ class SideNav extends React.Component {
     messagesRef.on("child_changed", function (snapshot) {
       count = 0;
       if (
-        snapshot.key.indexOf("_" + userId + "_") != -1 ||
-        snapshot.key.indexOf("_team_") != -1
+        snapshot.key.indexOf("_" + userId + "_") !== -1 ||
+        snapshot.key.indexOf("_team_") !== -1
       ) {
         self.activateMsgListener();
       }
@@ -163,11 +163,11 @@ class SideNav extends React.Component {
     count = 0;
     messagesRef.orderByKey().on("child_added", function (snapshot) {
       if (
-        snapshot.key.indexOf("_team_") == -1 &&
-        snapshot.key.indexOf("_" + userId + "_") != -1
+        snapshot.key.indexOf("_team_") === -1 &&
+        snapshot.key.indexOf("_" + userId + "_") !== -1
       ) {
         self.getUnreadMsg(snapshot.key);
-      } else if (snapshot.key.indexOf("_team_") != -1) {
+      } else if (snapshot.key.indexOf("_team_") !== -1) {
         self.getUnreadMsgTeam(snapshot.key);
       }
     });
@@ -179,7 +179,7 @@ class SideNav extends React.Component {
     const messagesRef = firebase.ref("chat/" + token);
     messagesRef.on("child_added", (snapshot) => {
       if (
-        snapshot.val().seenBy.indexOf("_" + userId + "_") == -1 &&
+        snapshot.val().seenBy.indexOf("_" + userId + "_") === -1 &&
         snapshot.val().team_token.indexOf("_" + userId + "_") !== -1
       ) {
         count++;
@@ -203,7 +203,7 @@ class SideNav extends React.Component {
       .orderByChild("seen")
       .equalTo(false)
       .on("child_added", (snapshot) => {
-        if (snapshot.val().userId != userId) {
+        if (snapshot.val().userId !== userId) {
           count++;
         }
       });
@@ -249,7 +249,7 @@ class SideNav extends React.Component {
       <div className="sidebar-menu light-sidebar">
         <div className="sidebar-header">
           <div className="logo">
-            <a>
+            <a href="/#">
               {/* <img className="logo" src={kontessLogoImg} alt="Kontess Logo" /> */}
             </a>
           </div>
@@ -267,7 +267,7 @@ class SideNav extends React.Component {
                     this.logout();
                   }}
                 >
-                  <a aria-expanded="true">
+                  <a href="# " aria-expanded="true">
                     <div className="car-categories-img d-inline-block sidebar-img">
                       <i className="fas fa-sign-out-alt"></i>
                     </div>

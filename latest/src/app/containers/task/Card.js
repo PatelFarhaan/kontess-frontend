@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 import { toast } from 'react-toastify';
 import { confirmAlert } from 'react-confirm-alert';
 import * as session from "../../../utils/session";
-import * as routes from "../../globals/endpoints";
+//import * as routes from "../../globals/endpoints";
 import { profileLogo, kontessLogo, Loading } from '../../globals/contants';
 import { confirmSendReq, reqSend, errorMsgForInvitation, deleteTeamMsg } from "../../../utils/Message";
 import { getFetch, postFetch, downloadDoc } from "../../../utils/fetchRequests";
 import history from "../../../history";
-import { async } from "q";
+//import { async } from "q";
 import ResultView from "./resultVIew";
 
 export default class Card extends React.Component {
@@ -101,7 +101,9 @@ export default class Card extends React.Component {
       partipants.find(function (partipant) {
         if (partipant.user.id === user_id) {
           data = true;
+          return true;
         }
+        return false;
       });
     }
     return data;
@@ -151,9 +153,10 @@ export default class Card extends React.Component {
           if (item.id === self.state.userId) {
             gradeResult = self.showGradeButton(id, taskInstancId, task_grading);
           }
+          return false;
         });
       }
-      result = <div>{gradeResult}<a onClick={() => this.downloadSubmission(submission_docs)}><span className="text-primary  pt-1 d-block font-weight-bold">Download submission file  <i className="fas fa-download"></i></span></a></div>;
+      result = <div>{gradeResult}<a href="/#" onClick={() => this.downloadSubmission(submission_docs)}><span className="text-primary  pt-1 d-block font-weight-bold">Download submission file  <i className="fas fa-download"></i></span></a></div>;
     }
     return result;
   }
@@ -171,6 +174,7 @@ export default class Card extends React.Component {
             result = <button onClick={() => self.goForGrade(id, taskInstancId, item.id)} className="btn btn-md px-4 rounded-0 btn-warning">Resume Grading</button>;
           }
         }
+        return false;
       });
     }
     return result;
@@ -210,10 +214,12 @@ export default class Card extends React.Component {
             show = true;
             item.grades.map(function (grade) {
               result = result + grade.score
+              return result;
             });
           }
+          return item;
         });
-        return show ? <div> <h5 className="text-danger">Overall : {total_judge === 0 ? result : parseFloat(result / total_judge).toFixed(1)}</h5><a className="text-primary  pt-1 d-block font-weight-bold" data-toggle="collapse" data-target={"#collapseOne" + id} aria-expanded="false" aria-controls="collapseOne">View Details</a></div> : '';
+        return show ? <div> <h5 className="text-danger">Overall : {total_judge === 0 ? result : parseFloat(result / total_judge).toFixed(1)}</h5><a href="/#" className="text-primary  pt-1 d-block font-weight-bold" data-toggle="collapse" data-target={"#collapseOne" + id} aria-expanded="false" aria-controls="collapseOne">View Details</a></div> : '';
       }
     }
   }
@@ -227,7 +233,7 @@ export default class Card extends React.Component {
             <div className="card-body">
               <div className="row justify-content-between align-items-center">
                 <div className="col-md-1 text-center">
-                  <div className="inviteImg"><img src={team.logo ? team.logo : kontessLogo} /></div>
+                  <div className="inviteImg"><img src={team.logo ? team.logo : kontessLogo} alt="kontess logo"/></div>
                 </div>
                 <div className="col-md-2">
                   <Link aria-expanded="true" to={'/dashboard/team_view/' + team.id}><h4>{team.name}</h4></Link>
@@ -237,7 +243,7 @@ export default class Card extends React.Component {
                   <div className="d-flex justify-content-start align-items-center">
                     <p className="m-0 mr-1 w-15">Members</p>
                     {team.partipants.map(partipant => (
-                      <Link to={'/dashboard/profile/' + partipant.user.id}> <img src={partipant.user.user_image ? partipant.user.user_image : profileLogo} title={partipant.user.full_name} className="mx-1 bg-dark rounded-circle" onError={(event) => event.target.setAttribute("src", profileLogo)} /></Link>
+                      <Link to={'/dashboard/profile/' + partipant.user.id}> <img src={partipant.user.user_image ? partipant.user.user_image : profileLogo} title={partipant.user.full_name} className="mx-1 bg-dark rounded-circle" onError={(event) => event.target.setAttribute("src", profileLogo)} alt="profile logo"/></Link>
                     ))}
                   </div>
                   <div className="d-flex mt-2 justify-content-start align-items-center">
@@ -245,7 +251,7 @@ export default class Card extends React.Component {
                     {/* {team.random_judges ? team.random_judges.map(judge => (
                       <Link to={'/dashboard/profile/' + judge.id}> <img src={judge.user_image ? judge.user_image : profileLogo} title={judge.full_name} className="mx-1 bg-dark rounded-circle" onError={(event) => event.target.setAttribute("src", profileLogo)} /></Link>
                     )) : ''} */}
-                    {team.team_mentor.id && team.team_mentor.admin_status === 'approved' && team.team_mentor.judge_status === 'approved' ? <Link to={'/dashboard/profile/' + team.team_mentor.id}> <img src={team.team_mentor.user_image ? team.team_mentor.user_image : profileLogo} title={team.team_mentor.full_name} className="mx-1 bg-dark rounded-circle" onError={(event) => event.target.setAttribute("src", profileLogo)} /></Link> : ''}
+                    {team.team_mentor.id && team.team_mentor.admin_status === 'approved' && team.team_mentor.judge_status === 'approved' ? <Link to={'/dashboard/profile/' + team.team_mentor.id}> <img src={team.team_mentor.user_image ? team.team_mentor.user_image : profileLogo} title={team.team_mentor.full_name} className="mx-1 bg-dark rounded-circle" onError={(event) => event.target.setAttribute("src", profileLogo)} alt="profile logo"/></Link> : ''}
                   </div>
                 </div>
                 <div className="col-md-2 text-center">
@@ -255,7 +261,7 @@ export default class Card extends React.Component {
 
                     <div>
                       {team.random_judges.map(judge => (
-                        <Link className="mb-2 d-inline-block" to={'/dashboard/profile/' + judge.id}> <img src={judge.user_image ? judge.user_image : profileLogo} title={judge.full_name} className="mx-1 bg-dark rounded-circle" onError={(event) => event.target.setAttribute("src", profileLogo)} /></Link>
+                        <Link className="mb-2 d-inline-block" to={'/dashboard/profile/' + judge.id}> <img src={judge.user_image ? judge.user_image : profileLogo} title={judge.full_name} className="mx-1 bg-dark rounded-circle" onError={(event) => event.target.setAttribute("src", profileLogo)} alt="profile logo"/></Link>
                       ))}
                     </div>
                   </div> : ''}
@@ -275,7 +281,7 @@ export default class Card extends React.Component {
               <div className="card-body">
                 <div className="row justify-content-between align-items-center">
                   <div className="col-md-1 text-center">
-                    <Link to={'/dashboard/profile/' + individual.participant.user.id}><div className="inviteImg"><img src={individual.participant.user.user_image ? individual.participant.user.user_image : profileLogo} /></div></Link>
+                    <Link to={'/dashboard/profile/' + individual.participant.user.id}><div className="inviteImg"><img src={individual.participant.user.user_image ? individual.participant.user.user_image : profileLogo} alt="profile logo"/></div></Link>
                   </div>
                   <div className="col-md-6">
                     <h5><Link to={'/dashboard/profile/' + individual.participant.user.id}>{individual.participant.user.full_name ? individual.participant.user.full_name : individual.participant.user.username}</Link> </h5>

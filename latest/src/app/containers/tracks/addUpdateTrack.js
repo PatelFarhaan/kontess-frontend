@@ -109,7 +109,7 @@ export default class AddUpdateTracks extends React.Component {
                                                     </div>
 
                                                     <div className="col-md-8">
-                                                        <input type="text" required value={this.state.track_name} onChange={this.formHandler} name="track_name" className="form-control" placeholder="Track Name" required />
+                                                        <input type="text" value={this.state.track_name} onChange={this.formHandler} name="track_name" className="form-control" placeholder="Track Name" required />
                                                     </div>
                                                 </div>
                                             </div>
