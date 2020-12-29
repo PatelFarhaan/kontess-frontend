@@ -4,8 +4,8 @@ import * as session from "../../utils/session";
 //Base URL
 export const baseURL = `${config}/api/`;
 // export const zoomLambdaURL = "https://36huwrdes5.execute-api.us-east-2.amazonaws.com/stage1/zoom_connect";
-export const zoomLambdaURL = "//demo.kontess.com/zoom/create-meeting";
-
+// export const zoomLambdaURL = "//demo.kontess.com/zoom/create-meeting";
+export const zoomLambdaURL = window.location.hostname + "/zoom/create-meeting";
 // export const proxyUrl = "https://cors-anywhere.herokuapp.com/";
 export const proxyUrl = "";
 
