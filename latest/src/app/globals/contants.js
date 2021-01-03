@@ -91,4 +91,4 @@ export const countiesNameList = [
 ];
 // login page
 export const company_logo = "logo_name_blue.png";
-export const text_on_background = "Demo Platform\n\nIf you need the login credentials to the demo platform or have any question, please email the customer support team at ryan.ward@kontess.com";
+export const text_on_background = "<Dynamic name> Kontest Platform";
