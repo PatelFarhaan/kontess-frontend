@@ -89,6 +89,8 @@ export const countiesNameList = [
     {"value":"Van Zandt", "label":"Van Zandt"},
     {"value":"Wood", "label":"Wood"},
 ];
+
 // login page
+const contest_name = "Your contest's name"
 export const company_logo = "logo_name_blue.png";
-export const text_on_background = "<Dynamic name> Kontest Platform";
+export const text_on_background = "Kontess Platform\n\n " + contest_name;
