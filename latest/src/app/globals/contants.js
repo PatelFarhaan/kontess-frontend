@@ -91,6 +91,6 @@ export const countiesNameList = [
 ];
 
 // login page
-const contest_name = "Your contest's name"
+const contest_name = window.location.hostname.split(".")[0];
 export const company_logo = "logo_name_blue.png";
-export const text_on_background = "Kontess Platform\n\n " + contest_name;
+export const text_on_background = contest_name.toUpperCase() + " Platform";
