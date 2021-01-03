@@ -550,7 +550,7 @@ $theme-fornt-sub-color: #a4a4a4;
   ///////////////////////////////Login/Signup/////////////////////////////////////////
 
   .modal-background {
-    background-image: url("./assets/images/bgDemo.jpg");
+    background-image: url("./assets/images/bg-template.jpg");
     height: 100%;
     width: 100%;
     position: fixed;
@@ -569,7 +569,6 @@ $theme-fornt-sub-color: #a4a4a4;
       display: flex;
       justify-content: center;
       background: #ffffff3b;
-      height: 100vh;
       position: absolute;
       z-index: -99;
       backdrop-filter: blur(15px);
@@ -808,6 +807,23 @@ $theme-fornt-sub-color: #a4a4a4;
           arial,
           sans-serif;
         }
+      }
+    }
+
+    .custom-text{
+      height: 100vh;
+      margin-left: 500px;
+      img{
+        margin-left: 20vw;
+        margin-top: 100px;
+        width: 700px;
+      }
+      p{
+        margin-left: 20vw;
+        margin-top: 200px;
+        color: white;
+        font-size: 1.7em;
+        width: 600px;
       }
     }
   }
