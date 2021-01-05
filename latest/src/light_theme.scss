@@ -814,18 +814,33 @@ $theme-fornt-sub-color: #a4a4a4;
       height: 100vh;
       margin-left: 500px;
       img{
-        margin-left: 20vw;
-        margin-top: 100px;
+        position: absolute;
+        left: 50%;
+        top: 20%;
+        transform: translate(-5%, -15%);
         width: 700px;
       }
       p{
+        /*
         text-align: center;
         margin-left: 23vw;
-        margin-top: 200px;
-        color: white;
-        font-size: 1.7em;
+        margin-top: 400px;
+        */
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(5%, 0%);
+        color: rgb(44,164,237);
+        font-size: 3.5em;
+        font-weight: 600;
         width: 600px;
       }
+    }
+  }
+  /* avoid overlapping with login area */
+  @media only screen and (max-width: 1100px) {
+    .custom-text{
+      display: none;
     }
   }
 
