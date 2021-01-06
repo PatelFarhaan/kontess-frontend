@@ -3,7 +3,7 @@ import { withRouter, Link } from "react-router-dom";
 import * as session from "../../../utils/session";
 import * as routes from "../../globals/endpoints";
 import queryString from "query-string";
-//import GoogleLogin from "react-google-login";
+import { company_logo, text_on_background } from './../../globals/contants';
 
 class NewLogin extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
@@ -24,6 +24,9 @@ class NewLogin extends React.Component {
     if (session.checkSession()) {
       this.props.history.push(this.state.return_url);
     }
+    const images = require.context('../../../assets/images', true);
+    const logo_img = images('./' + company_logo);
+    this.setState({logo_img});
   };
 
   // set the return url
@@ -185,6 +188,10 @@ class NewLogin extends React.Component {
             className="menu-bar"
             modeHandler={this.modeHandler}
           /> */}
+        </div>
+        <div className="custom-text">
+          <img src={this.state.logo_img} alt="custom logo" />
+          <p>{text_on_background}</p>
         </div>
       </div>
     );
