@@ -75,6 +75,12 @@ const pages = [
     authorized: ["admin", "participant", "judge"],
   },
   {
+    name: "Live Judge",
+    iconPath: "fas fa-user",
+    pageId: "live-judge",
+    authorized: ["judge"],
+  },
+  {
     name: "Settings",
     iconPath: "fas fa-cog",
     pageId: "settings",
@@ -249,7 +255,7 @@ class SideNav extends React.Component {
       <div className="sidebar-menu light-sidebar">
         <div className="sidebar-header">
           <div className="logo">
-            <a href="/#">
+            <a href="#">
               {/* <img className="logo" src={kontessLogoImg} alt="Kontess Logo" /> */}
             </a>
           </div>

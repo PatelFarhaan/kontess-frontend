@@ -173,8 +173,8 @@ export default class AnnouncementCard extends React.Component {
 
                   </div>
                   {userType === 'admin' ? <div className="col-md-1 comment-icons text-right">
-                    <span onClick={() => this.props.editAnnouncement(data.announcement.id)}><i class="fa fa-edit  px-1 text-primary fa-lg mr-2"></i></span>
-                    <i onClick={() => this.deleteAnnouncement(data.announcement.id)} class="fa fa-trash px-1 fa-lg"></i><i class="fa fa-ellipsis-v px-1 text-secondary"></i>
+                    <span onClick={() => this.props.editAnnouncement(data.announcement.id)}><i className="fa fa-edit  px-1 text-primary fa-lg mr-2"></i></span>
+                    <i onClick={() => this.deleteAnnouncement(data.announcement.id)} className="fa fa-trash px-1 fa-lg"></i><i className="fa fa-ellipsis-v px-1 text-secondary"></i>
                   </div> : ''}
                 </div>
               </div>

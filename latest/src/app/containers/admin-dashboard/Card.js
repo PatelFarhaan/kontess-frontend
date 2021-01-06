@@ -139,8 +139,8 @@ export default class Card extends React.Component {
           </div>
           {this.props.type !== 'grading' ?
             <div>
-              {data.data ? data.data.length ? data.data.map(item => (
-                <div className="card mb-1 mt-mob-4">
+              {data.data ? data.data.length ? data.data.map((item, index) => (
+                <div className="card mb-1 mt-mob-4" key={index}>
                   <div className="card-body p-2">
                     <Link to={'/dashboard/task-view/' + item.id} >  <strong className="font-family-open">{item.title}</strong></Link>
                     {this.getProgress(item.task_submission_counts, item.assing_to, item.submission_due_date)}
@@ -149,8 +149,8 @@ export default class Card extends React.Component {
               )) : <h6 className="text-center">No data found!</h6> : <Loading minHeight={268} />}
               <Pagination perPage={this.state.perPage} count={this.state.count} handlePageClick={(ev) => this.handlePagination(ev)} />
             </div> : <div>
-              {data.data ? data.data.length ? data.data.map(item => (
-                <div className="card mb-1 mt-mob-4">
+              {data.data ? data.data.length ? data.data.map((item, index) => (
+                <div className="card mb-1 mt-mob-4" key={index}>
                   <div className="card-body p-2">
                     <Link to={'/dashboard/task-view/' + item.id} >  <strong className="font-family-open">{item.title}</strong></Link>
                     {this.getGradingProgress(item.task_grading_counts, item.grade_due_date)}

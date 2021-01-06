@@ -100,18 +100,28 @@ export default class ResultView extends React.Component {
               <thead>
                 <tr>
                   <th className="first-row"></th>
-                  {judges ? judges.length ? judges.map((judge, index) => (
-                    <th scope="col">Judge {index + 1} {UserType === 'admin' ? '( ' + judge.full_name + ' )' : ''}</th>
-                  )) : '' : ''}
+                  {
+                    judges ?
+                      judges.length ?
+                        judges.map((judge, index) => (
+                          <th key={index} scope="col">
+                            Judge {index + 1} {UserType === 'admin' ? '( ' + judge.full_name + ' )' : ''}
+                          </th>
+                          )
+                        )
+                      : null
+                    : null
+                  }
+
                   <th scope="col">Overall</th>
                 </tr>
               </thead>
               <tbody>
                 {questions ? questions.map((question, i) =>
-                  <tr>
+                  <tr key={i}>
                     <th className="first-row">{question.question}</th>
                     {judges ? judges.map((judge, j) =>
-                      <td>{this.getScore(question.id, judge.id)}</td>
+                      <td key={j}>{this.getScore(question.id, judge.id)}</td>
                     ) : ''}
                     {this.state.task_grading ? <td>{this.getOverAll('y', i)}</td> : ''}
                   </tr>
@@ -122,7 +132,7 @@ export default class ResultView extends React.Component {
                 <tr>
                   <th className="first-row">Overall</th>
                   {judges ? judges.map((judge, i) => (
-                    <th scope="col">{this.getOverAll('x', i, judge.id)}</th>
+                    <th key={i} scope="col">{this.getOverAll('x', i, judge.id)}</th>
                   )) : ''}
                   {this.state.task_grading ? <th scope="col" className="text-danger">{this.getOverAll('all')}</th> : ''}
                 </tr>

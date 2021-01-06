@@ -578,7 +578,7 @@ export default class MyTeam extends React.Component {
                             className="input-group-text border-0"
                             htmlFor="choose-logo"
                           >
-                            <i class="fas fa-paperclip"></i>
+                            <i className="fas fa-paperclip"></i>
                             <input
                               accept="image/*, video/*,application/pdf,.xlsx, .xls"
                               id="choose-logo"
@@ -605,7 +605,7 @@ export default class MyTeam extends React.Component {
                           className=" input-group-append input-group-text border-0 text-primary"
                           onClick={this.handleSend.bind(this)}
                         >
-                          <i class="fas fa-paper-plane fa-lg mr-2"></i> Send
+                          <i className="fas fa-paper-plane fa-lg mr-2"></i> Send
                         </button>
                       ) : (
                         ""

@@ -45,7 +45,7 @@ export default class Card extends React.Component {
             }
             <br />
             {
-              this.props.userType === "admin" && this.props.data.start_url !== "" 
+              this.props.userType === "admin" && this.props.data.start_url !== ""
               ? (<a className="btn" href={this.props.data.start_url} onClick={this.closeModal} target="_blank" rel="noopener noreferrer">Start Meeting &nbsp;&nbsp;&nbsp;</a>)
               : this.props.userType !== "admin" && this.props.data.join_url !== ""
               ? (<a className="btn" href={this.props.data.join_url} onClick={this.closeModal} target="_blank" rel="noopener noreferrer">Join Meeting </a>)

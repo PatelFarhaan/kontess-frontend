@@ -446,7 +446,7 @@ html body .text-danger {
 }
 
 @media (max-width: 991px) {
- 
+
   .app_light .setting_container{
     margin: 0 !important;
   }
@@ -696,7 +696,7 @@ select {
 @media (max-width: 1100px) {
   .page-container,
   /* notify envelope */
-  
+
   .notification-area .dropdown-toggle {
     position: relative;
   }
@@ -858,7 +858,7 @@ select {
   -moz-appearanace: none;
   -webkit-appearance: none;
 }
-/* 
+/*
 .select-icon-absolute {
   right: 10px;
   top: 10px;
@@ -1709,7 +1709,7 @@ html body .badge-custom {
 }
 .nav-pills{
   position: relative !important;
-} 
+}
 .error{
   font-size: 17px;
   font-weight: 700;
@@ -1720,7 +1720,7 @@ html body .badge-custom {
 /*************custom checkbox***********/
 .custom-checkbox .custom-control-input:checked~.custom-control-label::before{
   background-color:#000!important;
-  
+
 }
 
 .custom-checkbox .custom-control-label::before{
@@ -1785,12 +1785,12 @@ i.far.fa-trash-alt.fa-lg ,.fa-trash{
   animation: fadeIn 1s ease-in-out;
 }
 
-.animate { 
+.animate {
   -webkit-animation-duration: 2s;
   animation-duration: 2s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
-} 
+}
 @-webkit-keyframes fadeIn {
   0% {opacity: 0;}
   100% {opacity: 1;}
@@ -2214,7 +2214,7 @@ strong.font-family-open {
   from { opacity: 1.0; }
   50% { opacity: 0.5; }
   to { opacity: 1.0; }
-}                                                                                                                                                                                                                                  
+}
 
 @-webkit-keyframes fade {
   from { opacity: 1.0; }
@@ -2305,7 +2305,7 @@ li.disabled > a:hover{
 }
 .sidebar_collapsed .desktop-bars .notificationBadge,.desktop-bars .notificationBadge {
   display: block!important;
-  
+
 }
 .sidebar_collapsed .nav-btn span.side-bars{
   background:#fff
@@ -2371,7 +2371,7 @@ button.input-group-append {
 .collapsed .text-line-clamp{
   display: -webkit-box;
   -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;  
+  -webkit-box-orient: vertical;
   overflow: hidden;
   white-space: pre-line;
 }

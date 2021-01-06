@@ -77,10 +77,10 @@ export default class teamApproval extends React.Component {
                   </div>
                 </div>
                 <div className="ui pointing secondary menu">
-                  <a href="/#" className={`item ${this.state.requestStatus === 'pending' ? 'active' : ''}`} onClick={(e) => this.getRequests()}>Pending</a>
-                  <a href="/#" className={`item ${this.state.requestStatus === 'approved' ? 'active' : ''}`} onClick={(e) => this.getRequests(0, 'approved')}>Approved</a>
-                  <a href="/#" className={`item ${this.state.requestStatus === 'rejected' ? 'active' : ''}`} onClick={(e) => this.getRequests(0, 'rejected')}>Rejected</a>
-                  <a href="/#" className={`item ${this.state.requestStatus === '' ? 'active' : ''}`} onClick={(e) => this.getRequests(0, '')}>All Requests</a>
+                  <a  className={`item ${this.state.requestStatus === 'pending' ? 'active' : ''}`} onClick={(e) => this.getRequests()}>Pending</a>
+                  <a  className={`item ${this.state.requestStatus === 'approved' ? 'active' : ''}`} onClick={(e) => this.getRequests(0, 'approved')}>Approved</a>
+                  <a  className={`item ${this.state.requestStatus === 'rejected' ? 'active' : ''}`} onClick={(e) => this.getRequests(0, 'rejected')}>Rejected</a>
+                  <a  className={`item ${this.state.requestStatus === '' ? 'active' : ''}`} onClick={(e) => this.getRequests(0, '')}>All Requests</a>
                 </div>
                 <Card requests={this.state.requests} callback={(e) => this.getRequests(0, this.state.requestStatus)}></Card>
                 <Pagination perPage={this.state.perPage} count={this.state.count} handlePageClick={(ev) => this.handlePagination(ev)} />

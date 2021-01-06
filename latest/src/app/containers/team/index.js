@@ -317,7 +317,7 @@ export default class Team extends React.Component {
                               </div>
                             ) : (
                               <div className="content border border-secondary">
-                                <a href="/#">
+                                <a >
                                   <img
                                     className="content-image"
                                     src={this.state[index]}

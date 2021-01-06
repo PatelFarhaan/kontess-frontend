@@ -2,7 +2,7 @@
 
 # Formatting
 
-- Indentation : 
+- Indentation :
    * Use four spaces.
 
 - Newlines :
@@ -11,7 +11,7 @@
 - No trailing white space :
    * Clean up any trailing white space in your JS files.
 
-- Use semicolons :  
+- Use semicolons :
    * Usage of semicolons is a core value.
 
 - 80 characters per line :
@@ -19,12 +19,12 @@
 
 - single quotes :
    * Use single quotes, unless you are writing JSON.This helps you separate your objects’ strings from normal strings. Example: var fruit = ‘mango’
-      
+
 - Opening braces :
    * Opening braces should be on the same line
 
 # Varibale Declaration :
-   * Declare one variable per var statement 
+   * Declare one variable per var statement
    * make use of let var and const as required
 
 # Naming Conventions
@@ -32,19 +32,19 @@
    - Use UpperCamelCase for class names : Class names should be capitalized using UpperCamelCase. example:  BankAccount
 
    - Use UPPERCASE for Constants : Constants should be declared as regular variables or static class properties, using all uppercase letters
-	   
+
 # Variables
    - Object / Array creation : Always quote only keys  in arrays and objects
 
-# Conditionals 
-   - Use the === operator 
+# Conditionals
+   - Use the === operator
    - Use descriptive conditions : Any non - trivial conditions should be assigned to a descriptively named variable or function
 
 # Functions
    * Write small functions : Keep your functions short.
    *  Return early from functions : To avoid deep nesting of if - statements, always return a function’ s value as early as possible.
-    	
-   - Method chaining : One method per line should be used. Example: 
+
+   - Method chaining : One method per line should be used. Example:
 
 # Comments
    * Use slashes for comments
@@ -53,7 +53,7 @@
 
 # Error handling
    * Operational errors
-   * Programmer errors  
+   * Programmer errors
 
 #other style guidelines
 - File structure conventions
@@ -64,7 +64,7 @@
 
 - Rule of One
     * Do define one thing, such as a service or component, per file.
-   
+
 - Separate file names with dots and dashes
     * Do use dashes to separate words in the descriptive name.
     * Do use dots to separate the descriptive name from the type.

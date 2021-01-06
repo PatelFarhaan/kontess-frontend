@@ -237,7 +237,6 @@ export default class Team extends React.Component {
       if (!self.state.files[i].docs) {
         var reader = new FileReader();
         let filetype = self.state.files[i].type;
-        //console.log(filetype);
         const j = i, reader2 = reader
         reader.onload = function (event) {
           self.setState({
@@ -659,7 +658,6 @@ export default class Team extends React.Component {
   };
 
   renderMsg = (obj) => {
-    console.log(obj);
     if (obj.file && obj.ext) {
       return (
         <div className="message file-message">
@@ -1039,7 +1037,7 @@ export default class Team extends React.Component {
                               accept="image/*, video/*,application/pdf,.xlsx, .xls"
                             />
                             <label
-                              for="choose-file"
+                              htmlFor="choose-file"
                               className="upload-file mx-5 text-light bg-primary "
                             >
                               Upload media (max 6 images, videos 1 min, 200MB
@@ -1080,7 +1078,7 @@ export default class Team extends React.Component {
                                     </div>
                                   ) : (
                                     <div className="content border border-secondary ">
-                                      <a href="/#">
+                                      <a >
                                         <img
                                           className="content-image"
                                           src={this.renderFileIcon(file.docs)}
@@ -1101,7 +1099,7 @@ export default class Team extends React.Component {
                                                 href={file.docs}
                                                 download
                                                 target="_blank"
-                                                rel="noopener noreferrer" 
+                                                rel="noopener noreferrer"
                                                 className="content-text"
                                               >
                                                 <h5>View</h5>
@@ -1129,7 +1127,7 @@ export default class Team extends React.Component {
                                   </div>
                                 ) : (
                                   <div className="content border border-secondary">
-                                    <a href="/#">
+                                    <a >
                                       <img
                                         className="content-image"
                                         src={this.state[index]}
@@ -1257,7 +1255,7 @@ export default class Team extends React.Component {
                           className="input-group-text border-0"
                           htmlFor="choose-logo"
                         >
-                          <i class="fas fa-paperclip"></i>
+                          <i className="fas fa-paperclip"></i>
                           <input
                             accept="image/*, video/*,application/pdf,.xlsx, .xls"
                             id="choose-logo"
@@ -1280,7 +1278,7 @@ export default class Team extends React.Component {
                         className="input-group-text input-group-append border-0 text-primary"
                         onClick={this.handleSend.bind(this)}
                       >
-                        <i class="fas fa-paper-plane fa-lg mr-2"></i>
+                        <i className="fas fa-paper-plane fa-lg mr-2"></i>
                         Send
                       </button>
                     </div>

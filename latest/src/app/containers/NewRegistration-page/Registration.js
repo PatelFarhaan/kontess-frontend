@@ -393,7 +393,7 @@ class NewRegistratoin extends React.Component {
                   </div>
                 ) : (
                   <div>
-                      <input 
+                      <input
                         type="textarea"
                         name="bio"
                         value={this.state.bio}
@@ -417,7 +417,7 @@ class NewRegistratoin extends React.Component {
                   onChange={this.handleChange}
                   options={this.state.skilldata}
                 /> </div> : ''} */}
-                <div class="form-group custom-checkbox">
+                <div className="form-group custom-checkbox">
                   <input
                     type="checkbox"
                     id="select0"
@@ -425,7 +425,7 @@ class NewRegistratoin extends React.Component {
                     onChange={(e) => this.handleCheckBox()}
                     checked={this.state.i_agree_to_the_rules_of_the_competition}
                   />
-                  <label class="bg-black text-white" for="select0">
+                  <label className="bg-black text-white" htmlFor="select0">
                     I Agree to the Privacy Policy of Kontess and Rules of the
                     Competition
                   </label>

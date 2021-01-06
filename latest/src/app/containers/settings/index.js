@@ -383,13 +383,11 @@ export default class Settings extends React.Component {
             </div>
             <div>
               <h3 className="w-100 py-3 text-secondary">Support</h3>
-              <div class="card" style={{height:"fit-content"}}>
-                <div class="card-body">
+              <div className="card" style={{height:"fit-content"}}>
+                <div className="card-body">
                   <HubspotForm
                     portalId='7729318'
                     formId='6652e8a3-fcb4-4a02-b719-9f1fb6d39441'
-                    //onSubmit={() => console.log('Submit!')}
-                    //onReady={(form) => console.log('Form ready!')}
                     loading={<div>Loading...</div>}
                   />
                   </div>

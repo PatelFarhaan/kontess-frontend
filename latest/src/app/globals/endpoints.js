@@ -2,9 +2,13 @@
 import config from "../../config";
 import * as session from "../../utils/session";
 //Base URL
+let zoom_endpoint = config
+if (config.search("localhost")){
+  zoom_endpoint = zoom_endpoint.split(":").slice(0,-1).join(":")+ ":5000"
+}
 export const baseURL = `${config}/api/`;
 // export const zoomLambdaURL = "https://36huwrdes5.execute-api.us-east-2.amazonaws.com/stage1/zoom_connect";
-export const zoomLambdaURL = "//demo.kontess.com/zoom/create-meeting";
+export const zoomLambdaURL = `${zoom_endpoint}/zoom/create-meeting`;
 
 // export const proxyUrl = "https://cors-anywhere.herokuapp.com/";
 export const proxyUrl = "";
@@ -31,6 +35,7 @@ export const reqHeader = async () => {
   return {
     Accept: "application/json",
     "Content-Type": "application/json;charset=UTF-8",
+    // "Referrer-Policy": "no-referrer",
     Authorization: "Bearer " + token,
   };
 };

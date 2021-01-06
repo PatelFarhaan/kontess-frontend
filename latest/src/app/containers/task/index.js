@@ -206,7 +206,7 @@ export default class Task extends React.Component {
                                                                 </a><br /></div>
                                                         )}
                                                         </h6>
-                                                        {task.task.release_score_to_participant ? <a onClick={() => this.goToResults(task.id)} href="/#">
+                                                        {task.task.release_score_to_participant ? <a onClick={() => this.goToResults(task.id)} >
                                                             <span className="text-primary  pt-1 d-block font-weight-bold text-underline">View score detail  <i className="fas fa-eye"></i>
                                                             </span></a> : ''}</div> : ''}
 

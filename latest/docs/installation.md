@@ -2,8 +2,8 @@
    * Install Latest React CLI and NPM on Ubuntu(Frontend)
       Requrements
    * React JS 16.11 (above)
-	installation : using terminal 
-   
+	installation : using terminal
+
     npm install --save create-react-app
 
     Build Procedure:-
@@ -17,4 +17,4 @@ make sure you give READ/WRITE permission to your folder.
 
 ## License
 
-**www.toxsl.com** 
+**www.toxsl.com**

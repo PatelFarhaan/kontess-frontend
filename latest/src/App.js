@@ -36,11 +36,15 @@ import PendingTeamsApproval from "./app/containers/pending-team-approval";
 import Task from "./app/containers/task";
 import AdminTaskView from "./app/containers/task/adminTaskView";
 import JudgeTaskView from "./app/containers/task/judgeTaskView";
+import JudgeLiveTaskView from "./app/containers/task/judgeLiveTaskView";
 import CreateModifyTask from "./app/containers/task/new-modify-task";
 import TaskDetails from "./app/containers/task/taskDetails";
 import TaskDetailsJudge from "./app/containers/task/taskDetails-judge";
+import TaskDetailsJudgeLive from "./app/containers/task/taskDetailsJudgeLive";
 import Result from "./app/containers/task/result";
 import Grading from "./app/containers/task/grading";
+import GradingLive from "./app/containers/task/gradingLive";
+// import LiveGrading from "./app/containers/task/grading";
 import Tracks from "./app/containers/tracks";
 import NotificationSettings from "./app/containers/settings/notification-settings";
 import ChangePassword from "./app/containers/settings/change-password";
@@ -220,6 +224,30 @@ class App extends React.Component {
                       path={`${path}/pending-teams-approval`}
                       component={PendingTeamsApproval}
                     />
+                    <PrivateRoute
+                        pathName={"/"}
+                        isAuthenticated={this.state.isAuthenticated}
+                        path={`${path}/live-judge`}
+                        component={JudgeLiveTaskView}
+                    />
+
+                    <PrivateRoute
+                      pathName={"/"}
+                      isAuthenticated={
+                        this.state.isAuthenticated &&
+                        session.getUserType() === "judge"
+                      }
+                      path={`${path}/live-grading`}
+                      component={GradingLive}
+                    />
+
+                    <PrivateRoute
+                      pathName={"/"}
+                      isAuthenticated={this.state.isAuthenticated}
+                      path={`${path}/live-task-view/:taskId`}
+                      component={TaskDetailsJudgeLive}
+                    />
+
                     <PrivateRoute
                       pathName={"/"}
                       isAuthenticated={this.state.isAuthenticated}
