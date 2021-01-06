@@ -234,12 +234,12 @@ export default class People extends React.Component {
                                         <div className="tab-pane fade active show"><h5 className="text-center">No result found!</h5></div>
                                         : ''}</div> : <div>
                                     <div className="ui pointing secondary menu">
-                                        <a className={`item ${this.state.type === 'all' ? 'active' : ''}`} onClick={(e) => this.getAllUsers('all')} href="/#">All Users</a>
-                                        <a className={`item ${this.state.type === 'participant' ? 'active' : ''}`} onClick={(e) => this.getAllUsers('participant')} href="/#">Participants</a>
-                                        <a className={`item ${this.state.type === 'judge' ? 'active' : ''}`} onClick={(e) => this.getAllUsers('judge')} href="/#">Judge/Coach</a>
+                                        <a className={`item ${this.state.type === 'all' ? 'active' : ''}`} onClick={(e) => this.getAllUsers('all')} >All Users</a>
+                                        <a className={`item ${this.state.type === 'participant' ? 'active' : ''}`} onClick={(e) => this.getAllUsers('participant')} >Participants</a>
+                                        <a className={`item ${this.state.type === 'judge' ? 'active' : ''}`} onClick={(e) => this.getAllUsers('judge')} >Judge/Coach</a>
                                     </div>
 
-                                    <div className="ui segment" style={{ 'min-height': '704px' }}>
+                                    <div className="ui segment" style={{ 'minHeight': '704px' }}>
                                         {this.state.loading ? <div className="ui active transition visible inverted dimmer">
                                             <div className="content"><div className="ui inverted text loader">Loading...</div></div>
                                         </div> : <div className="table-responsive">

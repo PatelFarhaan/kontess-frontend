@@ -188,9 +188,9 @@ export default class TopNav extends React.Component {
           <div className="col-md-6 col-sm-5 d-flex pt-2">
             <div className="position-relative desktop-bars">
               <div className="nav-btn pull-left mr-0">
-                <span class="side-bars"></span>
-                <span class="side-bars"></span>
-                <span class="side-bars"></span>
+                <span className="side-bars"></span>
+                <span className="side-bars"></span>
+                <span className="side-bars"></span>
               </div>
               {msgCount !== 0 ? (
                 <span className="notificationBadge">
@@ -207,9 +207,9 @@ export default class TopNav extends React.Component {
               <li>
                 <div className="position-relative mobile-bars">
                   <span className="nav-btn pull-left">
-                    <span class="side-bars"></span>
-                    <span class="side-bars"></span>
-                    <span class="side-bars"></span>
+                    <span className="side-bars"></span>
+                    <span className="side-bars"></span>
+                    <span className="side-bars"></span>
 
                   </span>
                   {msgCount !== 0 ? (

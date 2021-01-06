@@ -61,7 +61,7 @@ export default class Card extends React.Component {
                   </div> */}
                 </div>
               </div>
-            </div> 
+            </div>
         )) : <h5 className="text-center padding15">No {this.props.type} found!</h5> : <Loading />
         }
       </div>

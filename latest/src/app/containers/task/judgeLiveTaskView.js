@@ -32,7 +32,7 @@ export default class JudgeTask extends React.Component {
         this.setState({
             tasks: []
         })
-        await getFetch('participant_task/judge-task/?&limit=' + this.state.perPage + '&offset=' + offset)
+        await getFetch('participant_task/live-judge-task/?&limit=' + this.state.perPage + '&offset=' + offset)
             .then(resp => {
                 if (resp.data) {
                     self.setState({
@@ -53,8 +53,9 @@ export default class JudgeTask extends React.Component {
     }
     render() {
         const { tasks } = this.state;
+        let is_live_judge = true
         return (
-            <DashboardTemplate title="Task" pageId="task">
+            <DashboardTemplate title="Task" pageId="live-judge">
                 <div className="setting_container">
                     <div className="chat-container clearfix">
                         <div className="row">
@@ -66,6 +67,7 @@ export default class JudgeTask extends React.Component {
                                             tasks.data.map((task, index) => {
                                                 let submission_due_date_check = moment() < moment(task.submission_due_date, 'YYYY-MM-DD, h:mm:ss a')
                                                 let grade_due_date_check = moment() > moment(task.grade_due_date, 'YYYY-MM-DD, h:mm:ss a')
+
                                                return (
                                                     <div className={'comment-widgets no-hover border border-dark mb-0 '} key={index}>
                                                         <div className="card-header border-0 bg-d7 p-2" id="headingOne">
@@ -86,6 +88,9 @@ export default class JudgeTask extends React.Component {
                                                                     <div className="task-state w-100 text-right mr-4">
                                                                         Grading due  <Moment format="lll">{moment(task.grade_due_date, 'YYYY-MM-DD hh:mm A')}</Moment>
                                                                         <span className="submit-date d-block"></span>
+                                                                        <Link to={'/dashboard/live-task-view/' + task.id} className="btn btn-md px-4 rounded-0 btn-primary">
+                                                                            View
+                                                                        </Link>
                                                                         {
                                                                             submission_due_date_check
                                                                             ?
@@ -93,13 +98,11 @@ export default class JudgeTask extends React.Component {
                                                                                     Task will open for grading on  <Moment format="lll">{moment(task.submission_due_date, 'YYYY-MM-DD hh:mm A')}</Moment>
                                                                                 </span>
                                                                             :
-                                                                            grade_due_date_check
-                                                                            ?
-                                                                                <h5 className="text-danger">Grading closed</h5>
-                                                                            :
-                                                                                <Link to={'/dashboard/task-view/' + task.id} className="btn btn-md px-4 rounded-0 btn-primary">
-                                                                                    View
-                                                                                </Link>
+                                                                            // grade_due_date_check
+                                                                            // ?
+                                                                            //     <h5 className="text-danger">Grading closed</h5>
+                                                                            // :
+                                                                                ""
                                                                         }
                                                                     </div>
                                                                 </div>

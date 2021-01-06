@@ -203,8 +203,8 @@ export default class TaskDetails extends React.Component {
                 return;
             });*/
             const found = this.state.dataList.judges.find( judge => judge.id === Judge.id );
-            if( found ){data = <a className="text-info" >Assigned</a>;}
-
+            if( found )
+                data = <a className="text-info" >Assigned</a>;
         }
         return data;
     }
@@ -433,7 +433,7 @@ export default class TaskDetails extends React.Component {
                                                         <tbody>
                                                             {questions
                                                                 ? questions.map((item, index) => (
-                                                                    <tr key={index}>
+                                                                    <tr>
                                                                         <td><span>{item.question}</span></td>
                                                                         <td><span>{item.max_score}</span></td>
                                                                         <td><span className={`py-1 px-3 rounded-pill text-white ${item.feedback ? 'bg-info' : 'bg-danger'}`}>{item.feedback ? 'Allow' : 'Not Allow'}</span></td>
@@ -470,8 +470,8 @@ export default class TaskDetails extends React.Component {
                             </div>
                         </div>
                         {assing_to === 'teams' ? <div className="ui pointing secondary menu">
-                            {this.state.tracks.map((track, index) => (
-                                <a key={index} className={`item ${this.state.curruntTrack === track.id ? 'active' : ''}`} onClick={(e) => this.getAllTeams(0, track.id)} >{track.track_name}</a>
+                            {this.state.tracks.map(track => (
+                                <a className={`item ${this.state.curruntTrack === track.id ? 'active' : ''}`} onClick={(e) => this.getAllTeams(0, track.id)} >{track.track_name}</a>
                             ))}
                         </div> : ''}
                         <div className="card-body padding-40">
@@ -489,8 +489,8 @@ export default class TaskDetails extends React.Component {
                                                 <h6 className="m-0 text-333f52">Judge/Coach assigned</h6>
                                             </div>
                                             <div className="card-body px-3 py-0 list">
-                                                {this.state.dataList.judges ? this.state.dataList.judges.length ? this.state.dataList.judges.map((user, index) => (
-                                                    <div key={index} className="assigned-judge-list border-bottom border-secondary py-1 my-2">
+                                                {this.state.dataList.judges ? this.state.dataList.judges.length ? this.state.dataList.judges.map(user => (
+                                                    <div className="assigned-judge-list border-bottom border-secondary py-1 my-2">
                                                         <div className="clearfix">
                                                             <div className="judge-name float-left">
                                                                 <span className="img-user">
@@ -512,8 +512,8 @@ export default class TaskDetails extends React.Component {
                                                 <h6 className="m-0 text-333f52">List of all Judge/Coach</h6>
                                             </div>
                                             <div className="card-body px-3 py-0 list">
-                                                {judge ? judge.map((user, index) => (
-                                                    <div key={index} className="assigned-judge-list border-bottom border-secondary py-1 my-2">
+                                                {judge ? judge.map(user => (
+                                                    <div className="assigned-judge-list border-bottom border-secondary py-1 my-2">
                                                         <div className="clearfix">
                                                             <div className="judge-name float-left">
                                                                 <span className="img-user">

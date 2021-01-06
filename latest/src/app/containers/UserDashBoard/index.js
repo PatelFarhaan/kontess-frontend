@@ -87,6 +87,7 @@ export default class UserDashBoard extends React.Component {
                     {this.state.eventList.length ? (
                       this.state.eventList.map((item, index) => (
                         <div
+                          key={index}
                           data-toggle="modal"
                           data-target="#newevent"
                           data-backdrop="static"

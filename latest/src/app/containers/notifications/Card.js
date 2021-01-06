@@ -116,7 +116,7 @@ export default class Card extends React.Component {
         {this.props.notifications.length ? this.props.notifications.map((notification, index) =>
           <div className="card nofity-list overflow-hidden">
             <div className="comment-widgets">
-              <a href="/#" key={notification.id} className="notify-item">
+              <a  key={notification.id} className="notify-item">
                 <div className="notify-thumb">
                   <img
                     src={

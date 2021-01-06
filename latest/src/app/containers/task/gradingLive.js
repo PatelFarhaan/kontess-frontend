@@ -18,7 +18,7 @@ export default class Grading extends React.Component {
             this.getTaskDetail();
 
         } else {
-            this.props.history.push("/dashboard/task")
+            this.props.history.push("/dashboard/live-judge")
         }
     }
 
@@ -78,6 +78,7 @@ export default class Grading extends React.Component {
                     self.setState({
                         over_all_comments: resp.data.over_all_comments,
                         grades: resp.data.grades,
+                        participantid: self.props.location.state.id,
                         status: resp.data.status
                     }, () => {
                         self.state.grades.map(function (item, index) {
@@ -106,7 +107,7 @@ export default class Grading extends React.Component {
             submitted_task_id: this.props.location.state.taskInstancId
         }
         let self = this;
-        let url = 'task/' + this.props.location.state.taskId + '/grading/';
+        let url = 'task/' + this.props.location.state.taskId + '/live-grading/';
         if (this.props.location.state.gradeId) {
             url = 'task/' + this.props.location.state.taskId + '/update-grading/?grade_id=' + this.props.location.state.gradeId;
         }
@@ -117,7 +118,7 @@ export default class Grading extends React.Component {
                 })
                 if (response.status === 200) {
                     toast.success(response.msg);
-                    self.props.history.push("/dashboard/task-view/" + self.props.location.state.taskId);
+                    self.props.history.push("/dashboard/live-task-view/" + self.props.location.state.taskId);
                 } else {
                     toast.error(response.msg);
                 }
@@ -147,17 +148,17 @@ export default class Grading extends React.Component {
     render() {
         const { title, questions, over_all_comments, taskTitle, track ,status} = this.state;
         return (
-            <DashboardTemplate title={"Now grading - " + title} pageId="task" loading={this.state.loading}>
+            <DashboardTemplate title={"Now grading - " + title} pageId="live-judge" loading={this.state.loading}>
                 <div className="card">
                     <div className="card-body p-5 clearfix">
                         <div className="row">
                             <div className="col-md-3">
                                 <h3>{taskTitle}</h3>
-                                <a href="#">
+                                {/* <a href="#">
                                     <span onClick={() => this.downloadSubmission()} className="text-primary  pt-1 d-block font-weight-bold">
                                         Download submission file  <i className="fas fa-download"></i>
                                     </span>
-                                </a>
+                                </a> */}
                             </div>
                             {track ? <div className="col-md-3">
                                 <p>Track: {track}</p>

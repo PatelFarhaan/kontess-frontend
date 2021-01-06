@@ -110,7 +110,7 @@ export default class InviteMember extends React.Component {
         }
     }
 
-    // Send invitation to the participants 
+    // Send invitation to the participants
     inviteMembers = async () => {
         let self = this;
         //Get the selected participants

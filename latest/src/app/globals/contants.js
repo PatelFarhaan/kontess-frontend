@@ -32,7 +32,7 @@ export const double = 2;
 export class Loading extends React.Component {
 
     render() {
-        return <div className="ui segment loading_bck" style={{ 'min-height': this.props.minHeight ? this.props.minHeight : '300px' }}>
+        return <div className="ui segment loading_bck" style={{ 'minHeight': this.props.minHeight ? this.props.minHeight : '300px' }}>
             <div className="ui active transition visible inverted dimmer">
                 <div className="content"><div className="ui inverted text loader">Loading...</div></div>
             </div></div>;
@@ -89,3 +89,8 @@ export const countiesNameList = [
     {"value":"Van Zandt", "label":"Van Zandt"},
     {"value":"Wood", "label":"Wood"},
 ];
+
+// login page
+const contest_name = window.location.hostname.split(".")[0];
+export const company_logo = "logo_name_blue.png";
+export const text_on_background = contest_name.toUpperCase() + " PLATFORM";

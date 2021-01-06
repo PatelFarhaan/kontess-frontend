@@ -90,7 +90,6 @@ export default class Activity extends React.Component {
     this.setState({ Create_date });
   };
   handleZoomAuth = (e) => {
-    // console.log("checked", e.target.checked)
     if (e.target.checked === true) {
       this.setState({ zoomYes: true, zoomNo: false });
       localStorage.setItem("Zoom", true);
@@ -99,7 +98,6 @@ export default class Activity extends React.Component {
     } else this.setState({ zoomYes: false });
   };
   handleZoomNo = (e) => {
-    // console.log("checked", e.target.checked)
     if (e.target.checked === true) {
       this.setState({ zoomNo: true, zoomYes: false});
       document.getElementById("yesForZoom").checked = false;
@@ -133,6 +131,17 @@ export default class Activity extends React.Component {
                         >
                           New Event
                         </button>
+                        {this.state.UserType === "admin" ? (
+                            <NewEvent
+                              ModalId={"newevent"}
+                              getAllEvents={this.getAllEvents}
+                              event={this.state.event}
+                              Create_date={this.state.Create_date}
+                            ></NewEvent>
+                        )
+                        : (
+                          ""
+                        )}
                       </div>
                     ) : (
                       ""
@@ -156,7 +165,7 @@ export default class Activity extends React.Component {
                         />
                         <label
                           className="custom-control-label c2 ml-2"
-                          for="yesForZoom"
+                          htmlFor="yesForZoom"
                         >
                           Yes{" "}
                         </label>
@@ -173,7 +182,7 @@ export default class Activity extends React.Component {
                         />
                         <label
                           className="custom-control-label c2 ml-2"
-                          for="noForZoom"
+                          htmlFor="noForZoom"
                         >
                           No{" "}
                         </label>
@@ -191,11 +200,17 @@ export default class Activity extends React.Component {
                     this.state.eventList.map((item, index) => (
                       <div
                         data-toggle="modal"
-                        data-target="#newevent"
+                        data-target={"#newevent"+index}
                         data-backdrop="static"
                         data-keyboard="false"
                         onClick={() => this.editEvent(item)}
                       >
+                        <NewEvent
+                              ModalId={"newevent"+index}
+                              getAllEvents={this.getAllEvents}
+                              event={this.state.event}
+                              Create_date={this.state.Create_date}
+                            ></NewEvent>
                         <Card data={item} key={index} userType={session.getUserType()}></Card>
                       </div>
                     ))
@@ -224,17 +239,6 @@ export default class Activity extends React.Component {
             </div>
           </section>
         </div>
-        {this.state.UserType === "admin" ? (
-          <div className="modal fade" id="newevent">
-            <NewEvent
-              getAllEvents={this.getAllEvents}
-              event={this.state.event}
-              Create_date={this.state.Create_date}
-            ></NewEvent>
-          </div>
-        ) : (
-          ""
-        )}
       </DashboardTemplate>
     );
   }

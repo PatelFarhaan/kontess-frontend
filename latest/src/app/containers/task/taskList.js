@@ -132,14 +132,29 @@ export default class TaskList extends React.Component {
                         </div>
                     </div>
                 </div>
-                {tasks.data ? tasks.data.length ? tasks.data.map(task => (
-                    <div className="card mb-1 mt-mob-4">
+                {tasks.data ? tasks.data.length ? tasks.data.map((task, index) => {
+
+                    return(
+                    <div className="card mb-1 mt-mob-4" key={index}>
                         <div className="card-body p-2 px-3 d-flex justify-content-between align-items-center row ">
-                            {task.status !== 'Draft' ? <Link to={'/dashboard/task-view/' + task.id} className="tak-list col-md-10">
-                                <strong className="font-family-open">{task.title}</strong>  <span className={`ml-2 badge badge-pill ${task.assing_to && task.assing_to === 'teams' ? 'badge-info' : 'badge-warning'}`} >{task.assing_to && task.assing_to === 'teams' ? '(Team Task)' : '(Individual)'}</span>
-                                {this.getTaskStatus(task)}
-                            </Link> :
-                                <div className="col-md-10">   <strong className="font-family-open">{task.title}</strong> <span className={`ml-2 badge badge-pill ${task.assing_to && task.assing_to === 'teams' ? 'badge-info' : 'badge-warning'}`} >{task.assing_to && task.assing_to === 'teams' ? '(Team Task)' : '(Individual)'}</span>{task.status === 'Draft' ? <span className={`ml-2 badge badge-pill badge-secondary`} >Draft</span> : ''} </div>
+                            {
+                                task.status !== 'Draft'
+                                ?
+                                    <Link to={'/dashboard/task-view/' + task.id} className="tak-list col-md-10">
+                                        <strong className="font-family-open">{task.title}</strong>
+                                        <span className={`ml-2 badge badge-pill ${task.assing_to && task.assing_to === 'teams' ? 'badge-info' : 'badge-warning'}`} >
+                                            {task.assing_to && task.assing_to === 'teams' ? '(Team Task)' : '(Individual)'}
+                                        </span>
+                                        {this.getTaskStatus(task)}
+                                    </Link>
+                                :
+                                    <div className="col-md-10">
+                                        <strong className="font-family-open">{task.title}</strong>
+                                        <span className={`ml-2 badge badge-pill ${task.assing_to && task.assing_to === 'teams' ? 'badge-info' : 'badge-warning'}`} >
+                                            {task.assing_to && task.assing_to === 'teams' ? '(Team Task)' : '(Individual)'}
+                                        </span>
+                                            {task.status === 'Draft' ? <span className={`ml-2 badge badge-pill badge-secondary`} >Draft</span> : ''}
+                                    </div>
                             }
 
                             <div className="icon-bar col-md-2 text-right">
@@ -152,7 +167,7 @@ export default class TaskList extends React.Component {
                         </div>
 
                     </div>
-                )) : <h6 className="text-center">No task found!</h6> : <Loading />}
+                )}) : <h6 className="text-center">No task found!</h6> : <Loading />}
                 <Pagination perPage={this.state.perPage} count={this.state.count} handlePageClick={(ev) => this.handlePagination(ev)} />
             </div>
         );

@@ -91,7 +91,7 @@ export default class TeamInfo extends React.Component {
         }
       }).catch(err => { })
     })
-   
+
   }
 
   getInitialState = () => {
@@ -166,9 +166,9 @@ export default class TeamInfo extends React.Component {
             </div>
             <div>
               <div className="ui pointing secondary menu">
-                <a href="/#" className={`item ${this.state.curruntTrack === '' ? 'active' : ''}`} onClick={(e) => this.getAllTeams()}>All Teams</a>
-                {this.state.tracks.map(track => (
-                  <a href="/#" className={`item ${this.state.curruntTrack === track.slug ? 'active' : ''}`} onClick={(e) => this.getAllTeams(0, '', '', track.slug)}>{track.track_name}</a>
+                <a  className={`item ${this.state.curruntTrack === '' ? 'active' : ''}`} onClick={(e) => this.getAllTeams()}>All Teams</a>
+                {this.state.tracks.map((track, index) => (
+                  <a key={index} className={`item ${this.state.curruntTrack === track.slug ? 'active' : ''}`} onClick={(e) => this.getAllTeams(0, '', '', track.slug)}>{track.track_name}</a>
                 ))}
               </div>
               <div className="card-body padding-40">
