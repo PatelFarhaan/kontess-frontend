@@ -394,7 +394,7 @@ export default class Task extends React.Component {
                                                 type="button"
                                                 data-toggle="modal"
                                                 data-target="#tasknewevent"
-                                                > Create New Event
+                                                > Create New Zoom Event
                                             </button>
                                         </div>
                                     </div>

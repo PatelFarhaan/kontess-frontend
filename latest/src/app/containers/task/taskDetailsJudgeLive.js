@@ -60,7 +60,7 @@ export default class TaskDetails extends React.Component {
         let self = this;
         await getFetch(`task/` + this.state.taskId + `/`)
             .then(resp => {
-                console.log("resp.data", resp.data)
+                // console.log("resp.data", resp.data)
                 if (resp.data) {
                     self.setState({
                         title: resp.data.title,
