@@ -121,8 +121,9 @@ export default class ParticipantListTable extends React.Component {
   }
 
   createRows() {
-    const rows = this.state.participants.map(participant => (
+    const rows = this.state.participants.map((participant, index) => (
       <tr
+        key={index}
         onClick={() =>
           this.props.openProfileModal(participant["participantId"])
         }

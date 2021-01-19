@@ -243,8 +243,8 @@ export default class TopNav extends React.Component {
                   </span>
                   <div className="nofity-list">
                     {notifications
-                      ? notifications.map(notification => (
-                        <Link onClick={() => this.goToNotification(notification.id)} key={notification.id} className="notify-item">
+                      ? notifications.map((notification, index) => (
+                        <Link  key={notification.id} onClick={() => this.goToNotification(notification.id)} className="notify-item">
                           <div className="notify-thumb">
                             <img
                               src={

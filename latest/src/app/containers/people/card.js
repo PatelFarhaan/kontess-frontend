@@ -45,8 +45,8 @@ export default class Card extends React.Component {
                   <div className="col-md-3">
                     <h5><Link to={'/dashboard/profile/' + user.id}>{capitalize(user.full_name ? user.full_name : user.username)}</Link> </h5>
                     <p className="skills">
-                      {user.skill.map(skill => (
-                        <span className="badge  badge-info">{skill.label}</span>
+                      {user.skill.map((skill, index2) => (
+                        <span key={index2} className="badge  badge-info">{skill.label}</span>
                       ))}
                     </p>
                   </div>

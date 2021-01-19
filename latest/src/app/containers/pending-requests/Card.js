@@ -30,7 +30,7 @@ export default class Card extends React.Component {
     return (
       <div >
         {this.props.requests.length ? this.props.requests.map((request, index) =>
-          <div className="card nofity-list  overflow-hidden">
+          <div key={index} className="card nofity-list  overflow-hidden">
             <div className="comment-widgets">
               <a key={request.id} className="notify-item" >
                 <div className="notify-text">

@@ -224,8 +224,8 @@ export default class Team extends React.Component {
                       value={this.state.track}
                     >
                       <option>Select Track</option>
-                      {this.state.tracks.map((track) => (
-                        <option value={track.slug}>{track.track_name}</option>
+                      {this.state.tracks.map((track, index) => (
+                        <option key={index} value={track.slug}>{track.track_name}</option>
                       ))}
                     </select>
                     <div className="select-icon-absolute position-absolute">

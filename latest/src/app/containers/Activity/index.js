@@ -55,7 +55,7 @@ export default class Activity extends React.Component {
       loading: true,
       eventList: [],
     });
-    await getFetch(`event?limit=${self.state.perPage}&offset=${offset}`)
+    await getFetch(`event/?limit=${self.state.perPage}&offset=${offset}`)
       .then((resp) => {
         self.setState({
           loading: false,
@@ -198,21 +198,24 @@ export default class Activity extends React.Component {
                   </div>
                   {this.state.eventList.length ? (
                     this.state.eventList.map((item, index) => (
-                      <div
-                        data-toggle="modal"
-                        data-target={"#newevent"+index}
-                        data-backdrop="static"
-                        data-keyboard="false"
-                        onClick={() => this.editEvent(item)}
-                      >
-                        <NewEvent
-                              ModalId={"newevent"+index}
-                              getAllEvents={this.getAllEvents}
-                              event={this.state.event}
-                              Create_date={this.state.Create_date}
-                            ></NewEvent>
-                        <Card data={item} key={index} userType={session.getUserType()}></Card>
-                      </div>
+                      <div key={index}>
+                        <div
+                          data-toggle="modal"
+                          data-target={"#newevent"+index}
+                          data-backdrop="static"
+                          data-keyboard="false"
+                          onClick={() => this.editEvent(item)}
+                        >
+                          <Card data={item} key={index} userType={session.getUserType()}></Card>
+                        </div>
+                      <NewEvent
+                          ModalId={"newevent"+index}
+                          getAllEvents={this.getAllEvents}
+                          event={this.state.event}
+                          Create_date={this.state.Create_date}
+                        ></NewEvent>
+
+                       </div>
                     ))
                   ) : (
                     <div className="comment-widgets mb-3">

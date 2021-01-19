@@ -4,9 +4,9 @@ const api = {
   platform: "https://" + hostname,
 };
 let apiBase = "";
-if (hostname === "localhost") 
+if (hostname === "localhost")
   apiBase = api.localhost;
-else 
+else
   apiBase= api.platform;
 
   export default apiBase;

@@ -271,7 +271,12 @@ export default class AdminDashboard extends React.Component {
                               </div>
                               {this.state.showAnnouncementOption ? <div className="dropdown-content" style={{minWidth: '201px'}}>
                                 {announcement_type ? announcement_type.map((item, index) =>
-                                  <a value={item.value} className={`${this.state.announcement.announcement_type === item.value ? "active annoucement-option" : 'annoucement-option'}`} key={index} onClick={(ev) => this.selectAnnouncementOptions(item.value)} >{item.description}</a>
+                                  <a
+                                    value={item.value}
+                                    className={`${this.state.announcement.announcement_type === item.value ? "active annoucement-option" : 'annoucement-option'}`}
+                                    key={index}
+                                    onClick={(ev) => this.selectAnnouncementOptions(item.value)} >
+                                      {item.description}</a>
                                 ) : ''}
                               </div> : ''}
                             </div>

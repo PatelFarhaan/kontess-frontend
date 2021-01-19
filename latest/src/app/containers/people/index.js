@@ -267,8 +267,8 @@ export default class People extends React.Component {
                                                                         <div className="content">
                                                                             {user.full_name}
                                                                             <div className="sub header"><p className="skills">
-                                                                                {user.skill.map(skill => (
-                                                                                    <span className="badge badge-pill badge-info">{skill.label}</span>
+                                                                                {user.skill.map((skill, index) => (
+                                                                                    <span key={index} className="badge badge-pill badge-info">{skill.label}</span>
                                                                                 ))}
                                                                             </p></div>
                                                                         </div>

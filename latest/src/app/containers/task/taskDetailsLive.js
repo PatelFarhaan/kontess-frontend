@@ -512,8 +512,8 @@ export default class TaskDetails extends React.Component {
                                                 <h6 className="m-0 text-333f52">List of all Judge/Coach</h6>
                                             </div>
                                             <div className="card-body px-3 py-0 list">
-                                                {judge ? judge.map(user => (
-                                                    <div className="assigned-judge-list border-bottom border-secondary py-1 my-2">
+                                                {judge ? judge.map((user,index) => (
+                                                    <div key={index} className="assigned-judge-list border-bottom border-secondary py-1 my-2">
                                                         <div className="clearfix">
                                                             <div className="judge-name float-left">
                                                                 <span className="img-user">

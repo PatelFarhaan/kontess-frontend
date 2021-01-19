@@ -149,8 +149,8 @@ export default class Task extends React.Component {
                         <div className="row">
                             <div className="col-lg-7">
                                 <div className="accordion" id="accordionExample">
-                                    {tasks.data ? tasks.data.length ? tasks.data.map(task => (
-                                        <div className={'comment-widgets no-hover border border-dark mb-0 ' + this.getClass(task)}>
+                                    {tasks.data ? tasks.data.length ? tasks.data.map((task, index) => (
+                                        <div key={index} className={'comment-widgets no-hover border border-dark mb-0 ' + this.getClass(task)}>
                                             <div className="card-header border-0 bg-d7 p-2" id="headingOne">
 
                                                 <div className={'d-block click-data collapsed '} data-toggle="collapse" data-target={"#collapseOne" + task.id} aria-expanded="false" aria-controls="collapseOne">
@@ -191,7 +191,7 @@ export default class Task extends React.Component {
                                                     <h5 className="border-bottom pb-2 mb-3">Criteria</h5>
                                                     <ul className="list-unstyled criteria-list">
                                                         {task.task.questions.map((item, index) =>
-                                                            <li className="clearfix">
+                                                            <li key={index} className="clearfix">
                                                                 <h6 className="float-left">{index + 1}. {item.question}</h6>
                                                                 <h6 className="float-right">max score {item.max_score}</h6>
                                                             </li>
@@ -200,7 +200,7 @@ export default class Task extends React.Component {
                                                     {task.status === 'submit' ? <div>
                                                         <h6>submitted files
                                                         {task.submitted_docs.map((item, index) =>
-                                                            <div className="mt-1">
+                                                            <div key={index} className="mt-1">
                                                                 {index + 1}.)  <a href={item.doc} download target="_blank" rel="noopener noreferrer">
                                                                     {item.doc.substring(item.doc.lastIndexOf('/') + 1)}
                                                                 </a><br /></div>

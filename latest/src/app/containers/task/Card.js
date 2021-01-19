@@ -321,8 +321,8 @@ export default class Card extends React.Component {
 
                                     <div>
                                       {
-                                        team.random_judges.map(judge => (
-                                          <Link className="mb-2 d-inline-block" to={'/dashboard/profile/' + judge.id}>
+                                        team.random_judges.map((judge, index) => (
+                                          <Link key={index} className="mb-2 d-inline-block" to={'/dashboard/profile/' + judge.id}>
                                             <img
                                               src={judge.user_image ? judge.user_image : profileLogo}
                                               title={judge.full_name} className="mx-1 bg-dark rounded-circle"
@@ -355,7 +355,7 @@ export default class Card extends React.Component {
             ?
               this.props.individualsList.length
                 ?
-                  this.props.individualsList.map(individual => {
+                  this.props.individualsList.map((individual, index) => {
 
                     // console.log("individual.submitted_docs", individual.submitted_docs)
                     // console.log("individual.participant_id",individual.participant.id)
@@ -371,8 +371,8 @@ export default class Card extends React.Component {
                             <div className="col-md-6">
                               <h5><Link to={'/dashboard/profile/' + individual.participant.user.id}>{individual.participant.user.full_name ? individual.participant.user.full_name : individual.participant.user.username}</Link> </h5>
                               <p className="skills">
-                                {individual.participant.user.skill.map(skill => (
-                                  <span className="badge badge-info">{skill.label}</span>
+                                {individual.participant.user.skill.map((skill, index) => (
+                                  <span key={index} className="badge badge-info">{skill.label}</span>
                                 ))}
                               </p>
                             </div>

@@ -197,8 +197,8 @@ export default class profile extends React.Component {
                             />
                           </div>
                             : <p className="skills">
-                              {this.state.skill.map(skill => (
-                                <span className="badge badge-pill badge-info">{skill.label}</span>
+                              {this.state.skill.map((skill, index) => (
+                                <span key={index} className="badge badge-pill badge-info">{skill.label}</span>
                               ))}
                             </p>
                           }

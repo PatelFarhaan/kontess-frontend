@@ -36,7 +36,7 @@ export default class EventCalender extends React.Component {
             return [];
         })
         let eventList = [];
-        await events.concat(tasks).map(event => {
+        await events.concat(tasks).map((event, index) => {
             if (event.title || event.task.status !== 'submit') {
                 let temp = {};
                 temp.id = event.id;

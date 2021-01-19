@@ -121,8 +121,10 @@ export default class TeamListTable extends React.Component {
   }
 
   createOrganizerRows() {
-    const rows = this.state.teams.map((team) => (
-      <tr>
+    const rows = this.state.teams.map((team, index) => (
+      <tr
+      key={index}
+      >
         <td>{team["name"]}</td>
         <td>{team["description"]}</td>
         <td>{team["participants"].length}</td>
@@ -140,13 +142,16 @@ export default class TeamListTable extends React.Component {
   }
 
   createParticipantRows() {
-    const rows = this.state.teams.map((team) => (
-      <tr>
+    const rows = this.state.teams.map((team, index) => (
+      <tr
+        key={index}
+      >
+
         <td>{team["name"]}</td>
         <td>{team["description"]}</td>
         <td>
-          {team["participants"].map((participant) => (
-            <div>
+          {team["participants"].map((participant, index) => (
+            <div key={index}>
               <button
                 className="profile-button"
                 onClick={() => this.props.openProfileModal(participant.id)}

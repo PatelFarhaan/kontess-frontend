@@ -146,7 +146,7 @@ export default class NotificationSettings extends React.Component {
                 <div className="card-body">
                   {notificationsJson.map((notification, index) =>
                     notification.for === userType || notification.for === 'all' ?
-                      <div className="row justify-content-center gQ fadeInAnimation">
+                      <div key={index} className="row justify-content-center gQ fadeInAnimation">
                         <div className="col-md-6">
                           <div className="form-group">
                             <h5 className="text-secondary ">{notification.type}</h5>

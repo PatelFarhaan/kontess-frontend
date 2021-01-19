@@ -208,8 +208,8 @@ export default class InviteMember extends React.Component {
                                                     <div className="col-md-3">
                                                         <h4><Link to={'/dashboard/profile/' + participant.id}>{participant.full_name}</Link> </h4>
                                                         <p className="skills">
-                                                            {participant.skill.map(skill => (
-                                                                <span className="badge badge-pill badge-info">{skill.label}</span>
+                                                            {participant.skill.map((skill, index) => (
+                                                                <span key={index} className="badge badge-pill badge-info">{skill.label}</span>
                                                             ))}
                                                         </p>
                                                     </div>

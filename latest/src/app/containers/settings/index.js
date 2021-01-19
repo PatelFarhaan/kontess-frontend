@@ -342,8 +342,8 @@ export default class Settings extends React.Component {
                             />
                           </div>
                             : <p className="skills">
-                              {this.state.skillFromUser.map(skill => (
-                                <span className="badge badge-pill badge-info">{skill.label}</span>
+                              {this.state.skillFromUser.map((skill, index) => (
+                                <span key={index} className="badge badge-pill badge-info">{skill.label}</span>
                               ))}
                             </p>
                           }

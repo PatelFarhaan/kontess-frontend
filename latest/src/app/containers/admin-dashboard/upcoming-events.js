@@ -100,9 +100,11 @@ export default class UpcomingEvents extends React.Component {
                 </div>
                 <Pagination perPage={this.state.perPage} count={this.state.count} handlePageClick={(ev) => this.handlePagination(ev)} />
 
+                {/*
                 <div className="modal fadeIn animated" id="newevent">
                     <NewEvent getAllEvents={this.getAllEvents} resetEvent={this.resetEvent} event={this.state.event} ></NewEvent>
                 </div>
+                */}
             </div>
         );
     }

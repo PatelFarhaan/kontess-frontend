@@ -629,8 +629,9 @@ export default class MyTeam extends React.Component {
                       <ul className="dflex mb-2 justify-content-center list chatUsersList flex-column">
                         {myTeamList.data ? (
                           myTeamList.data.length ? (
-                            myTeamList.data.map((team) => (
+                            myTeamList.data.map((team, index) => (
                               <li
+                                key={index}
                                 className={`mb-2 ${
                                   this.state.chatWith.id === team.id
                                     ? "active"
@@ -683,9 +684,10 @@ export default class MyTeam extends React.Component {
                       </div>
                       <ul className="dflex mb-2 justify-content-center list chatUsersList flex-column">
                         {admin ? (
-                          admin.map((user) =>
+                          admin.map((user, index) =>
                             user.id !== userId ? (
                               <li
+                                key={index}
                                 className={`mb-2 ${
                                   this.state.chatWith.id === user.id
                                     ? "active"
