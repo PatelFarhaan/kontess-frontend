@@ -8,6 +8,8 @@
 .pnp.js
 latest/node_modules/
 latest/package-lock.json
+latest/build/
+build/
 
 # testing
 /coverage

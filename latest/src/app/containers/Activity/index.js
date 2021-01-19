@@ -15,6 +15,7 @@ export default class Activity extends React.Component {
     super(props);
     this.state = {
       loading: false,
+      zoomYes: false,
       perPage: 10,
       count: 0,
       eventList: [],
@@ -25,9 +26,10 @@ export default class Activity extends React.Component {
     };
   }
   componentDidMount = () => {
-    if (localStorage.getItem("Zoom")) {
-      document.getElementById("yesForZoom").checked = true;
-    }
+    localStorage.removeItem("Zoom")
+    // if (localStorage.getItem("Zoom")) {
+    //   document.getElementById("yesForZoom").checked = true;
+    // }
   };
 
   componentWillMount = async () => {
@@ -88,35 +90,37 @@ export default class Activity extends React.Component {
     this.setState({ Create_date });
   };
   handleZoomAuth = (e) => {
+    // console.log("checked", e.target.checked)
     if (e.target.checked === true) {
-      this.setState({ zoomYes: true });
-      localStorage.setItem("Zoom", "true");
-      window.location.href =
-        "https://zoom.us/oauth/authorize?response_type=code&client_id=YnD8mpmR7ykK_5KnuWB6A&redirect_uri=http%3A%2F%2F3.128.47.140%2Fkontess%2Fdashboard%2Fevents";
+      this.setState({ zoomYes: true, zoomNo: false });
+      localStorage.setItem("Zoom", true);
+      // window.location.href =
+      //   "https://zoom.us/oauth/authorize?response_type=code&client_id=YnD8mpmR7ykK_5KnuWB6A&redirect_uri=http%3A%2F%2F3.128.47.140%2Fkontess%2Fdashboard%2Fevents";
     } else this.setState({ zoomYes: false });
   };
   handleZoomNo = (e) => {
+    // console.log("checked", e.target.checked)
     if (e.target.checked === true) {
-      this.setState({ zoomNo: true });
+      this.setState({ zoomNo: true, zoomYes: false});
       document.getElementById("yesForZoom").checked = false;
-      localStorage.removeItem("Zoom");
+      localStorage.setItem("Zoom", false);
     } else this.setState({ zoomNo: false });
   };
   render() {
+
     return (
       <DashboardTemplate title="Events" pageId="events">
         <div className="dashboard-grid">
           <section className="dasboard-mid mt-2">
             <div className="row">
               <div className="col-lg-7 stretched_card mt-4">
+                {session.getUserType() === "admin" ? (
                 <div className="card addEvent">
                   <div className="card-header d-flex align-items-center">
                     <div className="col-md-8 pull-left">
                       <h4 className="mb-0 text-muted">Add an event</h4>
                     </div>
-                    {session.getUserType() === "admin" &&
-                    (this.state.zoomNo === true ||
-                      localStorage.getItem("Zoom")) ? (
+                    {session.getUserType() === "admin" && (this.state.zoomNo === true || this.state.zoomYes === true) ? (
                       <div className="col-md-4 pull-right">
                         <button
                           onClick={() => this.editEvent("")}
@@ -148,6 +152,7 @@ export default class Activity extends React.Component {
                           id="yesForZoom"
                           name="yesForZoom"
                           onChange={this.handleZoomAuth}
+                          checked={(this.state.zoomYes) ? true : false}
                         />
                         <label
                           className="custom-control-label c2 ml-2"
@@ -163,6 +168,7 @@ export default class Activity extends React.Component {
                           className="custom-control-input attendees"
                           id="noForZoom"
                           name="noForZoom"
+                          checked={(this.state.zoomNo) ? true : false}
                           onChange={this.handleZoomNo}
                         />
                         <label
@@ -174,7 +180,7 @@ export default class Activity extends React.Component {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> ) : "" }
                 <div className="card">
                   <div className="card-header d-flex align-items-center">
                     <div className="col-md-8 pull-left">
@@ -190,7 +196,7 @@ export default class Activity extends React.Component {
                         data-keyboard="false"
                         onClick={() => this.editEvent(item)}
                       >
-                        <Card data={item} key={index}></Card>
+                        <Card data={item} key={index} userType={session.getUserType()}></Card>
                       </div>
                     ))
                   ) : (

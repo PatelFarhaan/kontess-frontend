@@ -2,7 +2,7 @@ const hostname = window.location.hostname;
 
 const api = {
   localhost: "http://127.0.0.1:8000",
-  platform: "https://ethsic.kontess.com",
+  platform: "https://demo.kontess.com",
   // platform: 'http://***REMOVED_HOST***:30003'
 };
 

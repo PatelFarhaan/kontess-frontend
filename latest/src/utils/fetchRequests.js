@@ -93,7 +93,7 @@ export const postFetch = async (api, data) => {
 };
 
 export const postFetchZoom = async (api, data) => {
-  let result = await fetch(routes.proxyUrl + routes.zoomLambdaURL + api, {
+  let result = await fetch(api, {
     method: "POST",
     body: JSON.stringify(data),
     headers: await routes.reqHeader(),
@@ -179,6 +179,7 @@ export const getSkills = async () => {
 
 export const downloadDoc = async (url, fileName) => {
   var xhr = new XMLHttpRequest();
+  url = url.replace("http:", "")
   xhr.open("GET", url, true);
   xhr.responseType = "blob";
   xhr.onload = function () {
