@@ -3,7 +3,7 @@ import React from "react";
 import { toast } from 'react-toastify';
 
 import DashboardTemplate from "../../components/dashboard-template/DashBoardTemplate";
-import { getFetch, postFetch } from "../../../utils/fetchRequests";
+import { /*getFetch,*/ postFetch } from "../../../utils/fetchRequests";
 import { commonErrorMsg } from "../../../utils/Message";
 
 export default class ChangePassword extends React.Component {
@@ -60,7 +60,7 @@ export default class ChangePassword extends React.Component {
     } else {
       password.setCustomValidity('');
     }
-    if (password.value != confirm_password.value) {
+    if (password.value !== confirm_password.value) {
       confirm_password.setCustomValidity("Passwords Don't Match");
     } else {
       confirm_password.setCustomValidity('');
@@ -78,37 +78,37 @@ export default class ChangePassword extends React.Component {
               <div className="card">
                 <div className="card-body">
                   <form onSubmit={this.changePassword}>
-                    <div class="modal-body">
-                      <div class="new-task-form">
-                        <div class="form-group">
-                          <div class="form-sec">
-                            <div class="form-group">
-                              <div class="row">
-                                <div class="col-md-4 text-right">
-                                  <label class="control-label font-weight-bold">Old password</label>
+                    <div className="modal-body">
+                      <div className="new-task-form">
+                        <div className="form-group">
+                          <div className="form-sec">
+                            <div className="form-group">
+                              <div className="row">
+                                <div className="col-md-4 text-right">
+                                  <label className="control-label font-weight-bold">Old password</label>
                                 </div>
-                                <div class="col-md-4">
-                                  <input type="password" autoComplete="off" value={this.state.old_password} onChange={this.formHandler} class="form-control" name="old_password" placeholder="Current password" required />
-                                </div>
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <div class="row">
-                                <div class="col-md-4 text-right">
-                                  <label class="control-label font-weight-bold">New password</label>
-                                </div>
-                                <div class="col-md-4">
-                                  <input type="password" id="password" autoComplete="off" value={this.state.new_password} onChange={this.formHandler} name="new_password" class="form-control" placeholder="New password" required />
+                                <div className="col-md-4">
+                                  <input type="password" autoComplete="off" value={this.state.old_password} onChange={this.formHandler} className="form-control" name="old_password" placeholder="Current password" required />
                                 </div>
                               </div>
                             </div>
-                            <div class="form-group">
-                              <div class="row">
-                                <div class="col-md-4 text-right">
-                                  <label class="control-label font-weight-bold">Confirm password</label>
+                            <div className="form-group">
+                              <div className="row">
+                                <div className="col-md-4 text-right">
+                                  <label className="control-label font-weight-bold">New password</label>
                                 </div>
-                                <div class="col-md-4">
-                                  <input type="password" id="confirm_password" autoComplete="off" value={this.state.confirmPassword} onChange={this.formHandler} name="confirmPassword" class="form-control" placeholder="Confirm password" required />
+                                <div className="col-md-4">
+                                  <input type="password" id="password" autoComplete="off" value={this.state.new_password} onChange={this.formHandler} name="new_password" className="form-control" placeholder="New password" required />
+                                </div>
+                              </div>
+                            </div>
+                            <div className="form-group">
+                              <div className="row">
+                                <div className="col-md-4 text-right">
+                                  <label className="control-label font-weight-bold">Confirm password</label>
+                                </div>
+                                <div className="col-md-4">
+                                  <input type="password" id="confirm_password" autoComplete="off" value={this.state.confirmPassword} onChange={this.formHandler} name="confirmPassword" className="form-control" placeholder="Confirm password" required />
                                 </div>
                               </div>
                             </div>
@@ -116,8 +116,8 @@ export default class ChangePassword extends React.Component {
                         </div>
                       </div>
                     </div>
-                    <div class="modal-footer">
-                      <button type="submit" class="btn btn-primary">Save </button>
+                    <div className="modal-footer">
+                      <button type="submit" className="btn btn-primary">Save </button>
                     </div>
                   </form>
                 </div>

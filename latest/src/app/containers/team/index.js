@@ -80,12 +80,12 @@ export default class Team extends React.Component {
       var reader = new FileReader();
       // String extension = render.files.type
       let filetype = self.state.files[i].type;
-
+      const j = i, reader2 = reader;
       reader.onload = function (event) {
         self.setState({
-          [i - 1]:
+          [j - 1]:
             filetype.indexOf("image") !== -1 || filetype.indexOf("video") !== -1
-              ? reader.result
+              ? reader2.result
               : self.renderFileIcon(filetype),
         });
       };
@@ -224,8 +224,8 @@ export default class Team extends React.Component {
                       value={this.state.track}
                     >
                       <option>Select Track</option>
-                      {this.state.tracks.map((track) => (
-                        <option value={track.slug}>{track.track_name}</option>
+                      {this.state.tracks.map((track, index) => (
+                        <option key={index} value={track.slug}>{track.track_name}</option>
                       ))}
                     </select>
                     <div className="select-icon-absolute position-absolute">
@@ -317,10 +317,11 @@ export default class Team extends React.Component {
                               </div>
                             ) : (
                               <div className="content border border-secondary">
-                                <a>
+                                <a >
                                   <img
                                     className="content-image"
                                     src={this.state[index]}
+                                    alt=""
                                   />
                                   <div></div>
                                 </a>

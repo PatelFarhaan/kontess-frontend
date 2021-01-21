@@ -1,10 +1,11 @@
 
-import React, { Component } from "react";
-import * as routes from "../../globals/endpoints";
+import React /*{ Component }*/ from "react";
+//import * as routes from "../../globals/endpoints";
 import { toast } from 'react-toastify';
 import { commonErrorMsg } from "../../../utils/Message";
-import { postFetch, getFetch, postDelete } from "../../../utils/fetchRequests";
+import { postFetch, getFetch, /*postDelete*/ } from "../../../utils/fetchRequests";
 import DashboardTemplate from "../../components/dashboard-template/DashBoardTemplate";
+import NewEvent from "../Activity/newEvent";
 import {
     KeyboardDatePicker,
     KeyboardTimePicker,
@@ -13,7 +14,7 @@ import {
 import Icon from "@material-ui/core/Icon";
 import MomentUtils from '@date-io/moment';
 import moment from "moment";
-import { async } from "q";
+//import { async } from "q";
 
 export default class Task extends React.Component {
     constructor(props) {
@@ -26,17 +27,20 @@ export default class Task extends React.Component {
             gradesDueOnDate: moment(),
             gradesDueOnTime: moment(),
             questions: [],
+            event:"",
+            eventList: [],
             max_no_of_judge: '',
             loding: false,
             assing_to: 'teams'
         };
         this.formHandler = this.formHandler.bind(this);
+        this.change = this.change.bind(this);
     }
 
     componentWillMount = async () => {
         await this.addQuestions();
         let location = this.props.history.location.pathname;
-        if (location.indexOf('modify-task') != -1) {
+        if (location.indexOf('modify-task') !== -1) {
             this.setState({
                 taskId: this.props.match.params.taskId,
             }, () => {
@@ -54,6 +58,7 @@ export default class Task extends React.Component {
                 })
             }
         }
+        this.getAllEvents()
     }
 
     /**function for get task details */
@@ -76,6 +81,7 @@ export default class Task extends React.Component {
                         gradesDueDate: true,
                         gradesDueTime: true,
                         assing_to: resp.data.assing_to,
+                        event: resp.data.event,
                         status: resp.data.status
                     });
                 }
@@ -98,6 +104,7 @@ export default class Task extends React.Component {
     };
 
     submit = async (e) => {
+        console.log("e", e)
         e.preventDefault();
         /*
         const { submissionDueDate, submissionDueTime, gradesDueDate, gradesDueTime } = this.state;
@@ -125,17 +132,19 @@ export default class Task extends React.Component {
                         ? 'Please select grades due time'
                         : true
         }`;
+        // validation = "true"
         if (validation === 'true') {
-            const { title, description, submissionDueOnDate, submissionDueOnTime, gradesDueOnDate, gradesDueOnTime, questions, max_no_of_judge, assing_to, status } = this.state;
+            const { title, description, submissionDueOnDate, submissionDueOnTime, gradesDueOnDate, gradesDueOnTime, questions, max_no_of_judge, assing_to, status, event } = this.state;
             let submission_due_date = await this.combineDateAndTime(submissionDueOnDate, submissionDueOnTime);
             let grade_due_date = await this.combineDateAndTime(gradesDueOnDate, gradesDueOnTime);
-            const data = { title, description, submission_due_date, grade_due_date, questions, max_no_of_judge, assing_to, status };
+            const data = { title, description, submission_due_date, grade_due_date, questions, max_no_of_judge, assing_to, status, event};
             let self = this;
+            /*
             if(moment(submission_due_date) < moment()){
                 this.setState({
                     error: 'Submission due must be in the future'
                 });
-                return false;          
+                return false;
             }
             if (submission_due_date >= grade_due_date) {
                 this.setState({
@@ -143,6 +152,7 @@ export default class Task extends React.Component {
                 })
                 return false
             }
+            */
             this.setState({
                 loading: true
             })
@@ -191,9 +201,11 @@ export default class Task extends React.Component {
         })
     }
     gradingQuestions = (e, index, type) => {
-        this.state.questions[index][e.target.name] = type ? e.target.checked : e.target.value;
+        let temp = this.state.questions;
+        temp[index][e.target.name] = type ? e.target.checked : e.target.value;
+        //this.state.questions[index][e.target.name] = type ? e.target.checked : e.target.value;
         this.setState({
-            questions: this.state.questions
+            questions: temp
         })
     }
     formHandler(event) {
@@ -204,6 +216,41 @@ export default class Task extends React.Component {
             assing_to: assing_to
         })
     }
+    change(event) {
+        this.setState({
+            event: parseInt(event.target.value)
+        })
+    }
+
+    editEvent = (event) => {
+        this.setState({ event })
+    }
+
+    getAllEvents = async (offset = 0) => {
+        let self = this;
+        self.setState({
+          loading: true,
+          eventList: [],
+        });
+        await getFetch(`event/zoom-events/?limit=0&offset=${offset}`)
+          .then((resp) => {
+            self.setState({
+              loading: false,
+            });
+            if (resp.status === 200) {
+              console.log(resp.data);
+              self.setState({ eventList: resp.data, count: resp.count });
+            } else {
+              toast.error(commonErrorMsg);
+            }
+          })
+          .catch((err) => {
+            self.setState({
+              loading: false,
+            });
+            toast.error(err);
+          });
+      };
 
     render() {
         const { questions, taskId } = this.state;
@@ -324,6 +371,36 @@ export default class Task extends React.Component {
                                     </div>
                                 </div>
                                 <div className="row justify-content-center gQ">
+                                    <div className="col-md-4">
+                                        <div className="form-group">
+                                            <label className="control-label font-weight-bold text-333f52"> Link With Event <br/> Select Event with link </label>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <div className="form-group">
+                                        <select className="form-control" onChange={this.change} value={this.state.event}>
+                                            <option>Select Event</option>
+                                            {
+                                                this.state.eventList.map((event, index) => (<option key={index} value={event.id}>{event.title}</option>))
+                                            }
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <div className="form-group">
+                                            <button
+                                                onClick={() => this.editEvent("")}
+                                                className="btn btn-md btn-primary btn-block w-100"
+                                                type="button"
+                                                data-toggle="modal"
+                                                data-target="#tasknewevent"
+                                                > Create New Zoom Event
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="row justify-content-center gQ">
                                     <div className="col-md-6">
                                         <div className="form-group">
                                             <label className="control-label font-weight-bold text-333f52">Grading questions/criteria</label>
@@ -345,7 +422,7 @@ export default class Task extends React.Component {
 
                                 {questions
                                     ? questions.map((item, index) => (
-                                        <div className="row justify-content-center gQ fadeInAnimation">
+                                        <div className="row justify-content-center gQ fadeInAnimation" key={index}>
                                             <div className="col-md-6">
                                                 <div className="form-group">
                                                     <input value={item.question} name="question" onChange={(e) => this.gradingQuestions(e, index)} type="text" placeholder="required *" className="form-control mx-1 border-grey mb-2" required />
@@ -360,7 +437,7 @@ export default class Task extends React.Component {
                                                 <div className="form-group">
                                                     <div className="form-group custom-checkbox">
                                                         <input type="checkbox" id={`select` + index} name="feedback" checked={item.feedback} onChange={(e) => this.gradingQuestions(e, index, 'checkBox')} />
-                                                        <label className="bg-black" for={`select` + index}></label>
+                                                        <label className="bg-black" htmlFor={`select` + index}></label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -371,7 +448,7 @@ export default class Task extends React.Component {
                                     ))
                                     : ''}
                                 <div className="form-group ">
-                                    <a onClick={() => this.addQuestions()} className="mon-med text-primary"><i className=" fa fa-plus-circle  mr-2"></i> Add new line</a>
+                                    <a onClick={() => this.addQuestions()} className="mon-med text-primary" ><i className=" fa fa-plus-circle  mr-2"></i> Add new line</a>
                                 </div>
                                 <div className="form-group">
                                     <div className="row">
@@ -389,6 +466,7 @@ export default class Task extends React.Component {
                                     {!this.state.taskId || this.state.status === 'Draft' ? <button type="submit" onClick={(e) => this.setState({ status: 'Draft' })} className="btn btn-sm btn-light border border-secondary btn-block text-center" value="Draft">Save Draft</button> : ''}
                                 </div>
                             </form>
+                            <NewEvent ModalId={"tasknewevent"} getAllEvents={this.getAllEvents} zoom_consent={"true"} > </NewEvent>
                             </div>
                         </div>
                     </div>

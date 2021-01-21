@@ -32,20 +32,20 @@ export default class JudgePlateform extends React.Component {
         {headerTab === 1 &&
           <div className="tracks_contant">
             <div className="tab_bar sub_tab_bar">
-              <div className={headerSubTab == 1 ? "tabs sub_active" : "tabs "} onClick={() => this.handleTabs('headerSubTab', 1)}>Consumer Products</div>
-              <div className={headerSubTab == 2 ? "tabs sub_active" : "tabs"} onClick={() => this.handleTabs('headerSubTab', 2)}>Consumer Services</div>
-              <div className={headerSubTab == 3 ? "tabs sub_active" : "tabs"} onClick={() => this.handleTabs('headerSubTab', 3)}>Business Products/Services</div>
-              <div className={headerSubTab == 4 ? "tabs sub_active" : "tabs"} onClick={() => this.handleTabs('headerSubTab', 4)}>Life Science</div>
-              <div className={headerSubTab == 5 ? "tabs sub_active" : "tabs"} onClick={() => this.handleTabs('headerSubTab', 5)}>Socical Enterprise</div>
+              <div className={headerSubTab === 1 ? "tabs sub_active" : "tabs "} onClick={() => this.handleTabs('headerSubTab', 1)}>Consumer Products</div>
+              <div className={headerSubTab === 2 ? "tabs sub_active" : "tabs"} onClick={() => this.handleTabs('headerSubTab', 2)}>Consumer Services</div>
+              <div className={headerSubTab === 3 ? "tabs sub_active" : "tabs"} onClick={() => this.handleTabs('headerSubTab', 3)}>Business Products/Services</div>
+              <div className={headerSubTab === 4 ? "tabs sub_active" : "tabs"} onClick={() => this.handleTabs('headerSubTab', 4)}>Life Science</div>
+              <div className={headerSubTab === 5 ? "tabs sub_active" : "tabs"} onClick={() => this.handleTabs('headerSubTab', 5)}>Socical Enterprise</div>
             </div>
           </div>
         }
-        {headerTab == 3 && <JudgePlateformPage id={1} score={73} />}
+        {headerTab === 3 && <JudgePlateformPage id={1} score={73} />}
         <div className="main_container">
-          {headerTab == 1 &&
+          {headerTab === 1 &&
             <div className="tracks_contant">
               <div className="card">
-                <h1 style={{ color: color_heading[headerSubTab - 1] }}></h1>
+                <h1 style={{ color: color_heading[headerSubTab - 1] }}>{" "}</h1>
                 <div className='details'>
                   <div className="team_name"><h2>Team</h2></div>
                   <div className="team_score">
@@ -175,7 +175,7 @@ export default class JudgePlateform extends React.Component {
               </div>
             </div>
           }
-          {headerTab == 2 &&
+          {headerTab === 2 &&
             <div className="tracks_contant">
               <div className="tracks_card" style={{ background: '#eb6896' }}>
                 <h1>Consumer Products</h1>

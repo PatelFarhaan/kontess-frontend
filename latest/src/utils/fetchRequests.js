@@ -1,7 +1,7 @@
 import { commonErrorMsg } from "../utils/Message";
 import * as routes from "../../src/app/globals/endpoints";
 import * as session from "../utils/session";
-import { async } from "q";
+//import { async } from "q";
 import { getSessionToken } from "../utils/session";
 import jwt from "jsonwebtoken";
 import TokenService from "../app/services/TokenService";

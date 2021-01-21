@@ -146,17 +146,17 @@ export default class NotificationSettings extends React.Component {
                 <div className="card-body">
                   {notificationsJson.map((notification, index) =>
                     notification.for === userType || notification.for === 'all' ?
-                      <div class="row justify-content-center gQ fadeInAnimation">
-                        <div class="col-md-6">
-                          <div class="form-group">
+                      <div key={index} className="row justify-content-center gQ fadeInAnimation">
+                        <div className="col-md-6">
+                          <div className="form-group">
                             <h5 className="text-secondary ">{notification.type}</h5>
                           </div>
                         </div>
-                        <div class="col-md-6 text-center pt-2">
-                          <div class="form-group">
-                            <div class="form-group custom-checkbox">
+                        <div className="col-md-6 text-center pt-2">
+                          <div className="form-group">
+                            <div className="form-group custom-checkbox">
                               <input type="checkbox" id={'select' + index} name="notification" checked={settings[notification.key]} onChange={(e) => this.handleCheckBox(e, notification.key)} />
-                              <label class="bg-black" for={'select' + index}>
+                              <label className="bg-black" htmlFor={'select' + index}>
                               </label>
                             </div>
                           </div>

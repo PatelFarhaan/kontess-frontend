@@ -1,19 +1,19 @@
 import React from "react";
 import { withRouter, Link } from "react-router-dom";
-import { toast } from "react-toastify";
+//import { toast } from "react-toastify";
 import { getSkills } from "../../../utils/fetchRequests";
 import { commonErrorMsg, emailAlreadyExistsMsg } from "../../../utils/Message";
-import participantAuthService from "../../services/ParticipantAuthService";
+//import participantAuthService from "../../services/ParticipantAuthService";
 import * as routes from "../../globals/endpoints";
 import {
-  setUser,
-  setisAuthenticated,
-  setSession,
-  setUserType,
+  //setUser,
+  setisAuthenticated
+  //setSession,
+  //setUserType,
 } from "../../../utils/session";
 import { emailRegex } from "../../globals/contants";
 import Select from "react-select";
-import { affiliationOptions } from "../../globals/contants";
+//import { affiliationOptions } from "../../globals/contants";
 import { countiesNameList } from "../../globals/contants";
 import * as session from "../../../utils/session";
 
@@ -147,8 +147,8 @@ class NewRegistratoin extends React.Component {
     }`;
     if (validation === "true") {
       // data.affiliations = JSON.stringify(affiliations);
-      if (data.role == "judge") data.affiliations = "N.A.";
-      if (data.role == "judge") data.counties = "N.A.";
+      if (data.role === "judge") data.affiliations = "N.A.";
+      if (data.role === "judge") data.counties = "N.A.";
       this.setState({
         loading: true,
       });
@@ -393,7 +393,7 @@ class NewRegistratoin extends React.Component {
                   </div>
                 ) : (
                   <div>
-                      <input 
+                      <input
                         type="textarea"
                         name="bio"
                         value={this.state.bio}
@@ -417,7 +417,7 @@ class NewRegistratoin extends React.Component {
                   onChange={this.handleChange}
                   options={this.state.skilldata}
                 /> </div> : ''} */}
-                <div class="form-group custom-checkbox">
+                <div className="form-group custom-checkbox">
                   <input
                     type="checkbox"
                     id="select0"
@@ -425,7 +425,7 @@ class NewRegistratoin extends React.Component {
                     onChange={(e) => this.handleCheckBox()}
                     checked={this.state.i_agree_to_the_rules_of_the_competition}
                   />
-                  <label class="bg-black text-white" for="select0">
+                  <label className="bg-black text-white" htmlFor="select0">
                     I Agree to the Privacy Policy of Kontess and Rules of the
                     Competition
                   </label>

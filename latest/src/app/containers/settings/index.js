@@ -10,7 +10,7 @@ import DashboardTemplate from "../../components/dashboard-template/DashBoardTemp
 import { getFetch } from "../../../utils/fetchRequests";
 import Select from 'react-select';
 import { Link } from 'react-router-dom';
-import { affiliationOptions } from "../../globals/contants";
+//import { affiliationOptions } from "../../globals/contants";
 import { countiesNameList } from "../../globals/contants";
 import history from "../../../history";
 import HubspotForm from 'react-hubspot-form';
@@ -342,8 +342,8 @@ export default class Settings extends React.Component {
                             />
                           </div>
                             : <p className="skills">
-                              {this.state.skillFromUser.map(skill => (
-                                <span className="badge badge-pill badge-info">{skill.label}</span>
+                              {this.state.skillFromUser.map((skill, index) => (
+                                <span key={index} className="badge badge-pill badge-info">{skill.label}</span>
                               ))}
                             </p>
                           }
@@ -373,7 +373,7 @@ export default class Settings extends React.Component {
                           <h5 className="text-secondary text-bold font-15 p-0">If you experience any technical problem, please send us an email at <a href="mailto:info@kontess.com" target="_top">info@kontess.com</a></h5>
                         </div>
                         <div className="bio-sec mb-3">
-                          <a className="text-danger text-bold" onClick={() => this.logout()}>Logout</a>
+                          <a className="text-danger text-bold" onClick={() => this.logout()} href="# ">Logout</a>
                         </div>
                       </div>
                     </div>
@@ -383,13 +383,11 @@ export default class Settings extends React.Component {
             </div>
             <div>
               <h3 className="w-100 py-3 text-secondary">Support</h3>
-              <div class="card" style={{height:"fit-content"}}>
-                <div class="card-body">
+              <div className="card" style={{height:"fit-content"}}>
+                <div className="card-body">
                   <HubspotForm
                     portalId='7729318'
                     formId='6652e8a3-fcb4-4a02-b719-9f1fb6d39441'
-                    //onSubmit={() => console.log('Submit!')}
-                    //onReady={(form) => console.log('Form ready!')}
                     loading={<div>Loading...</div>}
                   />
                   </div>

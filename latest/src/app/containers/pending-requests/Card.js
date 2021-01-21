@@ -30,9 +30,9 @@ export default class Card extends React.Component {
     return (
       <div >
         {this.props.requests.length ? this.props.requests.map((request, index) =>
-          <div className="card nofity-list  overflow-hidden">
+          <div key={index} className="card nofity-list  overflow-hidden">
             <div className="comment-widgets">
-              <a key={request.id} className="notify-item">
+              <a key={request.id} className="notify-item" >
                 <div className="notify-text">
                   <h3 > {request.judge.user.full_name} <span className={`badge ${request.status === 'pending' ? 'badge-info' : request.status === 'rejected' ? 'badge-danger' : 'badge-success'}`}>{request.status}</span> </h3>
                   <h4> {request.judge.user.email}</h4>

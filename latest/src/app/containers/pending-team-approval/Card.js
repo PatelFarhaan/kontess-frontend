@@ -5,11 +5,11 @@ import Moment from 'react-moment';
 import { profileLogo, kontessLogo } from '../../globals/contants'
 import moment from 'moment';
 import { commonErrorMsg, noResultFoundMsg } from "../../../utils/Message";
-import * as routes from '../../globals/endpoints';
+//import * as routes from '../../globals/endpoints';
 import { toast } from 'react-toastify';
 import { postFetch } from "../../../utils/fetchRequests";
 import * as session from "../../../utils/session";
-import { Container } from "@material-ui/core";
+//import { Container } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
 export default class Card extends React.Component {
@@ -47,9 +47,9 @@ export default class Card extends React.Component {
     return (
       <div >
         {this.props.requests.length ? this.props.requests.map((request, index) =>
-          <div className="card nofity-list  overflow-hidden">
+          <div key={index} className="card nofity-list  overflow-hidden">
             <div className="comment-widgets">
-              <a key={request.id} className="notify-item">
+              <a  key={request.id} className="notify-item">
                 <div className="notify-thumb mr-30">
                   <img
                     src={
@@ -60,6 +60,7 @@ export default class Card extends React.Component {
                     onError={event =>
                       event.target.setAttribute('src', kontessLogo)
                     }
+                    alt="kontess logo"
                   />
                   <img
                     className="requestedJudge"
@@ -71,6 +72,7 @@ export default class Card extends React.Component {
                     onError={event =>
                       event.target.setAttribute('src', profileLogo)
                     }
+                    alt="profile logo"
                   />
                 </div>
                 <div className="notify-text">
@@ -90,7 +92,7 @@ export default class Card extends React.Component {
                   </div>
                 </div>
 
-                {this.state.UserType === 'admin' && request.admin_status === 'pending' || this.state.UserType === 'judge' && request.judge_status === 'pending' ?
+                {(this.state.UserType === 'admin' && request.admin_status === 'pending') || (this.state.UserType === 'judge' && request.judge_status === 'pending') ?
                   <div className="text-right">    <button
                     onClick={e =>
                       this.responseToReq(

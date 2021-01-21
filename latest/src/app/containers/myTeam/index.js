@@ -1,4 +1,4 @@
-import React, { Children } from "react";
+import React from "react";
 import DashboardTemplate from "../../components/dashboard-template/DashBoardTemplate";
 import { getFetch, postFetchMutiPart } from "../../../utils/fetchRequests";
 import { profileLogo, kontessLogo, Loading } from "../../globals/contants";
@@ -72,11 +72,11 @@ export default class MyTeam extends React.Component {
     const messagesRef = firebase.ref("chat/");
     messagesRef.on("child_changed", function (snapshot) {
       if (
-        snapshot.key.indexOf("_team_") == -1 &&
-        snapshot.key.indexOf("_" + userId + "_") != -1
+        snapshot.key.indexOf("_team_") === -1 &&
+        snapshot.key.indexOf("_" + userId + "_") !== -1
       ) {
         self.getUnreadMsg(snapshot.key);
-      } else if (snapshot.key.indexOf("_team_") != -1) {
+      } else if (snapshot.key.indexOf("_team_") !== -1) {
         self.getUnreadMsgTeam(snapshot.key);
       }
     });
@@ -94,11 +94,11 @@ export default class MyTeam extends React.Component {
 
     messagesRef.orderByKey().on("child_added", (snapshot) => {
       if (
-        snapshot.key.indexOf("_team_") == -1 &&
-        snapshot.key.indexOf("_" + userId + "_") != -1
+        snapshot.key.indexOf("_team_") === -1 &&
+        snapshot.key.indexOf("_" + userId + "_") !== -1
       ) {
         self.getUnreadMsg(snapshot.key);
-      } else if (snapshot.key.indexOf("_team_") != -1) {
+      } else if (snapshot.key.indexOf("_team_") !== -1) {
         self.getUnreadMsgTeam(snapshot.key);
       }
     });
@@ -109,12 +109,12 @@ export default class MyTeam extends React.Component {
     count = 0;
     const messagesRef = firebase.ref("chat/" + token);
     messagesRef.on("child_added", (snapshot) => {
-      if (snapshot.val().seenBy.indexOf("_" + userId + "_") == -1) {
+      if (snapshot.val().seenBy.indexOf("_" + userId + "_") === -1) {
         count++;
       }
     });
     this.setState({
-      [token]: count != 0 ? count : null,
+      [token]: count !== 0 ? count : null,
     });
   };
 
@@ -126,12 +126,12 @@ export default class MyTeam extends React.Component {
       .orderByChild("seen")
       .equalTo(false)
       .on("child_added", (snapshot) => {
-        if (snapshot.val().userId != userId) {
+        if (snapshot.val().userId !== userId) {
           count++;
         }
       });
     this.setState({
-      [token]: count != 0 ? count : null,
+      [token]: count !== 0 ? count : null,
     });
   };
 
@@ -246,7 +246,7 @@ export default class MyTeam extends React.Component {
   activateMsgListener = (obj, type) => {
     let token;
     let team_token = "_";
-    if (type != "team") {
+    if (type !== "team") {
       token =
         "_" +
         (obj.id < this.state.userId ? obj.id : this.state.userId) +
@@ -277,7 +277,7 @@ export default class MyTeam extends React.Component {
           messages: [message, ...prevState.messages],
         }),
         () => {
-          if (snapshot.val().userId != this.state.userId) {
+          if (snapshot.val().userId !== this.state.userId) {
             this.markAsUnreadMsg(token, snapshot.key);
           }
           this.scrollToBottom();
@@ -392,8 +392,9 @@ export default class MyTeam extends React.Component {
       case "mov":
         // etc
         return true;
+      default:
+        return false;
     }
-    return false;
   };
 
   renderMsg = (obj) => {
@@ -408,13 +409,14 @@ export default class MyTeam extends React.Component {
             </div>
           ) : (
             <div className="content">
-              <img width={200} src={this.renderFileIcon(obj.file)} />
+              <img width={200} src={this.renderFileIcon(obj.file)} alt=""/>
               <div className="content-overlay"></div>
               <div className="content-details fadeIn-bottom">
                 <a
                   href={obj.file}
                   download
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="content-text"
                 >
                   <h5>View</h5>
@@ -443,7 +445,7 @@ export default class MyTeam extends React.Component {
       userId,
       chatWith,
       myTeamList,
-      judge,
+      //judge,
       admin,
     } = this.state;
     return (
@@ -576,7 +578,7 @@ export default class MyTeam extends React.Component {
                             className="input-group-text border-0"
                             htmlFor="choose-logo"
                           >
-                            <i class="fas fa-paperclip"></i>
+                            <i className="fas fa-paperclip"></i>
                             <input
                               accept="image/*, video/*,application/pdf,.xlsx, .xls"
                               id="choose-logo"
@@ -603,7 +605,7 @@ export default class MyTeam extends React.Component {
                           className=" input-group-append input-group-text border-0 text-primary"
                           onClick={this.handleSend.bind(this)}
                         >
-                          <i class="fas fa-paper-plane fa-lg mr-2"></i> Send
+                          <i className="fas fa-paper-plane fa-lg mr-2"></i> Send
                         </button>
                       ) : (
                         ""
@@ -627,8 +629,9 @@ export default class MyTeam extends React.Component {
                       <ul className="dflex mb-2 justify-content-center list chatUsersList flex-column">
                         {myTeamList.data ? (
                           myTeamList.data.length ? (
-                            myTeamList.data.map((team) => (
+                            myTeamList.data.map((team, index) => (
                               <li
+                                key={index}
                                 className={`mb-2 ${
                                   this.state.chatWith.id === team.id
                                     ? "active"
@@ -681,9 +684,10 @@ export default class MyTeam extends React.Component {
                       </div>
                       <ul className="dflex mb-2 justify-content-center list chatUsersList flex-column">
                         {admin ? (
-                          admin.map((user) =>
-                            user.id != userId ? (
+                          admin.map((user, index) =>
+                            user.id !== userId ? (
                               <li
+                                key={index}
                                 className={`mb-2 ${
                                   this.state.chatWith.id === user.id
                                     ? "active"
@@ -811,7 +815,7 @@ export default class MyTeam extends React.Component {
                     <ul className="dflex mb-2 justify-content-center list chatUsersList flex-column">
                       {participant ? (
                         participant.map((user) =>
-                          user.id != userId ? (
+                          user.id !== userId ? (
                             <li
                               className={`mb-2 ${
                                 this.state.chatWith.id === user.id

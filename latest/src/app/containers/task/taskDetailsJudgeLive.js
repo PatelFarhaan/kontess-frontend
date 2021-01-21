@@ -43,7 +43,8 @@ export default class TaskDetails extends React.Component {
         self.setState({
             dataList: []
         })
-        await getFetch('task/assigned-teams/?task_id=' + this.state.taskId + '&limit=' + this.state.perPage + '&offset=' + offset).then((responseBody) => {
+        /*
+        await getFetch('task/list-all-participant/?task_id=' + this.state.taskId + '&limit=' + this.state.perPage + '&offset=' + offset).then((responseBody) => {
             if (responseBody.status === 200) {
                 self.setState({
                     dataList: responseBody.data,
@@ -51,6 +52,7 @@ export default class TaskDetails extends React.Component {
                 })
             }
         }).catch(err => { })
+        */
     }
 
     /**function for get task details */
@@ -58,6 +60,7 @@ export default class TaskDetails extends React.Component {
         let self = this;
         await getFetch(`task/` + this.state.taskId + `/`)
             .then(resp => {
+                // console.log("resp.data", resp.data)
                 if (resp.data) {
                     self.setState({
                         title: resp.data.title,
@@ -85,7 +88,8 @@ export default class TaskDetails extends React.Component {
         self.setState({
             dataList: []
         })
-        await getFetch('participant_task/' + this.state.taskId + '/individual-tasks/?limit=' + this.state.perPage + '&offset=' + offset).then((responseBody) => {
+        // list-all-participant
+        await getFetch('participant_task/' + this.state.taskId + '/list-all-participant/?limit=' + this.state.perPage + '&offset=' + offset).then((responseBody) => {
             if (responseBody.status === 200) {
                 self.setState({
                     dataList: responseBody.data,
@@ -126,7 +130,7 @@ export default class TaskDetails extends React.Component {
     render() {
         const { title, /*judge,*/ description, submission_due_date, grade_due_date, questions, max_no_of_judge, assing_to, taskId } = this.state;
         return (
-            <DashboardTemplate title="Task View" pageId="task" loading={this.state.loading}>
+            <DashboardTemplate title="Task View" pageId="live-judge" loading={this.state.loading}>
                 <div>
                     <div className="all-header clear">
                         <div className="row">
@@ -200,9 +204,13 @@ export default class TaskDetails extends React.Component {
                             <div className="tab-content">
                                 <div className="row">
                                     <div className="col-md-12">
-                                        {assing_to === 'teams' ?
-                                            <Card teamList={this.state.dataList.teams} callBack={(e) => this.getAllTeams()} type={assing_to} judges={this.state.dataList.judges} taskId={taskId} /> :
-                                            <Card individualsList={this.state.dataList.individuals} callBack={(e) => this.getAllTeams()} type={assing_to} judges={this.state.dataList.judges} taskId={taskId} />}
+                                        {
+                                            assing_to === 'teams'
+                                            ?
+                                                <Card judging={true} teamList={this.state.dataList.teams} callBack={(e) => this.getAllTeams()} type={assing_to} judges={this.state.dataList.judges} taskId={taskId} />
+                                            :
+                                                <Card judging={true} individualsList={this.state.dataList.individuals} callBack={(e) => this.getAllTeams()} type={assing_to} judges={this.state.dataList.judges} taskId={taskId} />
+                                        }
                                         <Pagination perPage={this.state.perPage} count={this.state.teamsCount} handlePageClick={this.onPageChangeAll} />
                                     </div>
                                 </div>

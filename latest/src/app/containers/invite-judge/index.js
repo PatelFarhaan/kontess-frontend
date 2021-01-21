@@ -1,6 +1,6 @@
 
 import React from "react";
-import * as routes from '../../globals/endpoints';
+//import * as routes from '../../globals/endpoints';
 import { commonErrorMsg, inviteJudgeMsg, addJudgeMsg } from "../../../utils/Message";
 import { toast } from 'react-toastify';
 import { getFetch, postFetch } from '../../../utils/fetchRequests';
@@ -9,7 +9,7 @@ import Pagination from '../../components/pagination';
 import { profileLogo, Loading } from '../../globals/contants';
 import Select from 'react-select';
 import { Link } from 'react-router-dom';
-import { async } from "q";
+//import { async } from "q";
 import { confirmAlert } from 'react-confirm-alert';
 import * as session from '../../../utils/session';
 
@@ -177,13 +177,13 @@ export default class InviteMember extends React.Component {
                                                 <div className="card-body border-o">
                                                     <div className="row justify-content-between align-items-center">
                                                         <div className="col-md-1 text-center">
-                                                            <Link to={'/dashboard/profile/' + participant.id}><div className="inviteImg"><img src={participant.user_image ? participant.user_image : profileLogo} /></div></Link>
+                                                            <Link to={'/dashboard/profile/' + participant.id}><div className="inviteImg"><img src={participant.user_image ? participant.user_image : profileLogo} alt="profile logo"/></div></Link>
                                                         </div>
                                                         <div className="col-md-3">
                                                             <h4><Link to={'/dashboard/profile/' + participant.id}>{participant.full_name}</Link> </h4>
                                                             <p className="skills">
-                                                                {participant.skill.map(skill => (
-                                                                    <span className="badge badge-pill badge-info">{skill.label}</span>
+                                                                {participant.skill.map((skill,index) => (
+                                                                    <span key={index} className="badge badge-pill badge-info">{skill.label}</span>
                                                                 ))}
                                                             </p>
                                                         </div>

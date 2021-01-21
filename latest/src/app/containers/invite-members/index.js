@@ -110,7 +110,7 @@ export default class InviteMember extends React.Component {
         }
     }
 
-    // Send invitation to the participants 
+    // Send invitation to the participants
     inviteMembers = async () => {
         let self = this;
         //Get the selected participants
@@ -203,13 +203,13 @@ export default class InviteMember extends React.Component {
                                             <div className="card-body border-o">
                                                 <div className="row justify-content-between align-items-center">
                                                     <div className="col-md-1 text-center">
-                                                        <Link to={'/dashboard/profile/' + participant.id}><div className="inviteImg"><img src={participant.user_image ? participant.user_image : profileLogo} /></div></Link>
+                                                        <Link to={'/dashboard/profile/' + participant.id}><div className="inviteImg"><img src={participant.user_image ? participant.user_image : profileLogo} alt="profile logo"/></div></Link>
                                                     </div>
                                                     <div className="col-md-3">
                                                         <h4><Link to={'/dashboard/profile/' + participant.id}>{participant.full_name}</Link> </h4>
                                                         <p className="skills">
-                                                            {participant.skill.map(skill => (
-                                                                <span className="badge badge-pill badge-info">{skill.label}</span>
+                                                            {participant.skill.map((skill, index) => (
+                                                                <span key={index} className="badge badge-pill badge-info">{skill.label}</span>
                                                             ))}
                                                         </p>
                                                     </div>

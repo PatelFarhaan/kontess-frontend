@@ -1,5 +1,5 @@
 
-import React, { Component } from "react";
+import React from "react";
 import DashboardTemplate from "../../components/dashboard-template/DashBoardTemplate";
 import EventCalender from '../Activity/eventCalender';
 import { getFetch, postFetchMutiPart } from '../../../utils/fetchRequests';
@@ -10,7 +10,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import { toast } from 'react-toastify';
 import { commonErrorMsg, submitFileMsg } from "../../../utils/Message";
 import $ from 'jquery';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import { Loading } from '../../globals/contants';
 import { Urlify } from '../../globals/contants';
 
@@ -129,9 +129,9 @@ export default class Task extends React.Component {
     showOverAll = (task_grading) => {
         if (task_grading.length) {
             let result = 0;
-            task_grading.map(function (item) {
+            task_grading.forEach( item => {
                 if (item.status === 'Publish') {
-                    item.grades.map(function (grade) {
+                    item.grades.forEach( grade => {
                         result = result + grade.score
                     });
                 }
@@ -149,8 +149,8 @@ export default class Task extends React.Component {
                         <div className="row">
                             <div className="col-lg-7">
                                 <div className="accordion" id="accordionExample">
-                                    {tasks.data ? tasks.data.length ? tasks.data.map(task => (
-                                        <div className={'comment-widgets no-hover border border-dark mb-0 ' + this.getClass(task)}>
+                                    {tasks.data ? tasks.data.length ? tasks.data.map((task, index) => (
+                                        <div key={index} className={'comment-widgets no-hover border border-dark mb-0 ' + this.getClass(task)}>
                                             <div className="card-header border-0 bg-d7 p-2" id="headingOne">
 
                                                 <div className={'d-block click-data collapsed '} data-toggle="collapse" data-target={"#collapseOne" + task.id} aria-expanded="false" aria-controls="collapseOne">
@@ -191,7 +191,7 @@ export default class Task extends React.Component {
                                                     <h5 className="border-bottom pb-2 mb-3">Criteria</h5>
                                                     <ul className="list-unstyled criteria-list">
                                                         {task.task.questions.map((item, index) =>
-                                                            <li className="clearfix">
+                                                            <li key={index} className="clearfix">
                                                                 <h6 className="float-left">{index + 1}. {item.question}</h6>
                                                                 <h6 className="float-right">max score {item.max_score}</h6>
                                                             </li>
@@ -200,13 +200,13 @@ export default class Task extends React.Component {
                                                     {task.status === 'submit' ? <div>
                                                         <h6>submitted files
                                                         {task.submitted_docs.map((item, index) =>
-                                                            <div className="mt-1">
-                                                                {index + 1}.)  <a href={item.doc} download target="_blank">
+                                                            <div key={index} className="mt-1">
+                                                                {index + 1}.)  <a href={item.doc} download target="_blank" rel="noopener noreferrer">
                                                                     {item.doc.substring(item.doc.lastIndexOf('/') + 1)}
                                                                 </a><br /></div>
                                                         )}
                                                         </h6>
-                                                        {task.task.release_score_to_participant ? <a onClick={() => this.goToResults(task.id)}>
+                                                        {task.task.release_score_to_participant ? <a onClick={() => this.goToResults(task.id)} >
                                                             <span className="text-primary  pt-1 d-block font-weight-bold text-underline">View score detail  <i className="fas fa-eye"></i>
                                                             </span></a> : ''}</div> : ''}
 

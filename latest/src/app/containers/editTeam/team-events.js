@@ -1,7 +1,7 @@
 
 import { Link } from "react-router-dom";
 import React from 'react';
-import { getFetch, postFetch } from '../../../utils/fetchRequests';
+import { getFetch/*, postFetch*/ } from '../../../utils/fetchRequests';
 import Moment from 'react-moment';
 import moment from "moment";
 import * as session from '../../../utils/session';

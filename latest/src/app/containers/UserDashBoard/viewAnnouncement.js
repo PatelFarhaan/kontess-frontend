@@ -1,10 +1,10 @@
 
 import React from "react";
-import { commonErrorMsg } from "../../../utils/Message";
-import { single, double } from "../../globals/contants";
-import { toast } from "react-toastify";
-import { postFetch } from "../../../utils/fetchRequests";
-import { display } from "@material-ui/system";
+//import { commonErrorMsg } from "../../../utils/Message";
+//import { single, double } from "../../globals/contants";
+//import { toast } from "react-toastify";
+//import { postFetch } from "../../../utils/fetchRequests";
+//import { display } from "@material-ui/system";
 import Moment from 'react-moment';
 import { Urlify } from '../../globals/contants';
 

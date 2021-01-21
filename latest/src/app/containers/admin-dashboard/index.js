@@ -264,14 +264,19 @@ export default class AdminDashboard extends React.Component {
                               onChange={this.changeValue}
                               required></textarea>
 
-                            <div cl className="select-post dropdown float-right">
+                            <div className="select-post dropdown float-right">
 
                               <button type="submit" className="btn btn-primary" >{editAnnouncement ? 'Update' : 'Post'}</button>
                               <div className="select-arrow" onClick={this.showAnnouncementOptions} ><i className="fa fa-caret-down" ></i>
                               </div>
                               {this.state.showAnnouncementOption ? <div className="dropdown-content" style={{minWidth: '201px'}}>
                                 {announcement_type ? announcement_type.map((item, index) =>
-                                  <a value={item.value} className={`${this.state.announcement.announcement_type === item.value ? "active annoucement-option" : 'annoucement-option'}`} key={index} onClick={(ev) => this.selectAnnouncementOptions(item.value)} >{item.description}</a>
+                                  <a
+                                    value={item.value}
+                                    className={`${this.state.announcement.announcement_type === item.value ? "active annoucement-option" : 'annoucement-option'}`}
+                                    key={index}
+                                    onClick={(ev) => this.selectAnnouncementOptions(item.value)} >
+                                      {item.description}</a>
                                 ) : ''}
                               </div> : ''}
                             </div>
@@ -284,7 +289,7 @@ export default class AdminDashboard extends React.Component {
                       <div className="card bg-gray mb-3">
                         <div className="card-header pl-2 p-3">
                           <h5 className="card_title mb-0">
-                            <a className="text-dark" data-toggle="modal" data-target="#newevent" id="close-new-event">Add new event</a>
+                            <a className="text-dark" data-toggle="modal" data-target="#newevent" id="close-new-event" >Add new event</a>
                           </h5>
                         </div>
                       </div>

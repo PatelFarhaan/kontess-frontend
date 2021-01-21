@@ -5,7 +5,7 @@ import * as session from '../../../utils/session';
 import { profileLogo } from '../../globals/contants';
 import { Link } from 'react-router-dom';
 import { getFetch, postFetch } from '../../../utils/fetchRequests';
-import { async } from 'q';
+//import { async } from 'q';
 import moment from 'moment';
 import Moment from 'react-moment';
 import * as routes from '../../globals/endpoints';
@@ -41,7 +41,7 @@ export default class TopNav extends React.Component {
 
   componentDidMount = async () => {
     this.getNotifictionsCount();
-    let self = this;
+    //let self = this;
     let user = await session.getSession();
     if (user && user.user) {
       user = JSON.parse(user.user);
@@ -171,7 +171,7 @@ export default class TopNav extends React.Component {
   };
   goToNotification = (id) => {
     history.push("/dashboard/notifications");
-    let self = this;
+    //let self = this;
     setTimeout(function () { history.push("/dashboard/notification/" + id); }, 1);
   }
   render() {
@@ -188,9 +188,9 @@ export default class TopNav extends React.Component {
           <div className="col-md-6 col-sm-5 d-flex pt-2">
             <div className="position-relative desktop-bars">
               <div className="nav-btn pull-left mr-0">
-                <span class="side-bars"></span>
-                <span class="side-bars"></span>
-                <span class="side-bars"></span>
+                <span className="side-bars"></span>
+                <span className="side-bars"></span>
+                <span className="side-bars"></span>
               </div>
               {msgCount !== 0 ? (
                 <span className="notificationBadge">
@@ -207,9 +207,9 @@ export default class TopNav extends React.Component {
               <li>
                 <div className="position-relative mobile-bars">
                   <span className="nav-btn pull-left">
-                    <span class="side-bars"></span>
-                    <span class="side-bars"></span>
-                    <span class="side-bars"></span>
+                    <span className="side-bars"></span>
+                    <span className="side-bars"></span>
+                    <span className="side-bars"></span>
 
                   </span>
                   {msgCount !== 0 ? (
@@ -243,8 +243,8 @@ export default class TopNav extends React.Component {
                   </span>
                   <div className="nofity-list">
                     {notifications
-                      ? notifications.map(notification => (
-                        <Link onClick={() => this.goToNotification(notification.id)} key={notification.id} className="notify-item">
+                      ? notifications.map((notification, index) => (
+                        <Link  key={notification.id} onClick={() => this.goToNotification(notification.id)} className="notify-item">
                           <div className="notify-thumb">
                             <img
                               src={
@@ -255,6 +255,7 @@ export default class TopNav extends React.Component {
                               onError={event =>
                                 event.target.setAttribute('src', profileLogo)
                               }
+                              alt="profile logo"
                             />
                           </div>
                           <div className="notify-text">
@@ -317,7 +318,7 @@ export default class TopNav extends React.Component {
                       <i className="fa fa-cog"></i> Account Settings
                     </Link>
                     <span role="separator" className="divider"></span>
-                    <a className="dropdown-item" onClick={e => this.logout()}>
+                    <a href="# " className="dropdown-item" onClick={e => this.logout()}>
                       <i className="fa fa-power-off"></i>Logout
                     </a>
                   </div>

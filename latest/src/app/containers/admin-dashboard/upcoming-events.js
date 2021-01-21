@@ -1,9 +1,9 @@
 
 import React from "react";
 import Moment from 'react-moment';
-import { patchFetch } from "../../../utils/fetchRequests";
-import { commonErrorMsg } from "../../../utils/Message";
-import { toast } from 'react-toastify';
+//import { patchFetch } from "../../../utils/fetchRequests";
+//import { commonErrorMsg } from "../../../utils/Message";
+//import { toast } from 'react-toastify';
 import { getFetch } from "../../../utils/fetchRequests";
 import Pagination from '../../components/pagination';
 import moment from 'moment';
@@ -57,7 +57,10 @@ export default class UpcomingEvents extends React.Component {
                     <div className="card-body p-1">
                         <ul className="mt-2">
                             {this.state.eventList ? this.state.eventList.length ? this.state.eventList.map((item, index) =>
-                                <li>
+                                {
+                                    let modal_id = "newevent_"+ index
+
+                                    return (<li key={index}>
                                     <div className="event-wrap mb-2">
                                         <div className="row">
                                             <div className="col-md-2 pr-0 text-center">
@@ -71,12 +74,22 @@ export default class UpcomingEvents extends React.Component {
                                                     <p className="mb-0">{item.title}: {item.description}</p>
                                                     <small>Location: {item.location}
                                                        <br/> Time: <Moment format="h:mm A">{moment(item.schedule_date, 'YYYY-MM-DD hh:mm A')}</Moment></small>
-                                                    <a className="btn btn-outline-success btn-sm btn-custom" data-toggle="modal" data-target="#newevent" data-backdrop="static" data-keyboard="false" style={{float:'right'}} onClick={() => this.editEvent(item)}>Edit</a>
+                                                    <a
+                                                        className="btn btn-outline-success btn-sm btn-custom"
+                                                        data-toggle="modal"
+                                                        data-target={"#"+modal_id}
+                                                        data-backdrop="static"
+                                                        data-keyboard="false"
+                                                        style={{float:'right'}}
+                                                        onClick={() => this.editEvent(item)}>
+                                                            Edit
+                                                    </a>
+                                                    <NewEvent ModalId={modal_id} getAllEvents={this.getAllEvents} resetEvent={this.resetEvent} event={this.state.event} ></NewEvent>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </li>
+                                </li>)}
                             ) : <div className="comment-widgets mb-3">
                                     <div className="d-flex flex-row comment-row">
                                         No events found
@@ -86,9 +99,12 @@ export default class UpcomingEvents extends React.Component {
                     </div>
                 </div>
                 <Pagination perPage={this.state.perPage} count={this.state.count} handlePageClick={(ev) => this.handlePagination(ev)} />
+
+                {/*
                 <div className="modal fadeIn animated" id="newevent">
                     <NewEvent getAllEvents={this.getAllEvents} resetEvent={this.resetEvent} event={this.state.event} ></NewEvent>
                 </div>
+                */}
             </div>
         );
     }
