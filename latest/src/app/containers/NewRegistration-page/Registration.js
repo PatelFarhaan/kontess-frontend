@@ -121,7 +121,7 @@ class NewRegistratoin extends React.Component {
         ? "Please enter Password"
         : password.length < 8
         ? "Enter Password must be above 8 characters"
-        : /*
+        /*: 
         : !school_id
         ? "Please enter your student ID"
         : !pitch_name
@@ -132,9 +132,9 @@ class NewRegistratoin extends React.Component {
         ? "Please specify use of funds"
         : !goal_for_prototype
         ? "Please enter goal for prototype"
-        */
         !phone_number && role !== "judge"
         ? "Please enter your phone number"
+        */
         : !school_name && role !== "judge"
         ? "Please enter your school name"
         : !major && role !== "judge"
