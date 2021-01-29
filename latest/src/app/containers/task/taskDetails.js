@@ -432,13 +432,17 @@ export default class TaskDetails extends React.Component {
                                                         </thead>
                                                         <tbody>
                                                             {questions
-                                                                ? questions.map((item, index) => (
-                                                                    <tr key={index}>
-                                                                        <td><span>{item.question}</span></td>
-                                                                        <td><span>{item.max_score}</span></td>
-                                                                        <td><span className={`py-1 px-3 rounded-pill text-white ${item.feedback ? 'bg-info' : 'bg-danger'}`}>{item.feedback ? 'Allow' : 'Not Allow'}</span></td>
-                                                                    </tr>
-                                                                ))
+                                                                ? questions.map((item, index) => {
+                                                                    if (this.state.curruntTrack == item.track || item.track == null){
+                                                                        return(
+                                                                            <tr key={index}>
+                                                                                <td><span>{item.question}</span></td>
+                                                                                <td><span>{item.max_score}</span></td>
+                                                                                <td><span className={`py-1 px-3 rounded-pill text-white ${item.feedback ? 'bg-info' : 'bg-danger'}`}>{item.feedback ? 'Allow' : 'Not Allow'}</span></td>
+                                                                            </tr>
+                                                                        )
+                                                                    }
+                                                                })
                                                                 : ''}
                                                         </tbody>
                                                     </table>

@@ -29,6 +29,10 @@ export default class Task extends React.Component {
             questions: [],
             event:"",
             eventList: [],
+            tracks: [],
+            currentTrack: "null",
+            question_for_all: false,
+            all_questions_valid: true,
             max_no_of_judge: '',
             loding: false,
             assing_to: 'teams'
@@ -39,6 +43,7 @@ export default class Task extends React.Component {
 
     componentWillMount = async () => {
         await this.addQuestions();
+        await this.getTracks();
         let location = this.props.history.location.pathname;
         if (location.indexOf('modify-task') !== -1) {
             this.setState({
@@ -89,6 +94,23 @@ export default class Task extends React.Component {
             .catch(err => { });
     }
 
+    /**function for get team tracks */
+    getTracks = async () => {
+        let self = this;
+        await getFetch(`track/`).then((resp) => {
+            if (resp.data) {
+                let temp_tracks = []
+
+                resp.data.forEach(function(value){
+                    temp_tracks.push({"name":value.track_name, "id":value.id})
+                })
+
+                self.setState({
+                    tracks: resp.data
+                })
+            }
+        }).catch(err => { })
+    }
 
     combineDateAndTime = async (date, time) => {
         date = moment(date, 'YYYY-MM-DD');
@@ -134,10 +156,9 @@ export default class Task extends React.Component {
         }`;
         // validation = "true"
         if (validation === 'true') {
-            const { title, description, submissionDueOnDate, submissionDueOnTime, gradesDueOnDate, gradesDueOnTime, questions, max_no_of_judge, assing_to, status, event } = this.state;
+            let { title, description, submissionDueOnDate, submissionDueOnTime, gradesDueOnDate, gradesDueOnTime, questions, max_no_of_judge, assing_to, status, event } = this.state;
             let submission_due_date = await this.combineDateAndTime(submissionDueOnDate, submissionDueOnTime);
             let grade_due_date = await this.combineDateAndTime(gradesDueOnDate, gradesDueOnTime);
-            const data = { title, description, submission_due_date, grade_due_date, questions, max_no_of_judge, assing_to, status, event};
             let self = this;
             /*
             if(moment(submission_due_date) < moment()){
@@ -153,6 +174,53 @@ export default class Task extends React.Component {
                 return false
             }
             */
+           let valid_question = []
+           let tracks_ids = {}
+           questions.forEach(function(question, index){
+            tracks_ids[question.track] =0
+           })
+           tracks_ids = Object.keys(tracks_ids)
+           const null_index = tracks_ids.indexOf("null");
+           let tracks_ids_2 = tracks_ids
+           if (null_index > -1) {
+            tracks_ids_2.splice(null_index, 1);
+          }
+
+
+           let all_questions_valid = true
+           questions.forEach(function(question, index){
+                if(self.state.question_for_all ==true){
+                    if(question.track== "null"){
+                        if (!question.max_score || !question.question){
+                            all_questions_valid = false
+                        }
+                        valid_question.push(question)
+                    }
+                }else if(self.state.question_for_all ==false){
+                    if (tracks_ids.length ==1 && null_index !=-1){
+                        if(question.track == "null"){ // Only Null values for questions
+                            if (!question.max_score || !question.question){
+                                all_questions_valid = false
+                            }
+                            valid_question.push(question)
+                        }
+                    }else if(tracks_ids_2.length>0){
+                        if(question.track != "null"){ // Only tracks with values for questions
+                            if (!question.max_score || !question.question){
+                                all_questions_valid = false
+                            }
+                            valid_question.push(question)
+                        }
+                    }
+                }
+           })
+           questions = valid_question
+           if (all_questions_valid==false){
+                this.setState({
+                    all_questions_valid: all_questions_valid
+                })
+                return
+           }
             this.setState({
                 loading: true
             })
@@ -160,6 +228,7 @@ export default class Task extends React.Component {
             if (this.state.taskId) {
                 url = "task/" + this.state.taskId + "/update/"
             }
+            const data = { title, description, submission_due_date, grade_due_date, questions, max_no_of_judge, assing_to, status, event};
             await postFetch(url, data)
                 .then(function (response) {
                     self.setState({
@@ -189,6 +258,7 @@ export default class Task extends React.Component {
 
     addQuestions = async () => {
         let newQue = {}
+        newQue["track"] = this.state.currentTrack
         this.setState({
             questions: this.state.questions.concat(newQue)
         })
@@ -203,6 +273,7 @@ export default class Task extends React.Component {
     gradingQuestions = (e, index, type) => {
         let temp = this.state.questions;
         temp[index][e.target.name] = type ? e.target.checked : e.target.value;
+        temp[index]["track"] = this.state.currentTrack
         //this.state.questions[index][e.target.name] = type ? e.target.checked : e.target.value;
         this.setState({
             questions: temp
@@ -212,6 +283,7 @@ export default class Task extends React.Component {
         this.setState({ [event.target.name]: event.target.value });
     }
     setAssignTo(assing_to) {
+        let questions = this.state.questions
         this.setState({
             assing_to: assing_to
         })
@@ -221,6 +293,55 @@ export default class Task extends React.Component {
             event: parseInt(event.target.value)
         })
     }
+    checkForAllTrack(event){
+        let question_for_all=event.target.checked
+        let filtered_questions  = []
+        let currentTrack = this.state.currentTrack;
+        if (question_for_all){
+            currentTrack = "null"
+            this.state.questions.map(function(question){
+                if (question.track=="null"){
+                    filtered_questions.push(question)
+                }
+            })
+        }else{
+            filtered_questions = this.state.questions
+        }
+
+        this.setState({
+            question_for_all:question_for_all,
+            questions:filtered_questions,
+            currentTrack:currentTrack
+        })
+    }
+    changeTrack(event) {
+        let select_value = event.target.value;
+        console.log("select_value", select_value)
+        let temp = this.state.questions;
+        let currentTrack = this.state.currentTrack;
+        let assing_to = this.state.assing_to;
+        console.log("currentTrack", currentTrack)
+
+        let is_track_question_present = false
+        temp.forEach(function(value, index){
+            if(value.track == select_value){ //  || value.track == 0
+                is_track_question_present = true
+                return
+            }
+        });
+        console.log("here", is_track_question_present)
+        console.log("temp question", temp)
+        let self = this
+
+        this.setState({
+            currentTrack: select_value
+        },function(){
+            if (is_track_question_present == false){
+                self.addQuestions()
+            }
+        })
+    }
+
 
     editEvent = (event) => {
         this.setState({ event })
@@ -254,6 +375,9 @@ export default class Task extends React.Component {
 
     render() {
         const { questions, taskId } = this.state;
+        const currentTrack = this.state.currentTrack
+        const question_for_all = this.state.question_for_all
+        let self = this
         return (
             <DashboardTemplate title={taskId ? 'Update task' : "Create task"} pageId="task" loading={this.state.loading}>
                 <MuiPickersUtilsProvider utils={MomentUtils}>
@@ -399,7 +523,50 @@ export default class Task extends React.Component {
                                         </div>
                                     </div>
                                 </div>
+                                {
+                                    this.state.assing_to === 'teams'?
+                                    <div className="row justify-content-center gQ">
+                                        <div className="col-md-12 row mt-4">
+                                            <label htmlFor="alltracks">
+                                                <input type="checkbox" id="alltracks" defaultChecked={false} checked={this.state.question_for_all} onChange={(e) => this.checkForAllTrack(e)}/> Use same rubrics for all tracks
+                                            </label>
+                                        </div>
+                                        <div className="col-md-12 row">
+                                            <div className="col-md-4">
+                                                <label htmlFor="track-select">Select track to assign grading rubric</label>
+                                            </div>
+                                            <div className="col-md-4">
+                                                <select
+                                                    value={this.state.currentTrack}
+                                                    disabled={question_for_all ? "disabled" :""}
+                                                    onChange={(e)=> self.changeTrack(e)}
+                                                    className="form-control">
+                                                        <option value={"null"} >Select Track</option>
+                                                        {
+                                                            this.state.tracks.map(
+                                                                function(track, index){
+                                                                    return(<option key={index} value={track.id}>{track.track_name}</option>)
+                                                            }
+                                                        )
+                                                        }
+                                                </select>
+                                            </div>
+                                            <div className="col-md-4"></div>
+                                        </div>
+                                    </div>
+                                    :
+                                    <div className="row justify-content-center gQ">
+                                    </div>
+                                }
 
+                                {
+                                    this.state.all_questions_valid==false
+                                    ?
+                                        <div className="row justify-content-center gQ error">
+                                            One Or More question are incomplete
+                                        </div>
+                                    : null
+                                }
                                 <div className="row justify-content-center gQ">
                                     <div className="col-md-6">
                                         <div className="form-group">
@@ -421,7 +588,9 @@ export default class Task extends React.Component {
                                 </div>
 
                                 {questions
-                                    ? questions.map((item, index) => (
+                                    ? questions.map((item, index) => {
+                                    if (item.track == undefined ||item.track==currentTrack){
+                                        return(
                                         <div className="row justify-content-center gQ fadeInAnimation" key={index}>
                                             <div className="col-md-6">
                                                 <div className="form-group">
@@ -430,13 +599,13 @@ export default class Task extends React.Component {
                                             </div>
                                             <div className="col-md-3 text-center">
                                                 <div className="form-group">
-                                                    <input value={item.max_score} min="0" max="10000" name="max_score" onChange={(e) => this.gradingQuestions(e, index)} type="number" placeholder="*" className="form-control mx-1 border-grey mb-2 w-25 mx-auto" required />
+                                                    <input   value={item.max_score} min="0" max="10000" name="max_score" onChange={(e) => this.gradingQuestions(e, index)} type="number" placeholder="*" className="form-control mx-1 border-grey mb-2 w-25 mx-auto" required />
                                                 </div>
                                             </div>
                                             <div className="col-md-2 text-center">
                                                 <div className="form-group">
                                                     <div className="form-group custom-checkbox">
-                                                        <input type="checkbox" id={`select` + index} name="feedback" checked={item.feedback} onChange={(e) => this.gradingQuestions(e, index, 'checkBox')} />
+                                                        <input type="checkbox" id={`select` + index} name="feedback" defaultChecked={false} checked={item.feedback} onChange={(e) => this.gradingQuestions(e, index, 'checkBox')} />
                                                         <label className="bg-black" htmlFor={`select` + index}></label>
                                                     </div>
                                                 </div>
@@ -445,7 +614,10 @@ export default class Task extends React.Component {
                                                 {index > 0 ? <i onClick={() => this.removeNode(index)} className="far fa-times-circle  fa-2x text-danger"></i> : ''}
                                             </div>
                                         </div>
-                                    ))
+                                        )
+                                        }
+                                    }
+                                )
                                     : ''}
                                 <div className="form-group ">
                                     <a onClick={() => this.addQuestions()} className="mon-med text-primary" ><i className=" fa fa-plus-circle  mr-2"></i> Add new line</a>
@@ -455,7 +627,7 @@ export default class Task extends React.Component {
                                         <div className="col-md-5">
                                             <div className="d-flex">
                                                 <h6 className="font-weight-bold text-333f52 mr-4">Number of judges per team/individual: </h6>
-                                                <input type="number" min="0" max="10000" onChange={this.formHandler} name="max_no_of_judge" value={this.state.max_no_of_judge} placeholder="*" className="form-control mx-1 border-grey mb-2 w-25" required />
+                                                <input type="number" min="0" max="10000" onChange={this.formHandler} name="max_no_of_judge" value={this.state.max_no_of_judge} placeholder="*" className="form-control mx-1 border-grey mb-2 w-25" />
                                             </div>
                                         </div>
                                     </div>
