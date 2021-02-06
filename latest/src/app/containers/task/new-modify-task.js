@@ -154,6 +154,10 @@ export default class Task extends React.Component {
                         ? 'Please select grades due time'
                         : true
         }`;
+        if (validation === "true" && this.state.max_no_of_judge == ""){
+            validation = "Number of judges per team/individual Required"
+        }
+
         // validation = "true"
         if (validation === 'true') {
             let { title, description, submissionDueOnDate, submissionDueOnTime, gradesDueOnDate, gradesDueOnTime, questions, max_no_of_judge, assing_to, status, event } = this.state;
@@ -187,6 +191,7 @@ export default class Task extends React.Component {
           }
 
 
+           if (assing_to == "teams"){
            let all_questions_valid = true
            questions.forEach(function(question, index){
                 if(self.state.question_for_all ==true){
@@ -220,6 +225,7 @@ export default class Task extends React.Component {
                     all_questions_valid: all_questions_valid
                 })
                 return
+           }
            }
             this.setState({
                 loading: true

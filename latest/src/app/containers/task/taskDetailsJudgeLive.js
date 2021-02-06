@@ -40,11 +40,11 @@ export default class TaskDetails extends React.Component {
     /**function for get All Teams */
     getAllTeams = async (offset = 0) => {
         let self = this;
-        self.setState({
-            dataList: []
-        })
-        /*
-        await getFetch('task/list-all-participant/?task_id=' + this.state.taskId + '&limit=' + this.state.perPage + '&offset=' + offset).then((responseBody) => {
+        // self.setState({
+        //     dataList: []
+        // })
+        /**/
+        await getFetch('participant_task/' + this.state.taskId + '/list-all-teams/?limit=' + this.state.perPage + '&offset=' + offset).then((responseBody) => {
             if (responseBody.status === 200) {
                 self.setState({
                     dataList: responseBody.data,
@@ -52,7 +52,7 @@ export default class TaskDetails extends React.Component {
                 })
             }
         }).catch(err => { })
-        */
+
     }
 
     /**function for get task details */

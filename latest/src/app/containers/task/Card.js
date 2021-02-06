@@ -35,17 +35,17 @@ export default class Card extends React.Component {
 
   getMyTeams = async (offset = 0) => {
     let self = this;
-    await getFetch('team/myteam/?limit=' + this.state.perPage + '&offset=' + offset).then((responseBody) => {
-      if (responseBody.status === 200) {
-        self.setState({
-          myTeamList: responseBody
-        })
-      } else {
-        self.setState({
-          loading: false
-        })
-      }
-    }).catch(err => { })
+    // await getFetch('team/myteam/?limit=' + this.state.perPage + '&offset=' + offset).then((responseBody) => {
+    //   if (responseBody.status === 200) {
+    //     self.setState({
+    //       teamList: responseBody
+    //     })
+    //   } else {
+    //     self.setState({
+    //       loading: false
+    //     })
+    //   }
+    // }).catch(err => { })
   }
 
   expended = () => {
@@ -171,8 +171,9 @@ export default class Card extends React.Component {
 
   /**Function for get show grade button*/
   showGradeButton = (id, taskInstancId, task_grading) => {
+    console.log("id, taskInstancId",id, taskInstancId)
     let result = <button onClick={() => this.goForGrade(id, taskInstancId)} className="btn btn-md px-4 rounded-0 btn-primary">Begin Grading</button>;
-    if (task_grading.length) {
+    if (task_grading!= undefined && task_grading.length>0) {
       let self = this;
       task_grading.find(function (item) {
         if (item.judge.id === self.state.userId) {
@@ -242,9 +243,6 @@ export default class Card extends React.Component {
   render() {
     const { curruntUserType } = this.state;
     let judging = this.props.judging
-      // console.log("judging", judging)
-      // console.log("individualsList" ,this.props.individualsList)
-      // console.log("teamList" ,this.props.teamList)
 
     return (
       <div className="tab-pane fade active show" id="accordionExample">
@@ -255,14 +253,16 @@ export default class Card extends React.Component {
                 ?
                   this.props.teamList.length
                     ?
-                      this.props.teamList.map(team =>
+                      this.props.teamList.map((team, index) =>
                         {
                           // console.log("team.submitted_docs", team.submitted_docs)
                           // console.log("team.submitted_task_id",team.submitted_task_id)
                           // console.log("team.task_grading", team.task_grading)
                           // console.log("team.id", team.id)
+                          console.log("team.team_track", team.team_track)
+                          console.log("team", team)
                           return (
-                            <div className="card-body">
+                            <div key={index} className="card-body">
                               <div className="row justify-content-between align-items-center">
                                 <div className="col-md-1 text-center">
                                   <div className="inviteImg"><img src={team.logo ? team.logo : kontessLogo} alt="kontess logo"/></div>
@@ -277,8 +277,8 @@ export default class Card extends React.Component {
 
                                   <div className="d-flex justify-content-start align-items-center">
                                     <p className="m-0 mr-1 w-15">Members</p>
-                                    {team.partipants.map(partipant => (
-                                      <Link to={'/dashboard/profile/' + partipant.user.id}>
+                                    {team.partipants.map((partipant, index) => (
+                                      <Link key={index} to={'/dashboard/profile/' + partipant.user.id}>
                                         <img
                                           src={partipant.user.user_image ? partipant.user.user_image : profileLogo}
                                           title={partipant.user.full_name}
@@ -335,7 +335,7 @@ export default class Card extends React.Component {
                                   </div> : ''}
                                 </div>
                                 <div className="col-md-3 text-center">
-                                  {this.getSubmissionStatus(team.submitted_docs, team.id, team.submitted_task_id, team.task_grading)}
+                                  {this.getSubmissionStatus(team.submitted_docs, team.id, team.id, team.task_grading)}
                                 </div>
                               </div>
                             </div>
