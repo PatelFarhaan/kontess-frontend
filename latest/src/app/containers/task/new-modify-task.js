@@ -33,7 +33,7 @@ export default class Task extends React.Component {
             currentTrack: "null",
             question_for_all: false,
             all_questions_valid: true,
-            max_no_of_judge: '',
+            max_no_of_judge: 0,
             loding: false,
             assing_to: 'teams'
         };
@@ -80,7 +80,6 @@ export default class Task extends React.Component {
                         gradesDueOnDate: moment(resp.data.grade_due_date, 'YYYY-MM-DD, h:mm:ss a'),
                         gradesDueOnTime: moment(resp.data.grade_due_date, 'YYYY-MM-DD, h:mm:ss a'),
                         questions: resp.data.questions,
-                        max_no_of_judge: resp.data.max_no_of_judge,
                         submissionDueDate: true,
                         submissionDueTime: true,
                         gradesDueDate: true,
@@ -154,13 +153,10 @@ export default class Task extends React.Component {
                         ? 'Please select grades due time'
                         : true
         }`;
-        if (validation === "true" && this.state.max_no_of_judge == ""){
-            validation = "Number of judges per team/individual Required"
-        }
 
         // validation = "true"
         if (validation === 'true') {
-            let { title, description, submissionDueOnDate, submissionDueOnTime, gradesDueOnDate, gradesDueOnTime, questions, max_no_of_judge, assing_to, status, event } = this.state;
+            let { title, description, submissionDueOnDate, submissionDueOnTime, gradesDueOnDate, gradesDueOnTime, questions, assing_to, status, event } = this.state;
             let submission_due_date = await this.combineDateAndTime(submissionDueOnDate, submissionDueOnTime);
             let grade_due_date = await this.combineDateAndTime(gradesDueOnDate, gradesDueOnTime);
             let self = this;
@@ -234,7 +230,7 @@ export default class Task extends React.Component {
             if (this.state.taskId) {
                 url = "task/" + this.state.taskId + "/update/"
             }
-            const data = { title, description, submission_due_date, grade_due_date, questions, max_no_of_judge, assing_to, status, event};
+            const data = { title, description, submission_due_date, grade_due_date, questions, assing_to, status, event};
             await postFetch(url, data)
                 .then(function (response) {
                     self.setState({
@@ -322,11 +318,9 @@ export default class Task extends React.Component {
     }
     changeTrack(event) {
         let select_value = event.target.value;
-        console.log("select_value", select_value)
         let temp = this.state.questions;
         let currentTrack = this.state.currentTrack;
         let assing_to = this.state.assing_to;
-        console.log("currentTrack", currentTrack)
 
         let is_track_question_present = false
         temp.forEach(function(value, index){
@@ -335,8 +329,6 @@ export default class Task extends React.Component {
                 return
             }
         });
-        console.log("here", is_track_question_present)
-        console.log("temp question", temp)
         let self = this
 
         this.setState({
@@ -627,16 +619,6 @@ export default class Task extends React.Component {
                                     : ''}
                                 <div className="form-group ">
                                     <a onClick={() => this.addQuestions()} className="mon-med text-primary" ><i className=" fa fa-plus-circle  mr-2"></i> Add new line</a>
-                                </div>
-                                <div className="form-group">
-                                    <div className="row">
-                                        <div className="col-md-5">
-                                            <div className="d-flex">
-                                                <h6 className="font-weight-bold text-333f52 mr-4">Number of judges per team/individual: </h6>
-                                                <input type="number" min="0" max="10000" onChange={this.formHandler} name="max_no_of_judge" value={this.state.max_no_of_judge} placeholder="*" className="form-control mx-1 border-grey mb-2 w-25" />
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                                 <p className="red">{this.state.error}</p>
                                 <div className="save-button">

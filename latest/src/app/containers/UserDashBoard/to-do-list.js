@@ -70,13 +70,20 @@ export default class ToDOList extends React.Component {
                             </div>
                         </div>
                         <Pagination perPage={this.state.perPage} count={this.state.count} handlePageClick={(ev) => this.handlePagination(ev)} />
-                    </div> : <div>
+                    </div>
+                    :
+                    <div>
                         <div className="card">
                             <div className="card-body px-5 py-4">
-                                {this.state.myTasks.length ? this.state.myTasks.map((task, index) => (
+                                {this.state.myTasks.length ? this.state.myTasks.map((task, index) => {
+                                    let link_url = "/dashboard/task-view/"+task.task.id
+                                    if(task.task.event != null){
+                                        link_url = "/dashboard/live-task-view/"+task.task.id
+                                    }
+                                    return(
                                     <div className={'comment-widgets no-hover border border-dark mb-0 '}>
                                         <div className="card-header border-0 bg-d7 p-2" id="headingOne">
-                                            <Link to={'/dashboard/task'}>
+                                            <Link to={link_url}>
                                                 <div className={'d-block click-data collapsed '} data-toggle="collapse" data-target={"#collapseOne" + task.task.id} aria-expanded="false" aria-controls="collapseOne">
                                                     <div className="d-flex flex-row comment-row border-0 p-1">
                                                         <div className="tesk-detail w-100 border-0 ml-0 pl-0">
@@ -100,7 +107,7 @@ export default class ToDOList extends React.Component {
                                             </Link>
                                         </div>
                                     </div>
-                                )) : <h5 className="font-weight-light  mb-4 text-muted">No task found for you!</h5>}
+                                )}) : <h5 className="font-weight-light  mb-4 text-muted">No task found for you!</h5>}
                             </div>
 
                         </div>

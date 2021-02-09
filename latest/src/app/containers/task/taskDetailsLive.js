@@ -113,7 +113,6 @@ export default class TaskDetails extends React.Component {
                         submission_due_date: resp.data.submission_due_date,
                         grade_due_date: resp.data.grade_due_date,
                         questions: resp.data.questions,
-                        max_no_of_judge: resp.data.max_no_of_judge,
                         assing_to: resp.data.assing_to,
                         release_score_to_participant: resp.data.release_score_to_participant,
                         is_randomized: resp.data.is_randomized,
@@ -376,7 +375,7 @@ export default class TaskDetails extends React.Component {
 
 
     render() {
-        const { title, judge, description, submission_due_date, grade_due_date, questions, max_no_of_judge, assing_to, is_randomized, is_judge_locked } = this.state;
+        const { title, judge, description, submission_due_date, grade_due_date, questions,  assing_to, is_randomized, is_judge_locked } = this.state;
 
         return (
             <DashboardTemplate title="Task View" pageId="task" loading={this.state.loading}>
@@ -444,7 +443,7 @@ export default class TaskDetails extends React.Component {
                                                     </table>
 
                                                 </div>
-                                                <h6>Number of judges per team/individual: {max_no_of_judge}</h6>
+
                                             </div>
                                         </div>
                                     </div>

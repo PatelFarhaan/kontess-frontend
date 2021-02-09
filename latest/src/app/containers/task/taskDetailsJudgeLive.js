@@ -36,6 +36,16 @@ export default class TaskDetails extends React.Component {
             this.getTaskDetail();
         })
     };
+    getTracks = async () => {
+        let self = this;
+        await getFetch(`track/`).then((resp) => {
+            if (resp.data) {
+                self.setState({
+                    tracks: resp.data
+                })
+            }
+        }).catch(err => { })
+    }
 
     /**function for get All Teams */
     getAllTeams = async (offset = 0) => {
@@ -60,7 +70,6 @@ export default class TaskDetails extends React.Component {
         let self = this;
         await getFetch(`task/` + this.state.taskId + `/`)
             .then(resp => {
-                // console.log("resp.data", resp.data)
                 if (resp.data) {
                     self.setState({
                         title: resp.data.title,
@@ -68,7 +77,7 @@ export default class TaskDetails extends React.Component {
                         submission_due_date: resp.data.submission_due_date,
                         grade_due_date: resp.data.grade_due_date,
                         questions: resp.data.questions,
-                        max_no_of_judge: resp.data.max_no_of_judge,
+
                         assing_to: resp.data.assing_to
                     }, () => {
                         if (resp.data.assing_to === 'teams') {
@@ -128,7 +137,7 @@ export default class TaskDetails extends React.Component {
     }
 
     render() {
-        const { title, /*judge,*/ description, submission_due_date, grade_due_date, questions, max_no_of_judge, assing_to, taskId } = this.state;
+        const { title, /*judge,*/ description, submission_due_date, grade_due_date, questions, assing_to, taskId } = this.state;
         return (
             <DashboardTemplate title="Task View" pageId="live-judge" loading={this.state.loading}>
                 <div>
@@ -189,7 +198,6 @@ export default class TaskDetails extends React.Component {
                                                     </table>
 
                                                 </div>
-                                                <h6>Number of judges per team/individual: {max_no_of_judge}</h6>
                                             </div>
                                         </div>
                                     </div>

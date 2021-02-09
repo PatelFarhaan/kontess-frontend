@@ -34,7 +34,6 @@ export default class Grading extends React.Component {
                         submission_due_date: resp.data.submission_due_date,
                         grade_due_date: resp.data.grade_due_date,
                         questions: resp.data.questions,
-                        max_no_of_judge: resp.data.max_no_of_judge,
                         assing_to: resp.data.assing_to
                     }, () => {
                         if (this.props.location.state.gradeId) {

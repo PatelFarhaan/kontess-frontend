@@ -50,7 +50,6 @@ export default class UserDashBoard extends React.Component {
           loading: false,
         });
         if (resp.status === 200) {
-          console.log(resp.data);
           self.setState({ eventList: resp.data, count: resp.count });
         } else {
           toast.error(commonErrorMsg);

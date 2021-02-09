@@ -19,7 +19,7 @@ export default class JudgeTask extends React.Component {
         super(props);
         this.state = {
             perPage: 10,
-            tasks: []
+            tasks: [],
         };
     }
 
@@ -43,7 +43,6 @@ export default class JudgeTask extends React.Component {
             })
             .catch(err => { });
     }
-
     // handle pagination
     handlePagination = (data) => {
         let self = this;
@@ -53,7 +52,6 @@ export default class JudgeTask extends React.Component {
     }
     render() {
         const { tasks } = this.state;
-        let is_live_judge = true
         return (
             <DashboardTemplate title="Task" pageId="live-judge">
                 <div className="setting_container">
