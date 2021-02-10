@@ -338,12 +338,14 @@ export default class Card extends React.Component {
                                   {this.getSubmissionStatus(team.submitted_docs, team.id, team.id, team.task_grading)}
                                 </div>
                               </div>
+                              <div>
+                                {
+                                  curruntUserType === 'admin' ? <div id={"collapseOne" + team.id} className="collapse" aria-labelledby="headingOne" data-parent="#accordionExample" >
+                                    <div className="col-md-12 pb-3"><ResultView judges={team.random_judges} questions={this.props.questions} task_grading={team.task_grading}></ResultView></div>
+                                  </div> : ''
+                                }
+                              </div>
                             </div>
-                            // {
-                            //   curruntUserType === 'admin' ? <div id={"collapseOne" + team.id} className="collapse" aria-labelledby="headingOne" data-parent="#accordionExample" >
-                            //     <div className="col-md-12 pb-3"><ResultView judges={team.random_judges} questions={this.props.questions} task_grading={team.task_grading}></ResultView></div>
-                            //   </div> : ''
-                            // }
                           )
                         })
                     :
