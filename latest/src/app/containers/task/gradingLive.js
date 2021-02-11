@@ -201,8 +201,8 @@ export default class Grading extends React.Component {
                                     </div>
                                     <div className="col-md-12">
                                         <div className="button">
-                                            <button type="submit" onClick={(e) => this.setState({ status: 'Publish' })} className="btn btn-sm btn-success btn-block text-center">{this.props.location.state.gradeId ? "update" : "Save"}</button>
-                                            {!this.props.location.state.gradeId || this.state.status === 'Draft' ?
+                                            <button type="submit" onClick={(e) => this.setState({ status: 'Publish' })} className="btn btn-sm btn-success btn-block text-center">{(this.props.location.state && !this.props.location.state.gradeId) ? "update" : "Save"}</button>
+                                            {(this.props.location.state && !this.props.location.state.gradeId) || this.state.status === 'Draft' ?
                                                 <button type="submit" onClick={(e) => this.setState({ status: 'Draft' })} className="btn btn-sm btn-light border border-secondary btn-block text-center">Save and Return Later</button> : ''}
                                         </div>
                                     </div>

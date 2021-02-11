@@ -65,7 +65,7 @@ export default class Card extends React.Component {
             onClick: () => this.confirmReq(teamId)
           },
           {
-            label: 'No',
+            label: "No"
           }
         ]
       });
@@ -171,9 +171,9 @@ export default class Card extends React.Component {
 
   /**Function for get show grade button*/
   showGradeButton = (id, taskInstancId, task_grading) => {
-    console.log("id, taskInstancId",id, taskInstancId)
+
     let result = <button onClick={() => this.goForGrade(id, taskInstancId)} className="btn btn-md px-4 rounded-0 btn-primary">Begin Grading</button>;
-    if (task_grading!= undefined && task_grading.length>0) {
+    if (task_grading != undefined && task_grading.length>0) {
       let self = this;
       task_grading.find(function (item) {
         if (item.judge.id === self.state.userId) {
@@ -196,7 +196,6 @@ export default class Card extends React.Component {
 
     if (judging){
       location_path = "/dashboard/live-grading"
-      // console.log("taskInstancId", taskInstancId)
     }
     history.push({
       pathname: location_path,
@@ -259,8 +258,8 @@ export default class Card extends React.Component {
                           // console.log("team.submitted_task_id",team.submitted_task_id)
                           // console.log("team.task_grading", team.task_grading)
                           // console.log("team.id", team.id)
-                          console.log("team.team_track", team.team_track)
-                          console.log("team", team)
+                          // console.log("team.team_track", team.team_track)
+                          // console.log("team", team)
                           return (
                             <div key={index} className="card-body">
                               <div className="row justify-content-between align-items-center">
@@ -340,8 +339,11 @@ export default class Card extends React.Component {
                               </div>
                               <div>
                                 {
-                                  curruntUserType === 'admin' ? <div id={"collapseOne" + team.id} className="collapse" aria-labelledby="headingOne" data-parent="#accordionExample" >
-                                    <div className="col-md-12 pb-3"><ResultView judges={team.random_judges} questions={this.props.questions} task_grading={team.task_grading}></ResultView></div>
+                                  curruntUserType === 'admin' ?
+                                  <div id={"collapseOne" + team.id} className="collapse" aria-labelledby="headingOne" data-parent="#accordionExample" >
+                                    <div className="col-md-12 pb-3">
+                                      <ResultView judges={this.props.judges} questions={this.props.questions} task_grading={team.task_grading}></ResultView>
+                                    </div>
                                   </div> : ''
                                 }
                               </div>

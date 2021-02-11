@@ -3,7 +3,7 @@ import config from "../../config";
 import * as session from "../../utils/session";
 //Base URL
 let zoom_endpoint = config
-if (config.search("localhost")>-1){
+if (config.search("localhost")>-1 || config.search("127.0.0.1")>-1){
   zoom_endpoint = zoom_endpoint.split(":").slice(0,-1).join(":")+ ":5000"
 }
 export const baseURL = `${config}/api/`;
