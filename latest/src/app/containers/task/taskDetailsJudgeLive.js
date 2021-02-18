@@ -22,6 +22,7 @@ export default class TaskDetails extends React.Component {
             perPage: 10,
             userId: session.getSessionUserId(),
             dataList: [],
+            curruntTrack:"",
             questions: [],
             assing_to: '',
         };
@@ -48,17 +49,22 @@ export default class TaskDetails extends React.Component {
     }
 
     /**function for get All Teams */
-    getAllTeams = async (offset = 0) => {
+    getAllTeams = async (offset = 0, search = '', sortBy = '', track = '') => {
         let self = this;
-        // self.setState({
-        //     dataList: []
-        // })
-        /**/
-        await getFetch('participant_task/' + this.state.taskId + '/list-all-teams/?limit=' + this.state.perPage + '&offset=' + offset).then((responseBody) => {
+        let path_params = '&offset=' + offset
+        if (track>0){
+            path_params += "&track="+track
+        }
+        if (sortBy.length>0){
+            path_params += "&sort="+sortBy
+        }
+
+        await getFetch('participant_task/' + this.state.taskId + '/list-all-teams/?limit=' + this.state.perPage + path_params).then((responseBody) => {
             if (responseBody.status === 200) {
                 self.setState({
                     dataList: responseBody.data,
-                    teamsCount: responseBody.count
+                    teamsCount: responseBody.count,
+                    curruntTrack: track
                 })
             }
         }).catch(err => { })
@@ -82,6 +88,7 @@ export default class TaskDetails extends React.Component {
                     }, () => {
                         if (resp.data.assing_to === 'teams') {
                             self.getAllTeams();
+                            self.getTracks();
                         }
                         else {
                             self.getIndividuals();
@@ -186,14 +193,18 @@ export default class TaskDetails extends React.Component {
                                                         </thead>
                                                         <tbody>
                                                             {questions
-                                                                ? questions.map((item, index) => (
-                                                                    <tr key={index}>
-                                                                        <td><span>{item.question}</span></td>
-                                                                        <td><span>{item.max_score}</span></td>
-                                                                        <td><span className={`py-1 px-3 rounded-pill text-white ${item.feedback ? 'bg-info' : 'bg-danger'}`}>{item.feedback ? 'Allow' : 'Not Allow'}</span></td>
-                                                                    </tr>
-                                                                ))
-                                                                : ''}
+                                                                ? questions.map((item, index) => {
+                                                                    if (this.state.curruntTrack === "" || this.state.curruntTrack === item.track){
+                                                                        return(
+                                                                            <tr key={index}>
+                                                                                <td><span>{item.question}</span></td>
+                                                                                <td><span>{item.max_score}</span></td>
+                                                                                <td><span className={`py-1 px-3 rounded-pill text-white ${item.feedback ? 'bg-info' : 'bg-danger'}`}>{item.feedback ? 'Allow' : 'Not Allow'}</span></td>
+                                                                            </tr>
+                                                                        )
+                                                                    }
+                                                                })
+                                                                : null}
                                                         </tbody>
                                                     </table>
 
@@ -215,9 +226,24 @@ export default class TaskDetails extends React.Component {
                                         {
                                             assing_to === 'teams'
                                             ?
-                                                <Card judging={true} teamList={this.state.dataList.teams} callBack={(e) => this.getAllTeams()} type={assing_to} judges={this.state.dataList.judges} taskId={taskId} />
+                                            <div>
+                                                <div className="ui pointing secondary menu">
+                                                    <a  className={`item ${this.state.curruntTrack === '' ? 'active' : ''}`} onClick={(e) => this.getAllTeams()}>All Teams</a>
+                                                    {
+                                                        this.state.tracks.map((track, index) => (
+                                                            <a key={index} className={`item ${this.state.curruntTrack === track.id ? 'active' : ''}`} onClick={(e) => this.getAllTeams(0, '', '', track.id)}>{track.track_name}</a>
+                                                        ))
+                                                    }
+                                                </div>
+                                                <div className="card-body padding-40">
+                                                    <div className="tab-content">
+                                                        <Card judging={true} teamList={this.state.dataList.teams} callBack={(e) => this.getAllTeams()} type={assing_to} judges={this.state.dataList.judges} taskId={taskId} tracks={this.state.tracks}/>
+                                                        <Pagination perPage={this.state.perPage} count={this.state.teamsCount} handlePageClick={this.onPageChangeAll} />
+                                                    </div>
+                                                </div>
+                                            </div>
                                             :
-                                                <Card judging={true} individualsList={this.state.dataList.individuals} callBack={(e) => this.getAllTeams()} type={assing_to} judges={this.state.dataList.judges} taskId={taskId} />
+                                                <Card judging={true} individualsList={this.state.dataList.individuals} callBack={(e) => this.getAllTeams()} type={assing_to} judges={this.state.dataList.judges} taskId={taskId}  tracks={this.state.tracks}/>
                                         }
                                         <Pagination perPage={this.state.perPage} count={this.state.teamsCount} handlePageClick={this.onPageChangeAll} />
                                     </div>

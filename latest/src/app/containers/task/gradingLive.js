@@ -11,6 +11,7 @@ export default class Grading extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            participant_details:{}
         };
     }
     componentWillMount = () => {
@@ -55,7 +56,8 @@ export default class Grading extends React.Component {
                     self.setState({
                         taskTitle: self.state.assing_to === 'teams' ? resp.data.team.name : resp.data.participant.user.full_name,
                         track: self.state.assing_to === 'teams' ? resp.data.team.team_track.track_name : '',
-                        submitted_docs: resp.data.submitted_docs
+                        submitted_docs: resp.data.submitted_docs,
+                        participant_details:resp.data
                     })
                 }
             })
@@ -146,6 +148,8 @@ export default class Grading extends React.Component {
 
     render() {
         const { title, questions, over_all_comments, taskTitle, track ,status} = this.state;
+        const participant_details = this.state.participant_details;
+        // console.log(participant_details.team.team_track.id)
         return (
             <DashboardTemplate title={"Now grading - " + title} pageId="live-judge" loading={this.state.loading}>
                 <div className="card">
@@ -177,20 +181,28 @@ export default class Grading extends React.Component {
                                     </div>
                                 </div>
                                 {questions
-                                    ? questions.map((item, index) => (
-                                        <div className="row justify-content-between my-4" key={index}>
-                                            <div className="col-md-4">
-                                                <h6>{item.question}</h6>
-                                            </div>
-                                            <div className="col-md-4 d-flex justify-content-center align-items-center">
-                                                <input name="score" value={questions[index].score} onChange={(e) => this.submitGrading(e, index)} type="number" min="0" max={item.max_score} className="form-control mx-1 border-grey w-25" required ={status === 'Publish'}/>
-                                                <p className="m-0 pl-2 text-blue font-weight-bold">out of {item.max_score}</p>
-                                            </div>
-                                            <div className="col-md-2">
-                                                <input name="comment" value={questions[index].comment} onChange={(e) => this.submitGrading(e, index)} type="text" autoComplete="off" className="form-control mx-1 border-grey" required={item.feedback && status === 'Publish'} />
-                                            </div>
-                                        </div>
-                                    ))
+                                    ? questions.map((item, index) => {
+                                        let comment = questions[index].comment
+                                        if (comment === undefined || comment=== null){
+                                            comment = ""
+                                        }
+                                        if (participant_details.team !== undefined && (participant_details.team.team_track === "undefined" || participant_details.team.team_track.id === item.track)){
+                                            return(
+                                                <div className="row justify-content-between my-4" key={index}>
+                                                    <div className="col-md-4">
+                                                        <h6>{item.question}</h6>
+                                                    </div>
+                                                    <div className="col-md-4 d-flex justify-content-center align-items-center">
+                                                        <input name="score" value={questions[index].score} onChange={(e) => this.submitGrading(e, index)} type="number" min="0" max={item.max_score} className="form-control mx-1 border-grey w-25" required ={status === 'Publish'}/>
+                                                        <p className="m-0 pl-2 text-blue font-weight-bold">out of {item.max_score}</p>
+                                                    </div>
+                                                    <div className="col-md-2">
+                                                        <input name="comment" value={comment} onChange={(e) => this.submitGrading(e, index)} type="text" autoComplete="off" className="form-control mx-1 border-grey" required={false}/*item.feedback && status === 'Publish' */ />
+                                                    </div>
+                                                </div>
+                                            )}
+                                        }
+                                    )
                                     : ''}
                                 <div className="row">
                                     <div className="col-md-12 my-3">

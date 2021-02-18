@@ -195,8 +195,8 @@ export default class Card extends React.Component {
                 <div className="col-md-4">
                   <div className="d-flex justify-content-start align-items-center">
                     <p className="m-0 mr-1 w-15">Members</p>
-                    {team.partipants.map(partipant => (
-                      <Link to={'/dashboard/profile/' + partipant.user.id}> <img src={partipant.user.user_image ? partipant.user.user_image : profileLogo} title={partipant.user.full_name} className="mx-1 bg-dark rounded-circle" onError={(event) => event.target.setAttribute("src", profileLogo)} alt="profile logo" /></Link>
+                    {team.partipants.map((partipant, index) => (
+                      <Link key={index} to={'/dashboard/profile/' + partipant.user.id}> <img src={partipant.user.user_image ? partipant.user.user_image : profileLogo} title={partipant.user.full_name} className="mx-1 bg-dark rounded-circle" onError={(event) => event.target.setAttribute("src", profileLogo)} alt="profile logo" /></Link>
                     ))}
                   </div>
                   <div className="d-flex mt-2 justify-content-start align-items-center">
