@@ -177,7 +177,7 @@ export default class Card extends React.Component {
   showGradeButton = (id, taskInstancId, task_grading) => {
 
     let result = <button onClick={() => this.goForGrade(id, taskInstancId)} className="btn btn-md px-4 rounded-0 btn-primary">Begin Grading</button>;
-    if (task_grading != undefined && task_grading.length>0) {
+    if (task_grading !== undefined && task_grading.length>0) {
       let self = this;
       task_grading.find(function (item) {
         if (item.judge.id === self.state.userId) {
@@ -255,7 +255,7 @@ export default class Card extends React.Component {
         {
           this.props.type === 'teams'
             ?
-              this.props.teamList !== undefined
+            this.props.tracks && this.props.teamList !== undefined && this.props.teamList
                 ?
                   this.props.teamList.length
                     ?

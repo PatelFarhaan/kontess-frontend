@@ -481,8 +481,8 @@ export default class TaskDetails extends React.Component {
                                 <div className="row">
                                     <div className="col-md-9">
                                         {assing_to === 'teams' ?
-                                            <Card judges={this.state.dataList.judges} questions={questions} teamList={this.state.dataList.teams} callBack={(e) => this.getAllTeams()} type={assing_to} /> :
-                                            <Card judges={this.state.dataList.judges} questions={questions} individualsList={this.state.dataList.individuals} callBack={(e) => this.getAllTeams()} type={assing_to} />}
+                                            <Card judges={this.state.dataList.judges} questions={questions} teamList={this.state.dataList.teams} callBack={(e) => this.getAllTeams()} type={assing_to} tracks={this.state.tracks}/> :
+                                            <Card judges={this.state.dataList.judges} questions={questions} individualsList={this.state.dataList.individuals} callBack={(e) => this.getAllTeams()} type={assing_to} tracks={this.state.tracks}/>}
                                         <Pagination perPage={this.state.perPage} count={this.state.teamsCount} handlePageClick={this.onPageChangeAll} />
                                     </div>
                                     <div className="col-md-3 juges">

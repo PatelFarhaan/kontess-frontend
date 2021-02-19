@@ -142,6 +142,7 @@ export default class Task extends React.Component {
             }`;
         */
        const { submissionDueOnDate, submissionDueOnTime, gradesDueOnDate, gradesDueOnTime} = this.state;
+       /*
        var validation = `${
         !submissionDueOnDate
             ? 'Please select submission due date'
@@ -153,8 +154,9 @@ export default class Task extends React.Component {
                         ? 'Please select grades due time'
                         : true
         }`;
+        */
 
-        // validation = "true"
+        var validation = "true"
         if (validation === 'true') {
             let { title, description, submissionDueOnDate, submissionDueOnTime, gradesDueOnDate, gradesDueOnTime, questions, assing_to, status, event } = this.state;
             let submission_due_date = await this.combineDateAndTime(submissionDueOnDate, submissionDueOnTime);
@@ -181,32 +183,33 @@ export default class Task extends React.Component {
            })
            tracks_ids = Object.keys(tracks_ids)
            const null_index = tracks_ids.indexOf("null");
-           let tracks_ids_2 = tracks_ids
+           let tracks_ids_2 = []
+           tracks_ids.forEach(function(item){
+            tracks_ids_2.push(item)
+           })
            if (null_index > -1) {
             tracks_ids_2.splice(null_index, 1);
           }
 
-
-           if (assing_to == "teams"){
+          if (assing_to === "teams"){
            let all_questions_valid = true
            questions.forEach(function(question, index){
-                if(self.state.question_for_all ==true){
-                    if(question.track== "null"){
+                if(self.state.question_for_all ===true){
+                    if(question.track === "null"){
                         if (!question.max_score || !question.question){
                             all_questions_valid = false
                         }
                         valid_question.push(question)
                     }
-                }else if(self.state.question_for_all ==false){
-                    if (tracks_ids.length ==1 && null_index !=-1){
-                        if(question.track == "null"){ // Only Null values for questions
-                            if (!question.max_score || !question.question){
-                                all_questions_valid = false
-                            }
-                            valid_question.push(question)
-                        }
-                    }else if(tracks_ids_2.length>0){
-                        if(question.track != "null"){ // Only tracks with values for questions
+                }else if(self.state.question_for_all ===false){
+
+                    let condition_1 = tracks_ids.length === 1 && null_index !== -1 // Only Null values for questions
+                    let condition_2 = tracks_ids_2.length > 0  // Only tracks with values for questions
+
+                    if (condition_1 || condition_2){
+                        let a = condition_1 && question.track === "null";
+                        let b = condition_2 && question.track !== "null";
+                        if(a || b){
                             if (!question.max_score || !question.question){
                                 all_questions_valid = false
                             }
@@ -216,7 +219,7 @@ export default class Task extends React.Component {
                 }
            })
            questions = valid_question
-           if (all_questions_valid==false){
+           if (all_questions_valid === false){
                 this.setState({
                     all_questions_valid: all_questions_valid
                 })

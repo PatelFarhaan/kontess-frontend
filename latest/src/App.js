@@ -281,7 +281,7 @@ class App extends React.Component {
                           ? TaskDetails
                           : session.getUserType() === "judge"
                           ? TaskDetailsJudge
-                          : ""
+                          : null
                       }
                     />
                     <PrivateRoute

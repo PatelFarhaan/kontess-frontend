@@ -36,6 +36,21 @@ export default class TaskDetails extends React.Component {
             this.getTaskDetail();
         })
     };
+    /**function for get team tracks */
+    getTracks = async () => {
+        let self = this;
+        await getFetch(`track/`).then((resp) => {
+            if (resp.data) {
+                self.setState({
+                    tracks: resp.data
+                })
+                if (resp.data.length >0){
+                    self.getAllTeams(0, resp.data[0].id)
+                }
+            }
+        }).catch(err => { })
+    }
+
 
     /**function for get All Teams */
     getAllTeams = async (offset = 0) => {
@@ -69,6 +84,7 @@ export default class TaskDetails extends React.Component {
                     }, () => {
                         if (resp.data.assing_to === 'teams') {
                             self.getAllTeams();
+                            self.getTracks();
                         }
                         else {
                             self.getIndividuals();
@@ -200,8 +216,8 @@ export default class TaskDetails extends React.Component {
                                 <div className="row">
                                     <div className="col-md-12">
                                         {assing_to === 'teams' ?
-                                            <Card teamList={this.state.dataList.teams} callBack={(e) => this.getAllTeams()} type={assing_to} judges={this.state.dataList.judges} taskId={taskId} /> :
-                                            <Card individualsList={this.state.dataList.individuals} callBack={(e) => this.getAllTeams()} type={assing_to} judges={this.state.dataList.judges} taskId={taskId} />}
+                                            <Card judging={false} teamList={this.state.dataList.teams} callBack={(e) => this.getAllTeams()} type={assing_to} judges={this.state.dataList.judges} taskId={taskId} tracks={this.state.tracks}/> :
+                                            <Card judging={false} individualsList={this.state.dataList.individuals} callBack={(e) => this.getAllTeams()} type={assing_to} judges={this.state.dataList.judges} taskId={taskId}  tracks={this.state.tracks}/>}
                                         <Pagination perPage={this.state.perPage} count={this.state.teamsCount} handlePageClick={this.onPageChangeAll} />
                                     </div>
                                 </div>
