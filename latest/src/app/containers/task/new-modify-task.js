@@ -400,6 +400,7 @@ export default class Task extends React.Component {
                                                 <h6 className="font-weight-bold text-333f52 mr-4 mt-4">submission due on </h6>
                                                 <KeyboardDatePicker
                                                     disablePast
+                                                    minDateMessage={""}
                                                     autoOk={true}
                                                     format="MM/DD/YYYY"
                                                     variant="inline"
@@ -441,6 +442,7 @@ export default class Task extends React.Component {
                                                 <KeyboardDatePicker
                                                     format="MM/DD/YYYY"
                                                     disablePast
+                                                    minDateMessage={""}
                                                     autoOk={true}
                                                     variant="inline"
                                                     margin="normal"

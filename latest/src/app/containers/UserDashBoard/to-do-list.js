@@ -76,35 +76,52 @@ export default class ToDOList extends React.Component {
                         <div className="card">
                             <div className="card-body px-5 py-4">
                                 {this.state.myTasks.length ? this.state.myTasks.map((task, index) => {
+                                    let isActive = true
                                     let link_url = "/dashboard/task-view/"+task.task.id
                                     if(task.task.event != null){
                                         link_url = "/dashboard/live-task-view/"+task.task.id
                                     }
+                                    // console.log("task.date", task.task.grade_due_date)
+                                    // let grade_due_date_check = moment() > moment(task.task.grade_due_date, "YYYY-MM-DD, h:mm:ss a")
+                                    let submission_due_date_check = moment() > moment(task.task.submission_due_date, "YYYY-MM-DD, h:mm:ss a")
+                                    if(submission_due_date_check === true){
+                                        isActive = false
+                                    }
+                                    // console.log(task.task.id,task.task.grade_due_date, grade_due_date_check, task.task.submission_due_date, submission_due_date_check)
+                                    // console.log("TASK TODO", task.task.id, submission_due_date_check, grade_due_date_check, isActive)
+                                    let task_html = (<div className={"d-block click-data collapsed "} data-toggle="collapse" data-target={"#collapseOne" + task.task.id} aria-expanded="false" aria-controls="collapseOne">
+                                    <div className="d-flex flex-row comment-row border-0 p-1">
+                                        <div className="tesk-detail w-100 border-0 ml-0 pl-0">
+                                            <div>
+                                                <h6 className="d-inline-block mb-0">{task.task.title}</h6>
+                                                {userType === "judge" ? <span className={`ml-2 badge badge-pill ${task.task.assing_to && task.task.assing_to === "teams" ? "badge-info" : "badge-warning"}`} >{task.task.assing_to && task.task.assing_to === "teams" ? "(Team)" : "(Individual)"}</span>
+                                                    : <span className={`ml-2 badge badge-pill ${task.task.assing_to && task.task.assing_to === "teams" ? "badge-info" : "badge-warning"}`} >{task.task.assing_to && task.task.assing_to === "teams" ? "(Team - " + task.team.name + ")" : "(Individual)"}</span>
+                                                }
+                                            </div>
+                                            <span className="text-line-clamp">description: {task.task.description}</span>
+                                        </div>
+                                        <div className="task-state w-100 text-right mr-4 text-danger">
+                                            {
+                                                userType === "judge"
+                                                ?
+                                                    <div>Grade due <Moment format="lll">{moment(task.task.grade_due_date, "YYYY-MM-DD hh:mm A")}</Moment></div>
+                                                :
+                                                    <div>Submission   due  <Moment format="lll">{moment(task.task.submission_due_date, "YYYY-MM-DD hh:mm A")}</Moment></div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>)
                                     return(
-                                    <div className={'comment-widgets no-hover border border-dark mb-0 '}>
+                                    <div className={"comment-widgets no-hover border border-dark mb-0 "}>
                                         <div className="card-header border-0 bg-d7 p-2" id="headingOne">
-                                            <Link to={link_url}>
-                                                <div className={'d-block click-data collapsed '} data-toggle="collapse" data-target={"#collapseOne" + task.task.id} aria-expanded="false" aria-controls="collapseOne">
-                                                    <div className="d-flex flex-row comment-row border-0 p-1">
-                                                        <div className="tesk-detail w-100 border-0 ml-0 pl-0">
-                                                            <div>
-                                                                <h6 className="d-inline-block mb-0">{task.task.title}</h6>
-                                                                {userType === 'judge' ? <span className={`ml-2 badge badge-pill ${task.task.assing_to && task.task.assing_to === 'teams' ? 'badge-info' : 'badge-warning'}`} >{task.task.assing_to && task.task.assing_to === 'teams' ? '(Team)' : '(Individual)'}</span>
-                                                                    : <span className={`ml-2 badge badge-pill ${task.task.assing_to && task.task.assing_to === 'teams' ? 'badge-info' : 'badge-warning'}`} >{task.task.assing_to && task.task.assing_to === 'teams' ? '(Team - ' + task.team.name + ')' : '(Individual)'}</span>
-                                                                }
-                                                            </div>
-                                                            <span className="text-line-clamp">description: {task.task.description}</span>
-                                                        </div>
-                                                        <div className="task-state w-100 text-right mr-4 text-danger">
-                                                            {userType === 'judge' ?
-                                                                <div>Grade due <Moment format="lll">{moment(task.task.grade_due_date, 'YYYY-MM-DD hh:mm A')}</Moment></div> :
-                                                                <div>Submission   due  <Moment format="lll">{moment(task.task.submission_due_date, 'YYYY-MM-DD hh:mm A')}</Moment></div>
-                                                            }
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </Link>
+                                            {
+                                                isActive?
+                                                    <Link to={link_url} isActive={isActive}>
+                                                        {task_html}
+                                                    </Link>
+                                                :
+                                                task_html
+                                            }
                                         </div>
                                     </div>
                                 )}) : <h5 className="font-weight-light  mb-4 text-muted">No task found for you!</h5>}
