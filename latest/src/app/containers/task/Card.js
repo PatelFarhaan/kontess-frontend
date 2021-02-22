@@ -201,14 +201,15 @@ export default class Card extends React.Component {
     if (judging){
       location_path = "/dashboard/live-grading"
     }
+    let remote_state = {
+      taskId: this.props.taskId,
+      id: id,
+      taskInstancId: taskInstancId,
+      gradeId: gradeId
+    }
     history.push({
       pathname: location_path,
-      state: {
-        taskId: this.props.taskId,
-        id: id,
-        taskInstancId: taskInstancId,
-        gradeId: gradeId
-      }
+      state: remote_state
     })
   }
 
@@ -345,7 +346,12 @@ export default class Card extends React.Component {
                                     </div> : ''}
                                   </div>
                                   <div className="col-md-3 text-center">
-                                    {self.getSubmissionStatus(team.submitted_docs, team.id, team.id, team.task_grading)}
+                                    { judging
+                                      ?
+                                        self.getSubmissionStatus(team.submitted_docs, team.id, team.id, team.task_grading)
+                                      :
+                                        self.getSubmissionStatus(team.submitted_docs, team.id, team.submitted_task_id, team.task_grading)
+                                    }
                                   </div>
                                 </div>
                                 <div>
