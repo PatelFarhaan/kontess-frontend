@@ -82,11 +82,17 @@ export default class ToDOList extends React.Component {
                                         link_url = "/dashboard/live-task-view/"+task.task.id
                                     }
                                     // console.log("task.date", task.task.grade_due_date)
-                                    // let grade_due_date_check = moment() > moment(task.task.grade_due_date, "YYYY-MM-DD, h:mm:ss a")
+                                    let grade_due_date_check = moment() > moment(task.task.grade_due_date, "YYYY-MM-DD, h:mm:ss a")
                                     let submission_due_date_check = moment() > moment(task.task.submission_due_date, "YYYY-MM-DD, h:mm:ss a")
-                                    if(submission_due_date_check === true){
+                                    // if(submission_due_date_check === true){
+                                    //     isActive = false
+                                    // }
+                                    if (userType === "judge" && grade_due_date_check===true){
+                                        isActive = false
+                                    } else if (userType === "Participant" && submission_due_date_check===true){
                                         isActive = false
                                     }
+
                                     // console.log(task.task.id,task.task.grade_due_date, grade_due_date_check, task.task.submission_due_date, submission_due_date_check)
                                     // console.log("TASK TODO", task.task.id, submission_due_date_check, grade_due_date_check, isActive)
                                     let task_html = (<div className={"d-block click-data collapsed "} data-toggle="collapse" data-target={"#collapseOne" + task.task.id} aria-expanded="false" aria-controls="collapseOne">
@@ -116,7 +122,7 @@ export default class ToDOList extends React.Component {
                                         <div className="card-header border-0 bg-d7 p-2" id="headingOne">
                                             {
                                                 isActive?
-                                                    <Link to={link_url} isActive={isActive}>
+                                                    <Link to={link_url}>
                                                         {task_html}
                                                     </Link>
                                                 :
