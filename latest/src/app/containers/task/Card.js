@@ -204,6 +204,7 @@ export default class Card extends React.Component {
     let remote_state = {
       taskId: this.props.taskId,
       id: id,
+      assing_to:this.props.type,
       taskInstancId: taskInstancId,
       gradeId: gradeId
     }
