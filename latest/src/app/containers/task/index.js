@@ -140,6 +140,30 @@ export default class Task extends React.Component {
         }
     }
 
+    getTaskQuestions(task, trackIds=null){
+        let srNO = 0;
+        if (trackIds == null){
+            trackIds = []
+            if (task.team != null && task.team.team_track){
+                trackIds.push(task.team.team_track.id)
+            }
+        }
+        
+        let taskQuestionsArr = []
+        task.task.questions.forEach(function(item, index){
+            if (item.track == null || trackIds.indexOf(item.track) !== -1){
+                srNO += 1
+                taskQuestionsArr.push(
+                    <li key={srNO} className="clearfix">
+                        <h6 className="float-left">{srNO}. {item.question}</h6>
+                        <h6 className="float-right">max score {item.max_score}</h6>
+                    </li>
+                )
+            }
+        })
+        return taskQuestionsArr
+    }
+
     render() {
         const { tasks } = this.state;
         return (
@@ -190,12 +214,9 @@ export default class Task extends React.Component {
                                                 <div className="card-body bg-white">
                                                     <h5 className="border-bottom pb-2 mb-3">Criteria</h5>
                                                     <ul className="list-unstyled criteria-list">
-                                                        {task.task.questions.map((item, index) =>
-                                                            <li key={index} className="clearfix">
-                                                                <h6 className="float-left">{index + 1}. {item.question}</h6>
-                                                                <h6 className="float-right">max score {item.max_score}</h6>
-                                                            </li>
-                                                        )}
+                                                        {
+                                                            this.getTaskQuestions(task)
+                                                        }
                                                     </ul>
                                                     {task.status === 'submit' ? <div>
                                                         <h6>submitted files

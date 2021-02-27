@@ -11,7 +11,7 @@ export default class Grading extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            participant_details:{}
+            participant_details: {}
         };
         // by remote set state attributes are taskId ,id, assing_to, taskInstancId,gradeId
     }
@@ -58,7 +58,7 @@ export default class Grading extends React.Component {
                         taskTitle: self.state.assing_to === 'teams' ? resp.data.team.name : resp.data.participant.user.full_name,
                         track: self.state.assing_to === 'teams' ? resp.data.team.team_track.track_name : '',
                         submitted_docs: resp.data.submitted_docs,
-                        participant_details:resp.data
+                        participant_details: resp.data
                     })
                 }
             })
@@ -147,7 +147,7 @@ export default class Grading extends React.Component {
     }
 
     render() {
-        const { title, questions, over_all_comments, taskTitle, track ,status} = this.state;
+        const { title, questions, over_all_comments, taskTitle, track, status } = this.state;
         const participant_details = this.state.participant_details;
         return (
             <DashboardTemplate title={"Now grading - " + title} pageId="task" loading={this.state.loading}>
@@ -156,8 +156,8 @@ export default class Grading extends React.Component {
                         <div className="row">
                             <div className="col-md-3">
                                 <h3>{taskTitle}</h3>
-                                <a href="#">
-                                    <span onClick={() => this.downloadSubmission()} className="text-primary  pt-1 d-block font-weight-bold">
+                                <a onClick={() => this.downloadSubmission()}>
+                                    <span className="text-primary  pt-1 d-block font-weight-bold">
                                         Download submission file  <i className="fas fa-download"></i>
                                     </span>
                                 </a>
@@ -182,24 +182,24 @@ export default class Grading extends React.Component {
                                 {questions
                                     ? questions.map((item, index) => {
                                         let comment = questions[index].comment
-                                        if (comment === undefined || comment=== null){
+                                        if (comment === undefined || comment === null) {
                                             comment = ""
                                         }
                                         let html_content = <div className="row justify-content-between my-4" key={index}>
                                             <div className="col-md-4"> <h6>{item.question}</h6> </div>
                                             <div className="col-md-4 d-flex justify-content-center align-items-center">
-                                                <input name="score" value={questions[index].score} onChange={(e) => this.submitGrading(e, index)} type="number" min="0" max={item.max_score} className="form-control mx-1 border-grey w-25" required ={status === 'Publish'}/>
+                                                <input name="score" value={questions[index].score} onChange={(e) => this.submitGrading(e, index)} type="number" min="0" max={item.max_score} className="form-control mx-1 border-grey w-25" required={status === 'Publish'} />
                                                 <p className="m-0 pl-2 text-blue font-weight-bold">out of {item.max_score}</p>
                                             </div>
-                                                <div className="col-md-2">
-                                                    <input name="comment" value={comment} onChange={(e) => this.submitGrading(e, index)} type="text" autoComplete="off" className="form-control mx-1 border-grey" required={false}/*item.feedback && status === 'Publish' */ />
-                                                </div>
+                                            <div className="col-md-2">
+                                                <input name="comment" value={comment} onChange={(e) => this.submitGrading(e, index)} type="text" autoComplete="off" className="form-control mx-1 border-grey" required={false}/*item.feedback && status === 'Publish' */ />
                                             </div>
+                                        </div>
 
-                                        if ((this.state.assing_to === "individuals") ||(this.state.assing_to === "teams" && participant_details.team !== undefined && (participant_details.team.team_track === "undefined" || participant_details.team.team_track.id === item.track))){
-                                            return(html_content)
+                                        if ((this.state.assing_to === "individuals") || (this.state.assing_to === "teams" && participant_details.team !== undefined && (participant_details.team.team_track === "undefined" || participant_details.team.team_track.id === item.track))) {
+                                            return (html_content)
                                         }
-                                        }
+                                    }
                                     )
                                     : ''}
                                 <div className="row">

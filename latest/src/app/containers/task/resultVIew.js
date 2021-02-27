@@ -8,6 +8,7 @@ export default class ResultView extends React.Component {
     this.state = {
       judges: this.props.judges,
       questions: this.props.questions,
+      track_id: this.props.track_id,
       task_grading: this.props.task_grading
     };
   }
@@ -91,6 +92,7 @@ export default class ResultView extends React.Component {
 
   render() {
     const { judges, questions, UserType } = this.state;
+    const self = this
     return (
       <div className="view-result">
         <h6 className="text-dark mb-4">Tip: clicking on blue scores will reveal comment for that specific score</h6>
@@ -117,15 +119,30 @@ export default class ResultView extends React.Component {
                 </tr>
               </thead>
               <tbody>
-                {questions ? questions.map((question, i) =>
-                  <tr key={i}>
-                    <th className="first-row">{question.question}</th>
-                    {judges ? judges.map((judge, j) =>
-                      <td key={j}>{this.getScore(question.id, judge.id)}</td>
-                    ) : ''}
-                    {this.state.task_grading ? <td>{this.getOverAll('y', i)}</td> : ''}
-                  </tr>
-                ) : ''}
+                {
+                  questions ?
+                    questions.map(function(question, i) {
+                      if(question.track === null || (question.track  === self.state.track_id)){
+                      return(
+                        <tr key={i}>
+                          <th className="first-row">{question.question}</th>
+                          {
+                            judges ?
+                              judges.map((judge, j) =>
+                              <td key={j}>{self.getScore(question.id, judge.id)}</td>
+                              )
+                            : null
+                          }
+                          {
+                            self.state.task_grading
+                            ?
+                            <td>{self.getOverAll('y', i)}</td>
+                            :null
+                          }
+                        </tr>
+                      )
+                    }
+                }) : null}
 
               </tbody>
               <tfoot>

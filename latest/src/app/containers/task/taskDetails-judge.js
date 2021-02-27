@@ -194,10 +194,10 @@ export default class TaskDetails extends React.Component {
                                                         </thead>
                                                         <tbody>
                                                         {questions
-                                                                ? questions.map((item, index) => {
+                                                                ? questions.map((item, index1) => {
                                                                     if (this.state.curruntTrack === "" || this.state.curruntTrack === item.track){
                                                                         return(
-                                                                            <tr key={index}>
+                                                                            <tr key={index1}>
                                                                                 <td><span>{item.question}</span></td>
                                                                                 <td><span>{item.max_score}</span></td>
                                                                                 <td><span className={`py-1 px-3 rounded-pill text-white ${item.feedback ? 'bg-info' : 'bg-danger'}`}>{item.feedback ? 'Allow' : 'Not Allow'}</span></td>

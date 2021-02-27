@@ -149,12 +149,12 @@ export default class Card extends React.Component {
   /**Function for get submission status*/
   getSubmissionStatus = (submission_docs, id, taskInstancId, task_grading) => {
     let result = "";
-    if (this.props.judging == false){
+    if (this.props.judging === false) {
       result = <h5 className="text-danger  pt-1 d-block">No submission found</h5>;
     }
     let gradeResult;
     let self = this;
-    if (this.props.judging){
+    if (this.props.judging) {
       gradeResult = self.showGradeButton(id, taskInstancId, task_grading);
       return <div>{gradeResult}</div>
     }
@@ -168,7 +168,13 @@ export default class Card extends React.Component {
           return false;
         });
       }
-      result = <div>{gradeResult}<a  onClick={() => this.downloadSubmission(submission_docs)}><span className="text-primary  pt-1 d-block font-weight-bold">Download submission file  <i className="fas fa-download"></i></span></a></div>;
+      result = <div>{gradeResult}
+                  <a onClick={() => this.downloadSubmission(submission_docs)}>
+                    <span className="text-primary  pt-1 d-block font-weight-bold">Download submission file
+                    <i className="fas fa-download"></i>
+                    </span>
+                  </a>
+                </div>;
     }
     return result;
   }
@@ -177,7 +183,7 @@ export default class Card extends React.Component {
   showGradeButton = (id, taskInstancId, task_grading) => {
 
     let result = <button onClick={() => this.goForGrade(id, taskInstancId)} className="btn btn-md px-4 rounded-0 btn-primary">Begin Grading</button>;
-    if (task_grading !== undefined && task_grading.length>0) {
+    if (task_grading !== undefined && task_grading.length > 0) {
       let self = this;
       task_grading.find(function (item) {
         if (item.judge.id === self.state.userId) {
@@ -198,13 +204,13 @@ export default class Card extends React.Component {
     let judging = this.props.judging
     let location_path = "/dashboard/grading"
 
-    if (judging){
+    if (judging) {
       location_path = "/dashboard/live-grading"
     }
     let remote_state = {
       taskId: this.props.taskId,
       id: id,
-      assing_to:this.props.type,
+      assing_to: this.props.type,
       taskInstancId: taskInstancId,
       gradeId: gradeId
     }
@@ -240,7 +246,7 @@ export default class Card extends React.Component {
           }
           return item;
         });
-        return show ? <div> <h5 className="text-danger">Overall : {total_judge === 0 ? result : parseFloat(result / total_judge).toFixed(1)}</h5><a  className="text-primary  pt-1 d-block font-weight-bold" data-toggle="collapse" data-target={"#collapseOne" + id} aria-expanded="false" aria-controls="collapseOne">View Details</a></div> : '';
+        return show ? <div> <h5 className="text-danger">Overall : {total_judge === 0 ? result : parseFloat(result / total_judge).toFixed(1)}</h5><a className="text-primary  pt-1 d-block font-weight-bold" data-toggle="collapse" data-target={"#collapseOne" + id} aria-expanded="false" aria-controls="collapseOne">View Details</a></div> : '';
       }
     }
   }
@@ -258,183 +264,183 @@ export default class Card extends React.Component {
           this.props.type === 'teams'
             ?
             this.props.tracks && this.props.teamList !== undefined && this.props.teamList
+              ?
+              this.props.teamList.length
                 ?
-                  this.props.teamList.length
-                    ?
-                    this.props.tracks.map(function(trackItem, index){
-                      let track_wise_teams = []
-                      self.props.teamList.map((team, index) =>
-                        {
-                          // console.log("team.submitted_docs", team.submitted_docs)
-                          // console.log("team.submitted_task_id",team.submitted_task_id)
-                          // console.log("team.task_grading", team.task_grading)
-                          // console.log("team.id", team.id)
-                          // console.log("team", team)
+                this.props.tracks.map(function (trackItem, index) {
+                  let track_wise_teams = []
+                  self.props.teamList.map((team, index) => {
+                    // console.log("team.submitted_docs", team.submitted_docs)
+                    // console.log("team.submitted_task_id",team.submitted_task_id)
+                    // console.log("team.task_grading", team.task_grading)
+                    // console.log("team.id", team.id)
+                    // console.log("team", team)
 
-                          if (team.team_track === undefined || trackItem.id === team.team_track.id ){
-                            console.log("trackItem.id", trackItem.id, team.team_track == undefined || trackItem.id === team.team_track.id )
-                            let team_div =
-                              <div key={index} className="card-body">
-                                <div className="row justify-content-between align-items-center">
-                                  <div className="col-md-1 text-center">
-                                    <div className="inviteImg"><img src={team.logo ? team.logo : kontessLogo} alt="kontess logo"/></div>
-                                  </div>
+                    if (team.team_track === undefined || trackItem.id === team.team_track.id) {
+                      let track_id = team.team_track.id
+                      let team_div =
+                        <div key={index} className="card-body">
+                          <div className="row justify-content-between align-items-center">
+                            <div className="col-md-1 text-center">
+                              <div className="inviteImg"><img src={team.logo ? team.logo : kontessLogo} alt="kontess logo" /></div>
+                            </div>
 
-                                  <div className="col-md-2">
-                                    <Link aria-expanded="true" to={'/dashboard/team_view/' + team.id}><h4>{team.name}</h4></Link>
-                                    <div className="my-1">{team.team_track.track_name}</div>
-                                  </div>
+                            <div className="col-md-2">
+                              <Link aria-expanded="true" to={'/dashboard/team_view/' + team.id}><h4>{team.name}</h4></Link>
+                              <div className="my-1">{team.team_track.track_name}</div>
+                            </div>
 
-                                  <div className="col-md-4">
+                            <div className="col-md-4">
 
-                                    <div className="d-flex justify-content-start align-items-center">
-                                      <p className="m-0 mr-1 w-15">Members</p>
-                                      {team.partipants.map((partipant, index) => (
-                                        <Link key={index} to={'/dashboard/profile/' + partipant.user.id}>
-                                          <img
-                                            src={partipant.user.user_image ? partipant.user.user_image : profileLogo}
-                                            title={partipant.user.full_name}
-                                            className="mx-1 bg-dark rounded-circle"
-                                            onError={(event) => event.target.setAttribute("src", profileLogo)}
-                                            alt="profile logo"/>
-                                        </Link>
-                                      ))}
-                                    </div>
+                              <div className="d-flex justify-content-start align-items-center">
+                                <p className="m-0 mr-1 w-15">Members</p>
+                                {team.partipants.map((partipant, index2) => (
+                                  <Link key={index2} to={'/dashboard/profile/' + partipant.user.id}>
+                                    <img
+                                      src={partipant.user.user_image ? partipant.user.user_image : profileLogo}
+                                      title={partipant.user.full_name}
+                                      className="mx-1 bg-dark rounded-circle"
+                                      onError={(event) => event.target.setAttribute("src", profileLogo)}
+                                      alt="profile logo" />
+                                  </Link>
+                                ))}
+                              </div>
 
-                                    <div className="d-flex mt-2 justify-content-start align-items-center">
-                                      <p className="m-0 mr-1 w-15">Coach</p>
+                              <div className="d-flex mt-2 justify-content-start align-items-center">
+                                <p className="m-0 mr-1 w-15">Coach</p>
 
-                                      {/* {team.random_judges ? team.random_judges.map(judge => (
+                                {/* {team.random_judges ? team.random_judges.map(judge => (
                                         <Link to={'/dashboard/profile/' + judge.id}> <img src={judge.user_image ? judge.user_image : profileLogo} title={judge.full_name} className="mx-1 bg-dark rounded-circle" onError={(event) => event.target.setAttribute("src", profileLogo)} /></Link>
                                       )) : ''} */}
 
-                                      {
-                                        team.team_mentor.id && team.team_mentor.admin_status === 'approved' && team.team_mentor.judge_status === 'approved'
-                                        ?
-                                          <Link to={'/dashboard/profile/' + team.team_mentor.id}>
-                                            <img
-                                              src={team.team_mentor.user_image ? team.team_mentor.user_image : profileLogo}
-                                              title={team.team_mentor.full_name} className="mx-1 bg-dark rounded-circle"
-                                              onError={(event) => event.target.setAttribute("src", profileLogo)}
-                                              alt="profile logo"
-                                              />
-                                            </Link>
-                                        :
-                                        ''
-                                      }
+                                {
+                                  team.team_mentor.id && team.team_mentor.admin_status === 'approved' && team.team_mentor.judge_status === 'approved'
+                                    ?
+                                    <Link to={'/dashboard/profile/' + team.team_mentor.id}>
+                                      <img
+                                        src={team.team_mentor.user_image ? team.team_mentor.user_image : profileLogo}
+                                        title={team.team_mentor.full_name} className="mx-1 bg-dark rounded-circle"
+                                        onError={(event) => event.target.setAttribute("src", profileLogo)}
+                                        alt="profile logo"
+                                      />
+                                    </Link>
+                                    :
+                                    ''
+                                }
 
-                                    </div>
-                                  </div>
+                              </div>
+                            </div>
 
-                                  <div className="col-md-2 text-center">
-                                    {self.showOverAll(team.task_grading, team.id)}
-                                    {team.random_judges && team.random_judges.length ? <div className="d-flex align-items-center">
-                                      <p className="m-0 mr-1">Judges</p>
+                            <div className="col-md-2 text-center">
+                              {self.showOverAll(team.task_grading, team.id)}
+                              {team.random_judges && team.random_judges.length ? <div className="d-flex align-items-center">
+                                <p className="m-0 mr-1">Judges</p>
 
-                                      <div>
-                                        {
-                                          team.random_judges.map((judge, index) => (
-                                            <Link key={index} className="mb-2 d-inline-block" to={'/dashboard/profile/' + judge.id}>
-                                              <img
-                                                src={judge.user_image ? judge.user_image : profileLogo}
-                                                title={judge.full_name} className="mx-1 bg-dark rounded-circle"
-                                                onError={(event) => event.target.setAttribute("src", profileLogo)}
-                                                alt="profile logo"
-                                                />
-                                            </Link>
-                                        ))}
-                                      </div>
-                                    </div> : ''}
-                                  </div>
-                                  <div className="col-md-3 text-center">
-                                    { judging
-                                      ?
-                                        self.getSubmissionStatus(team.submitted_docs, team.id, team.id, team.task_grading)
-                                      :
-                                        self.getSubmissionStatus(team.submitted_docs, team.id, team.submitted_task_id, team.task_grading)
-                                    }
-                                  </div>
-                                </div>
                                 <div>
                                   {
-                                    curruntUserType === 'admin' ?
-                                    <div id={"collapseOne" + team.id} className="collapse" aria-labelledby="headingOne" data-parent="#accordionExample" >
-                                      <div className="col-md-12 pb-3">
-                                        <ResultView judges={self.props.judges} questions={self.props.questions} task_grading={team.task_grading}></ResultView>
-                                      </div>
-                                    </div> : ''
-                                  }
+                                    team.random_judges.map((judge, index) => (
+                                      <Link key={index} className="mb-2 d-inline-block" to={'/dashboard/profile/' + judge.id}>
+                                        <img
+                                          src={judge.user_image ? judge.user_image : profileLogo}
+                                          title={judge.full_name} className="mx-1 bg-dark rounded-circle"
+                                          onError={(event) => event.target.setAttribute("src", profileLogo)}
+                                          alt="profile logo"
+                                        />
+                                      </Link>
+                                    ))}
                                 </div>
-                              </div>
-                            track_wise_teams.push(team_div)
-                        }})
-                        return(
-                          <div className="team-head">
-                            {track_wise_teams}
+                              </div> : ''}
+                            </div>
+                            <div className="col-md-3 text-center">
+                              {judging
+                                ?
+                                self.getSubmissionStatus(team.submitted_docs, team.id, team.id, team.task_grading)
+                                :
+                                self.getSubmissionStatus(team.submitted_docs, team.id, team.submitted_task_id, team.task_grading)
+                              }
+                            </div>
                           </div>
-                        )
-                      }):
-                    <h5 className="text-center">No team found!</h5>
-                 :
-                <Loading />
-              :
-          this.props.individualsList
-            ?
-              this.props.individualsList.length
-                ?
-                  this.props.individualsList.map((individual, index) => {
-
-                    // console.log("individual.submitted_docs", individual.submitted_docs)
-                    // console.log("individual.participant_id",individual.participant.id)
-                    // console.log("individual.id", individual.id)
-                    // console.log("individual.task_grading", individual.task_grading)
-                    return(
-                      <div key={individual.participant.id} className="card my-2">
-                        <div className="card-body">
-                          <div className="row justify-content-between align-items-center">
-                            <div className="col-md-1 text-center">
-                              <Link to={'/dashboard/profile/' + individual.participant.user.id}><div className="inviteImg"><img src={individual.participant.user.user_image ? individual.participant.user.user_image : profileLogo} alt="profile logo"/></div></Link>
-                            </div>
-                            <div className="col-md-6">
-                              <h5><Link to={'/dashboard/profile/' + individual.participant.user.id}>{individual.participant.user.full_name ? individual.participant.user.full_name : individual.participant.user.username}</Link> </h5>
-                              <p className="skills">
-                                {individual.participant.user.skill.map((skill, index) => (
-                                  <span key={index} className="badge badge-info">{skill.label}</span>
-                                ))}
-                              </p>
-                            </div>
-                            <div className="col-md-2">
-                              {this.showOverAll(individual.task_grading, individual.id)}
-
-                            </div>
-                            <div className="col-md-3 text-right pr-5">
-                              {this.getSubmissionStatus(individual.submitted_docs, individual.participant.id, individual.id, individual.task_grading)}
-
-                            </div>
-
+                          <div>
+                            {
+                              curruntUserType === 'admin' ?
+                                <div id={"collapseOne" + team.id} className="collapse" aria-labelledby="headingOne" data-parent="#accordionExample" >
+                                  <div className="col-md-12 pb-3">
+                                    <ResultView judges={self.props.judges} questions={self.props.questions} task_grading={team.task_grading} track_id={track_id}></ResultView>
+                                  </div>
+                                </div> : ''
+                            }
                           </div>
                         </div>
-
-                        {
-                          curruntUserType === 'admin'
-                          ?
-                            <div id={"collapseOne" + individual.id} className="collapse" aria-labelledby="headingOne" data-parent="#accordionExample" >
-                              <div className="col-md-12 pb-3">
-                                <ResultView judges={this.props.judges} questions={this.props.questions} task_grading={individual.task_grading}>
-                                </ResultView>
-                              </div>
-                            </div>
-                          : ''
-                        }
-                      </div>
-                      )
-                  }
-                )
+                      track_wise_teams.push(team_div)
+                    }
+                  })
+                  return (
+                    <div className="team-head">
+                      {track_wise_teams}
+                    </div>
+                  )
+                }) :
+                <h5 className="text-center">No team found!</h5>
               :
-            <h5 className="text-center">No participants found!</h5>
-          :
-            <Loading />
-      }
+              <Loading />
+            :
+            this.props.individualsList
+              ?
+              this.props.individualsList.length
+                ?
+                this.props.individualsList.map((individual, index) => {
+
+                  // console.log("individual.submitted_docs", individual.submitted_docs)
+                  // console.log("individual.participant_id",individual.participant.id)
+                  // console.log("individual.id", individual.id)
+                  // console.log("individual.task_grading", individual.task_grading)
+                  return (
+                    <div key={individual.participant.id} className="card my-2">
+                      <div className="card-body">
+                        <div className="row justify-content-between align-items-center">
+                          <div className="col-md-1 text-center">
+                            <Link to={'/dashboard/profile/' + individual.participant.user.id}><div className="inviteImg"><img src={individual.participant.user.user_image ? individual.participant.user.user_image : profileLogo} alt="profile logo" /></div></Link>
+                          </div>
+                          <div className="col-md-6">
+                            <h5><Link to={'/dashboard/profile/' + individual.participant.user.id}>{individual.participant.user.full_name ? individual.participant.user.full_name : individual.participant.user.username}</Link> </h5>
+                            <p className="skills">
+                              {individual.participant.user.skill.map((skill, index3) => (
+                                <span key={index3} className="badge badge-info">{skill.label}</span>
+                              ))}
+                            </p>
+                          </div>
+                          <div className="col-md-2">
+                            {this.showOverAll(individual.task_grading, individual.id)}
+
+                          </div>
+                          <div className="col-md-3 text-right pr-5">
+                            {this.getSubmissionStatus(individual.submitted_docs, individual.participant.id, individual.id, individual.task_grading)}
+
+                          </div>
+
+                        </div>
+                      </div>
+
+                      {
+                        curruntUserType === 'admin'
+                          ?
+                          <div id={"collapseOne" + individual.id} className="collapse" aria-labelledby="headingOne" data-parent="#accordionExample" >
+                            <div className="col-md-12 pb-3">
+                              <ResultView judges={this.props.judges} questions={this.props.questions} task_grading={individual.task_grading} track_id={null}>
+                              </ResultView>
+                            </div>
+                          </div>
+                          : ''
+                      }
+                    </div>
+                  )
+                }
+                )
+                :
+                <h5 className="text-center">No participants found!</h5>
+              :
+              <Loading />
+        }
       </div>
     );
   }

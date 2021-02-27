@@ -89,8 +89,9 @@ export default class ToDOList extends React.Component {
                                     // }
                                     if (userType === "judge" && grade_due_date_check===true){
                                         isActive = false
-                                    } else if (userType === "Participant" && submission_due_date_check===true){
-                                        isActive = false
+                                    } else if (userType === "participant"){
+                                        // isActive = false
+                                        link_url = "/dashboard/task"
                                     }
 
                                     // console.log(task.task.id,task.task.grade_due_date, grade_due_date_check, task.task.submission_due_date, submission_due_date_check)

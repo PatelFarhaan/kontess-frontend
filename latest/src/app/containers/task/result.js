@@ -43,7 +43,7 @@ export default class TaskDetails extends React.Component {
         const { judges, questions, task_grading } = this.state;
         return (
             <DashboardTemplate title="Result View" pageId="task" loading={this.state.loading}>
-                {judges ? <ResultView judges={judges} questions={questions} task_grading={task_grading}></ResultView> : ''}
+                {judges ? <ResultView judges={judges} questions={questions} task_grading={task_grading} track_id={"track_id"}></ResultView> : ''}
                 <div className="text-right p-3">
                     <Link to="/dashboard/task">
                         <button className="btn btn-md btn-primary px-4 rounded-0">Back</button>
