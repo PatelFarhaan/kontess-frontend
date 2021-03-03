@@ -65,8 +65,10 @@ export default class Card extends React.Component {
   }
 
   getGradingProgress = (task_grading_counts, due) => {
+    // console.log("task_grading_counts", task_grading_counts)
     if (task_grading_counts) {
       let percentage = this.percentage(task_grading_counts.judge_graded, task_grading_counts.total_no_of_juges);
+      // console.log("percentage", percentage)
       return <div>
         {this.getTaskStatus(due)}
         <div className="progress">

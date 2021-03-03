@@ -22,7 +22,7 @@ export default class Task extends React.Component {
         this.state = {
             title: '',
             description: '',
-            submissionDueOnDate: moment(),
+            submissionDueOnDate: moment().local(),
             submissionDueOnTime: moment(),
             gradesDueOnDate: moment(),
             gradesDueOnTime: moment(),

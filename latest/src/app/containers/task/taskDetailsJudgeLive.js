@@ -194,7 +194,7 @@ export default class TaskDetails extends React.Component {
                                                         <tbody>
                                                             {questions
                                                                 ? questions.map((item, index) => {
-                                                                    if (this.state.curruntTrack === "" || this.state.curruntTrack === item.track){
+                                                                    if (item.track === null || this.state.curruntTrack === item.track){
                                                                         return(
                                                                             <tr key={index}>
                                                                                 <td><span>{item.question}</span></td>

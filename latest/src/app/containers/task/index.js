@@ -196,13 +196,20 @@ export default class Task extends React.Component {
                                                             {moment(task.task.submission_due_date, 'YYYY-MM-DD, h:mm:ss a') < moment() && moment() < moment(task.task.grade_due_date, 'YYYY-MM-DD, h:mm:ss a') && task.status === 'submit' ?
                                                                 <h6 className="blink text-primary font-weight-bold">Now grading. Result will be released soon.</h6> : ''}
                                                             {task.task.release_score_to_participant ? this.showOverAll(task.task_grading) : ''}
-                                                            {moment() < moment(task.task.submission_due_date, 'YYYY-MM-DD, h:mm:ss a') ?
-                                                                <label htmlFor={"choose-logo" + task.id} className={`btn btn-md  px-4 rounded-0 ${task.status === 'submit' ? 'btn-success' : 'btn-primary'}`} >
-                                                                    {task.status === 'submit' ? 'Resubmit' : 'Submit'}
-                                                                </label>
-                                                                : <label className={`btn btn-md px-4 rounded-0  ${task.status === 'submit' ? 'btn-secondary' : 'btn-danger'}`} >
-                                                                    {task.status === 'submit' ? 'Submited' : 'Past due'}
-                                                                </label>}
+                                                            {
+                                                                task.task.event !== null
+                                                                ?   <label className={`btn btn-md px-4 rounded-0  ${task.status === 'submit' ? 'btn-secondary' : 'btn-danger'}`} >
+                                                                    Not Allowed
+                                                                    </label>
+                                                                :
+                                                                    moment() < moment(task.task.submission_due_date, 'YYYY-MM-DD, h:mm:ss a')
+                                                                    ?   <label htmlFor={"choose-logo" + task.id} className={`btn btn-md  px-4 rounded-0 ${task.status === 'submit' ? 'btn-success' : 'btn-primary'}`} >
+                                                                            {task.status === 'submit' ? 'Resubmit' : 'Submit'}
+                                                                        </label>
+                                                                    :
+                                                                        <label className={`btn btn-md px-4 rounded-0  ${task.status === 'submit' ? 'btn-secondary' : 'btn-danger'}`} >
+                                                                            {task.status === 'submit' ? 'Submited' : 'Past due'}
+                                                                        </label>}
 
                                                             <input id={"choose-logo" + task.id} multiple className="choose-file" name="" type="file" onChange={(e) => this.fileSelectedHandler(e, task.id)} />
                                                         </div>

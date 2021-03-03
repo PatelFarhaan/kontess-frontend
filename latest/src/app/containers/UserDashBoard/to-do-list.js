@@ -83,7 +83,7 @@ export default class ToDOList extends React.Component {
                                     }
                                     // console.log("task.date", task.task.grade_due_date)
                                     let grade_due_date_check = moment() > moment(task.task.grade_due_date, "YYYY-MM-DD, h:mm:ss a")
-                                    let submission_due_date_check = moment() > moment(task.task.submission_due_date, "YYYY-MM-DD, h:mm:ss a")
+                                    // let submission_due_date_check = moment() > moment(task.task.submission_due_date, "YYYY-MM-DD, h:mm:ss a")
                                     // if(submission_due_date_check === true){
                                     //     isActive = false
                                     // }
