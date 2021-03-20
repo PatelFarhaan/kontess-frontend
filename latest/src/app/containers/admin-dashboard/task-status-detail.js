@@ -9,8 +9,10 @@ import Moment from 'react-moment';
 import Pagination from '../../components/pagination';
 import { Loading } from '../../globals/contants';
 import { Link } from "react-router-dom";
+import Progress from './Card';
+import ManageTracks from '../tracks/index';
 
-export default class Card extends React.Component {
+export default class TaskStatusDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -122,71 +124,38 @@ export default class Card extends React.Component {
   }
 
   render() {
-    const { data } = this.state;
     return (
-      <div>
-        {data ? this.props.dashboard ? 
-        this.props.type !== 'grading' ?
-        <div>
-          {data.data ? data.data.length ? data.data.map((item, index) => (
-            <div className="card mb-1 mt-mob-4" key={index}>
-              <div className="card-body p-2">
-                <Link to={'/dashboard/task-view/' + item.id} >  <strong className="font-family-open">{item.title}</strong></Link>
-                {this.getProgress(item.task_submission_counts, item.assing_to, item.submission_due_date)}
-              </div>
-            </div>
-          )) : <h6 className="text-center">No data found!</h6> : <Loading minHeight={268} />}
-        </div> : <div>
-          {data.data ? data.data.length ? data.data.map((item, index) => (
-            <div className="card mb-1 mt-mob-4" key={index}>
-              <div className="card-body p-2">
-                <Link to={'/dashboard/task-view/' + item.id} >  <strong className="font-family-open">{item.title}</strong></Link>
-                {this.getGradingProgress(item.task_grading_counts, item.grade_due_date)}
-
-              </div>
-            </div>
-          )) : <h6 className="text-center">No data found!</h6> : <Loading minHeight={268} />}
-        </div>
-        
-        : <div>
-          <div className="row align-items-center mb-3">
-            <div className="col-md-9"><h6 className="mt-2 mb-0">{this.props.title}</h6></div>
-            {this.props.sort ? <div className="col-md-3">
-              <div className="position-relative">
-                <select className="form-control">
-                  <option>sort by</option>
-                </select>
-                <div className="select-icon-absolute position-absolute">
-                  <i className="fa fa-caret-down"></i>
+        <div className="modal fade" id="taskStatusDetail">
+            <div className="modal-dialog">
+                <div className="modal-content">
+                    <div className="modal-header">
+                        <h5 className="modal-title">Task Status</h5>
+                        <button type="button" className="close" id="closeRegistration" data-dismiss="modal">&times;</button>
+                    </div>
+                        <div className="modal-body">
+                           <div className = "row mt-4 mb-4">
+                            <div className = "col-6">
+                            <ManageTracks  dashboard={true}/>
+                            </div>
+                            <div className="col-6">
+<a href="/kontess/dashboard/tracks" className="btn float-right">Manage tracks</a>
+                            </div>
+                           </div>
+                           <div class="row mt-4 mb-4">
+                           <div className = "col-6">
+                           <Progress title="Submission Status" dashboard = {true} />
+                            </div>
+                            <div className="col-6">
+                            <Progress title="Grading Status" type="grading" dashboard = {true} />
+                            </div>
+                           </div>
+                        </div>
+                        {/* <div className="modal-footer">
+                            <button id="submit_btn" type="submit" className="btn btn-primary">Submit </button>
+                        </div> */}
                 </div>
-              </div>
-            </div> : ''}
-          </div>
-          {this.props.type !== 'grading' ?
-            <div>
-              {data.data ? data.data.length ? data.data.map((item, index) => (
-                <div className="card mb-1 mt-mob-4" key={index}>
-                  <div className="card-body p-2">
-                    <Link to={'/dashboard/task-view/' + item.id} >  <strong className="font-family-open">{item.title}</strong></Link>
-                    {this.getProgress(item.task_submission_counts, item.assing_to, item.submission_due_date)}
-                  </div>
-                </div>
-              )) : <h6 className="text-center">No data found!</h6> : <Loading minHeight={268} />}
-              <Pagination perPage={this.state.perPage} count={this.state.count} handlePageClick={(ev) => this.handlePagination(ev)} />
-            </div> : <div>
-              {data.data ? data.data.length ? data.data.map((item, index) => (
-                <div className="card mb-1 mt-mob-4" key={index}>
-                  <div className="card-body p-2">
-                    <Link to={'/dashboard/task-view/' + item.id} >  <strong className="font-family-open">{item.title}</strong></Link>
-                    {this.getGradingProgress(item.task_grading_counts, item.grade_due_date)}
-
-                  </div>
-                </div>
-              )) : <h6 className="text-center">No data found!</h6> : <Loading minHeight={268} />}
-              <Pagination perPage={this.state.perPage} count={this.state.count} handlePageClick={(ev) => this.handlePagination(ev)} />
-            </div>}
-        </div> : ''}
-      </div>
-    );
+            </div >
+        </div >
+);
   }
 }

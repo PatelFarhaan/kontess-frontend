@@ -9,12 +9,16 @@ import { announcement_type } from "../../globals/contants";
 import AnnouncementCard from '../UserDashBoard/Card';
 import UpcomingEvents from './upcoming-events';
 import ManageRegistration from '../people/manageRegistration';
+import RegistrationStatusDetail from './registration-status-detail';
 import { Link } from "react-router-dom";
 import $ from 'jquery';
 import { animateScroll } from "react-scroll";
+import Chart from 'chart.js';
+import TaskList from '../task/taskList';
 
 export default class AdminDashboard extends React.Component {
   constructor(props) {
+    console.log(Chart);
     let submission_card = {
       title: "Submission Status",
       data: {},
@@ -170,7 +174,6 @@ export default class AdminDashboard extends React.Component {
         }
       })
       .catch(err => { });
-
   }
   cancelUpdate = () => {
     this.setState({
@@ -195,7 +198,6 @@ export default class AdminDashboard extends React.Component {
     if(target_class && !target_class.includes('annoucement-option') && !target_class.includes('select-arrow') && !target_class.includes('fa fa-caret-down'))
       this.setState({ showAnnouncementOption: false });
   }
-
   render() {
     let { userData, editAnnouncement, refreshList } = this.state;
     return (
@@ -203,54 +205,62 @@ export default class AdminDashboard extends React.Component {
         <div >
           <div className="dashboard-grid">
             <section className="dasboard-mid mt-2">
-              <div className="row">
-                <div className="col-lg-4">
-                  <div className="row align-items-center mb-3">
-                    <div className="col-md-12"><h6 className="mt-3 mb-1">Registration Status</h6></div>
-                  </div>
-                  <div className="card">
-                    <div className="card-body p-3">
-                      <h6 className="count font-family-open mb-4 d-inline-block">{this.getNumber(userData.judges_count + userData.organizer_count + userData.participant_count)}</h6> People Signed Up
-                      <i data-toggle="modal" data-target="#manageRegistration" className="fas fa-cog float-right fa-lg"></i>
-                      <ul className="mt-2 mb-4">
+              <div className="row"> 
+                <div className="col-6">
+                <div className="card">
+                <div className = "card-header" style={{padding:"1rem 0 1rem 1rem"}}>
+    <h5 className="d-inline-block">Registration Status</h5>
+    <a className="btn btn-default float-right" data-toggle="modal" data-target="#registrationStatusDetail" role="button" style={{paddingTop:"0px"}}>See more</a>
+    </div>
+  <div className="card-body">
+  
+    <div className="card-text">
+    <ul className="mt-2 mb-4">
                         <li>
                           <h6 className="text-muted">
                             <strong className="count">{this.getNumber(userData.participant_count)}</strong><small> Participant{userData.participant_count > 1 ? 's' : ''}</small>
                           </h6>
                         </li>
-                        <li className="ml-4">
-                          <h6 className="text-muted">
-                            <strong className="count">{this.getNumber(userData.participant_join_today)} </strong> <small>new today</small>
-                          </h6>
-                        </li>
+                     
                       </ul>
                       <ul className="mt-2 mb-4">
+                      
                         <li>
                           <h6 className="text-muted">
-                            <strong className="count">{this.getNumber(userData.judges_count)} </strong> <small> Judge application{userData.judges_count > 1 ? 's' : ''}</small>
+                            <strong className="count">{this.getNumber(userData.judges_count)} </strong> <small> Judge{userData.judges_count > 1 ? 's' : ''}</small>
                           </h6>
                         </li>
-                        <li className="ml-4">
-                          <h6 className="text-muted">
-                            <strong className="count">{this.getNumber(userData.judge_join_today)} </strong> <small> new today</small>
-                          </h6>
-                        </li>
+                      
                       </ul>
-                    </div>
-                  </div>
+                      <ul className="mt-2 mb-4">
+                      
+                      <li>
+                        <h6 className="text-muted">
+                          <strong className="count">{this.getNumber(userData.teams_count)} </strong> <small> Team{userData.teams_count > 1 ? 's' : ''}</small>
+                        </h6>
+                      </li>
+                    
+                    </ul>
+      </div>
+      <div className="col d-flex justify-content-around">
+    <a href="#" data-toggle="modal" data-target="#manageRegistration" className="btn btn-primary">Manage Restrigation</a>
+    <a href="#" className="btn btn-primary">Promote your competition</a>                          
+                        </div>
+</div>
+</div>
                 </div>
-                <div className="col-lg-4">
-                  <Card title={this.state.submission_card.title} />
+                <div className="col-6">
+                <TaskList dashboard = {true} />
                 </div>
-                <UpcomingEvents />
+                </div>
+              <div className="row"> 
+                <UpcomingEvents/>
+              <AnnouncementCard title='Announcements' editAnnouncement={this.editAnnouncement} refreshList={refreshList} scrollToBottom = {this.scrollToBottom}></AnnouncementCard>
+              <div className="col-6 m-auto">
               </div>
-              <br />
-              <h5 >Past Announcements</h5>
-              <hr />
-              <AnnouncementCard title='Announcements' editAnnouncement={this.editAnnouncement} refreshList={refreshList}></AnnouncementCard>
-              <hr />
+              </div>
               <div className="card">
-                <div className="card-body p-5">
+                <div className="card-body p-5"> 
                   <div className="row">
                     <div className="col-lg-12 mb-3">
                       <div className="card bg-gray">
@@ -312,6 +322,7 @@ export default class AdminDashboard extends React.Component {
           </div>
         </div >
         <ManageRegistration />
+        <RegistrationStatusDetail userData={userData} />
       </DashboardTemplate >
     );
   }

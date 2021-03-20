@@ -210,6 +210,17 @@ html body .text-danger {
   border-color: #1ce882;
   color: #ffffff;
 }
+.dasboard-mid > .row {
+  margin-bottom: 3rem;
+}
+.dasboard-mid .row .col-6 .card .card-text {
+  height: 12rem;
+  overflow-y: auto;
+}
+.dasboard-mid .row .col-6 .card-header a {
+
+color : #007bff; 
+}
 @media (max-width: 992px) {
   .main-content-inner {
     padding: 40px 15px;
@@ -748,7 +759,7 @@ select {
   /****************custom********************/
   .dasboard-mid .card {
     border-bottom: 5px solid #1991eb;
-  }
+  } 
   .user-dropdown img {
     width: 50px;
     height: 50px;

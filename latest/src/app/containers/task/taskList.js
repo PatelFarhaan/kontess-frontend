@@ -12,6 +12,7 @@ import { Loading } from '../../globals/contants';
 import {
     deleteTaskMsg
 } from '../../../utils/Message';
+import TaskStatusDetail  from '../admin-dashboard/task-status-detail'
 export default class TaskList extends React.Component {
     constructor(props) {
         super(props);
@@ -110,6 +111,57 @@ export default class TaskList extends React.Component {
     render() {
         const { tasks } = this.state;
         return (
+            this.props.dashboard ? 
+            <div className="card">
+            <div className = "card-header" style={{padding:"1rem 0 1rem 1rem"}}>
+<h5 className="d-inline-block">Task Status</h5>
+<a className="btn btn-default float-right" data-toggle="modal" data-target="#taskStatusDetail" style={{paddingTop:"0px"}}>See more</a>
+</div>
+<div className="card-body">
+<div className="card-text">
+{tasks.data ? tasks.data.length ? tasks.data.map((task, index) => {
+
+return(
+<div className="card mb-1 mt-mob-4" key={index}>
+    <div className="card-body p-2 px-3 d-flex justify-content-between align-items-center row m-0 ">
+        {
+            task.status !== 'Draft'
+            ?
+                <Link to={'/dashboard/task-view/' + task.id} className="tak-list col-md-10">
+                    <strong className="font-family-open">{task.title}</strong>
+                    <span className={`ml-2 badge badge-pill ${task.assing_to && task.assing_to === 'teams' ? 'badge-info' : 'badge-warning'}`} >
+                        {task.assing_to && task.assing_to === 'teams' ? '(Team Task)' : '(Individual)'}
+                    </span>
+                    {this.getTaskStatus(task)}
+                </Link>
+            :
+                <div className="col-md-10">
+                    <strong className="font-family-open">{task.title}</strong>
+                    <span className={`ml-2 badge badge-pill ${task.assing_to && task.assing_to === 'teams' ? 'badge-info' : 'badge-warning'}`} >
+                        {task.assing_to && task.assing_to === 'teams' ? '(Team Task)' : '(Individual)'}
+                    </span>
+                        {task.status === 'Draft' ? <span className={`ml-2 badge badge-pill badge-secondary`} >Draft</span> : ''}
+                </div>
+        }
+
+        <div className="icon-bar col-md-2 text-right">
+            <Link to={'/dashboard/modify-task/' + task.id} >
+                <i className="fa fa-edit  px-1 text-primary fa-lg mr-2"></i>
+            </Link>
+            <i className="fa fa-trash px-1 fa-lg" onClick={() => this.deleteTask(task.id)}></i>
+            {/* <i className="fa fa-ellipsis-v px-1 text-secondary"></i> */}
+        </div>
+    </div>
+
+</div>
+)}) : <h6 className="text-center">No task found!</h6> : <Loading />}
+  </div>
+  <div className="col d-flex justify-content-center">
+    <a href="/kontess/dashboard/create-task" className="btn btn-primary">Create new task</a>                          
+                        </div>
+</div>
+<TaskStatusDetail/>
+</div> : 
             <div className="col-lg-7">
                 <div className="row align-items-center mb-3">
                     <div className="col-md-7"><h6 className="mt-2 mb-0">Task Status</h6></div>

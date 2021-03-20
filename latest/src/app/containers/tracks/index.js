@@ -80,6 +80,23 @@ export default class ManageTracks extends React.Component {
     render() {
         let { tracks, loading, id } = this.state;
         return (
+            this.props.dashboard ? 
+            <>
+            <h6>There are { tracks ?  tracks.length : 0} tracks in your tasks</h6>
+            {tracks ? tracks.length ?
+            <ul class="list-group">
+             {tracks.map((track, index) =>  <li class="list-group-item border-0">{track.track_name}</li>
+            )
+        }
+           </ul>
+           : 
+            <div className="comment-widgets mb-3">
+                                    <div className="d-flex flex-row comment-row">
+                                        No track found
+                                     </div>
+                                </div> : <Loading />}
+</>
+            :
             <DashboardTemplate title="Manage Tracks" pageId="tracks" loading={loading}>
                 <div className="setting_container">
                     <div className="card-header d-flex align-items-center">
